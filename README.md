@@ -1,15 +1,16 @@
-# INFO30005-Singularity-Unifood
 UniFood is an application created by Team Singularity that connects event organisers with excess food to users in the surrounding area through a notification system.
 
 We have identified the following goals we want to address throughout our implementation:
 
 To serve as a contingency for event organisers when there is surplus food and reduce waste of edible food.
 To be as user-friendly as possible for both users and organisers by integrating well with existing protocols for event organisers and daily practices of users.
+
 How it Works:
 The event organiser fills out a form detailing the location, time, quantity, and type of food available alongside a photograph.
 The system will notify users that are nearby regarding the details of the event and surplus food via Facebook Messenger.
 If the users nearby do not respond within a set period of time, the system will send the notification to a wider area.
 Users can reserve the food by replying through Facebook Messenger and will have a set time frame to get to the location of the event/poster.
+
 Key Functionalities
 1. Account Registration System
 Users: The user account will be notified if there are events with surplus food on campus. To register, the user needs to provide the following details:
