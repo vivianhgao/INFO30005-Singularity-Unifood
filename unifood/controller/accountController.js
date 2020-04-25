@@ -1,23 +1,46 @@
-// provide the controller a link to the author model
-var accounts = require('../model/account');
+const mongoose = require("mongoose");
 
-// Function to handle a request to get all accounts
-const getAllAccount = (req, res) => {
-    res.send(accounts); // return the list of accounts
+// import author model
+const Account = mongoose.model("accounts");
+
+
+// function to handle a request to get all authors
+const getAllAccount = async (req, res) => {
+
+    try {
+        const all_account = await Account.find();
+        return res.send(all_account);
+    } catch (err) {
+        res.status(400);
+        return res.send("Database query failed");
+    }
 };
 
-// function to handle request to add account
-const addAccount = (req, res) => {
-    // extract info. from body
-    const account = req.body;
 
-    // add account to array
-    accounts.push(account);
-    res.send(accounts);
+
+// function to modify author by ID
+const updateAccount = async (req, res) => {
+    res.send("Working on this feature");
 };
 
+<<<<<<< Updated upstream
 // Remember to export the callbacks
+=======
+// function to add author
+const addAccount = async (req, res) => {
+    res.send("Working on this feature");
+};
+
+// function to get author by id
+const getAccountByID = (req, res) => {
+    res.send("Working on this feature");
+};
+
+// remember to export the functions
+>>>>>>> Stashed changes
 module.exports = {
     getAllAccount,
-    addAccount
+    getAccountByID,
+    addAccount,
+    updateAccount
 };
