@@ -10,5 +10,7 @@ const accountController = require('../controller/accountController.js');
 // i.e. get all authors
 accountRouter.get('/', (req, res) => accountController.getAllAccount(req, res));
 
+accountRouter.post("/", accountController.addAccount);
+
 // export the router
 module.exports = accountRouter;

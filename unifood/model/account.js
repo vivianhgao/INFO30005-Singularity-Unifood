@@ -1,11 +1,18 @@
-module.exports = [
+// Some static data, an array of objects representing each author
+let accounts  = [
     {
-        "id":"10001",
-        "first_name":"Jennifer",
-        "last_name":"Robbins",
+        username: "pbudiman",
+        first_name: "Patricia",
+        last_name: "Budiman"
     },
     {
-        "id":"10002",
-        "first_name":"Evan",
-        "last_name":"Hahn",
-    } ];
+        username: "evanh",
+        first_name: "Evan",
+        last_name: "Hahn"
+    }
+];
+
+module.exports=accounts;
+
+
+
