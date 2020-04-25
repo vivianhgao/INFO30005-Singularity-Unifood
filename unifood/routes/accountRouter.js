@@ -11,5 +11,7 @@ const accountController = require('../controller/accountController.js');
 accountRouter.get('/', (req, res) => accountController.getAllAccount(req, res));
 accountRouter.post('/', (req,res)=> a)
 
+accountRouter.post("/", accountController.addAccount);
+
 // export the router
 module.exports = accountRouter;
