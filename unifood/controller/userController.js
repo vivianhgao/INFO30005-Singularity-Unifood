@@ -1,15 +1,14 @@
 const mongoose = require("mongoose");
 
 // import author model
-const Account = mongoose.model("accounts");
-
+const User = mongoose.model("users");
 
 // function to handle a request to get all authors
-const getAllAccount = async (req, res) => {
+const getAllUsers = async (req, res) => {
 
     try {
-        const all_account = await Account.find();
-        return res.send(all_account);
+        const all_user = await User.find();
+        return res.send(all_user);
     } catch (err) {
         res.status(400);
         return res.send("Database query failed");
@@ -17,24 +16,24 @@ const getAllAccount = async (req, res) => {
 };
 
 // function to modify author by ID
-const updateAccount = async (req, res) => {
+const updateUser = async (req, res) => {
     res.send("Working on this feature");
 };
 
 // function to add author
-const addAccount = async (req, res) => {
+const addUser = async (req, res) => {
     res.send("Working on this feature");
 };
 
 // function to get author by id
-const getAccountByID = (req, res) => {
+const getUserByID = (req, res) => {
     res.send("Working on this feature");
 };
 
 // remember to export the functions
 module.exports = {
-    getAllAccount,
-    getAccountByID,
-    addAccount,
-    updateAccount
+    getAllUsers,
+    getUserByID,
+    addUser,
+    updateUser
 };

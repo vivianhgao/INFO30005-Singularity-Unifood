@@ -20,12 +20,12 @@ app.get('/', (req, res) => {
 
 });
 
-// set up author routes
-const accountRouter = require('./routes/accountRouter');
+// set up account routes
+const userRouter = require('./routes/userRouter');
 
 // Handle author-management requests
 // the author routes are added onto the end of '/author-management'
-app.use('/account-management', accountRouter);
+app.use('/user-management', userRouter);
 // handle form-management requests
 //the form routes are added to the end of '/form-management'
 app.use('/form-management', formRouter);
