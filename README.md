@@ -15,9 +15,9 @@ We have identified the following goals we want to address throughout our impleme
 ## Key Functionalities
 ### 1. Account Registration System
 **Users**: The user account will be notified if there are events with surplus food on campus. To register, the user needs to provide the following details:
+* Username
 * Name
 * Email
-* Facebook URL
 * Password
 
 **Organisers**: The event organiser account has the ability to advertise their leftovers (second functionality) and automatically notify other people around the campus (third functionality). Although this is primarily for student clubs and societies, independent event coordinators can also participate. To register an account, the event organiser needs to provide the following details:
