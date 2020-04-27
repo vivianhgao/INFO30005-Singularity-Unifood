@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 // import author model
 const User = mongoose.model("users");
 
-// function to handle a request to get all authors
+// function to handle a request to get all users
 const getAllUsers = async (req, res) => {
 
     try {
@@ -11,29 +11,96 @@ const getAllUsers = async (req, res) => {
         return res.send(all_user);
     } catch (err) {
         res.status(400);
-        return res.send("Database query failed");
+        return res.send("Database query failed!");
     }
 };
 
-// function to modify author by ID
-const updateUser = async (req, res) => {
-    res.send("Working on this feature");
+//function to update a user
+const updateUser =  async (req, res) =>{
+    var condition = {username: req.params.username};
+    var update = {username: req.body.username,
+        email: req.body.email,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name};
+
+
+    User.findOneAndUpdate(condition, { $set: req.body }, function(err,user){
+        if (err){
+            console.error('An error occured!');
+        }
+        else if(!user){
+            return res.send('User is not found!');
+        }
+        else {
+            return res.send("User is updated!");
+        }
+
+    });
+
+
 };
 
-// function to add author
+
+// function to add user account
 const addUser = async (req, res) => {
-    res.send("Working on this feature");
+    var new_user = {
+        username: req.body.username,
+        email: req.body.email,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name
+    }
+    User.exists({username:req.body.username} || {email:req.body.email},function (err,userExists) {
+        if(err){
+            res.send('An error occured');
+        }
+        else if(userExists){
+            res.send("Username/email has already existed.\nPlease change username/email.");
+        }
+        else{
+            var data =  new User(new_user);
+
+            data.save();
+
+            res.send('New user added!');
+        }
+    });
 };
 
-// function to get author by id
-const getUserByID = (req, res) => {
-    res.send("Working on this feature");
+// function to get user by username
+const getUserByUsername = (req, res) => {
+    var requested =  req.params.username;
+
+     User.findOne({username:requested},function (err,user){
+         if (err) {
+             console.error("An error occured.");
+         }
+         else if(!user){
+             res.send("No user with that username.")
+         }
+        else {
+            res.send(user);
+        }
+    });
 };
 
-// remember to export the functions
+// function to delete a user
+const deleteUser = (req,res) => {
+    var requested = req.params.username;
+
+    User.deleteOne({username:requested},function (err) {
+        if(err) {
+            console.error("Deletion Error");
+        }
+        res.send("User '"+requested+"' is successfully deleted!");
+    });
+
+}
+
+// export the functions
 module.exports = {
     getAllUsers,
-    getUserByID,
+    getUserByUsername,
     addUser,
-    updateUser
+    updateUser,
+    deleteUser
 };
