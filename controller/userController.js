@@ -40,7 +40,13 @@ const addUser = async (req, res) => {
         email: req.body.email,
         password: req.body.password,
         first_name: req.body.first_name,
-        last_name: req.body.last_name
+        last_name: req.body.last_name,
+        location: [
+            {
+                latitude: req.body.location.latitude,
+                longitude: req.body.location.longitude
+            }
+        ]
     }
     User.exists({username:req.body.username} || {email:req.body.email},function (err,userExists) {
         if(err){
@@ -76,6 +82,21 @@ const getUserByUsername = (req, res) => {
      });
 };
 
+// Get location by username
+const getLocationByUsername = (req, res) => {
+  var requested = req.params.username;
+
+  User.findOne({username:requested}, (err,user) => {
+      if (err) {
+          console.error("An error occured.");
+      } else if (!user) {
+          res.send("Sorry, this user doesn't exist.");
+      } else {
+          res.send(user['location']);
+      }
+  });
+};
+
 // function to delete a user
 const deleteUser = (req,res) => {
     var requested = req.params.username;
@@ -95,6 +116,7 @@ const deleteUser = (req,res) => {
 module.exports = {
     getAllUsers,
     getUserByUsername,
+    getLocationByUsername,
     addUser,
     updateUser,
     deleteUser
