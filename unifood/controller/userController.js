@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-// import author model
+// import user model
 const User = mongoose.model("users");
 
 // function to handle a request to get all users
@@ -18,11 +18,6 @@ const getAllUsers = async (req, res) => {
 //function to update a user
 const updateUser =  async (req, res) =>{
     var condition = {username: req.params.username};
-    var update = {username: req.body.username,
-        email: req.body.email,
-        first_name: req.body.first_name,
-        last_name: req.body.last_name};
-
 
     User.findOneAndUpdate(condition, { $set: req.body }, function(err,user){
         if (err){
@@ -34,10 +29,7 @@ const updateUser =  async (req, res) =>{
         else {
             return res.send("User is updated!");
         }
-
     });
-
-
 };
 
 
@@ -46,6 +38,7 @@ const addUser = async (req, res) => {
     var new_user = {
         username: req.body.username,
         email: req.body.email,
+        password: req.body.password,
         first_name: req.body.first_name,
         last_name: req.body.last_name
     }
@@ -77,24 +70,26 @@ const getUserByUsername = (req, res) => {
          else if(!user){
              res.send("No user with that username.")
          }
-        else {
+         else {
             res.send(user);
-        }
-    });
+         }
+     });
 };
 
 // function to delete a user
 const deleteUser = (req,res) => {
     var requested = req.params.username;
 
-    User.deleteOne({username:requested},function (err) {
+    User.deleteOne( {username:requested} ,function (err) {
         if(err) {
             console.error("Deletion Error");
         }
-        res.send("User '"+requested+"' is successfully deleted!");
+        else {
+            res.send("User '" + requested + "' is successfully deleted!");
+        }
     });
 
-}
+};
 
 // export the functions
 module.exports = {
