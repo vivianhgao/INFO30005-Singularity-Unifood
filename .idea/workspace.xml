@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3c1fbbf-5569-420e-9587-ed3ee9d4bf2e" name="Default Changelist" comment="">
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/accountController.js" beforeDir="false" />
@@ -996,6 +997,9 @@
       <change beforePath="$PROJECT_DIR$/routes/accountRouter.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/formRouter.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/notificationRouter.js" beforeDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1006,7 +1010,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1b1FX0J3Q5kiejv4mAmkY8NjqGs" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -1016,6 +1022,14 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+<<<<<<< Updated upstream
+=======
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/unifood/routes" />
+    </key>
+>>>>>>> Stashed changes
   </component>
   <component name="RunManager">
     <configuration name="app.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/unifood/app.js" working-dir="$PROJECT_DIR$/unifood">
@@ -1038,6 +1052,13 @@
       <option name="presentableId" value="Default" />
       <updated>1587791729018</updated>
       <workItem from="1587791732582" duration="1255000" />
+<<<<<<< Updated upstream
+=======
+      <workItem from="1587796029745" duration="2834000" />
+      <workItem from="1587802411239" duration="4000" />
+      <workItem from="1587802418842" duration="1000000" />
+      <workItem from="1588057709279" duration="570000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
