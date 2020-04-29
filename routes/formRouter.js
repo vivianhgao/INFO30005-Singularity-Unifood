@@ -7,9 +7,15 @@ const formRouter = express.Router();
 const formController = require('../controller/formController.js');
 
 // handle the GET request on root of author-management path,
-// i.e. get all authors
-formRouter.get('/', (req, res) => formController.getAllForms(req, res));
-formRouter.post('/', (req,res)=> a)
+
+formRouter.get("/", formController.getAllForms);
+
+formRouter.post("/", formController.createForm);
+
+formRouter.post("/update-:ID",formController.updateForm);
+
+formRouter.post("/delete-:ID",formController.deleteForm);
+
 
 // export the router
 module.exports = formRouter;

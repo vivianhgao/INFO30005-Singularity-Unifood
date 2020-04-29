@@ -1,18 +1,19 @@
-module.exports = [
-    {
-        "name":"Science Student's Society",
-        "location":"House of Cards",
-        "description":"Free tea for all SSS members!",
-        "quantity":"20 units",
-        "time":"12:00pm 23 of April",
-        "photo":"insert photo",
-    },
-    {
-        "name":"CISSA",
-        "location":"South Lawn",
-        "description":"Free BBQ for all CISSA members!",
-        "quantity":"200 units",
-        "time":"12:00pm 24 of March",
-        "photo":"insert photo",
-    } ];
+const mongoose = require("mongoose");
+const formSchema = new mongoose.Schema({
+    name:{type:String, required:true},
+    address:{type:String, required:true},
+    description:{type:String, required:true},
+    time:{type:String, required:true},
+    quantity: String,
+    photo: String,
+    location: [
+        {
+            latitude: Number,
+            longitude: Number
+        }
+    ]
+});
 
+const form = mongoose.model("form", formSchema, "form");
+
+module.exports = Form;
