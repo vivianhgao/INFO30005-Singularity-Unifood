@@ -6,13 +6,20 @@ const userRouter = express.Router();
 // require the user controller
 const userController = require('../controller/userController.js');
 
-// handle the GET request on root of user-management path,
-// i.e. get all users
-userRouter.get("/", userController.getAllUsers);
+userRouter.get('/', function(req, res, next) {
+    res.render('login');
+});
 
-userRouter.post("/", userController.addUser);
+userRouter.post("/login",userController.getUserByUsername);
 
-userRouter.get("/:username",userController.getUserByUsername);
+userRouter.get("/userlist", userController.getAllUsers);
+
+userRouter.get('/signUp', function(req, res, next) {
+    res.render('signUp');
+});
+
+userRouter.post("/signUp", userController.addUser);
+
 
 userRouter.post("/update-:username",userController.updateUser);
 

@@ -63,17 +63,17 @@ const addUser = async (req, res) => {
 const getUserByUsername = (req, res) => {
     var requested =  req.params.username;
 
-     User.findOne({username:requested},function (err,user){
-         if (err) {
-             console.error("An error occured.");
-         }
-         else if(!user){
-             res.send("No user with that username.")
-         }
-         else {
+    User.findOne({username:requested},function (err,user){
+        if (err) {
+            console.error("An error occured.");
+        }
+        else if(!user){
+            res.send("No user with that username.")
+        }
+        else {
             res.send(user);
-         }
-     });
+        }
+    });
 };
 
 // function to delete a user
