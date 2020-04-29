@@ -60,8 +60,8 @@ const addUser = async (req, res) => {
 };
 
 // function to get user by username
-const getUserByUsername = (req, res) => {
-    var requested =  req.params.username;
+const getUserByUsername = (req, res,next) => {
+    var requested =  req.body.username;
 
     User.findOne({username:requested},function (err,user){
         if (err) {
