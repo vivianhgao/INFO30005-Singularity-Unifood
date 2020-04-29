@@ -66,20 +66,20 @@ const addUser = async (req, res) => {
 };
 
 // function to get user by username
-const getUserByUsername = (req, res) => {
-    var requested =  req.params.username;
+const getUserByUsername = (req, res,next) => {
+    var requested =  req.body.username;
 
-     User.findOne({username:requested},function (err,user){
-         if (err) {
-             console.error("An error occured.");
-         }
-         else if(!user){
-             res.send("No user with that username.")
-         }
-         else {
+    User.findOne({username:requested},function (err,user){
+        if (err) {
+            console.error("An error occured.");
+        }
+        else if(!user){
+            res.send("No user with that username.")
+        }
+        else {
             res.send(user);
-         }
-     });
+        }
+    });
 };
 
 // Get location by username
