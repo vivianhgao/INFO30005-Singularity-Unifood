@@ -6,7 +6,11 @@
       <change afterPath="$PROJECT_DIR$/unifood/model/form.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/unifood/routes/formRouter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/unifood/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/unifood/app.js" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/routes/formRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/formRouter.js" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +68,12 @@
       <workItem from="1587796029745" duration="2834000" />
       <workItem from="1587802411239" duration="4000" />
       <workItem from="1587802418842" duration="1000000" />
+<<<<<<< Updated upstream
+=======
+      <workItem from="1588123122822" duration="12000" />
+      <workItem from="1588123136341" duration="4000" />
+      <workItem from="1588123168522" duration="3566000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
