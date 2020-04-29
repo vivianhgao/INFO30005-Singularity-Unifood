@@ -3,7 +3,7 @@ const express = require('express');
 // add our router
 const formRouter = express.Router();
 
-// require the author controller
+// require the form controller
 const formController = require('../controller/formController.js');
 
 // handle the GET request on root of author-management path,
