@@ -1,0 +1,9 @@
+extends welcomeUser
+block contents
+    h2 To delete your account please fill the following:
+    form(action='delete/'+username, method='post')
+        | username:
+        input(name='username', value='', type='username')
+        br
+        | password:
+        input(name='password', value='', type='password')

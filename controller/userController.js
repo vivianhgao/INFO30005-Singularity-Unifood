@@ -3,39 +3,28 @@ const mongoose = require("mongoose");
 // import user model
 const User = mongoose.model("users");
 
-// function to handle a request to get all users
-const getAllUsers = async (req, res) => {
+// function for user to log in
+const logIn = (req, res, next) => {
+    var username =  req.body.username;
+    var password =  req.body.password;
 
-    try {
-        const all_user = await User.find();
-        return res.send(all_user);
-    } catch (err) {
-        res.status(400);
-        return res.send("Database query failed!");
-    }
-};
-
-//function to update a user
-const updateUser =  async (req, res) =>{
-    var condition = {username: req.params.username};
-
-    User.findOneAndUpdate(condition, { $set: req.body }, function(err,user){
-        if (err){
-            console.error('An error occured!');
+    //find the user using the log in user name
+    User.findOne({username:username},function (err,user){
+        if (err) {
+            console.error("An error occured.");
         }
-        else if(!user){
-            return res.send('User is not found!');
+        else if(!user || password!=user.password){
+            res.send("Wrong username/password.")
         }
         else {
-            return res.send("User is updated!");
+            res.render('welcomeUser',{ first_name:user.first_name, username:username });
         }
     });
 };
 
-
-// function to add user account
-const addUser = async (req, res) => {
-    var new_user = {
+// function to add user account when a new user sign up
+const addUser = async (req, res,next) => {
+    const new_user = {
         username: req.body.username,
         email: req.body.email,
         password: req.body.password,
@@ -48,6 +37,8 @@ const addUser = async (req, res) => {
             }
         ]
     }
+
+    // check if the username/email has been registered
     User.exists({username:req.body.username} || {email:req.body.email},function (err,userExists) {
         if(err){
             res.send('An error occured');
@@ -56,18 +47,20 @@ const addUser = async (req, res) => {
             res.send("Username/email has already existed.\nPlease change username/email.");
         }
         else{
-            var data =  new User(new_user);
-
-            data.save();
-
-            res.send('New user added!');
+            if(new_user.username && new_user.email && new_user.password && new_user.first_name){
+                var data =  new User(new_user);
+                data.save()
+                res.render('welcomeUser',{first_name:req.body.first_name});
+            }else{
+                res.send("Incomplete information to sign up.\nPlease go back.");
+            }
         }
     });
 };
 
-// function to get user by username
-const getUserByUsername = (req, res,next) => {
-    var requested =  req.body.username;
+//get the details of the user
+const getDetails = (req,res,next) => {
+    var requested=  req.params.username;
 
     User.findOne({username:requested},function (err,user){
         if (err) {
@@ -77,27 +70,43 @@ const getUserByUsername = (req, res,next) => {
             res.send("No user with that username.")
         }
         else {
-            res.send(user);
+            res.render('userDetails',{first_name:user.first_name, last_name:user.last_name,username:user.username});
         }
     });
 };
 
-// Get location by username
-const getLocationByUsername = (req, res) => {
-  var requested = req.params.username;
+//function to update an information about a user
+const updateUser =  async (req, res) => {
+    var condition = {username: req.params.username};
+    var update = {
+        username: req.body.username,
+        email: req.body.email,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        password: req.body.password
+    }
+    //clean updated field
+    for( field in update ){
+        if(update[field] ==''){
+            delete update[field]
+        }
+    }
 
-  User.findOne({username:requested}, (err,user) => {
-      if (err) {
-          console.error("An error occured.");
-      } else if (!user) {
-          res.send("Sorry, this user doesn't exist.");
-      } else {
-          res.send(user['location']);
-      }
-  });
+    //find the user's details and update it
+    User.findOneAndUpdate(condition, update, function(err,user){
+        if (err){
+            console.error('An error occured!');
+        }
+        else if(!user){
+            return res.send('User is not found!');
+        }
+        else {
+            res.send("User is updated!");
+        }
+    });
 };
 
-// function to delete a user
+// function to delete a user when the user wants to delete their account
 const deleteUser = (req,res) => {
     var requested = req.params.username;
 
@@ -109,15 +118,25 @@ const deleteUser = (req,res) => {
             res.send("User '" + requested + "' is successfully deleted!");
         }
     });
+};
 
+// function to get all users
+const getAllUsers = async (req, res) => {
+    try {
+        const all_user = await User.find();
+        return res.send(all_user);
+    } catch (err) {
+        res.status(400);
+        return res.send("Database query failed!");
+    }
 };
 
 // export the functions
 module.exports = {
     getAllUsers,
-    getUserByUsername,
-    getLocationByUsername,
+    logIn,
     addUser,
+    getDetails,
     updateUser,
     deleteUser
 };
