@@ -23,14 +23,15 @@ const logIn = (req, res, next) => {
 };
 
 // function to add user account when a new user sign up
-const addUser = async (req, res) => {
-    var new_user = {
+const addUser = async (req, res,next) => {
+    const new_user = {
         username: req.body.username,
         email: req.body.email,
         password: req.body.password,
         first_name: req.body.first_name,
         last_name: req.body.last_name
     }
+
     // check if the username/email has been registered
     User.exists({username:req.body.username} || {email:req.body.email},function (err,userExists) {
         if(err){
@@ -40,9 +41,13 @@ const addUser = async (req, res) => {
             res.send("Username/email has already existed.\nPlease change username/email.");
         }
         else{
-            var data =  new User(new_user);
-            data.save();
-            res.render('welcomeUser',{first_name:req.body.first_name});
+            if(new_user.username && new_user.email && new_user.password && new_user.first_name){
+                var data =  new User(new_user);
+                data.save()
+                res.render('welcomeUser',{first_name:req.body.first_name});
+            }else{
+                res.send("Incomplete information to sign up.\nPlease go back.");
+            }
         }
     });
 };
@@ -64,9 +69,6 @@ const getDetails = (req,res,next) => {
     });
 };
 
-<<<<<<< Updated upstream
-// function to delete a user
-=======
 //function to update an information about a user
 const updateUser =  async (req, res) => {
     var condition = {username: req.params.username};
@@ -99,7 +101,6 @@ const updateUser =  async (req, res) => {
 };
 
 // function to delete a user when the user wants to delete their account
->>>>>>> Stashed changes
 const deleteUser = (req,res) => {
     var requested = req.params.username;
 
@@ -127,11 +128,7 @@ const getAllUsers = async (req, res) => {
 // export the functions
 module.exports = {
     getAllUsers,
-<<<<<<< Updated upstream
-    getUserByUsername,
-=======
     logIn,
->>>>>>> Stashed changes
     addUser,
     getDetails,
     updateUser,

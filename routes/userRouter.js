@@ -24,13 +24,6 @@ userRouter.get("/login/:username",userController.getDetails);
 
 userRouter.post("/login/update/:username",userController.updateUser);
 
-<<<<<<< Updated upstream
-userRouter.post("/update-:username",userController.updateUser);
-=======
-
-//user deleting their account
-userRouter.get("/delete/:username",userController.deleteUser);
->>>>>>> Stashed changes
 
 // getting list of all users
 userRouter.get("/userList", userController.getAllUsers);
