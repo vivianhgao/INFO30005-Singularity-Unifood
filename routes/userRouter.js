@@ -24,7 +24,6 @@ userRouter.get("/login/:username",userController.getDetails);
 
 userRouter.post("/login/update/:username",userController.updateUser);
 
-
 // getting list of all users
 userRouter.get("/userList", userController.getAllUsers);
 

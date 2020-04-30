@@ -8,15 +8,13 @@ const logIn = (req, res, next) => {
     var username =  req.body.username;
     var password =  req.body.password;
 
-    //find the user using the log in user name
+    //find the user in the database with the log in user name
     User.findOne({username:username},function (err,user){
         if (err) {
             console.error("An error occured.");
-        }
-        else if(!user || password!=user.password){
+        } else if (!user || password!=user.password) {
             res.send("Wrong username/password.")
-        }
-        else {
+        } else {
             res.render('welcomeUser',{ first_name:user.first_name, username:username });
         }
     });
@@ -42,16 +40,15 @@ const addUser = async (req, res,next) => {
     User.exists({username:req.body.username} || {email:req.body.email},function (err,userExists) {
         if(err){
             res.send('An error occured');
-        }
-        else if(userExists){
+        } else if (userExists) {
             res.send("Username/email has already existed.\nPlease change username/email.");
-        }
-        else{
+        } else {
+            //check whether all required information to sign up is present
             if(new_user.username && new_user.email && new_user.password && new_user.first_name){
                 var data =  new User(new_user);
                 data.save()
                 res.render('welcomeUser',{first_name:req.body.first_name});
-            }else{
+            }else {
                 res.send("Incomplete information to sign up.\nPlease go back.");
             }
         }
@@ -65,11 +62,9 @@ const getDetails = (req,res,next) => {
     User.findOne({username:requested},function (err,user){
         if (err) {
             console.error("An error occured.");
-        }
-        else if(!user){
+        } else if (!user) {
             res.send("No user with that username.")
-        }
-        else {
+        } else {
             res.render('userDetails',{first_name:user.first_name, last_name:user.last_name,username:user.username});
         }
     });
@@ -85,6 +80,7 @@ const updateUser =  async (req, res) => {
         last_name: req.body.last_name,
         password: req.body.password
     }
+
     //clean updated field
     for( field in update ){
         if(update[field] ==''){
@@ -95,13 +91,18 @@ const updateUser =  async (req, res) => {
     //find the user's details and update it
     User.findOneAndUpdate(condition, update, function(err,user){
         if (err){
-            console.error('An error occured!');
-        }
-        else if(!user){
+            return console.error('An error occured!');
+        } else if (!user) {
             return res.send('User is not found!');
-        }
-        else {
-            res.send("User is updated!");
+        } else {
+            //to update the name in the welcome page
+            if(update.first_name){
+                var first_name=update.first_name;
+            } else {
+                first_name=user.first_name;
+            }
+            console.log("User is updated!");
+            res.render('welcomeUser',{first_name:first_name});
         }
     });
 };
@@ -111,10 +112,9 @@ const deleteUser = (req,res) => {
     var requested = req.params.username;
 
     User.deleteOne( {username:requested} ,function (err) {
-        if(err) {
+        if (err) {
             console.error("Deletion Error");
-        }
-        else {
+        } else {
             res.send("User '" + requested + "' is successfully deleted!");
         }
     });
