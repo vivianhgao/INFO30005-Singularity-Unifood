@@ -22,4 +22,7 @@ db.once("open", async () => {
         db.port); });
 
 require("./user");
+
 require("./organiser");
+
+require("./form");

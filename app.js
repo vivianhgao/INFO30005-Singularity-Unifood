@@ -1,9 +1,14 @@
-const express = require('express')
-const bodyParser = require("body-parser");
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
 
 const app = express();
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
 require('./model')
+
 // set up form routes
 const formRouter = require('./routes/formRouter');
 
@@ -20,12 +25,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // GET home page
 app.get('/', (req, res) => {
-    res.send('<H1>Singularity</H1><H2>Unifood</H2>' )
+    res.render('index' ,{title:'Unifood HomePage'})
 });
 
 // Handle user-management requests
 // the user routes are added onto the end of '/user-management'
-app.use('/user-management', userRouter);
+app.use('/users', userRouter);
 // handle form-management requests
 //the form routes are added to the end of '/form-management'
 app.use('/form-management', formRouter);

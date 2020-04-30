@@ -6,19 +6,26 @@ const userRouter = express.Router();
 // require the user controller
 const userController = require('../controller/userController.js');
 
-// handle the GET request on root of user-management path
+//user logging in
+userRouter.get('/', function(req, res, next) {
+    res.render('login');
+});
+userRouter.post("/login",userController.logIn);
 
-userRouter.get("/", userController.getAllUsers);
+//user signing up
+userRouter.get('/signUp', function(req, res, next) {
+    res.render('signUp');
+});
 
-userRouter.post("/", userController.addUser);
+userRouter.post("/signUp", userController.addUser);
 
-userRouter.get("/:username",userController.getUserByUsername);
+//user getting their details and updating
+userRouter.get("/login/:username",userController.getDetails);
 
-userRouter.get("/location/:username",userController.getLocationByUsername);
+userRouter.post("/login/update/:username",userController.updateUser);
 
-userRouter.post("/update-:username",userController.updateUser);
-
-userRouter.post("/delete-:username",userController.deleteUser);
+// getting list of all users
+userRouter.get("/userList", userController.getAllUsers);
 
 // export the router
 module.exports = userRouter;
