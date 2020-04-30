@@ -40,13 +40,7 @@ const addUser = async (req, res) => {
         email: req.body.email,
         password: req.body.password,
         first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        location: [
-            {
-                latitude: req.body.location.latitude,
-                longitude: req.body.location.longitude
-            }
-        ]
+        last_name: req.body.last_name
     }
     User.exists({username:req.body.username} || {email:req.body.email},function (err,userExists) {
         if(err){
