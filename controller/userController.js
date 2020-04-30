@@ -28,12 +28,6 @@ const addUser = async (req, res,next) => {
         password: req.body.password,
         first_name: req.body.first_name,
         last_name: req.body.last_name,
-        location: [
-            {
-                latitude: req.body.location.latitude,
-                longitude: req.body.location.longitude
-            }
-        ]
     }
 
     // check if the username/email has been registered

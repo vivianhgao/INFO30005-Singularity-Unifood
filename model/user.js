@@ -4,13 +4,7 @@ const userSchema = new mongoose.Schema({
     email:{ type: String,unique:true,required:true},
     password:{ type: String,unique:true,required:true},
     first_name: { type: String,required:true},
-    last_name: String,
-    location: [
-        {
-            latitude: Number,
-            longitude: Number
-        }
-    ]
+    last_name: String
 });
 
 const User = mongoose.model("users", userSchema, "users");
