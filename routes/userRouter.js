@@ -24,12 +24,12 @@ userRouter.get('/signUp', function(req, res, next) {
 userRouter.post("/signUp", userController.addUser);
 
 //user getting their details and updating
-userRouter.get("/login/:username",userController.getDetails);
+userRouter.get("/login/:username", userController.getDetails);
 
-userRouter.post("/login/update/:username",userController.updateUser);
+userRouter.post("/login/update/:username", userController.updateUser);
 
 //user deleting account
-userRouter.get("/delete/:username",userController.deleteUser);
+userRouter.get("/delete/:username", userController.deleteUser);
 
 // export the router
 module.exports = userRouter;

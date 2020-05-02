@@ -46,10 +46,10 @@ const addUser = async (req, res,next) => {
         } else {
             //check whether all required information to sign up is present
             if (new_user.username && new_user.email && new_user.password && new_user.first_name && new_user.last_name){
-                    var data = new User(new_user);
-                    data.save();
-                    console.log("User "+new_user.username+" is added!")
-                    res.render('welcomeUser', {first_name: req.body.first_name});
+                let data = new User(new_user);
+                data.save();
+                console.log("User "+new_user.username+" is added!")
+                res.render('welcomeUser', {first_name: req.body.first_name});
             }
             else{
                 res.render('userError');
