@@ -42,6 +42,9 @@ User deleting their account after logging in: https://unifood-app.herokuapp.com/
 <br>
   [where ':username' takes the user's username]
 <br>
+Demo account:
+* Username: pbudiman
+* Password: userpb
 
 ## Reference
 1. INFO30005 lectures and workshops material Week 1-5
