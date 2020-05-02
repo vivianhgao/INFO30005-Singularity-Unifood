@@ -7,9 +7,10 @@ const userRouter = express.Router();
 const userController = require('../controller/userController.js');
 
 //user logging in
-userRouter.get('/', function(req, res, next) {
+userRouter.get('/login', function(req, res, next) {
     res.render('login');
 });
+
 userRouter.post("/login",userController.logIn);
 
 //user signing up
@@ -23,6 +24,9 @@ userRouter.post("/signUp", userController.addUser);
 userRouter.get("/login/:username",userController.getDetails);
 
 userRouter.post("/login/update/:username",userController.updateUser);
+
+//user deleting account
+userRouter.get("/delete/:username",userController.deleteUser);
 
 // getting list of all users
 userRouter.get("/userList", userController.getAllUsers);

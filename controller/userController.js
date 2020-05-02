@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 // import user model
 const User = mongoose.model("users");
 
+
+
 // function for user to log in
 const logIn = (req, res, next) => {
     var username =  req.body.username;
@@ -11,14 +13,17 @@ const logIn = (req, res, next) => {
     //find the user in the database with the log in username
     User.findOne({username:username},function (err,user){
         if (err) {
-            console.error("An error occured.");
+            res.error("An error occured.");
         }
         //validate whether the password and username matches each other
         else if (!user || password!=user.password) {
-            res.send("Wrong username/password.")
+            console.log("Wrong username or password!");
+            res.render('loginError');
+
         }
         //when both username and password is correct, user is logged in
         else {
+            console.log("User "+username+" is logged in!")
             res.render('welcomeUser',{ first_name:user.first_name, username:username });
         }
     });
@@ -39,16 +44,17 @@ const addUser = async (req, res,next) => {
         if(err){
             res.send('An error occured');
         } else if (userExists) {
-            res.send("Username/email has already existed.\nPlease change username/email.");
+            res.render("signUpError");
+
         } else {
             //check whether all required information to sign up is present
-            if(new_user.username && new_user.email && new_user.password && new_user.first_name){
-                var data =  new User(new_user);
-                data.save()
-                res.render('welcomeUser',{first_name:req.body.first_name});
+            if (new_user.username && new_user.email && new_user.password && new_user.first_name && new_user.last_name){
+                    var data = new User(new_user);
+                    data.save();
+                    console.log("User "+new_user.username+" is added!")
+                    res.render('welcomeUser', {first_name: req.body.first_name});
             }
-            //when there are some missing information
-            else {
+            else{
                 res.render('userError');
             }
         }
@@ -115,7 +121,8 @@ const deleteUser = (req,res) => {
         if (err) {
             console.error("Deletion Error");
         } else {
-            res.send("User '" + requested + "' is successfully deleted!");
+
+            res.render('userDelete',{username:requested});
         }
     });
 };
