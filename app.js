@@ -11,10 +11,7 @@ require('./model')
 
 // set up form routes
 const formRouter = require('./routes/formRouter');
-
-// set up user routes
 const userRouter = require('./routes/userRouter');
-
 const organiserRouter = require('./routes/organiserRouter');
 
 // use the body-parser middleware, which parses request bodies into req.body
@@ -33,7 +30,7 @@ app.get('/', (req, res) => {
 app.use('/users', userRouter);
 // handle form-management requests
 //the form routes are added to the end of '/form-management'
-app.use('/form-management', formRouter);
+app.use('/forms', formRouter);
 // handle organiser-management requests
 // the form routes are added to the end of '/organiser-management'
 app.use('/organiser-management', organiserRouter);
