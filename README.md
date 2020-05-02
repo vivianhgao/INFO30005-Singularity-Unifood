@@ -29,7 +29,18 @@ Delete Form: https://unifood-app.herokuapp.com/forms/deleteForm
 
 
 ## User Routes
-
+From the home page: https://unifood-app.herokuapp.com/
+<br>
+To log in: https://unifood-app.herokuapp.com/users/login
+<br>
+To sign up: https://unifood-app.herokuapp.com/users/signUp
+<br>
+To change user details after logging in: https://unifood-app.herokuapp.com/users/login/:username
+<br>
+User deleting their account after logging in: https://unifood-app.herokuapp.com/users/delete/:username 
+<br>
+  [where ':username' takes the user's username]
+<br>
 
 ## Reference
 1. INFO30005 lectures and workshops material Week 1-5
@@ -54,44 +65,11 @@ We have identified the following goals we want to address throughout our impleme
 
 ## Key Functionalities
 ### 1. Account System
-**Users**: The user account will be notified if there are events with surplus food on campus. 
-* From the home page, the user can click the link which will direct them to the log in page.
-* If the user does not have an account, the user is able sign up by clicking the sign up link from the log in page.
-* The user is able to change their details, delete their account or log out.
-** Home Page:
-```
-http://localhost:3000/ or https://unifood-app.herokuapp.com/
-```
-** Directing to log in page:
-```
-/users
-```
-** Logging in:
-```
-/users/login
-```
-** Directing to sign up page:
-```
-/users/signUp
-```
-** Directing to Welcome page when log in/ sign up is successfull:
-```
-/users/login
-```
-** To change user details:
-```
-/users/login/:username
-```
-where it takes the user's username and will be redirected to the welcome page after updating
-** To log out:
-Redirected to the home page
-** To delete account:
-```
-/users/delete/:username
-```
-where it takes the user's username
-
-
+**Users**: The user account will be notified if there are events with surplus food on campus. To register, the user needs to provide:
+* Username
+* Email
+* Name
+* Password
 
 **Organisers**: The event organiser account has the ability to advertise their leftovers (second functionality) and automatically notify other people around the campus (third functionality). Although this is primarily for student clubs and societies, independent event coordinators can also participate. To register an account, the event organiser needs to provide the following details:
 * Name
