@@ -8,13 +8,17 @@ const logIn = (req, res, next) => {
     var username =  req.body.username;
     var password =  req.body.password;
 
-    //find the user in the database with the log in user name
+    //find the user in the database with the log in username
     User.findOne({username:username},function (err,user){
         if (err) {
             console.error("An error occured.");
-        } else if (!user || password!=user.password) {
+        }
+        //validate whether the password and username matches each other
+        else if (!user || password!=user.password) {
             res.send("Wrong username/password.")
-        } else {
+        }
+        //when both username and password is correct, user is logged in
+        else {
             res.render('welcomeUser',{ first_name:user.first_name, username:username });
         }
     });
@@ -42,14 +46,16 @@ const addUser = async (req, res,next) => {
                 var data =  new User(new_user);
                 data.save()
                 res.render('welcomeUser',{first_name:req.body.first_name});
-            }else {
-                res.send("Incomplete information to sign up.\nPlease go back.");
+            }
+            //when there are some missing information
+            else {
+                res.render('userError');
             }
         }
     });
 };
 
-//get the details of the user
+//get the details of the user when user wants to update their account information
 const getDetails = (req,res,next) => {
     var requested=  req.params.username;
 
@@ -75,7 +81,7 @@ const updateUser =  async (req, res) => {
         password: req.body.password
     }
 
-    //clean updated field
+    //only take the filled information
     for( field in update ){
         if(update[field] ==''){
             delete update[field]
@@ -91,7 +97,7 @@ const updateUser =  async (req, res) => {
         } else {
             //to update the name in the welcome page
             if(update.first_name){
-                var first_name=update.first_name;
+                var first_name = update.first_name;
             } else {
                 first_name=user.first_name;
             }

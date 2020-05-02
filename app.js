@@ -3,6 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 
 const app = express();
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -25,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // GET home page
 app.get('/', (req, res) => {
-    res.render('index' ,{title:'Unifood HomePage'})
+    res.render('index' ,{title:'Unifood HomePage'});
 });
 
 // Handle user-management requests
@@ -39,5 +40,5 @@ app.use('/form-management', formRouter);
 app.use('/organiser-management', organiserRouter);
 
 app.listen(process.env.PORT || 3000, () => {
-    console.log('The Unifood app is listening on port 3000!')
+    console.log("The Unifood app is listening on port 3000!");
 });

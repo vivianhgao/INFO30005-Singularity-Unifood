@@ -1,9 +1,7 @@
 extends index
 block content
-
     h1 sign up
     form(action='signUp', method='post', class='signup')
-
         p
         | username:
         input(name='username', value='', type='username')
@@ -21,6 +19,7 @@ block content
         input(name='password', value='', type='password')
         br
         button(value='Submit', type='submit') Sign up
+
 
 
 
