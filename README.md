@@ -13,12 +13,11 @@ We have identified the following goals we want to address throughout our impleme
 4. Users can reserve the food by replying through Facebook Messenger and will have a set time frame to get to the location of the event/poster.
 
 ## Key Functionalities
-### 1. Account Registration System
-**Users**: The user account will be notified if there are events with surplus food on campus. To register, the user needs to provide the following details:
-* Username
-* Name
-* Email
-* Password
+### 1. Account System
+**Users**: The user account will be notified if there are events with surplus food on campus. 
+* From the home page, the user can click the link which will direct them to the log in page.
+* If the user does not have an account, the user is able sign up by clicking the sign up link from the log in page.
+* The user is able to change their details, delete their account or log out.
 
 **Organisers**: The event organiser account has the ability to advertise their leftovers (second functionality) and automatically notify other people around the campus (third functionality). Although this is primarily for student clubs and societies, independent event coordinators can also participate. To register an account, the event organiser needs to provide the following details:
 * Name
@@ -62,4 +61,4 @@ then visit the website on the browser : http://localhost:3000/ or by visiting th
 1. INFO30005 lectures and workshops material Week 1-5
 
 ## Acknowledgement
-This project is done by Vivian Gao (917035), Franklin Aldo Darmansa (1025392), Patricia Angelica Budiman (1012861)
+This project is done by group 'Singularity': Vivian Gao (917035), Franklin Aldo Darmansa (1025392), Patricia Angelica Budiman (1012861)
