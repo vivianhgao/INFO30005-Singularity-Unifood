@@ -1,68 +1,64 @@
 const mongoose = require("mongoose");
 
 // import form model
-const Form = mongoose.model("form");
+const Form = mongoose.model("forms");
 
-// function to create from
-var createForm = function(req, res, next) {
-    var new_form = {
+// function to create a new form
+const createForm = async (req, res,next) => {
+    const new_form = {
         name:req.body.name,
-        address:req.body.address,
         description:req.body.description,
+        address:req.body.address,
         time:req.body.time,
         quantity:req.body.quantity,
         photo:req.body.photo,
-        location: [
-            {
-                latitude: req.body.location.latitude,
-                longitude: req.body.location.longitude
-            }
-        ]
     };
     var data = new Form(new_form);
     data.save();
-    res.redirect('/');
-};
+    res.render('formManagement',{name:req.body.name, formID:Form.id});
+}
 
-// function to update form
-var updateForm = function(req, res, next) {
+//update form
+const updateForm = async (req, res, next) => {
     var id = req.body.id;
 
-    Cafe.findById(id, function(err, doc) {
+    Form.findById(id, function(err, doc) {
         if (err) {
-            console.error('error, no cafe found');
+            res.send("An error has occurred!");
+        } else if (!Form) {
+            return res.send('Form is not found!');
         }
         doc.name = req.body.name;
-        doc.address = req.body.address;
         doc.description = req.body.description;
+        doc.address = req.body.address;
         doc.time = req.body.time;
         doc.quantity = req.body.quantity;
         doc.photo = req.body.photo;
-        doc.location = [
-            {
-                latitude: req.body.location.latitude,
-                longitude: req.body.location.longitude
-            }
-        ]
         doc.save();
     });
-    res.redirect('/');
+    console.log("Form is updated!");
+    res.redirect('/forms');
 };
 
-// function to delete form
+
+// delete a form by form ID
 var deleteForm = function(req, res, next) {
     var id = req.body.id;
     Form.findByIdAndRemove(id).exec();
-    res.redirect('/');
+    res.redirect('/forms');
 };
 
+
+
 // function to get all forms
-var getAllForms = function(req, res, next) {
-    Form.find()
-        .lean()
-        .then(function(doc) {
-            res.render('index', {items: doc});
-        });
+const getAllForms = async (req, res) => {
+    try {
+        const all_form = await Form.find();
+        return res.send(all_form);
+    } catch (err) {
+        res.status(400);
+        return res.send("Database query failed!");
+    }
 };
 
 
@@ -70,7 +66,7 @@ var getAllForms = function(req, res, next) {
 // Remember to export the callbacks
 module.exports = {
     createForm,
+    getAllForms,
     updateForm,
     deleteForm,
-    getAllForms,
 };
