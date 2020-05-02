@@ -7,6 +7,7 @@ npm install
 ```
 
 ## Running the application
+To run on terminal:
 ```
 node app.js
 ```
