@@ -26,3 +26,5 @@ require("./user");
 require("./organiser");
 
 require("./form");
+
+require("./location");

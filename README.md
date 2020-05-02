@@ -46,6 +46,29 @@ Demo account:
 * Username: pbudiman
 * Password: userpb
 
+## Organiser Routes
+Login URL: https://unifood-app.herokuapp.com/organisers
+<br>
+Sign up URL: https://unifood-app.herokuapp.com/organisers/signup
+<br>
+Edit (update) account URL: https://unifood-app.herokuapp.com/organisers/update/:_id
+<br>
+Delete account URL: https://unifood-app.herokuapp.com/organisers/delete/:_id
+<br>
+Show all organisers URL: https://unifood-app.herokuapp.com/organisers/all
+<br>
+Update and delete account could be accessed after login as well.
+<br>
+<br>
+To update and delete account could be access through passing their id (replace ":_id" with the actual id). 
+<br>
+The ids could be accessed through "Show All Organiser URL".
+
+Demo account:
+<br>
+email: external@demo.com
+<br>
+password: demo
 ## Reference
 1. INFO30005 lectures and workshops material Week 1-5
 
@@ -76,7 +99,7 @@ We have identified the following goals we want to address throughout our impleme
 * Password
 
 **Organisers**: The event organiser account has the ability to advertise their leftovers (second functionality) and automatically notify other people around the campus (third functionality). Although this is primarily for student clubs and societies, independent event coordinators can also participate. To register an account, the event organiser needs to provide the following details:
-* Name
+* Officer Name
 * Organisation Name
 * Contact Number
 * Email
