@@ -15,8 +15,8 @@ const logIn = (req, res, next) => {
         }
         //validate whether the password and username matches each other
         else if (!user || password!=user.password) {
-            res.send("Wrong username or password!\n Please go back and try again!");
-            //res.render('loginError');
+            console.log("Wrong username or password! Please go back and try again!");
+            res.render('loginError');
         }
         //when both username and password is correct, user is logged in
         else {

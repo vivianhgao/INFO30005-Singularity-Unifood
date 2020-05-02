@@ -4,19 +4,19 @@ block content
     h2 Fill details to be changed:
     form(action='update/'+username, method='post')
         | Username:
-        input(name='username', value='', type='username')
+        input(name='username', type='text')
         br
         | Email:
-        input(name='email', value='', type='email')
+        input(name='email', type='email')
         br
         | First name:
-        input(name='first_name', value='', type='first_name')
+        input(name='first_name', type='text')
         br
         | Last name:
-        input(name='last_name', value='', type='last_name')
+        input(name='last_name', type='text')
         br
         | Password:
-        input(name='password', value='', type='password')
+        input(name='password', type='password')
         br
         button(value='Submit', type='submit') Confirm details
 
