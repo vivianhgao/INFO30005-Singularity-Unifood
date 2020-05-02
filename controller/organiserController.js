@@ -23,17 +23,18 @@ const loginOrganiser = (req, res)=>{
 
     Organiser.findOne({email:email}, (err, organiser)=>{
        if (err){
-           console.error("An Error occured");
+           console.error("An error occured.");
        }
-       else if(!email || organiser.password!=password){
+       else if(!email || password!=organiser.password){
            res.send("The email or password you entered incorrect");
        } else {
-           res.render('organiserLogon', {organisation_name:organiser.organisation_name, email:email});
+           res.render('organiserLogon',
+               {organisation_name:organiser.organisation_name, email:email});
        }
     });
 };
 
-
+// The display for updating organiser's profile
 const organiserPreview = (req, res, next)=>{
     var requested =  req.params.email;
 
@@ -46,7 +47,14 @@ const organiserPreview = (req, res, next)=>{
         }
         else {
             res.render("organiserUpdate",
-                {organisation_name:organiser.organisation_name, email:organiser.email});
+                {
+                    organisation_name:organiser.organisation_name,
+                    email:organiser.email,
+                    officer_name: organiser.officer_name,
+                    contact_number: organiser.contact_number,
+                    email: organiser.email,
+                    password: organiser.password
+                });
         }
     });
 };
@@ -88,10 +96,8 @@ const addOrganiser = async (req, res) => {
             && req.body.email && req.body.password){
 
             var data =  new Organiser(new_organiser);
-
             data.save();
-
-            res.send('Account created.');
+            res.send('Organisation account created.');
         }
         else {
             res.send("You haven't filled all the required fields.");

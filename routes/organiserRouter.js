@@ -4,6 +4,7 @@ const organiserRouter = express.Router();
 
 const organiserController = require('../controller/organiserController.js');
 
+
 organiserRouter.get("/", (req,res,next)=>{
     res.render('organiserLogin');
 });

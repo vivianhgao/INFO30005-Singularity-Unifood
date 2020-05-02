@@ -3,6 +3,8 @@ h1 Hello #{organisation_name}
 body
     a(href='/form-management') Click here to open form management
     br
-    a(href='/organisers/update/' + email) Click here to edit organisation profile
+    a(href='/organisers/update/'+email) Click here to edit organisation profile
     br
-    a(type='submit' href='/organisers/delete/' + email) Click here to delete your organisation account
+    br
+    form(action='delete/'+email method='POST')
+        button(value='Submit' type='submit') Delete this organiser account
