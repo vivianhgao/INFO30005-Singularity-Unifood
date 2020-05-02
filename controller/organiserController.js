@@ -42,10 +42,11 @@ const organiserPreview = (req, res, next)=>{
             console.error("An error occured.");
         }
         else if(!organiser){
-            res.send("No user with that username.")
+            res.send("Internal Error.")
         }
         else {
-            res.render("organiserUpdate");
+            res.render("organiserUpdate",
+                {organisation_name:organiser.organisation_name, email:organiser.email});
         }
     });
 };
@@ -59,7 +60,7 @@ const getOrganiserByEmail = (req, res) => {
             console.error("An error occured.");
         }
         else if(!organiser){
-            res.send("No user with that username.")
+            res.send("Sorry, the email is not registered.\nPlease check again your input.")
         }
         else {
             res.send(organiser);

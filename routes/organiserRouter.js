@@ -10,7 +10,7 @@ organiserRouter.get("/", (req,res,next)=>{
 
 organiserRouter.post('/logon', organiserController.loginOrganiser);
 
-organiserRouter.get('logon/:email', organiserController.organiserPreview);
+organiserRouter.get('/update/:email', organiserController.organiserPreview);
 
 organiserRouter.get('/signup', (req,res,next)=>{
     res.render("organiserSignup");
@@ -22,7 +22,11 @@ organiserRouter.get("/:email", organiserController.getOrganiserByEmail);
 
 organiserRouter.post("/signup", organiserController.addOrganiser);
 
-organiserRouter.post("/logon/update/:email", organiserController.updateOrganiser);
+organiserRouter.post("/update/:email", organiserController.updateOrganiser);
+
+// organiserRouter.get('/delete/:email', (req,res, next)=>{
+//     res.redirect();
+// });
 
 organiserRouter.post("/delete/:email", organiserController.deleteOrganiser);
 
