@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const Organiser = mongoose.model("organisers");
 
 
-// function to handle a request to get all users
+// function to get all organisers
 const getOrganisers = async (req, res) => {
 
     try {
@@ -16,8 +16,41 @@ const getOrganisers = async (req, res) => {
     }
 };
 
+// function for login
+const loginOrganiser = (req, res)=>{
+    const email = req.body.email;
+    const password = req.body.password;
 
-// function to get user by username
+    Organiser.findOne({email:email}, (err, organiser)=>{
+       if (err){
+           console.error("An Error occured");
+       }
+       else if(!email || organiser.password!=password){
+           res.send("The email or password you entered incorrect");
+       } else {
+           res.render('organiserLogon', {organisation_name:organiser.organisation_name, email:email});
+       }
+    });
+};
+
+
+const organiserPreview = (req, res, next)=>{
+    var requested =  req.params.email;
+
+    Organiser.findOne({email:requested},(err,organiser)=>{
+        if (err) {
+            console.error("An error occured.");
+        }
+        else if(!organiser){
+            res.send("No user with that username.")
+        }
+        else {
+            res.render("organiserUpdate");
+        }
+    });
+};
+
+// function to get organiser by email
 const getOrganiserByEmail = (req, res) => {
     var requested =  req.params.email;
 
@@ -34,7 +67,7 @@ const getOrganiserByEmail = (req, res) => {
     });
 };
 
-// function to add user account
+// function to create organiser
 const addOrganiser = async (req, res) => {
     var new_organiser = {
         organisation_name: req.body.organisation_name,
@@ -57,7 +90,7 @@ const addOrganiser = async (req, res) => {
 
             data.save();
 
-            res.send('New user added!');
+            res.send('Account created.');
         }
         else {
             res.send("You haven't filled all the required fields.");
@@ -65,7 +98,7 @@ const addOrganiser = async (req, res) => {
     });
 };
 
-//function to update a user
+//function to update an organiser
 const updateOrganiser =  async (req, res) =>{
     var email = {email: req.params.email};
 
@@ -82,7 +115,7 @@ const updateOrganiser =  async (req, res) =>{
     });
 };
 
-// function to delete a user
+// function to delete an organiser
 const deleteOrganiser = (req,res) => {
     var requested = req.params.email;
 
@@ -104,5 +137,7 @@ module.exports = {
     getOrganiserByEmail,
     addOrganiser,
     updateOrganiser,
-    deleteOrganiser
+    deleteOrganiser,
+    organiserPreview,
+    loginOrganiser
 };
