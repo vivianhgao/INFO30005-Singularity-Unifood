@@ -25,7 +25,7 @@ const loginOrganiser = (req, res)=>{
        if (err){
            console.error("An error occured.");
        }
-       else if(!email || password!=organiser.password){
+       else if(!organiser || password!=organiser.password){
            res.send("The email or password you entered incorrect");
        } else {
            res.render('organiserLogon',
@@ -93,6 +93,7 @@ const addOrganiser = async (req, res) => {
         else if(organiserExists){
             res.send("The email has been used.\nPlease enter other email.");
         }
+        // Make sure all fields are filled.
         else if (req.body.organisation_name && req.body.officer_name && req.body.contact_number
             && req.body.email && req.body.password){
 
