@@ -8,12 +8,23 @@ const locationController = require('../controller/locationController.js');
 
 
 // handle the GET request on root of location-management path
+// Location's main page
 locationRouter.get("/", (req,res,next)=> {
     res.render('location');
 });
 
-locationRouter.post('/', locationController.addLocation);
-// handle the POST request on root of location-management path
+// Get all of the data on location database
+locationRouter.get('/all', locationController.getLocations);
+// Shows update form
+locationRouter.get('/update/:_id',locationController.preUpdate);
+// Update user's location info
+locationRouter.post('/update/:_id',locationController.updateLocation);
+// add location
+locationRouter.post('/register', locationController.addLocation);
+
+
+
+
 
 // export the router
 module.exports = locationRouter;

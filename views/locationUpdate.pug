@@ -1,23 +1,18 @@
-h1 User Location Registration
-
+h1 Update Your Current Location
 body
-    //input(type='button', onclick='getLocation();', value='Yes')
 
-    form(action='locations/register' method='POST')
+    form(action=id method='POST')
 
         label User id:
+        p #{account_id}
+        input(id='latitude' name='latitude' type='hidden' value=latitude)
+        input(id='longitude' name='longitude' type='hidden' value=longitude)
+
         br
-        input(id='account_id' name='account_id')
-        input(id='latitude' name='latitude' type='hidden' value='')
-        input(id='longitude' name='longitude' type='hidden' value='')
+        input(type='button', onclick='getLocation();', value='Update my location')
+
         br
-        br
-        label Allow Location Access:
-        br
-        input(type='button', onclick='getLocation();', value='Yes')
-        br
-        h5 Submit after the alert box turned up.
-        br
+        h4 Submit after the alert box turned up.
         button(value='Submit', type='submit') Submit
 
 
