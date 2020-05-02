@@ -42,7 +42,7 @@ Details of the form:
 Since this application is designed for users and events within The University of Melbourne area, the scope
 of the location will be on campus only. As mentioned above, the notification regarding the food availability, location and price will be sent to users via Facebook Messenger.
 
-###Set Up
+### Set Up
 From Terminal, please install dependencies by:
 ```
 npm install
@@ -58,3 +58,8 @@ npm start
 ```
 then visit the website on the browser : http://localhost:3000/ or by visiting the website: https://unifood-app.herokuapp.com/
 
+### Reference
+1. INFO30005 lectures and workshops material Week 1-5
+
+### Acknowledgement
+This project is done by Vivian Gao (917035), Franklin Aldo Darmansa (1025392), Patricia Angelica Budiman (1012861)
