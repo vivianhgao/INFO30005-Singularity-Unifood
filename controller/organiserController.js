@@ -126,7 +126,7 @@ const updateOrganiser =  async (req, res) =>{
 const deleteOrganiser = (req,res) => {
     var requested = req.params.email;
 
-    Organiser.deleteOne( {email:requested} , (err) =>{
+    Organiser.findOneAndRemove( {email:requested} , (err) =>{
         if(err) {
             console.error("Deletion Error");
         }

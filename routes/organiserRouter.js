@@ -29,7 +29,7 @@ organiserRouter.post("/update/:email", organiserController.updateOrganiser);
 //     res.redirect();
 // });
 
-organiserRouter.post("/delete/:email", organiserController.deleteOrganiser);
+organiserRouter.get("/delete/:email", organiserController.deleteOrganiser);
 
 // Export router
 module.exports = organiserRouter;
