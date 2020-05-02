@@ -1,21 +1,26 @@
 extends index
 block content
-    h1 sign up
+    h1 Sign up
     form(action='signUp', method='post', class='signup')
         p
-        | username:
+        | Username:
+        br
         input(name='username', value='', type='username')
         br
-        | email:
+        | Email:
+        br
         input(name='email', value='', type='email')
         br
-        | first name:
+        | First name:
+        br
         input(name='first_name', value='', type='first_name')
         br
-        |last name:
+        |Last name:
+        br
         input(name='last_name', value='', type='last_name')
         br
-        | password:
+        | Password:
+        br
         input(name='password', value='', type='password')
         br
         button(value='Submit', type='submit') Sign up

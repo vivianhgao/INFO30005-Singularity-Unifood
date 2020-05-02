@@ -3,14 +3,12 @@ const mongoose = require("mongoose");
 // import user model
 const User = mongoose.model("users");
 
-
-
 // function for user to log in
 const logIn = (req, res, next) => {
     var username =  req.body.username;
     var password =  req.body.password;
 
-    //find the user in the database with the log in username
+    // find the user in the database with the log in username
     User.findOne({username:username},function (err,user){
         if (err) {
             res.error("An error occured.");
@@ -29,7 +27,7 @@ const logIn = (req, res, next) => {
     });
 };
 
-// function to add user account when a new user sign up
+// function to add user account when a new user signs up
 const addUser = async (req, res,next) => {
     const new_user = {
         username: req.body.username,
@@ -61,7 +59,7 @@ const addUser = async (req, res,next) => {
     });
 };
 
-//get the details of the user when user wants to update their account information
+// get the details of the user when user wants to update their account information
 const getDetails = (req,res,next) => {
     var requested=  req.params.username;
 
@@ -76,7 +74,7 @@ const getDetails = (req,res,next) => {
     });
 };
 
-//function to update an information about a user
+// function to update an information about a user
 const updateUser =  async (req, res) => {
     var condition = {username: req.params.username};
     var update = {
@@ -127,20 +125,9 @@ const deleteUser = (req,res) => {
     });
 };
 
-// function to get all users
-const getAllUsers = async (req, res) => {
-    try {
-        const all_user = await User.find();
-        return res.send(all_user);
-    } catch (err) {
-        res.status(400);
-        return res.send("Database query failed!");
-    }
-};
 
 // export the functions
 module.exports = {
-    getAllUsers,
     logIn,
     addUser,
     getDetails,
