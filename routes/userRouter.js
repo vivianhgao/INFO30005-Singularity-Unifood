@@ -12,6 +12,9 @@ userRouter.get('/login', function(req, res, next) {
 });
 userRouter.post("/login",userController.logIn);
 
+userRouter.get("login/error",function(req, res, next) {
+    res.render('loginError');
+});
 //user signing up
 userRouter.get('/signUp', function(req, res, next) {
     res.render('signUp');
