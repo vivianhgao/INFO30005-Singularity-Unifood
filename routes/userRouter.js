@@ -1,22 +1,24 @@
 const express = require('express');
 
-// add our router
+// add router
 const userRouter = express.Router();
 
 // require the user controller
 const userController = require('../controller/userController.js');
 
 //user logging in
-userRouter.get('/', function(req, res, next) {
+userRouter.get('/login', function(req, res, next) {
     res.render('login');
 });
 userRouter.post("/login",userController.logIn);
 
+userRouter.get("login/error",function(req, res, next) {
+    res.render('loginError');
+});
 //user signing up
 userRouter.get('/signUp', function(req, res, next) {
     res.render('signUp');
 });
-
 userRouter.post("/signUp", userController.addUser);
 
 //user getting their details and updating
@@ -24,8 +26,8 @@ userRouter.get("/login/:username",userController.getDetails);
 
 userRouter.post("/login/update/:username",userController.updateUser);
 
-// getting list of all users
-userRouter.get("/userList", userController.getAllUsers);
+//user deleting account
+userRouter.get("/delete/:username",userController.deleteUser);
 
 // export the router
 module.exports = userRouter;

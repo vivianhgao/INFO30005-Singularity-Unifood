@@ -1,9 +1,5 @@
 extends welcomeUser
-block contents
-    h2 To delete your account please fill the following:
-    form(action='delete/'+username, method='post')
-        | username:
-        input(name='username', value='', type='username')
-        br
-        | password:
-        input(name='password', value='', type='password')
+block content
+    h2 User #{username} is deleted.
+    br
+    a(class='button' href='/') Click here to go to home page

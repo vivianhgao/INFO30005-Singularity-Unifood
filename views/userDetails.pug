@@ -3,19 +3,19 @@ block content
     h1 Hi #{first_name} #{last_name}
     h2 Fill details to be changed:
     form(action='update/'+username, method='post')
-        | username:
+        | Username:
         input(name='username', value='', type='username')
         br
-        | email:
+        | Email:
         input(name='email', value='', type='email')
         br
-        | first name:
+        | First name:
         input(name='first_name', value='', type='first_name')
         br
-        | last name:
+        | Last name:
         input(name='last_name', value='', type='last_name')
         br
-        | password:
+        | Password:
         input(name='password', value='', type='password')
         br
         button(value='Submit', type='submit') Confirm details

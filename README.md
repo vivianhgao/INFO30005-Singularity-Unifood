@@ -1,4 +1,59 @@
-# INFO30005-Singularity-Unifood
+# User Guide for Deliverable Two
+
+## Set Up
+From Terminal, please install dependencies by:
+```
+npm install
+```
+
+## Running the application
+To run on terminal:
+```
+node app.js
+```
+or
+```
+npm start
+```
+then visit the website on the browser : http://localhost:3000/ or by visiting the website: https://unifood-app.herokuapp.com/
+
+## Form Routes
+Form Index: https://unifood-app.herokuapp.com/forms
+<br>
+View All Forms: https://unifood-app.herokuapp.com/forms/formList
+<br>
+Post New Form: https://unifood-app.herokuapp.com/forms/createForm
+<br>
+Update Form: https://unifood-app.herokuapp.com/forms/updateForm
+<br>
+Delete Form: https://unifood-app.herokuapp.com/forms/deleteForm
+
+
+## User Routes
+From the home page: https://unifood-app.herokuapp.com/
+<br>
+To log in: https://unifood-app.herokuapp.com/users/login
+<br>
+To sign up: https://unifood-app.herokuapp.com/users/signUp
+<br>
+To change user details after logging in: https://unifood-app.herokuapp.com/users/login/:username
+<br>
+User deleting their account after logging in: https://unifood-app.herokuapp.com/users/delete/:username 
+<br>
+  [where ':username' takes the user's username]
+<br>
+Demo account:
+* Username: pbudiman
+* Password: userpb
+
+## Reference
+1. INFO30005 lectures and workshops material Week 1-5
+
+## Acknowledgement
+This project is done by group 'Singularity': Vivian Gao (917035), Franklin Aldo Darmansa (1025392), Patricia Angelica Budiman (1012861)
+
+
+# INFO30005-Singularity-Unifood Description
 
 **UniFood is an application created by Team Singularity that connects event organisers with excess food to users in the surrounding area through a notification system.**
 
@@ -13,11 +68,11 @@ We have identified the following goals we want to address throughout our impleme
 4. Users can reserve the food by replying through Facebook Messenger and will have a set time frame to get to the location of the event/poster.
 
 ## Key Functionalities
-### 1. Account Registration System
-**Users**: The user account will be notified if there are events with surplus food on campus. To register, the user needs to provide the following details:
+### 1. Account System
+**Users**: The user account will be notified if there are events with surplus food on campus. To register, the user needs to provide:
 * Username
-* Name
 * Email
+* Name
 * Password
 
 **Organisers**: The event organiser account has the ability to advertise their leftovers (second functionality) and automatically notify other people around the campus (third functionality). Although this is primarily for student clubs and societies, independent event coordinators can also participate. To register an account, the event organiser needs to provide the following details:
@@ -25,7 +80,6 @@ We have identified the following goals we want to address throughout our impleme
 * Organisation Name
 * Contact Number
 * Email
-* Facebook URL
 * Password
 
 ### 2. Advertisement Form
@@ -40,4 +94,4 @@ Details of the form:
 
 ### 3. Notification System
 Since this application is designed for users and events within The University of Melbourne area, the scope
-of the location will be on campus only. As mentioned above, the notification regarding the food availability, location and price will be sent to users via Facebook Messenger.
+of the location will be on campus only. As mentioned above, the notification regarding the food availability, location and price will be sent to users.
