@@ -51,15 +51,19 @@ Login URL: https://unifood-app.herokuapp.com/organisers
 <br>
 Sign up URL: https://unifood-app.herokuapp.com/organisers/signup
 <br>
-Edit (update) account URL: https://unifood-app.herokuapp.com/organisers/update/:email
+Edit (update) account URL: https://unifood-app.herokuapp.com/organisers/update/:_id
 <br>
-Delete account URL: https://unifood-app.herokuapp.com/organisers/delete/:email
+Delete account URL: https://unifood-app.herokuapp.com/organisers/delete/:_id
 <br>
 Show all organisers URL: https://unifood-app.herokuapp.com/organisers/all
 <br>
 Update and delete account could be accessed after login as well.
 <br>
 <br>
+To update and delete account could be access through passing their id (replace ":_id" with the actual id). 
+<br>
+The ids could be accessed through "Show All Organiser URL".
+
 Demo account:
 <br>
 email: external@demo.com

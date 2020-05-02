@@ -29,16 +29,16 @@ const loginOrganiser = (req, res)=>{
            res.send("The email or password you entered incorrect");
        } else {
            res.render('organiserLogon',
-               {organisation_name:organiser.organisation_name, email:email});
+               {organisation_name:organiser.organisation_name, id:organiser._id});
        }
     });
 };
 
 // The display for updating organiser's profile
 const organiserPreview = (req, res, next)=>{
-    var requested =  req.params.email;
+    var id =  req.params.id;
 
-    Organiser.findOne({email:requested},(err,organiser)=>{
+    Organiser.findById(id,(err,organiser)=>{
         if (err) {
             console.error("An error occured.");
         }
@@ -48,6 +48,7 @@ const organiserPreview = (req, res, next)=>{
         else {
             res.render("organiserUpdate",
                 {
+                    id:organiser._id,
                     organisation_name:organiser.organisation_name,
                     email:organiser.email,
                     officer_name: organiser.officer_name,
@@ -60,7 +61,7 @@ const organiserPreview = (req, res, next)=>{
 };
 
 // function to get organiser by email
-const getOrganiserByEmail = (req, res) => {
+const getOrganiserById = (req, res) => {
     var requested =  req.params.email;
 
     Organiser.findOne({email:requested},(err,organiser)=>{
@@ -107,13 +108,13 @@ const addOrganiser = async (req, res) => {
 
 //function to update an organiser
 const updateOrganiser =  async (req, res) =>{
-    var email = {email: req.params.email};
+    var id = req.params.id;
 
-    Organiser.findOneAndUpdate(email, { $set: req.body }, (err,organiser_email)=>{
+    Organiser.findByIdAndUpdate(id, { $set: req.body }, (err,organiser_id)=>{
         if (err){
             console.error('An error occured!');
         }
-        else if(!organiser_email){
+        else if(!organiser_id){
             return res.send('Organiser is not found.');
         }
         else {
@@ -124,14 +125,14 @@ const updateOrganiser =  async (req, res) =>{
 
 // function to delete an organiser
 const deleteOrganiser = (req,res) => {
-    var requested = req.params.email;
+    var id = req.params.id;
 
-    Organiser.findOneAndRemove( {email:requested} , (err) =>{
+    Organiser.findByIdAndRemove( id , (err, organiser) =>{
         if(err) {
             console.error("Deletion Error");
         }
         else {
-            res.send("Organiser '" + requested + "' is successfully deleted!");
+            res.send("Organiser '" + organiser.organisation_name + "' is successfully deleted!");
         }
     });
 
@@ -141,7 +142,7 @@ const deleteOrganiser = (req,res) => {
 
 module.exports = {
     getOrganisers,
-    getOrganiserByEmail,
+    getOrganiserById,
     addOrganiser,
     updateOrganiser,
     deleteOrganiser,

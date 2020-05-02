@@ -11,7 +11,7 @@ organiserRouter.get("/", (req,res,next)=>{
 
 organiserRouter.post('/logon', organiserController.loginOrganiser);
 
-organiserRouter.get('/update/:email', organiserController.organiserPreview);
+organiserRouter.get('/update/:id', organiserController.organiserPreview);
 
 organiserRouter.get('/signup', (req,res,next)=>{
     res.render("organiserSignup");
@@ -19,17 +19,17 @@ organiserRouter.get('/signup', (req,res,next)=>{
 
 organiserRouter.get("/all", organiserController.getOrganisers);
 
-organiserRouter.get("/:email", organiserController.getOrganiserByEmail);
+organiserRouter.get("/:email", organiserController.getOrganiserById);
 
 organiserRouter.post("/signup", organiserController.addOrganiser);
 
-organiserRouter.post("/update/:email", organiserController.updateOrganiser);
+organiserRouter.post("/update/:id", organiserController.updateOrganiser);
 
 // organiserRouter.get('/delete/:email', (req,res, next)=>{
 //     res.redirect();
 // });
 
-organiserRouter.get("/delete/:email", organiserController.deleteOrganiser);
+organiserRouter.get("/delete/:id", organiserController.deleteOrganiser);
 
 // Export router
 module.exports = organiserRouter;
