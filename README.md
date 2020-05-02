@@ -1,9 +1,38 @@
-# User Guide for Deliverable One
+# User Guide for Deliverable Two
+
+## Set Up
+From Terminal, please install dependencies by:
+```
+npm install
+```
+
+## Running the application
+```
+node app.js
+```
+or
+```
+npm start
+```
+then visit the website on the browser : http://localhost:3000/ or by visiting the website: https://unifood-app.herokuapp.com/
 
 ## Form Routes
+Form Index: https://unifood-app.herokuapp.com/forms
+View All Forms: https://unifood-app.herokuapp.com/forms/formList
+Post New Form: https://unifood-app.herokuapp.com/forms/createForm
+Update Form: https://unifood-app.herokuapp.com/forms/updateForm
+Delete Form: https://unifood-app.herokuapp.com/forms/deleteForm
 
 
 ## User Routes
+
+
+## Reference
+1. INFO30005 lectures and workshops material Week 1-5
+
+## Acknowledgement
+This project is done by group 'Singularity': Vivian Gao (917035), Franklin Aldo Darmansa (1025392), Patricia Angelica Budiman (1012861)
+
 
 # INFO30005-Singularity-Unifood Description
 
@@ -47,25 +76,3 @@ Details of the form:
 ### 3. Notification System
 Since this application is designed for users and events within The University of Melbourne area, the scope
 of the location will be on campus only. As mentioned above, the notification regarding the food availability, location and price will be sent to users via Facebook Messenger.
-
-## Set Up
-From Terminal, please install dependencies by:
-```
-npm install
-```
-
-## Running the application
-```
-node app.js
-```
-or
-```
-npm start
-```
-then visit the website on the browser : http://localhost:3000/ or by visiting the website: https://unifood-app.herokuapp.com/
-
-## Reference
-1. INFO30005 lectures and workshops material Week 1-5
-
-## Acknowledgement
-This project is done by group 'Singularity': Vivian Gao (917035), Franklin Aldo Darmansa (1025392), Patricia Angelica Budiman (1012861)
