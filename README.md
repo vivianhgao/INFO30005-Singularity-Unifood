@@ -77,7 +77,6 @@ We have identified the following goals we want to address throughout our impleme
 * Organisation Name
 * Contact Number
 * Email
-* Facebook URL
 * Password
 
 ### 2. Advertisement Form
