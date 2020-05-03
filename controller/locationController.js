@@ -80,7 +80,7 @@ const preUpdate = (req, res, next)=>{
             console.error("An error occured.");
         }
         else if(!location){
-            res.send("Internal Error.")
+            res.send("There is no such user id.")
         }
         else {
             res.render("locationUpdate",
