@@ -1,0 +1,26 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "http-errors": "~1.6.3",
+    "mongodb": "^3.5.6",
+    "mongoose": "^5.9.10",
+    "pug": "^2.0.3",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "express-handlebars": "^4.0.3"
+  }
+}
