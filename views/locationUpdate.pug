@@ -1,0 +1,49 @@
+h1 Update Your Current Location
+body
+
+    form(action=id method='POST')
+
+        label User id:
+        p #{account_id}
+        input(id='latitude' name='latitude' type='hidden' value=latitude)
+        input(id='longitude' name='longitude' type='hidden' value=longitude)
+
+        br
+        input(type='button', onclick='getLocation();', value='Update my location')
+
+        br
+        h4 Submit after the alert box turned up.
+        button(value='Submit', type='submit') Submit
+
+
+    script(type='text/javascript').
+        function showLocation(position) {
+            var latitude = position.coords.latitude.toFixed(5).toString();
+            var longitude = position.coords.longitude.toFixed(5).toString();
+            document.getElementById('latitude').value = latitude;
+            document.getElementById('longitude').value = longitude;
+            console.log(latitude);
+            console.log(longitude);
+            alert("Thank you for sharing your location :)");
+        }
+        function errorHandler(err) {
+            if (err.code == 1) {
+                alert("Error: Access is denied!");
+            } else if (err.code == 2) {
+                alert("Error: Position is unavailable!");
+            }
+        }
+        function getLocation() {
+            if (navigator.geolocation) {
+                // timeout at 60000 milliseconds (60 seconds)
+                var options = {timeout: 60000};
+                navigator.geolocation.getCurrentPosition(showLocation, errorHandler, options);
+            } else {
+                alert("Sorry, browser does not support geolocation!");
+            }
+        }
+        function noLocation() {
+            document.getElementById('latitude').value = undefined;
+            document.getElementById('longitude').value = undefined;
+
+        }
