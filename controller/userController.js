@@ -52,7 +52,8 @@ const addUser = async (req, res,next) => {
         if(err){
             res.send('An error occured');
         } else if (userExists) {
-            res.render("signUpError");
+            // res.render("signUpError");
+            return res.json({ success: false, error: err });
 
         } else {
             //check whether all required information to sign up is present
@@ -60,10 +61,12 @@ const addUser = async (req, res,next) => {
                     var data = new User(new_user);
                     data.save();
                     console.log("User "+new_user.username+" is added!")
-                    res.render('welcomeUser', {first_name: req.body.first_name});
+                    return res.json({ success: true, user: new_user });
+                    // res.render('welcomeUser', {first_name: req.body.first_name});
             }
             else{
-                res.render('userError');
+                return res.json({ success: false, error: err });
+                // res.render('userError');
             }
         }
     });

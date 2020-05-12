@@ -4,13 +4,13 @@ import "./Login.css";
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import Welcome from './Welcome';
-// import { browserHistory as history} from 'react-router';
-// import {createHashHistory} from 'history';
 
 import { withRouter } from 'react-router';
 
-// export const history=createHashHistory();
- class Login extends Component {
+import { Link } from "react-router-dom";
+
+
+class Login extends Component {
     constructor(props){
         super(props);
         this.onChangeUsername=this.onChangeUsername.bind(this);
@@ -66,7 +66,8 @@ import { withRouter } from 'react-router';
     //                     console.log(error);
     //                   })
             // .then(res => res.data.success? console.log("hoo"): alert("Incorrect username/ password.\nPlease Try again"))
-            .then(res => res.data.success? this.props.history.push({pathname:'/welcome',state: { detail: data.username }}): alert("Incorrect username/ password.\nPlease Try again"))
+            .then(res => res.data.success? this.props.history.push('/welcome',data.username): alert("Incorrect username/ password.\nPlease Try again"))
+            // .then(<Welcome username={data.username}/>)
 
     }    
     
@@ -87,7 +88,7 @@ import { withRouter } from 'react-router';
                         onChange={this.onChangeUsername}
                         />
                     </div>
-                    
+            
                     <br></br>
                     <div className="form-group"> 
                     <label>Password:</label>
@@ -103,10 +104,12 @@ import { withRouter } from 'react-router';
 
                     <div className="form-group">
                         <input type="submit" value="Sign in" className="btn btn-primary" />
+                        <br/><Link to='/signup'> Create Account</Link>
                     </div>
                 </form>
+       
             </div>
         );
     }
-  }
+}
   export default withRouter(Login);
