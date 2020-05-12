@@ -30,7 +30,7 @@ const logIn = (req, res, next) => {
         else {
             console.log("User "+username+" is logged in!")
             // return res.status(500).send({user})
-            return res.json({ success: true, data: user });
+            return res.json({ success: true, user: user });
             // res.send(true)
             // res.render('welcomeUser',{ first_name:user.first_name, username:username });
         }

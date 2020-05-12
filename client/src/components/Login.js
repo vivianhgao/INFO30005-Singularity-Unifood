@@ -65,7 +65,9 @@ import { withRouter } from 'react-router';
     //         .catch((error) => {
     //                     console.log(error);
     //                   })
-            .then(res => res.data.success? this.props.history.push('/welcome'): alert("Incorrect username/ password.\nPlease Try again"))
+            // .then(res => res.data.success? console.log("hoo"): alert("Incorrect username/ password.\nPlease Try again"))
+            .then(res => res.data.success? this.props.history.push({pathname:'/welcome',state: { detail: data.username }}): alert("Incorrect username/ password.\nPlease Try again"))
+
     }    
     
     render(){
