@@ -4,6 +4,8 @@ import Header from './components/Header.js';
 import Home from './components/Home.js'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from './components/Login.js';
+import Welcome from './components/Welcome.js';
+import { Redirect } from 'react-router-dom';
 
 function App() {
   return (
@@ -17,6 +19,9 @@ function App() {
           </Route>
           <Route exact path="/login">
             <Login />
+          </Route>
+          <Route exact path="/welcome">
+            <Welcome />
           </Route>
       </Switch>
       </div>

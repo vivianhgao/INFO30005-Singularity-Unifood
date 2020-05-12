@@ -22,15 +22,16 @@ const logIn = (req, res, next) => {
         //validate whether the password and username matches each other
         else if (!user || password!=user.password) {
             console.log("Wrong username or password! Please go back and try again!");
-            // return res.json({ success: false, error: err });
-            return res.status(500).send({message:'invalid'})
+            return res.json({ success: false, error: err });
+            // return res.status(500).send({message:'invalid'})
             // res.render('loginError');
         }
         //when both username and password is correct, user is logged in
         else {
             console.log("User "+username+" is logged in!")
-            return res.status(500).send({user})
-            // return res.json({ success: true, data: user });
+            // return res.status(500).send({user})
+            return res.json({ success: true, data: user });
+            // res.send(true)
             // res.render('welcomeUser',{ first_name:user.first_name, username:username });
         }
     });

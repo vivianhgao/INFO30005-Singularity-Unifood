@@ -1,11 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-export default class welcome extends React.Component {
+export default class  Welcome extends React.Component {
   render(){
   return (
-      <div className="welcome">
-        <h1>hi</h1>
+      <div className="Welcome">
+        <h1>WASSSS</h1>
       </div>
     );
   }
