@@ -2,10 +2,15 @@ import React, {Component} from "react";
 // import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Login.css";
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
+import Welcome from './Welcome';
+
+import { withRouter } from 'react-router';
+
+import { Link } from "react-router-dom";
 
 
-
-export default class Login extends Component {
+class Login extends Component {
     constructor(props){
         super(props);
         this.onChangeUsername=this.onChangeUsername.bind(this);
@@ -15,7 +20,6 @@ export default class Login extends Component {
         this.state={
             username: '',
             password: '',
-            success:null,
             users:[]
         }
     }
@@ -47,20 +51,29 @@ export default class Login extends Component {
 
  
     onSubmit(e){
+        const history  = this.props;
         e.preventDefault();
         const data= {
             username: this.state.username,
             password: this.state.password
         }
+        
         console.log(data);
         axios.post('http://localhost:5000/users/login',data)
-            .then(res=> console.log(res.user))
-            // .then(res =>this.setState({success: res.data.success}
-            // .then(console.log(this.state.success))
+            // .then(res=>this.setState({success: res.data.success}))
+            // .then(res=>res.data.success? <Redirect to='/welcome'></Redirect>:console.log("it is false"));
+    //         .catch((error) => {
+    //                     console.log(error);
+    //                   })
+            // .then(res => res.data.success? console.log("hoo"): alert("Incorrect username/ password.\nPlease Try again"))
+            .then(res => res.data.success? this.props.history.push('/welcome',data.username): alert("Incorrect username/ password.\nPlease Try again"))
+            // .then(<Welcome username={data.username}/>)
+
     }    
     
     render(){
         return (
+           
             <div>
                 <h1>Log in</h1> 
                 <form onSubmit={this.onSubmit}>
@@ -75,7 +88,7 @@ export default class Login extends Component {
                         onChange={this.onChangeUsername}
                         />
                     </div>
-                    
+            
                     <br></br>
                     <div className="form-group"> 
                     <label>Password:</label>
@@ -91,9 +104,12 @@ export default class Login extends Component {
 
                     <div className="form-group">
                         <input type="submit" value="Sign in" className="btn btn-primary" />
+                        <br/><Link to='/signup'> Create Account</Link>
                     </div>
                 </form>
+       
             </div>
         );
     }
-  }
+}
+  export default withRouter(Login);

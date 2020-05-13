@@ -22,15 +22,16 @@ const logIn = (req, res, next) => {
         //validate whether the password and username matches each other
         else if (!user || password!=user.password) {
             console.log("Wrong username or password! Please go back and try again!");
-            // return res.json({ success: false, error: err });
-            return res.status(500).send({message:'invalid'})
+            return res.json({ success: false, error: err });
+            // return res.status(500).send({message:'invalid'})
             // res.render('loginError');
         }
         //when both username and password is correct, user is logged in
         else {
             console.log("User "+username+" is logged in!")
-            return res.status(500).send({user})
-            // return res.json({ success: true, data: user });
+            // return res.status(500).send({user})
+            return res.json({ success: true, user: user });
+            // res.send(true)
             // res.render('welcomeUser',{ first_name:user.first_name, username:username });
         }
     });
@@ -51,7 +52,8 @@ const addUser = async (req, res,next) => {
         if(err){
             res.send('An error occured');
         } else if (userExists) {
-            res.render("signUpError");
+            // res.render("signUpError");
+            return res.json({ success: false, error: err });
 
         } else {
             //check whether all required information to sign up is present
@@ -59,10 +61,12 @@ const addUser = async (req, res,next) => {
                     var data = new User(new_user);
                     data.save();
                     console.log("User "+new_user.username+" is added!")
-                    res.render('welcomeUser', {first_name: req.body.first_name});
+                    return res.json({ success: true, user: new_user });
+                    // res.render('welcomeUser', {first_name: req.body.first_name});
             }
             else{
-                res.render('userError');
+                return res.json({ success: false, error: err });
+                // res.render('userError');
             }
         }
     });

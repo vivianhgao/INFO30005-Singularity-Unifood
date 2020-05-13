@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -20,6 +21,7 @@ const locationRouter = require('./routes/locationRouter');
 
 //CORS
 app.use(cors());
+app.use(express.static(path.join(__dirname, "client", "build")))
 
 // use the body-parser middleware, which parses request bodies into req.body
 // support parsing of json
@@ -45,7 +47,9 @@ app.use('/organisers', organiserRouter);
 // the form routes are added to the end of '/organiser-management'
 app.use('/locations', locationRouter);
 
-
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 app.listen(process.env.PORT || 5000, () => {
     console.log("The Unifood app is listening on port 5000!");

@@ -1,12 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {withRouter} from 'react-router';
 
-export default class welcome extends React.Component {
+class  Welcome extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.state=({username:this.props.location.state})
+    
+   
+    
+  }
   render(){
+   
   return (
-      <div className="welcome">
-        <h1>hi</h1>
+      <div >
+        <h2>Welcome {this.state.username}!</h2>
       </div>
     );
   }
 }
+export default withRouter(Welcome);
