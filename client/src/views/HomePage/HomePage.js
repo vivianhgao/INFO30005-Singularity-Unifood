@@ -25,12 +25,14 @@ import styles from "assets/jss/material-kit-react/views/landingPage.js";
 import ProductSection from "./Sections/ProductSection.js";
 import TeamSection from "./Sections/TeamSection.js";
 import WorkSection from "./Sections/WorkSection.js";
+import {useHistory} from "react-router-dom";
 
 const dashboardRoutes = [];
 
 const useStyles = makeStyles(styles);
 
 export default function HomePage(props) {
+  let history = useHistory()
   const classes = useStyles();
   const { ...rest } = props;
   return (
@@ -45,6 +47,7 @@ export default function HomePage(props) {
           height: 400,
           color: "white"
         }}
+        onClick={()=>history.push("/")}
         {...rest}
       />
       <Parallax image={require("assets/img/unifood.png")}>

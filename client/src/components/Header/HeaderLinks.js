@@ -22,9 +22,13 @@ import Button from "components/CustomButtons/Button.js";
 
 import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js";
 
+import {useHistory} from "react-router-dom";
+
 const useStyles = makeStyles(styles);
 
+
 export default function HeaderLinks(props) {
+  let history = useHistory()
   const classes = useStyles();
   return (
     <List className={classes.list}>
@@ -53,10 +57,11 @@ export default function HeaderLinks(props) {
       </ListItem>
       <ListItem className={classes.listItem}>
         <Button
-          href="UserLogin"
+          
           color="danger"
           target="_blank"
           className={classes.navLink}
+          onClick={()=>history.push("/userlogin")}
         >
           <ExitToAppIcon className={classes.icons} /> Users
         </Button>

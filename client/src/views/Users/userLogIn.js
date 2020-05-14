@@ -1,10 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
-import Email from "@material-ui/icons/Email";
+import red from '@material-ui/core/colors/red';
 import People from "@material-ui/icons/People";
 // core components
 import Header from "components/Header/Header.js";
@@ -21,23 +21,50 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 
 import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
-import image from "assets/img/bg7.jpg";
+import image from "assets/img/unifood.png";
+
+import {useHistory} from 'react-router-dom';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import Box from '@material-ui/core/Box';
+import axios from 'axios';
 
 const useStyles = makeStyles(styles);
 
 export default function UserLogin(props) {
+    let history = useHistory()
     const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
     setTimeout(function() {
         setCardAnimation("");
     }, 700);
     const classes = useStyles();
     const { ...rest } = props;
+
+    const [username,setUsername]= useState("")
+    const [password,setPassword]=useState("")
+
+    function validateLogin(){
+      console.log()
+      axios.post('users/login',{username,password})
+        .then(res => res.data.success? console.log("logged in"): alert("Incorrect username/ password.\nPlease Try again"))
+    }
+
+    
+    const handleUsername = (event) => {
+      setUsername(event.target.value);
+    };
+
+    const handlePassword = (event) => {
+      setPassword(event.target.value);
+    };
+
     return (
         <div>
             <Header
                 absolute
                 color="transparent"
-                brand="Material Kit React"
+                brand="UNIFOOD"
                 rightLinks={<HeaderLinks />}
                 {...rest}
             />
@@ -54,92 +81,83 @@ export default function UserLogin(props) {
                         <GridItem xs={12} sm={12} md={4}>
                             <Card className={classes[cardAnimaton]}>
                                 <form className={classes.form}>
-                                    <CardHeader color="primary" className={classes.cardHeader}>
+                                    <CardHeader color="danger" className={classes.cardHeader}>
                                         <h4>Login</h4>
-                                        <div className={classes.socialLine}>
-                                            <Button
-                                                justIcon
-                                                href="#pablo"
-                                                target="_blank"
-                                                color="transparent"
-                                                onClick={e => e.preventDefault()}
-                                            >
-                                                <i className={"fab fa-twitter"} />
-                                            </Button>
-                                            <Button
-                                                justIcon
-                                                href="#pablo"
-                                                target="_blank"
-                                                color="transparent"
-                                                onClick={e => e.preventDefault()}
-                                            >
-                                                <i className={"fab fa-facebook"} />
-                                            </Button>
-                                            <Button
-                                                justIcon
-                                                href="#pablo"
-                                                target="_blank"
-                                                color="transparent"
-                                                onClick={e => e.preventDefault()}
-                                            >
-                                                <i className={"fab fa-google-plus-g"} />
-                                            </Button>
-                                        </div>
                                     </CardHeader>
-                                    <p className={classes.divider}>Or Be Classical</p>
+                                    
                                     <CardBody>
+                                      
+                                        
+
                                         <CustomInput
-                                            labelText="First Name..."
-                                            id="first"
+                                            labelText="Username"
+                                            id="username"
+                                            value={username}
+                                            // onChange={ (event)=>handleUsername(event)}
+
+                                           
                                             formControlProps={{
-                                                fullWidth: true
+                                                fullWidth: true,
+                                                onChange: (event)=>handleUsername(event)
+
                                             }}
                                             inputProps={{
-                                                type: "text",
+                                              
+                                                type: "username",
+                                                // onChange: (event)=>handleUsername(event),
                                                 endAdornment: (
                                                     <InputAdornment position="end">
                                                         <People className={classes.inputIconsColor} />
                                                     </InputAdornment>
                                                 )
                                             }}
+                                           
                                         />
-                                        <CustomInput
-                                            labelText="Email..."
-                                            id="email"
-                                            formControlProps={{
-                                                fullWidth: true
-                                            }}
-                                            inputProps={{
-                                                type: "email",
-                                                endAdornment: (
-                                                    <InputAdornment position="end">
-                                                        <Email className={classes.inputIconsColor} />
-                                                    </InputAdornment>
-                                                )
-                                            }}
-                                        />
-                                        <CustomInput
+                                        
+                                      
+                                        {/* <FormControl>
+                                          <InputLabel>Username</InputLabel>
+                                          <Input id="username" type="text" value={username} onChange={handleUsername}disableUnderline={true}/>
+                                        </FormControl>
+                                      
+                                        <br/>
+                                        <FormControl>
+                                          <InputLabel>Password</InputLabel>
+                                          <Input id="username" type="password" value={password} onChange={handlePassword}/>
+                                        </FormControl> */}
+                                       <CustomInput
                                             labelText="Password"
-                                            id="pass"
+                                            id="password"
+                                            type="password"
+                                            // onChange={ (event)=>handlePassword(event)}
+                                            
                                             formControlProps={{
-                                                fullWidth: true
+                                                fullWidth: true,
+                                                onChange: (event)=>handlePassword(event)
+                                        
                                             }}
                                             inputProps={{
-                                                type: "password",
+                                              // onChange: (event)=>handlePassword(event),
+                  
+                                                type: "password", 
+                                                
                                                 endAdornment: (
                                                     <InputAdornment position="end">
                                                         <Icon className={classes.inputIconsColor}>
-                                                            lock_outline
+
                                                         </Icon>
                                                     </InputAdornment>
                                                 ),
                                                 autoComplete: "off"
                                             }}
+                                    
+                                            
                                         />
+                                        
                                     </CardBody>
                                     <CardFooter className={classes.cardFooter}>
-                                        <Button simple color="primary" size="lg">
-                                            Get started
+                                        <Button simple color="primary" size="lg" onClick={()=>validateLogin()}>
+                                            Log in
                                         </Button>
                                     </CardFooter>
                                 </form>
