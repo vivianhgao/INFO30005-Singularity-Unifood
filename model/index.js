@@ -21,7 +21,6 @@ db.once("open", async () => {
     console.log("Mongo connection started on " + db.host + ":" +
         db.port); });
 
-console.log(db.collection("users").getIndexes)
 require("./user");
 
 require("./organiser");

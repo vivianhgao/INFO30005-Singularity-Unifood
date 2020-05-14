@@ -2,11 +2,7 @@ import React, {Component} from "react";
 // import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Login.css";
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
-import Welcome from './Welcome';
-
 import { withRouter } from 'react-router';
-
 import { Link } from "react-router-dom";
 
 
@@ -51,7 +47,6 @@ class Login extends Component {
 
  
     onSubmit(e){
-        const history  = this.props;
         e.preventDefault();
         const data= {
             username: this.state.username,
@@ -59,7 +54,7 @@ class Login extends Component {
         }
         
         console.log(data);
-        axios.post('http://localhost:5000/users/login',data)
+        axios.post('users/login',data)
             // .then(res=>this.setState({success: res.data.success}))
             // .then(res=>res.data.success? <Redirect to='/welcome'></Redirect>:console.log("it is false"));
     //         .catch((error) => {
@@ -68,7 +63,8 @@ class Login extends Component {
             // .then(res => res.data.success? console.log("hoo"): alert("Incorrect username/ password.\nPlease Try again"))
             .then(res => res.data.success? this.props.history.push('/welcome',data.username): alert("Incorrect username/ password.\nPlease Try again"))
             // .then(<Welcome username={data.username}/>)
-
+            // .then(res=> console.log(res.data))
+// 
     }    
     
     render(){

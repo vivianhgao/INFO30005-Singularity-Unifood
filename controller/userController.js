@@ -13,6 +13,7 @@ const getUsers=(req,res)=>{
 // function for user to log in
 const logIn = (req, res, next) => {
     const {username,password}=req.body;
+    console.log("server: "+req.body)
 
     // find the user in the database with the log in username
     User.findOne({username:username},function (err,user){
@@ -30,7 +31,7 @@ const logIn = (req, res, next) => {
         else {
             console.log("User "+username+" is logged in!")
             // return res.status(500).send({user})
-            return res.json({ success: true, user: user });
+            return res.json({ success: true, data: user });
             // res.send(true)
             // res.render('welcomeUser',{ first_name:user.first_name, username:username });
         }
@@ -82,8 +83,7 @@ const getDetails = (req,res,next) => {
         } else if (!user) {
             res.send("No user with that username.")
         } else {
-            // res.render('userDetails',{first_name:user.first_name, last_name:user.last_name,username:user.username});
-            return res.json({success:true, user:user})
+            res.render('userDetails',{first_name:user.first_name, last_name:user.last_name,username:user.username});
         }
     });
 };
@@ -138,9 +138,7 @@ const deleteUser = (req,res) => {
         }
     });
 };
-console.log( User.find()
-.then(users=> JSON.stringify(users))
-)
+
 
 // export the functions
 module.exports = {
