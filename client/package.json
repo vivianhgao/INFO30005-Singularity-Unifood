@@ -8,12 +8,16 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.18.0",
     "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "jest": "^24.9.0",
     "material-kit-react": "^1.8.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "webpack": "4.42.0",
+    "webpack-dev-server": "^3.10.3"
   },
   "scripts": {
     "start": "NODE_PATH=./src react-scripts start",
