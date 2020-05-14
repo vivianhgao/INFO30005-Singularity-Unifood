@@ -89,7 +89,7 @@ class  Welcome extends React.Component {
      
       {/* <Table columns={this.columns} dataSource={this.state.results} rowKey='id' />
       */}
-          <Link to='/'>Log out</Link>
+          <Link to='/' onClick={socket.emit("disconnect")}>Log out</Link>
       </div>
     );
   }
