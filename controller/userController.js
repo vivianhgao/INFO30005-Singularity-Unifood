@@ -82,7 +82,8 @@ const getDetails = (req,res,next) => {
         } else if (!user) {
             res.send("No user with that username.")
         } else {
-            res.render('userDetails',{first_name:user.first_name, last_name:user.last_name,username:user.username});
+            // res.render('userDetails',{first_name:user.first_name, last_name:user.last_name,username:user.username});
+            return res.json({success:true, user:user})
         }
     });
 };
@@ -137,7 +138,9 @@ const deleteUser = (req,res) => {
         }
     });
 };
-
+console.log( User.find()
+.then(users=> JSON.stringify(users))
+)
 
 // export the functions
 module.exports = {
