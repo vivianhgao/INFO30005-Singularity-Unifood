@@ -4,8 +4,9 @@
     <list default="true" id="b3c1fbbf-5569-420e-9587-ed3ee9d4bf2e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/assets/img/profile-bg.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/img/profile-bg.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/AboutUs/aboutUs.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/AboutUs/aboutUs.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/views/Users/userHomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/Users/userHomePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/Users/userLogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/Users/userLogIn.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

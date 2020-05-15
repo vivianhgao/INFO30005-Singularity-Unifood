@@ -1,192 +1,215 @@
-import React, {useState} from "react";
+import React from "react";
+// nodejs library that concatenates classes
+import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
-import red from '@material-ui/core/colors/red';
-import People from "@material-ui/icons/People";
+import Camera from "@material-ui/icons/Camera";
+import Palette from "@material-ui/icons/Palette";
+import Favorite from "@material-ui/icons/Favorite";
 // core components
 import Header from "components/Header/Header.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
 import Footer from "components/Footer/Footer.js";
+import Button from "components/CustomButtons/Button.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
-import Button from "components/CustomButtons/Button.js";
-import Card from "components/Card/Card.js";
-import CardBody from "components/Card/CardBody.js";
-import CardHeader from "components/Card/CardHeader.js";
-import CardFooter from "components/Card/CardFooter.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
-import Checkbox from '@material-ui/core/Checkbox';
+import HeaderLinks from "components/Header/HeaderLinks.js";
+import NavPills from "components/NavPills/NavPills.js";
+import Parallax from "components/Parallax/Parallax.js";
 
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
+import profile from "assets/img/faces/christian.jpg";
 
+import studio1 from "assets/img/examples/studio-1.jpg";
+import studio2 from "assets/img/examples/studio-2.jpg";
+import studio3 from "assets/img/examples/studio-3.jpg";
+import studio4 from "assets/img/examples/studio-4.jpg";
+import studio5 from "assets/img/examples/studio-5.jpg";
+import work1 from "assets/img/examples/olu-eletu.jpg";
+import work2 from "assets/img/examples/clem-onojeghuo.jpg";
+import work3 from "assets/img/examples/cynthia-del-rio.jpg";
+import work4 from "assets/img/examples/mariya-georgieva.jpg";
+import work5 from "assets/img/examples/clem-onojegaw.jpg";
 
-import styles from "assets/jss/material-kit-react/views/loginPage.js";
-
-import image from "assets/img/unifood.png";
-
-import {useHistory} from 'react-router-dom';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import Box from '@material-ui/core/Box';
-import axios from 'axios';
+import styles from "assets/jss/material-kit-react/views/profilePage.js";
 
 const useStyles = makeStyles(styles);
 
 export default function AboutUs(props) {
-    let history = useHistory()
-    const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
-    setTimeout(function() {
-        setCardAnimation("");
-    }, 700);
     const classes = useStyles();
     const { ...rest } = props;
-
-    const [username,setUsername]= useState("")
-    const [password,setPassword]=useState("")
-
-    function validateLogin(){
-        console.log()
-        axios.post('users/login',{username,password})
-            .then(res => res.data.success? console.log("logged in"): alert("Incorrect username/ password.\nPlease Try again"))
-    }
-
-
-    const handleUsername = (event) => {
-        setUsername(event.target.value);
-    };
-
-    const handlePassword = (event) => {
-        setPassword(event.target.value);
-    };
-
+    const imageClasses = classNames(
+        classes.imgRaised,
+        classes.imgRoundedCircle,
+        classes.imgFluid
+    );
+    const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
     return (
         <div>
             <Header
-                absolute
                 color="transparent"
                 brand="UNIFOOD"
                 rightLinks={<HeaderLinks />}
+                fixed
+                changeColorOnScroll={{
+                    height: 200,
+                    color: "white"
+                }}
                 {...rest}
             />
-            <div
-                className={classes.pageHeader}
-                style={{
-                    backgroundImage: "url(" + image + ")",
-                    backgroundSize: "cover",
-                    backgroundPosition: "top center"
-                }}
-            >
-                <div className={classes.container}>
-                    <GridContainer justify="center">
-                        <GridItem xs={12} sm={12} md={4}>
-                            <Card className={classes[cardAnimaton]}>
-                                <form className={classes.form}>
-                                    <CardHeader color="danger" className={classes.cardHeader}>
-                                        <h4>Organiser Login</h4>
-                                    </CardHeader>
-
-                                    <CardBody>
-
-
-
-                                        <CustomInput
-                                            labelText="Username"
-                                            id="username"
-                                            value={username}
-                                            // onChange={ (event)=>handleUsername(event)}
-
-
-                                            formControlProps={{
-                                                fullWidth: true,
-                                                onChange: (event)=>handleUsername(event)
-
-                                            }}
-                                            inputProps={{
-
-                                                type: "username",
-                                                // onChange: (event)=>handleUsername(event),
-                                                endAdornment: (
-                                                    <InputAdornment position="end">
-                                                        <People className={classes.inputIconsColor} />
-                                                    </InputAdornment>
-                                                )
-                                            }}
-
-                                        />
-
-
-                                        {/* <FormControl>
-                                          <InputLabel>Username</InputLabel>
-                                          <Input id="username" type="text" value={username} onChange={handleUsername}disableUnderline={true}/>
-                                        </FormControl>
-
-                                        <br/>
-                                        <FormControl>
-                                          <InputLabel>Password</InputLabel>
-                                          <Input id="username" type="password" value={password} onChange={handlePassword}/>
-                                        </FormControl> */}
-                                        <CustomInput
-                                            labelText="Password"
-                                            id="password"
-                                            type="password"
-                                            // onChange={ (event)=>handlePassword(event)}
-
-                                            formControlProps={{
-                                                fullWidth: true,
-                                                onChange: (event)=>handlePassword(event)
-
-                                            }}
-                                            inputProps={{
-                                                // onChange: (event)=>handlePassword(event),
-
-                                                type: "password",
-
-                                                endAdornment: (
-                                                    <InputAdornment position="end">
-                                                        <Icon className={classes.inputIconsColor}>
-
-                                                        </Icon>
-                                                    </InputAdornment>
-                                                ),
-                                                autoComplete: "off"
-                                            }}
-
-
-                                        />
-
-                                        <Button
-                                            type="submit"
-                                            variant="contained"
-                                            fullWidth
-                                            color="danger"
-                                            className={classes.submit}
-                                        >
-                                            Log In
+            <Parallax small filter image={require("assets/img/aboutus-bg.png")} />
+            <div className={classNames(classes.main, classes.mainRaised)}>
+                <div>
+                    <div className={classes.container}>
+                        <GridContainer justify="center">
+                            <GridItem xs={12} sm={12} md={6}>
+                                <div className={classes.profile}>
+                                    <div>
+                                        <img src={profile} alt="..." className={imageClasses} />
+                                    </div>
+                                    <div className={classes.name}>
+                                        <h3 className={classes.title}>About Us</h3>
+                                        <h6>UNIFOOD TEAM</h6>
+                                        <Button justIcon link className={classes.margin5}>
+                                            <i className={"fab fa-twitter"} />
                                         </Button>
-
-
-                                        <Grid item>
-                                            <Link href="/organiser-signup" style={{ color: '#999999' }}>
-                                                {"Don't have an account? Sign Up"}
-                                            </Link>
-                                        </Grid>
-
-                                    </CardBody>
-
-
-
-                                </form>
-                            </Card>
-                        </GridItem>
-                    </GridContainer>
+                                        <Button justIcon link className={classes.margin5}>
+                                            <i className={"fab fa-instagram"} />
+                                        </Button>
+                                        <Button justIcon link className={classes.margin5}>
+                                            <i className={"fab fa-facebook"} />
+                                        </Button>
+                                    </div>
+                                </div>
+                            </GridItem>
+                        </GridContainer>
+                        <div className={classes.description}>
+                            <p>
+                                An artist of considerable range, Chet Faker — the name taken by
+                                Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs
+                                and records all of his own music, giving it a warm, intimate
+                                feel with a solid groove structure.{" "}
+                            </p>
+                        </div>
+                        <GridContainer justify="center">
+                            <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
+                                <NavPills
+                                    alignCenter
+                                    color="primary"
+                                    tabs={[
+                                        {
+                                            tabButton: "Studio",
+                                            tabIcon: Camera,
+                                            tabContent: (
+                                                <GridContainer justify="center">
+                                                    <GridItem xs={12} sm={12} md={4}>
+                                                        <img
+                                                            alt="..."
+                                                            src={studio1}
+                                                            className={navImageClasses}
+                                                        />
+                                                        <img
+                                                            alt="..."
+                                                            src={studio2}
+                                                            className={navImageClasses}
+                                                        />
+                                                    </GridItem>
+                                                    <GridItem xs={12} sm={12} md={4}>
+                                                        <img
+                                                            alt="..."
+                                                            src={studio5}
+                                                            className={navImageClasses}
+                                                        />
+                                                        <img
+                                                            alt="..."
+                                                            src={studio4}
+                                                            className={navImageClasses}
+                                                        />
+                                                    </GridItem>
+                                                </GridContainer>
+                                            )
+                                        },
+                                        {
+                                            tabButton: "Work",
+                                            tabIcon: Palette,
+                                            tabContent: (
+                                                <GridContainer justify="center">
+                                                    <GridItem xs={12} sm={12} md={4}>
+                                                        <img
+                                                            alt="..."
+                                                            src={work1}
+                                                            className={navImageClasses}
+                                                        />
+                                                        <img
+                                                            alt="..."
+                                                            src={work2}
+                                                            className={navImageClasses}
+                                                        />
+                                                        <img
+                                                            alt="..."
+                                                            src={work3}
+                                                            className={navImageClasses}
+                                                        />
+                                                    </GridItem>
+                                                    <GridItem xs={12} sm={12} md={4}>
+                                                        <img
+                                                            alt="..."
+                                                            src={work4}
+                                                            className={navImageClasses}
+                                                        />
+                                                        <img
+                                                            alt="..."
+                                                            src={work5}
+                                                            className={navImageClasses}
+                                                        />
+                                                    </GridItem>
+                                                </GridContainer>
+                                            )
+                                        },
+                                        {
+                                            tabButton: "Favorite",
+                                            tabIcon: Favorite,
+                                            tabContent: (
+                                                <GridContainer justify="center">
+                                                    <GridItem xs={12} sm={12} md={4}>
+                                                        <img
+                                                            alt="..."
+                                                            src={work4}
+                                                            className={navImageClasses}
+                                                        />
+                                                        <img
+                                                            alt="..."
+                                                            src={studio3}
+                                                            className={navImageClasses}
+                                                        />
+                                                    </GridItem>
+                                                    <GridItem xs={12} sm={12} md={4}>
+                                                        <img
+                                                            alt="..."
+                                                            src={work2}
+                                                            className={navImageClasses}
+                                                        />
+                                                        <img
+                                                            alt="..."
+                                                            src={work1}
+                                                            className={navImageClasses}
+                                                        />
+                                                        <img
+                                                            alt="..."
+                                                            src={studio1}
+                                                            className={navImageClasses}
+                                                        />
+                                                    </GridItem>
+                                                </GridContainer>
+                                            )
+                                        }
+                                    ]}
+                                />
+                            </GridItem>
+                        </GridContainer>
+                    </div>
                 </div>
-                <Footer whiteFont />
             </div>
+            <Footer />
         </div>
     );
 }

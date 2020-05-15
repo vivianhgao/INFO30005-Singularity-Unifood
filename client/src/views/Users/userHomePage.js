@@ -56,8 +56,6 @@ const [first_name,setFirstName]=useState();
   function getFirstName(){
     axios.get("/users/login/"+username)
     .then(res=>setFirstName(res.data.user.first_name))
-    
-    
   }
 
 //   useEffect(()=>{
