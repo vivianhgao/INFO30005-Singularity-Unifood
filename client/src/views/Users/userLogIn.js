@@ -16,23 +16,13 @@ import Button from "components/CustomButtons/Button.js";
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
-import CardFooter from "components/Card/CardFooter.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
-import Checkbox from '@material-ui/core/Checkbox';
-
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-
 
 import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
 import image from "assets/img/unifood.png";
 
 import {useHistory} from 'react-router-dom';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import Box from '@material-ui/core/Box';
 import axios from 'axios';
 import {Link} from 'react-router-dom'
 
@@ -51,9 +41,8 @@ export default function UserLogin(props) {
     const [password,setPassword]=useState("")
 
     function validateLogin(){
-      console.log()
       axios.post('users/login',{username,password})
-        .then(res => res.data.success? history.push({pathname:"/userdashboard",state: { detail: username }}): alert("Incorrect username/ password.\nPlease Try again"))
+        .then(res => res.data.success? history.push("/userdashboard"): alert("Incorrect username/ password.\nPlease Try again"))
     }
 
 
@@ -99,7 +88,7 @@ export default function UserLogin(props) {
                                             labelText="Username"
                                             id="username"
                                             value={username}
-                                            // onChange={ (event)=>handleUsername(event)}
+                                         
 
 
                                             formControlProps={{
@@ -109,8 +98,7 @@ export default function UserLogin(props) {
                                             }}
                                             inputProps={{
 
-                                                type: "username",
-                                                // onChange: (event)=>handleUsername(event),
+                                                type: "username",                             
                                                 endAdornment: (
                                                     <InputAdornment position="end">
                                                         <People className={classes.inputIconsColor} />
@@ -126,7 +114,7 @@ export default function UserLogin(props) {
                                             labelText="Password"
                                             id="password"
                                             type="password"
-                                            // onChange={ (event)=>handlePassword(event)}
+                                    
 
                                             formControlProps={{
                                                 fullWidth: true,
@@ -134,8 +122,7 @@ export default function UserLogin(props) {
 
                                             }}
                                             inputProps={{
-                                                // onChange: (event)=>handlePassword(event),
-
+                                              
                                                 type: "password",
 
                                                 endAdornment: (
@@ -157,7 +144,8 @@ export default function UserLogin(props) {
                                             fullWidth
                                             color="danger"
                                             className={classes.submit}
-                                        >
+                                            onClick={()=>validateLogin()}
+                                            >
                                             Log In
                                         </Button>
                                         <br/>

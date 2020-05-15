@@ -10,7 +10,6 @@ import HomePage from "./views/HomePage/HomePage";
 import OrganiserLogin from "./views/Organisers/organiserLogIn";
 import UserLogin from "./views/Users/userLogIn";
 import UserSignUp from './views/Users/userSignUp';
-import LandingPage from "./views/Users/LandingPage/LandingPage";
 import UserDashboard from './views/Users/userHomePage'
 import AboutUs from "./views/AboutUs/aboutUs";
 import OrganiserSignup from "./views/Organisers/organiserSignUp";
@@ -23,12 +22,10 @@ function App(){
     <Router history={hist}>
         <div className="App">
         <Switch>
-            <Route path="/userdashboard" component={UserDashboard}/>
             <Route path="/usersignup" component={UserSignUp} />
             <Route path="/userlogin" component={UserLogin} />
+            <Route path="/userdashboard" component={UserDashboard}/>
             <Route path="/organiserlogin" component={OrganiserLogin} />
-           
-            <Route path="/organiser-login" component={OrganiserLogin} />
             <Route path="/organiser-signup" component={OrganiserSignup} />
             <Route path="/" component={HomePage} />
             <Route path="/about-us" component={AboutUs} />
