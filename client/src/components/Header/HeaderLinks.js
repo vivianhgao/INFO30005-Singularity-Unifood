@@ -38,12 +38,12 @@ export default function HeaderLinks(props) {
           buttonText="Navigation"
           buttonProps={{
             className: classes.navLink,
-            color: "danger"
+            color: "transparent"
           }}
           buttonIcon={Apps}
           dropdownList={[
             <Link to="/" className={classes.dropdownLink}>
-              All components
+              Home Page
             </Link>,
             <a
               href="https://creativetimofficial.github.io/material-kit-react/#/documentation?ref=mkr-navbar"
@@ -58,7 +58,7 @@ export default function HeaderLinks(props) {
       <ListItem className={classes.listItem}>
         <Button
           
-          color="danger"
+          color="transparent"
           target="_blank"
           className={classes.navLink}
           onClick={()=>history.push("/userlogin")}
@@ -69,7 +69,7 @@ export default function HeaderLinks(props) {
 
         <ListItem className={classes.listItem}>
             <Button
-                color="danger"
+                color="transparent"
                 target="_blank"
                 className={classes.navLink}
                 onClick={()=>history.push("/organiserlogin")}

@@ -38,7 +38,7 @@ export default function HomePage(props) {
   return (
     <div>
       <Header
-        color="danger"
+        color="transparent"
         routes={dashboardRoutes}
         brand="UNIFOOD"
         rightLinks={<HeaderLinks />}
@@ -50,7 +50,7 @@ export default function HomePage(props) {
         onClick={()=>history.push("/")}
         {...rest}
       />
-      <Parallax image={require("assets/img/unifood.png")}>
+      <Parallax image={require("assets/img/homepage.png")}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>

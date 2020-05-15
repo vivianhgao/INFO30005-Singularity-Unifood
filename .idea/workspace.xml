@@ -3,13 +3,26 @@
   <component name="ChangeListManager">
     <list default="true" id="b3c1fbbf-5569-420e-9587-ed3ee9d4bf2e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/assets/jss/material-kit-react.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/jss/material-kit-react.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/assets/jss/material-kit-react/views/landingPageSections/productStyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/jss/material-kit-react/views/landingPageSections/productStyle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/assets/jss/material-kit-react/views/landingPageSections/teamStyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/jss/material-kit-react/views/landingPageSections/teamStyle.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Header/HeaderLinks.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Header/HeaderLinks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/Components/Components.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/Components/Sections/SectionBasics.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/Components/Sections/SectionCarousel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/Components/Sections/SectionCompletedExamples.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/Components/Sections/SectionDownload.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/Components/Sections/SectionExamples.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/Components/Sections/SectionJavascript.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/Components/Sections/SectionLogin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/Components/Sections/SectionNavbars.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/Components/Sections/SectionNotifications.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/Components/Sections/SectionPills.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/Components/Sections/SectionTabs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/Components/Sections/SectionTypography.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/views/HomePage/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/HomePage/HomePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/Organisers/organiserLogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/Organisers/organiserLogIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/Users/userLogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/Users/userLogIn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/HomePage/Sections/ProductSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/HomePage/Sections/ProductSection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/HomePage/Sections/TeamSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/HomePage/Sections/TeamSection.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +54,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="watcher.settings" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/client/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -79,7 +93,7 @@
       <workItem from="1588123168522" duration="3566000" />
       <workItem from="1588387108696" duration="13678000" />
       <workItem from="1589352919553" duration="4653000" />
-      <workItem from="1589507708549" duration="1025000" />
+      <workItem from="1589507708549" duration="5445000" />
     </task>
     <servers />
   </component>
@@ -140,10 +154,10 @@
       <screen x="0" y="23" width="1440" height="841" />
     </state>
     <state x="503" y="109" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1440.841@0.23.1440.841" timestamp="1589452145650" />
-    <state x="376" y="188" width="670" height="676" key="search.everywhere.popup" timestamp="1589457730415">
+    <state x="376" y="188" width="670" height="676" key="search.everywhere.popup" timestamp="1589513383049">
       <screen x="0" y="23" width="1440" height="841" />
     </state>
-    <state x="376" y="188" width="670" height="676" key="search.everywhere.popup/0.23.1440.841@0.23.1440.841" timestamp="1589457730415" />
+    <state x="376" y="188" width="670" height="676" key="search.everywhere.popup/0.23.1440.841@0.23.1440.841" timestamp="1589513383049" />
     <state x="376" y="188" width="670" height="677" key="search.everywhere.popup/0.23.1440.842@0.23.1440.842" timestamp="1587797529148" />
   </component>
   <component name="XDebuggerManager">

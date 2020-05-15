@@ -41,7 +41,10 @@ const teamStyle = {
   },
   margin5: {
     margin: "5px"
-  }
+  },
+  note: {
+    color: "#3C4858"
+  },
 };
 
 export default teamStyle;

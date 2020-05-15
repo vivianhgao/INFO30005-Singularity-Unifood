@@ -10,11 +10,14 @@ const productStyle = {
     marginBottom: "1rem",
     marginTop: "30px",
     minHeight: "32px",
-    textDecoration: "none"
+    textDecoration: "none",
   },
   description: {
     color: "#999"
-  }
+  },
+  note: {
+    color: "#3C4858"
+  },
 };
 
 export default productStyle;

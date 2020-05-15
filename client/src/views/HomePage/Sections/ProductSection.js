@@ -3,9 +3,10 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 // @material-ui/icons
-import Chat from "@material-ui/icons/Chat";
-import VerifiedUser from "@material-ui/icons/VerifiedUser";
-import Fingerprint from "@material-ui/icons/Fingerprint";
+import Fastfood from "@material-ui/icons/Fastfood";
+import LocationCityIcon from '@material-ui/icons/LocationCity';
+import PublicIcon from '@material-ui/icons/Public';
+
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
@@ -21,22 +22,53 @@ export default function ProductSection() {
     <div className={classes.section}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={8}>
-          <h1 className={classes.title}>About Unifood</h1>
+          <h1 className={classes.note}>About Unifood</h1>
           <h5 className={classes.description}>
-            Our proposed application will be an interface that connects event organisers with excess food
-            to users in the surrounding area through a location-based notification system.
-            We have determined an existing messaging platform will integrate seamlessly with the lives
-            of our users and have chosen Facebook Messenger to deliver the notifications. Furthermore, we
-            have identified the following goals we want to address throughout our implementation:
-            <p></p>
-            • To serve as a contingency for event organisers when there is surplus food and reduce waste
-            of edible food.
-            <p></p>
-            • To be as user-friendly as possible for both users and organisers by integrating well with
-            existing protocols for event organisers and daily practices of users.
+            Unifood is a passion project between three students, one university project,
+            and a unified goal of reducing food waste on campus! Our aim is to connect students and event organisers
+            to reduce the waste of edible food from university events.
           </h5>
         </GridItem>
       </GridContainer>
+
+      <div>
+        <GridContainer>
+          <GridItem xs={12} sm={12} md={4}>
+            <InfoArea
+                title="Food for Students"
+                description="Register an account with Unifood and be notified of any opportunities for free food
+                across campus. Meet more people and attend more events at the same time."
+                icon={Fastfood}
+                iconColor="danger"
+                vertical
+            />
+          </GridItem>
+          <GridItem xs={12} sm={12} md={4}>
+            <InfoArea
+                title="Contingency for Organisers"
+                description="Stop stressing about over- or under-catering your events. Make sure
+                you have enough for your attendees and we will make sure your extras don't go to waste."
+                icon={LocationCityIcon}
+                iconColor="danger"
+                vertical
+            />
+          </GridItem>
+          <GridItem xs={12} sm={12} md={4}>
+            <InfoArea
+                title="Reduce Waste on Campus Together!"
+                description="Together we can reduce food wastage on campus alongside the
+                student body and help The University of Melbourne achieve its' sustainability goals."
+                icon={PublicIcon}
+                iconColor="danger"
+                vertical
+            />
+          </GridItem>
+        </GridContainer>
+      </div>
+
+
+
+
     </div>
   );
 }

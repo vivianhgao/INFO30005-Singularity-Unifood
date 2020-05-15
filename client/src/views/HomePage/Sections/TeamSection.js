@@ -31,7 +31,7 @@ export default function TeamSection() {
   );
   return (
     <div className={classes.section}>
-      <h2 className={classes.title}>The team behind Unifood</h2>
+      <h2 className={classes.note}>The team behind Unifood</h2>
       <div>
         <GridContainer>
           <GridItem xs={12} sm={12} md={4}>
@@ -39,7 +39,7 @@ export default function TeamSection() {
               <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
                 <img src={team1} alt="..." className={imageClasses} />
               </GridItem>
-              <h4 className={classes.cardTitle}>
+              <h4 className={classes.note}>
                 Vivian Gao
                 <br />
                 <small className={classes.smallTitle}>insert role here</small>
@@ -82,7 +82,7 @@ export default function TeamSection() {
               <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
                 <img src={team2} alt="..." className={imageClasses} />
               </GridItem>
-              <h4 className={classes.cardTitle}>
+              <h4 className={classes.note}>
                 Franklin Darmansa
                 <br />
                 <small className={classes.smallTitle}>insert role here</small>
@@ -118,7 +118,7 @@ export default function TeamSection() {
               <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
                 <img src={team3} alt="..." className={imageClasses} />
               </GridItem>
-              <h4 className={classes.cardTitle}>
+              <h4 className={classes.note}>
                 Patricia Budiman
                 <br />
                 <small className={classes.smallTitle}>insert role here</small>
