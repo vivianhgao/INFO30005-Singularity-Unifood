@@ -12,10 +12,13 @@ const createForm = async (req, res,next) => {
         time:req.body.time,
         quantity:req.body.quantity,
         photo:req.body.photo,
+        latitude:req.body.latitude,
+        longitude: req.body.longitude
     };
     var data = new Form(new_form);
     data.save();
-    res.render('formManagement',{name:req.body.name, formID:Form.id});
+    // res.render('formManagement',{name:req.body.name, formID:Form.id});
+    res.send("New form added");
 }
 
 //update form
@@ -34,6 +37,8 @@ const updateForm = async (req, res, next) => {
         doc.time = req.body.time;
         doc.quantity = req.body.quantity;
         doc.photo = req.body.photo;
+        doc.latitude = req.body.latitude;
+        doc.longitude = req.body.longitude;
         doc.save();
     });
     console.log("Form is updated!");

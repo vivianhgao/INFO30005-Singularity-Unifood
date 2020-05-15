@@ -49,7 +49,11 @@ const location = useLocation();
 const username=location.state.detail;
 const [response, setResponse]=useState([])
 const [first_name,setFirstName]=useState();
-var items=[]
+const [userLat, setUserLat] = useState(Number);
+const [userLong, setUserLong] = useState(Number);
+const [eventLat, setEventLat] = useState(Number);
+const [eventLong, setEventLong] = useState(Number);
+const [distance, setDistance] = useState(Number);
 
   const classes = useStyles();
   const { ...rest } = props;
@@ -62,11 +66,44 @@ var items=[]
   }
 
   useEffect(()=>{
-      const socket=socketIOClient(endpoint);
-    //   socket.on("FromAPI", data=>setResponse(data));
+    const socket=socketIOClient(endpoint);
+    
     socket.on("FromAPI", data=>setResponse(data))
   
   });
+
+  function getLocation(){
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        setUserLat(position.coords.latitude);
+        setUserLong(position.coords.longitude);
+      });
+    } else {
+      alert("Geolocation is not supported in this browser");
+    }
+  }
+
+  function getDistance() {
+    if ((userLat == eventLat) && (userLong == eventLong)) {
+      return 0;
+    } else {
+      var radlat1 = Math.PI * userLat / 180;
+      var radlat2 = Math.PI * eventLat / 180;
+      var theta = userLong - eventLong;
+      var radtheta = Math.PI * theta / 180;
+      var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+      if (dist > 1) {
+        dist = 1;
+      }
+      dist = Math.acos(dist);
+      dist = dist * 180 / Math.PI;
+      dist = dist * 60 * 1.1515;
+      dist = dist * 1.609344;
+
+      setDistance(dist);
+      return dist;
+    }
+  }
   getFirstName();
   
   return ( 
@@ -97,7 +134,7 @@ var items=[]
                 
                 
               <Grid item xs={3}  className={classes.navWrapper} >
-                  
+                    {/* print to page using map */}
                     {response.map(res=>(
                         <div key={res.id}>
                         {res.name}
