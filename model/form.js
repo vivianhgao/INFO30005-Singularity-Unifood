@@ -6,6 +6,8 @@ const formSchema = new mongoose.Schema({
     time:{type:String, required:true},
     quantity: String,
     photo: String,
+    latitude: Number,
+    longitude: Number
 });
 
 const Form = mongoose.model("forms", formSchema, "forms");

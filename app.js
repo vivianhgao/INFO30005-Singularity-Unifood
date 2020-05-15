@@ -3,75 +3,34 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
-const mongoose = require('mongoose');
 
-const http = require('http');
+const axios = require("axios");
+const http = require("http");
 const socketIo = require("socket.io");
-const port = process.env.PORT || 5000;
-
 const server = http.createServer(app);
-const io = socketIo(server);
+const io= socketIo(server);
 
-require('./model/form');
-const formController = require('./controller/formController.js');
-const formRouter = require('./routes/formRouter');
+const getApiAndEmit =  async socket =>{
+    try{
+        const res =  await axios.get("http://localhost:5000/forms/formList");
 
+        
+        socket.emit("FromAPI", res.data);
 
-var connection_string = "mongodb+srv://pbudiman:budiman01@cluster0-hdaoj.mongodb.net/unifood?retryWrites=true&w=majority";
-
-const db = require("monk")(connection_string);
-const form_collection = db.get("forms");
-
-console.log("COllectionsssss: "+form_collection.find({}).then( isi => {
-    // sorted by name field
-    console.log(isi);
-})
-);
-
-let interval;
-
-io.on("connection", (socket)=> {
-    console.log("New client Time connected");
-    // if (interval) {
-    //     clearInterval(interval);
-    // }
-    // interval = setInterval(()=> getApiAndEmit(socket),1000);
-
-    // Returning the initial data of food menu from FoodItems collection
-    socket.on("initial_data", () => {
-        form_collection.find({}).then(docs => {
-            io.sockets.emit("get_data", docs);
-            console.log("emit data!");
-        }
-        );
-        // collection_foodItems.find({}).then(docs => {
-        //     io.sockets.emit("get_data", docs);
-        // });
-    });
-
-    socket.on("disconnect", () => {
-        console.log("Client disconnected");
-        clearInterval(interval);
-    });
-});
-
-
-const getApiAndEmit = socket => {
-    const response = new Date();
-
-    socket.emit("FromAPI", response);
+    }catch(error){
+        console.error("Error: ${error.code}")
+    }
 };
-
 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-require('./model');
+require('./model')
 
 // set up form routes
-
+const formRouter = require('./routes/formRouter');
 const userRouter = require('./routes/userRouter');
 const organiserRouter = require('./routes/organiserRouter');
 
@@ -80,7 +39,7 @@ const locationRouter = require('./routes/locationRouter');
 
 //CORS
 app.use(cors());
-app.use(express.static(path.join(__dirname, "client", "build")));
+app.use(express.static(path.join(__dirname, "client", "build")))
 
 // use the body-parser middleware, which parses request bodies into req.body
 // support parsing of json
@@ -107,13 +66,26 @@ app.use('/organisers', organiserRouter);
 app.use('/locations', locationRouter);
 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.join(__dirname, "client", "public", "index.html"));
 });
 
-server.listen(port, () => console.log(`Listening on port ${port}`));
 
-// app.listen(port, () => {
-//     console.log("The Unifood app is listening on port 5000!");
-// });
+let interval;
+io.on("connection", socket => {
+    console.log("user connected", getApiAndEmit(socket));
+    if(interval){
+        clearInterval(interval)
+    }
+    interval=setInterval(()=>getApiAndEmit(socket),10000);
+
+    socket.on("disconnect",()=> {
+        console.log("Client disconnected");
+        clearInterval(interval)
+    });
+});
 
 
+
+server.listen(process.env.PORT || 5000, () => {
+    console.log("The Unifood app is listening on port 5000!");
+});
