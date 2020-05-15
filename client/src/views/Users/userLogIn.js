@@ -60,7 +60,7 @@ export default function UserLogin(props) {
         <div>
             <Header
                 absolute
-                color="transparent"
+                color="danger"
                 brand="UNIFOOD"
                 rightLinks={<HeaderLinks />}
                 {...rest}
@@ -153,7 +153,7 @@ export default function UserLogin(props) {
                                         
                                     </CardBody>
                                     <CardFooter className={classes.cardFooter}>
-                                        <Button simple color="primary" size="lg" onClick={()=>validateLogin()}>
+                                        <Button simple color="danger" size="lg" onClick={()=>validateLogin()}>
                                             Log in
                                         </Button>
                                         <br/>
