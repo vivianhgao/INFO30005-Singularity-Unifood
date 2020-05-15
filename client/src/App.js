@@ -10,7 +10,7 @@ import HomePage from "./views/HomePage/HomePage";
 import OrganiserLogin from "./views/Organisers/organiserLogIn";
 import UserLogin from "./views/Users/userLogIn";
 import AboutUs from "./views/AboutUs/aboutUs";
-import OrganiserSignup from "./views/Organisers/OrganiserSignUp";
+import OrganiserSignup from "./views/Organisers/organiserSignUp";
 
 var hist = createBrowserHistory();
 

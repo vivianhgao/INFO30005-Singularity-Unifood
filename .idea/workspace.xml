@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3c1fbbf-5569-420e-9587-ed3ee9d4bf2e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/img/homepage.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/img/homepage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/img/unifood.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/img/unifood.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Footer/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Footer/Footer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Header/HeaderLinks.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Header/HeaderLinks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/HomePage/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/HomePage/HomePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/HomePage/Sections/TeamSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/HomePage/Sections/TeamSection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/Organisers/organiserLogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/Organisers/organiserLogIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/Users/userLogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/Users/userLogIn.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
