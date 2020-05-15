@@ -39,7 +39,7 @@ import axios from 'axios';
 import Box from '@material-ui/core/Box';
 import socketIOClient from "socket.io-client";
 const useStyles = makeStyles(styles);
-var first_name='';
+
 const endpoint="http://localhost:5000";
 
 
@@ -47,22 +47,23 @@ export default function ProfilePage(props) {
 let history = useHistory()
 const location = useLocation();
 const username=location.state.detail;
-const [response, setResponse]=useState("")
+const [response, setResponse]=useState([])
+const [first_name,setFirstName]=useState();
 
   const classes = useStyles();
   const { ...rest } = props;
 
   function getFirstName(){
-    axios.get("http://localhost:5000/users/login/"+username)
-    .then(res=>first_name=res.data.data.first_name)
+    axios.get("/users/login/"+username)
+    .then(res=>setFirstName(res.data.user.first_name))
     
     
   }
 
-  useEffect(()=>{
-      const socket=socketIOClient(endpoint);
-      socket.on("FromAPI", data=>console.log(data));
-  },[]);
+//   useEffect(()=>{
+//       const socket=socketIOClient(endpoint);
+//       socket.on("FromAPI", data=>data.map());
+//   },[]);
   getFirstName();
   
   return ( 
