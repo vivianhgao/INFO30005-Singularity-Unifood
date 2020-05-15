@@ -38,30 +38,33 @@ export default function HeaderLinks(props) {
           buttonText="Navigation"
           buttonProps={{
             className: classes.navLink,
-            color: "danger"
+            color: "transparent"
           }}
           buttonIcon={Apps}
           dropdownList={[
             <Link to="/" className={classes.dropdownLink}>
-              All components
+              Home Page
             </Link>,
-            <a
-              href="https://creativetimofficial.github.io/material-kit-react/#/documentation?ref=mkr-navbar"
-              target="_blank"
-              className={classes.dropdownLink}
-            >
-              Documentation
-            </a>
+              <Link to="/about-us" className={classes.dropdownLink}>
+                  About Us
+              </Link>,
+              <a
+                  href="https://creativetimofficial.github.io/material-kit-react/#/documentation?ref=mkr-navbar"
+                  target="_blank"
+                  className={classes.dropdownLink}
+              >
+                  Documentation
+              </a>
           ]}
         />
       </ListItem>
       <ListItem className={classes.listItem}>
         <Button
           
-          color="danger"
+          color="transparent"
           target="_blank"
           className={classes.navLink}
-          onClick={()=>history.push("/userlogin")}
+          onClick={()=>history.push("/user-login")}
         >
           <ExitToAppIcon className={classes.icons} /> Users
         </Button>
@@ -69,10 +72,10 @@ export default function HeaderLinks(props) {
 
         <ListItem className={classes.listItem}>
             <Button
-                color="danger"
+                color="transparent"
                 target="_blank"
                 className={classes.navLink}
-                onClick={()=>history.push("/organiserlogin")}
+                onClick={()=>history.push("/organiser-login")}
 
             >
                 <ExitToAppIcon className={classes.icons} /> Organisers

@@ -18,6 +18,11 @@ import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardFooter from "components/Card/CardFooter.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
+import Checkbox from '@material-ui/core/Checkbox';
+
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+
 
 import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
@@ -32,7 +37,7 @@ import axios from 'axios';
 
 const useStyles = makeStyles(styles);
 
-export default function UserLogin(props) {
+export default function OrganiserLogin(props) {
     let history = useHistory()
     const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
     setTimeout(function() {
@@ -154,12 +159,27 @@ export default function UserLogin(props) {
 
                                         />
 
-                                    </CardBody>
-                                    <CardFooter className={classes.cardFooter}>
-                                        <Button simple color="primary" size="lg" onClick={()=>validateLogin()}>
-                                            Log in
+                                        <Button
+                                            type="submit"
+                                            variant="contained"
+                                            fullWidth
+                                            color="danger"
+                                            className={classes.submit}
+                                        >
+                                            Log In
                                         </Button>
-                                    </CardFooter>
+
+
+                                        <Grid item>
+                                                <Link href="/organiser-signup" style={{ color: '#999999' }}>
+                                                    {"Don't have an account? Sign Up"}
+                                                </Link>
+                                        </Grid>
+
+                                    </CardBody>
+
+
+
                                 </form>
                             </Card>
                         </GridItem>
