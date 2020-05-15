@@ -59,10 +59,10 @@ const [response, setResponse]=useState("")
     
   }
 
-//   useEffect(()=>{
-//       const socket=socketIOClient(endpoint);
-//       socket.on("FromAPI", data=>{setResponse(data)});
-//   },[])
+  useEffect(()=>{
+      const socket=socketIOClient(endpoint);
+      socket.on("FromAPI", data=>console.log(data));
+  },[]);
   getFirstName();
   
   return ( 

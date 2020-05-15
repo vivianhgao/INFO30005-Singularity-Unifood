@@ -10,6 +10,17 @@ const socketIo = require("socket.io");
 const server = http.createServer(app);
 const io= socketIo(server);
 
+const getApiAndEmit =  async socket =>{
+    try{
+        const res =  await axios.get("http://localhost:5000/forms/formList");
+        console.log(res.data)
+        socket.emit("FromAPI", res.data);
+
+    }catch(error){
+        console.error("Error: ${error.code}")
+    }
+};
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -57,6 +68,7 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "public", "index.html"));
 });
 
+
 let interval;
 io.on("connection", socket => {
     console.log("user connected", getApiAndEmit(socket));
@@ -71,12 +83,7 @@ io.on("connection", socket => {
     });
 });
 
-const getApiAndEmit =  socket =>{
 
-    const res =  axios.get("http://localhost:5000/forms/formList");
-    socket.emit("FromAPI", res);
-
-};
 
 server.listen(process.env.PORT || 5000, () => {
     console.log("The Unifood app is listening on port 5000!");
