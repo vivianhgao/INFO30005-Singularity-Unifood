@@ -18,6 +18,11 @@ import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardFooter from "components/Card/CardFooter.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
+import Checkbox from '@material-ui/core/Checkbox';
+
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+
 
 import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
@@ -45,18 +50,18 @@ export default function UserLogin(props) {
     const [password,setPassword]=useState("")
 
     function validateLogin(){
-      console.log()
-      axios.post('users/login',{username,password})
-        .then(res => res.data.success? console.log("logged in"): alert("Incorrect username/ password.\nPlease Try again"))
+        console.log()
+        axios.post('users/login',{username,password})
+            .then(res => res.data.success? console.log("logged in"): alert("Incorrect username/ password.\nPlease Try again"))
     }
 
-    
+
     const handleUsername = (event) => {
-      setUsername(event.target.value);
+        setUsername(event.target.value);
     };
 
     const handlePassword = (event) => {
-      setPassword(event.target.value);
+        setPassword(event.target.value);
     };
 
     return (
@@ -84,10 +89,10 @@ export default function UserLogin(props) {
                                     <CardHeader color="danger" className={classes.cardHeader}>
                                         <h4>User Login</h4>
                                     </CardHeader>
-                                    
+
                                     <CardBody>
-                                      
-                                        
+
+
 
                                         <CustomInput
                                             labelText="Username"
@@ -95,14 +100,14 @@ export default function UserLogin(props) {
                                             value={username}
                                             // onChange={ (event)=>handleUsername(event)}
 
-                                           
+
                                             formControlProps={{
                                                 fullWidth: true,
                                                 onChange: (event)=>handleUsername(event)
 
                                             }}
                                             inputProps={{
-                                              
+
                                                 type: "username",
                                                 // onChange: (event)=>handleUsername(event),
                                                 endAdornment: (
@@ -111,36 +116,36 @@ export default function UserLogin(props) {
                                                     </InputAdornment>
                                                 )
                                             }}
-                                           
+
                                         />
-                                        
-                                      
+
+
                                         {/* <FormControl>
                                           <InputLabel>Username</InputLabel>
                                           <Input id="username" type="text" value={username} onChange={handleUsername}disableUnderline={true}/>
                                         </FormControl>
-                                      
+
                                         <br/>
                                         <FormControl>
                                           <InputLabel>Password</InputLabel>
                                           <Input id="username" type="password" value={password} onChange={handlePassword}/>
                                         </FormControl> */}
-                                       <CustomInput
+                                        <CustomInput
                                             labelText="Password"
                                             id="password"
                                             type="password"
                                             // onChange={ (event)=>handlePassword(event)}
-                                            
+
                                             formControlProps={{
                                                 fullWidth: true,
                                                 onChange: (event)=>handlePassword(event)
-                                        
+
                                             }}
                                             inputProps={{
-                                              // onChange: (event)=>handlePassword(event),
-                  
-                                                type: "password", 
-                                                
+                                                // onChange: (event)=>handlePassword(event),
+
+                                                type: "password",
+
                                                 endAdornment: (
                                                     <InputAdornment position="end">
                                                         <Icon className={classes.inputIconsColor}>
@@ -150,16 +155,31 @@ export default function UserLogin(props) {
                                                 ),
                                                 autoComplete: "off"
                                             }}
-                                    
-                                            
+
+
                                         />
-                                        
-                                    </CardBody>
-                                    <CardFooter className={classes.cardFooter}>
-                                        <Button simple color="primary" size="lg" onClick={()=>validateLogin()}>
-                                            Log in
+
+                                        <Button
+                                            type="submit"
+                                            variant="contained"
+                                            fullWidth
+                                            color="danger"
+                                            className={classes.submit}
+                                        >
+                                            Log In
                                         </Button>
-                                    </CardFooter>
+
+
+                                        <Grid item>
+                                            <Link href="/user-signup" style={{ color: '#999999' }}>
+                                                {"Don't have an account? Sign Up"}
+                                            </Link>
+                                        </Grid>
+
+                                    </CardBody>
+
+
+
                                 </form>
                             </Card>
                         </GridItem>

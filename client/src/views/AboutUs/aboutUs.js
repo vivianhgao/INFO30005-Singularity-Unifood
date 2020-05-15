@@ -37,7 +37,7 @@ import axios from 'axios';
 
 const useStyles = makeStyles(styles);
 
-export default function OrganiserLogin(props) {
+export default function AboutUs(props) {
     let history = useHistory()
     const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
     setTimeout(function() {
@@ -171,9 +171,9 @@ export default function OrganiserLogin(props) {
 
 
                                         <Grid item>
-                                                <Link href="/organiser-signup" style={{ color: '#999999' }}>
-                                                    {"Don't have an account? Sign Up"}
-                                                </Link>
+                                            <Link href="/organiser-signup" style={{ color: '#999999' }}>
+                                                {"Don't have an account? Sign Up"}
+                                            </Link>
                                         </Grid>
 
                                     </CardBody>

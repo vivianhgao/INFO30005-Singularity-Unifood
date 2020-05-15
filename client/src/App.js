@@ -9,6 +9,8 @@ import "assets/scss/material-kit-react.scss?v=1.8.0";
 import HomePage from "./views/HomePage/HomePage";
 import OrganiserLogin from "./views/Organisers/organiserLogIn";
 import UserLogin from "./views/Users/userLogIn";
+import AboutUs from "./views/AboutUs/aboutUs";
+import OrganiserSignup from "./views/Organisers/OrganiserSignUp";
 
 var hist = createBrowserHistory();
 
@@ -18,10 +20,11 @@ function App(){
     <Router history={hist}>
         <div className="App">
         <Switch>
-        <Route path="/userlogin" component={UserLogin} />
-            <Route path="/organiserlogin" component={OrganiserLogin} />
+        <Route path="/user-login" component={UserLogin} />
+            <Route path="/organiser-login" component={OrganiserLogin} />
+            <Route path="/organiser-signup" component={OrganiserSignup} />
             <Route path="/" component={HomePage} />
-            
+            <Route path="/about-us" component={AboutUs} />
         </Switch>
         </div>
     </Router>
