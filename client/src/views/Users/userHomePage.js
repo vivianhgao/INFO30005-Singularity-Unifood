@@ -56,6 +56,7 @@ const [userLong, setUserLong] = useState(Number);
 const [allData, setAllData]=useState([]);
 const [newData, setNewData]=useState([]);
 const [notifyData, setNotifyData]=useState([]);
+const [incomingData, setIncomingData]=useState([]);
 // var notifyData = [];
   const classes = useStyles();
   const { ...rest } = props;
@@ -68,15 +69,69 @@ const [notifyData, setNotifyData]=useState([]);
   useEffect(()=>{
     const socket=socketIOClient(endpoint);
     
-    socket.on("FromAPI", data=>setNewData(data));
+    socket.on("FromAPI", data=>setIncomingData(data));
 
-    if(newData.length > allData.length) {
-      setAllData(newData);
+    // Get new only the new incoming data
+    if(incomingData.length > allData.length) {
+      for (let i= allData.length; i<incomingData.length; i++) {
+        newData.push(incomingData[i]);
+        // console.log("New PUSHED Data: ", incomingData[i]);
+      }
+      // All data = incoming data
+      setAllData(incomingData);
+      // keep the data in new data
+      setNewData(newData);
+      // console.log("NEW DATA LENGTH: ", newData.length);
+
     }
-
     getNotificationData();
 
   });
+
+  function getNotificationData(){
+
+    // check location has been retrieved
+    if (userLat) {
+      // console.log("GOT INNNNN");
+
+      // find the nearest leftover from user
+      for (let i = 0; i < newData.length; i++) {
+
+        const eventLat = newData[i].latitude;
+        const eventLong = newData[i].longitude;
+        const distance = getDistance(userLat,userLong,eventLat,eventLong);
+
+        // considerably near
+        if (distance < 1) {
+          // console.log(distance);
+          // console.log("NOTIFY DATA: ", notifyData.length);
+
+          // initial data for notification
+          if (notifyData.length === 0) {
+            notifyData.push(newData[i]);
+          }
+          else {
+            // check whether the data already in notification data
+            var dataIsInNotif = false;
+            for (let j=0; j<notifyData.length; j++) {
+              if (newData[i]._id == notifyData[j]._id) {
+                dataIsInNotif = true;
+                break;
+              }
+            }
+            if (!dataIsInNotif){
+              notifyData.push(newData[i]);
+              setNotifyData(notifyData);
+            }
+          }
+        }
+      }
+      // setNewData([]);
+    } else {
+      // console.log("no loc");
+    }
+  }
+
   function getLocation(){
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
@@ -89,45 +144,6 @@ const [notifyData, setNotifyData]=useState([]);
       alert("Geolocation is not supported in this browser");
     }
   }
-
-  function getNotificationData(){
-
-    // check location has been retrieved
-    if (userLat) {
-      console.log("GOT INNNNN");
-      for (let i = 0; i < newData.length; i++) {
-
-        const eventLat = newData[i].latitude;
-        const eventLong = newData[i].longitude;
-        const distance = getDistance(userLat,userLong,eventLat,eventLong);
-
-        // considerably near
-        if (distance < 1) {
-          console.log(distance);
-          // console.log("NOTIFY DATA: ", notifyData.length);
-
-          // initial data
-          if (notifyData.length === 0) {
-            notifyData.push(newData[i]);
-          }
-          else {
-            for (let j=0; j<notifyData.length; j++) {
-              console.log("NewData: ", newData[i]._id);
-              console.log("NOTIFY DATA: ",notifyData[j]._id);
-              if (newData[i]._id != notifyData[j]._id) {
-                notifyData.push(newData[i]);
-                break;
-              }
-            }
-            setNotifyData()
-          }
-        }
-      }
-    } else {
-      console.log("no loc");
-    }
-  }
-
 
   function getDistance(lat1, long1, lat2, long2) {
     if ((lat1 == lat2) && (long1 == long2)) {
@@ -184,9 +200,9 @@ const [notifyData, setNotifyData]=useState([]);
                   Notify the nearest leftovers!
                 </Button>
                     {/* print to page using map */}
-                    {newData.map(res=>(
+                    {allData.map(res=>(
                         <div key={res.id}>
-                        {res.name} {res.length}{res.latitude}
+                        {res.name}
                         </div>
                     ))}
                     <p>Latitude: {userLat}</p>
