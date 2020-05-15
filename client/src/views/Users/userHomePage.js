@@ -44,17 +44,19 @@ const endpoint="http://localhost:5000";
 
 
 export default function ProfilePage(props) {
-let history = useHistory()
+let history = useHistory();
 const location = useLocation();
 const username=location.state.detail;
-const [response, setResponse]=useState([])
 const [first_name,setFirstName]=useState();
 const [userLat, setUserLat] = useState(Number);
 const [userLong, setUserLong] = useState(Number);
-const [eventLat, setEventLat] = useState(Number);
-const [eventLong, setEventLong] = useState(Number);
-const [distance, setDistance] = useState(Number);
-
+// const [eventLat, setEventLat] = useState(Number);
+// const [eventLong, setEventLong] = useState(Number);
+// const [distance, setDistance] = useState(Number);
+const [allData, setAllData]=useState([]);
+const [newData, setNewData]=useState([]);
+const [notifyData, setNotifyData]=useState([]);
+// var notifyData = [];
   const classes = useStyles();
   const { ...rest } = props;
 
@@ -66,28 +68,74 @@ const [distance, setDistance] = useState(Number);
   useEffect(()=>{
     const socket=socketIOClient(endpoint);
     
-    socket.on("FromAPI", data=>setResponse(data))
-  
-  });
+    socket.on("FromAPI", data=>setNewData(data));
 
+    if(newData.length > allData.length) {
+      setAllData(newData);
+    }
+
+    getNotificationData();
+
+  });
   function getLocation(){
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         setUserLat(position.coords.latitude);
         setUserLong(position.coords.longitude);
       });
+      console.log(userLat);
+      console.log(userLong);
     } else {
       alert("Geolocation is not supported in this browser");
     }
   }
 
-  function getDistance() {
-    if ((userLat == eventLat) && (userLong == eventLong)) {
+  function getNotificationData(){
+
+    // check location has been retrieved
+    if (userLat) {
+      console.log("GOT INNNNN");
+      for (let i = 0; i < newData.length; i++) {
+
+        const eventLat = newData[i].latitude;
+        const eventLong = newData[i].longitude;
+        const distance = getDistance(userLat,userLong,eventLat,eventLong);
+
+        // considerably near
+        if (distance < 1) {
+          console.log(distance);
+          // console.log("NOTIFY DATA: ", notifyData.length);
+
+          // initial data
+          if (notifyData.length === 0) {
+            notifyData.push(newData[i]);
+          }
+          else {
+            for (let j=0; j<notifyData.length; j++) {
+              console.log("NewData: ", newData[i]._id);
+              console.log("NOTIFY DATA: ",notifyData[j]._id);
+              if (newData[i]._id != notifyData[j]._id) {
+                notifyData.push(newData[i]);
+                break;
+              }
+            }
+            setNotifyData()
+          }
+        }
+      }
+    } else {
+      console.log("no loc");
+    }
+  }
+
+
+  function getDistance(lat1, long1, lat2, long2) {
+    if ((lat1 == lat2) && (long1 == long2)) {
       return 0;
     } else {
-      var radlat1 = Math.PI * userLat / 180;
-      var radlat2 = Math.PI * eventLat / 180;
-      var theta = userLong - eventLong;
+      var radlat1 = Math.PI * lat1 / 180;
+      var radlat2 = Math.PI * lat2 / 180;
+      var theta = long1 - long2;
       var radtheta = Math.PI * theta / 180;
       var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
       if (dist > 1) {
@@ -98,7 +146,7 @@ const [distance, setDistance] = useState(Number);
       dist = dist * 60 * 1.1515;
       dist = dist * 1.609344;
 
-      setDistance(dist);
+      // setDistance(dist);
       return dist;
     }
   }
@@ -132,17 +180,26 @@ const [distance, setDistance] = useState(Number);
                 
                 
               <Grid item xs={3}  className={classes.navWrapper} >
+                <Button simple color="danger" size="lg" onClick={getLocation}>
+                  Notify the nearest leftovers!
+                </Button>
                     {/* print to page using map */}
-                    {response.map(res=>(
+                    {newData.map(res=>(
                         <div key={res.id}>
-                        {res.name}
+                        {res.name} {res.length}{res.latitude}
                         </div>
                     ))}
-                    
-               
+                    <p>Latitude: {userLat}</p>
+                    <p>Longitude: {userLong}</p>
+                    {/*<p>Distance: {distance}</p>*/}
+
               </Grid>
               <Grid item xs={9} className={classes.navWrapper} >
-                  right
+                {notifyData.map(res=>(
+                  <div key={res.id}>
+                    {res.name}
+                  </div>
+                ))}
                   </Grid>
             </Grid>
             {/* <Grid container>
