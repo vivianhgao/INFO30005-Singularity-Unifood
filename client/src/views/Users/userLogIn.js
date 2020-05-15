@@ -29,6 +29,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Box from '@material-ui/core/Box';
 import axios from 'axios';
+import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles(styles);
 
@@ -47,7 +48,7 @@ export default function UserLogin(props) {
     function validateLogin(){
       console.log()
       axios.post('users/login',{username,password})
-        .then(res => res.data.success? console.log("logged in"): alert("Incorrect username/ password.\nPlease Try again"))
+        .then(res => res.data.success? history.push({pathname:"/userdashboard",state: { detail: username }}): alert("Incorrect username/ password.\nPlease Try again"))
     }
 
     
@@ -115,16 +116,7 @@ export default function UserLogin(props) {
                                         />
                                         
                                       
-                                        {/* <FormControl>
-                                          <InputLabel>Username</InputLabel>
-                                          <Input id="username" type="text" value={username} onChange={handleUsername}disableUnderline={true}/>
-                                        </FormControl>
-                                      
-                                        <br/>
-                                        <FormControl>
-                                          <InputLabel>Password</InputLabel>
-                                          <Input id="username" type="password" value={password} onChange={handlePassword}/>
-                                        </FormControl> */}
+        
                                        <CustomInput
                                             labelText="Password"
                                             id="password"
@@ -159,8 +151,13 @@ export default function UserLogin(props) {
                                         <Button simple color="primary" size="lg" onClick={()=>validateLogin()}>
                                             Log in
                                         </Button>
+                                        <br/>
+                                        <Link to='/usersignup' > Create Account </Link>
+                                        
                                     </CardFooter>
+                            
                                 </form>
+                                
                             </Card>
                         </GridItem>
                     </GridContainer>

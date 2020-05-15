@@ -80,9 +80,12 @@ const getDetails = (req,res,next) => {
         if (err) {
             console.error("An error occured.");
         } else if (!user) {
-            res.send("No user with that username.")
+            return res.json({ success: true, error: err });
+            // res.send("No user with that username.")
         } else {
-            res.render('userDetails',{first_name:user.first_name, last_name:user.last_name,username:user.username});
+            return res.json({ success: true, data: user });
+             
+            // res.render('userDetails',{first_name:user.first_name, last_name:user.last_name,username:user.username});
         }
     });
 };

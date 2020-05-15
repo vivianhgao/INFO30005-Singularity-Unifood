@@ -61,8 +61,6 @@ const getAllForms = async (req, res) => {
     }
 };
 
-
-
 // Remember to export the callbacks
 module.exports = {
     createForm,

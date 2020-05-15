@@ -4,6 +4,12 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
+const axios = require("axios");
+const http = require("http");
+const socketIo = require("socket.io");
+const server = http.createServer(app);
+const io= socketIo(server);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -51,6 +57,27 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "public", "index.html"));
 });
 
-app.listen(process.env.PORT || 5000, () => {
+let interval;
+io.on("connection", socket => {
+    console.log("user connected", getApiAndEmit(socket));
+    if(interval){
+        clearInterval(interval)
+    }
+    interval=setInterval(()=>getApiAndEmit(socket),1000);
+
+    socket.on("disconnect",()=> {
+        console.log("Client disconnected");
+        clearInterval(interval)
+    });
+});
+
+const getApiAndEmit =  socket =>{
+
+    const res =  axios.get("http://localhost:5000/forms/formList");
+    socket.emit("FromAPI", res);
+
+};
+
+server.listen(process.env.PORT || 5000, () => {
     console.log("The Unifood app is listening on port 5000!");
 });
