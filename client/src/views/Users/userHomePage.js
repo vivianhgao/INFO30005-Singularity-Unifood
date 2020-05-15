@@ -54,7 +54,7 @@ const [response, setResponse]=useState("")
 
   function getFirstName(){
     axios.get("http://localhost:5000/users/login/"+username)
-    .then(res=>console.log(res.data))
+    .then(res=>first_name=res.data.data.first_name)
     
     
   }
@@ -63,7 +63,7 @@ const [response, setResponse]=useState("")
 //       const socket=socketIOClient(endpoint);
 //       socket.on("FromAPI", data=>{setResponse(data)});
 //   },[])
-//   getFirstName();
+  getFirstName();
   
   return ( 
       
@@ -81,7 +81,7 @@ const [response, setResponse]=useState("")
       />
       <Parallax small filter image={require("assets/img/unifood.png")} >
             <div style={{color:'white',fontSize:40, fontWeight:'bold'}}><br/>
-                Hi {username}!
+                Hi {first_name}!
             </div>
         </Parallax>
       
