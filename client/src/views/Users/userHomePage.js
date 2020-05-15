@@ -96,7 +96,7 @@ const [distance, setDistance] = useState(Number);
         }}
         {...rest}
         />
-        <Parallax small filter image={require("assets/img/unifood.png")} >
+        <Parallax small filter image={require("assets/img/userdashboard.png")} >
     
         </Parallax>
         <br/>
