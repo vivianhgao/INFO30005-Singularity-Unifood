@@ -80,7 +80,7 @@ const [distance, setDistance] = useState(Number);
     }
   }
 
-  function distance() {
+  function getDistance() {
     if ((userLat == eventLat) && (userLong == eventLong)) {
       return 0;
     } else {
