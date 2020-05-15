@@ -22,9 +22,13 @@ import Button from "components/CustomButtons/Button.js";
 
 import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js";
 
+import {useHistory} from "react-router-dom";
+
 const useStyles = makeStyles(styles);
 
+
 export default function HeaderLinks(props) {
+  let history = useHistory()
   const classes = useStyles();
   return (
     <List className={classes.list}>
@@ -53,23 +57,24 @@ export default function HeaderLinks(props) {
       </ListItem>
       <ListItem className={classes.listItem}>
         <Button
-          href="https://www.creative-tim.com/product/material-kit-react?ref=mkr-navbar"
+          
           color="danger"
           target="_blank"
           className={classes.navLink}
+          onClick={()=>history.push("/userlogin")}
         >
-          <ExitToAppIcon className={classes.icons} /> Sign Up
+          <ExitToAppIcon className={classes.icons} /> Users
         </Button>
       </ListItem>
 
         <ListItem className={classes.listItem}>
             <Button
-                href="https://www.creative-tim.com/product/material-kit-react?ref=mkr-navbar"
+                href="/OrganiserLogin"
                 color="danger"
                 target="_blank"
                 className={classes.navLink}
             >
-                <ExitToAppIcon className={classes.icons} /> Log In
+                <ExitToAppIcon className={classes.icons} /> Organisers
             </Button>
         </ListItem>
     </List>

@@ -1,8 +1,12 @@
 import React from "react";
+import axios from 'axios';
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
+
+
 
 // @material-ui/icons
 
@@ -21,12 +25,14 @@ import styles from "assets/jss/material-kit-react/views/landingPage.js";
 import ProductSection from "./Sections/ProductSection.js";
 import TeamSection from "./Sections/TeamSection.js";
 import WorkSection from "./Sections/WorkSection.js";
+import {useHistory} from "react-router-dom";
 
 const dashboardRoutes = [];
 
 const useStyles = makeStyles(styles);
 
 export default function HomePage(props) {
+  let history = useHistory()
   const classes = useStyles();
   const { ...rest } = props;
   return (
@@ -41,6 +47,7 @@ export default function HomePage(props) {
           height: 400,
           color: "white"
         }}
+        onClick={()=>history.push("/")}
         {...rest}
       />
       <Parallax image={require("assets/img/unifood.png")}>
@@ -55,16 +62,33 @@ export default function HomePage(props) {
               </h4>
               <br />
               <Button
-                color="danger"
+              color="danger"
                 size="lg"
-                href="SINGUPLINK"
+                href="/OrganiserLogin"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <i className="fas fa-play" />
-                Sign Up
+                Hungry User?
               </Button>
+
+                <Link to={"/organiser-login"} className={classes.link}>
+                    <Button
+                        color="danger"
+                        size="lg"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <i className="fas fa-play" />
+                        Event Organiser?
+                    </Button>
+                </Link>
+
+
             </GridItem>
+
+
+
           </GridContainer>
         </div>
       </Parallax>

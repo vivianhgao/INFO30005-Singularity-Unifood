@@ -48,7 +48,7 @@ app.use('/organisers', organiserRouter);
 app.use('/locations', locationRouter);
 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.join(__dirname, "client", "public", "index.html"));
 });
 
 app.listen(process.env.PORT || 5000, () => {

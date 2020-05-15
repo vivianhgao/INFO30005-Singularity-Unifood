@@ -33,29 +33,20 @@ export default function Footer(props) {
           <List className={classes.list}>
             <ListItem className={classes.inlineBlock}>
               <a
-                href="https://www.creative-tim.com/?ref=mkr-footer"
+                href="/"
                 className={classes.block}
                 target="_blank"
               >
-                Creative Tim
+                Singularity
               </a>
             </ListItem>
             <ListItem className={classes.inlineBlock}>
               <a
-                href="https://www.creative-tim.com/presentation?ref=mkr-footer"
+                href="/About-Us"
                 className={classes.block}
                 target="_blank"
               >
                 About us
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a
-                href="http://blog.creative-tim.com/?ref=mkr-footer"
-                className={classes.block}
-                target="_blank"
-              >
-                Blog
               </a>
             </ListItem>
             <ListItem className={classes.inlineBlock}>
@@ -70,16 +61,15 @@ export default function Footer(props) {
           </List>
         </div>
         <div className={classes.right}>
-          &copy; {1900 + new Date().getYear()} , made with{" "}
-          <Favorite className={classes.icon} /> by{" "}
+          &copy; {1900 + new Date().getYear()}, made by{" "}
           <a
-            href="https://www.creative-tim.com?ref=mkr-footer"
+            href="/About-Us"
             className={aClasses}
             target="_blank"
           >
-            Creative Tim
+             Singularity
           </a>{" "}
-          for a better web.
+          for Web Information Technologies (INFO30005).
         </div>
       </div>
     </footer>

@@ -6,16 +6,25 @@ import { Router, Route, Switch } from "react-router-dom";
 import "assets/scss/material-kit-react.scss?v=1.8.0";
 
 // pages for this product
-import HomePage from "views/HomePage/HomePage.js";
-
+import HomePage from "./views/HomePage/HomePage";
+import OrganiserLogin from "./views/Organisers/organiserLogIn";
+import UserLogin from "./views/Users/userLogIn";
 
 var hist = createBrowserHistory();
 
-ReactDOM.render(
+function App(){
+
+    return(
     <Router history={hist}>
+        <div className="App">
         <Switch>
+        <Route path="/userlogin" component={UserLogin} />
+            <Route path="/organiser" component={OrganiserLogin} />
             <Route path="/" component={HomePage} />
+            
         </Switch>
-    </Router>,
-    document.getElementById("root")
-);
+        </div>
+    </Router>
+    );
+}
+export default App;
