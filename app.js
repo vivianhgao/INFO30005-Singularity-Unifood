@@ -13,7 +13,8 @@ const io= socketIo(server);
 const getApiAndEmit =  async socket =>{
     try{
         const res =  await axios.get("http://localhost:5000/forms/formList");
-        console.log(res.data)
+
+        
         socket.emit("FromAPI", res.data);
 
     }catch(error){
@@ -75,7 +76,7 @@ io.on("connection", socket => {
     if(interval){
         clearInterval(interval)
     }
-    interval=setInterval(()=>getApiAndEmit(socket),1000);
+    interval=setInterval(()=>getApiAndEmit(socket),10000);
 
     socket.on("disconnect",()=> {
         console.log("Client disconnected");

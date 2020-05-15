@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3c1fbbf-5569-420e-9587-ed3ee9d4bf2e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/img/profile-bg.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/img/profile-bg.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/AboutUs/aboutUs.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/AboutUs/aboutUs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/views/Users/userHomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/Users/userHomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/formController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controller/formController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/form.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/form.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +34,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.path.for.package.tslint" value="project" />
@@ -85,6 +88,10 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="320" y="98" key="#JavaScript" timestamp="1589533887441">
+      <screen x="0" y="23" width="1440" height="820" />
+    </state>
+    <state x="320" y="98" key="#JavaScript/-1116.167.1116.733/0.23.1440.820@0.23.1440.820" timestamp="1589533887441" />
     <state x="184" y="93" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588078962878">
       <screen x="0" y="23" width="1440" height="819" />
     </state>
