@@ -49,6 +49,7 @@ const location = useLocation();
 const username=location.state.detail;
 const [response, setResponse]=useState([])
 const [first_name,setFirstName]=useState();
+var items=[]
 
   const classes = useStyles();
   const { ...rest } = props;
@@ -60,10 +61,12 @@ const [first_name,setFirstName]=useState();
     
   }
 
-//   useEffect(()=>{
-//       const socket=socketIOClient(endpoint);
-//       socket.on("FromAPI", data=>data.map());
-//   },[]);
+  useEffect(()=>{
+      const socket=socketIOClient(endpoint);
+    //   socket.on("FromAPI", data=>setResponse(data));
+    socket.on("FromAPI", data=>setResponse(data))
+  
+  });
   getFirstName();
   
   return ( 
@@ -93,11 +96,17 @@ const [first_name,setFirstName]=useState();
             <Grid container>
                 
                 
-              <Grid item xs={1}  className={classes.navWrapper} >
-                  <p>{response}</p>
+              <Grid item xs={3}  className={classes.navWrapper} >
+                  
+                    {response.map(res=>(
+                        <div key={res.id}>
+                        {res.name}
+                        </div>
+                    ))}
+                    
                
               </Grid>
-              <Grid item xs={11} className={classes.navWrapper} >
+              <Grid item xs={9} className={classes.navWrapper} >
                   right
                   </Grid>
             </Grid>
