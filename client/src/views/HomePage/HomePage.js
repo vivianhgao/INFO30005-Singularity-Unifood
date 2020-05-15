@@ -61,18 +61,22 @@ export default function HomePage(props) {
 
               </h4>
               <br />
-              <Button
+
+              <Link to={"/userlogin"} className={classes.link}>
+
+                <Button
               color="danger"
                 size="lg"
-                href="/OrganiserLogin"
+                href="/userlogin"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <i className="fas fa-play" />
                 Hungry User?
               </Button>
+              </Link>
 
-                <Link to={"/organiser-login"} className={classes.link}>
+                <Link to={"/organiserlogin"} className={classes.link}>
                     <Button
                         color="danger"
                         size="lg"

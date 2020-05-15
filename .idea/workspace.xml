@@ -2,54 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3c1fbbf-5569-420e-9587-ed3ee9d4bf2e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Routes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Footer/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Footer/Footer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Header/HeaderLinks.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Header/HeaderLinks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/views/HomePage/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/HomePage/HomePage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/views/Organisers/organiserLogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/Organisers/organiserLogIn.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/views/Users/userLogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/Users/userLogIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/formController.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/locationController.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/organiserController.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/userController.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/form.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/location.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/organiser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/user.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/formRouter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/locationRouter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/organiserRouter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/userRouter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/createNewForm.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/formDelete.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/formIndex.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/formManagement.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/formUpdate.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/index.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layout.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/location.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/login.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/loginError.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/organiserLogin.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/organiserLogon.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/organiserSignup.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/organiserUpdate.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/signUp.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/signUpError.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/userDelete.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/userDetails.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/userError.pug" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/welcomeUser.pug" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,6 +79,7 @@
       <workItem from="1588123168522" duration="3566000" />
       <workItem from="1588387108696" duration="13678000" />
       <workItem from="1589352919553" duration="4653000" />
+      <workItem from="1589507708549" duration="1025000" />
     </task>
     <servers />
   </component>

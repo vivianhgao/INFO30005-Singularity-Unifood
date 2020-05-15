@@ -9,7 +9,10 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.18.1",
+    "http-proxy": "^1.18.0",
+    "jss": "^9.8.7",
     "material-kit": "^2.0.4",
+    "material-ui": "^1.0.0-beta.46",
     "material-ui-colors": "^1.0.0",
     "material-ui-core": "^5.0.1",
     "material-ui-icons": "^1.0.0-beta.36",
@@ -17,8 +20,9 @@
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1"
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.1",
+    "typescript": "^3.9.2"
   },
   "scripts": {
     "start": "react-scripts start",

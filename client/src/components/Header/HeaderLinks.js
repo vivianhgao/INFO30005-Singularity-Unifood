@@ -69,10 +69,11 @@ export default function HeaderLinks(props) {
 
         <ListItem className={classes.listItem}>
             <Button
-                href="/OrganiserLogin"
                 color="danger"
                 target="_blank"
                 className={classes.navLink}
+                onClick={()=>history.push("/organiserlogin")}
+
             >
                 <ExitToAppIcon className={classes.icons} /> Organisers
             </Button>
