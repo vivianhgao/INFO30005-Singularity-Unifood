@@ -10,17 +10,27 @@ const socketIo = require("socket.io");
 const server = http.createServer(app);
 const io= socketIo(server);
 
+
+//to get notification
 const getApiAndEmit =  async socket =>{
     try{
         const res =  await axios.get("http://localhost:5000/forms/formList");
-
-        
-        socket.emit("FromAPI", res.data);
+        socket.emit("Notifications", res.data);
 
     }catch(error){
-        console.error("Error: ${error.code}")
+        console.error("Error")
     }
 };
+
+//to get all forms
+const getForms= async socket=>{
+    try{
+        const response=await axios.get("http://localhost:5000/forms/formList");
+        socket.emit("Forms", response.data);
+    }catch (error){
+        console.log("Error");
+    }
+}
 
 
 // view engine setup
@@ -72,14 +82,17 @@ app.get("*", (req, res) => {
 
 let interval;
 io.on("connection", socket => {
-    console.log("user connected", getApiAndEmit(socket));
+    // console.log("user connected", getApiAndEmit(socket));
     if(interval){
         clearInterval(interval)
     }
-    interval=setInterval(()=>getApiAndEmit(socket),10000);
+    interval=setInterval(()=>{
+        getApiAndEmit(socket),
+        getForms(socket)
+    },10000);
 
     socket.on("disconnect",()=> {
-        console.log("Client disconnected");
+        // console.log("Client disconnected");
         clearInterval(interval)
     });
 });
