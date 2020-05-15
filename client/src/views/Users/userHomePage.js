@@ -52,12 +52,12 @@ const [response, setResponse]=useState("")
   const classes = useStyles();
   const { ...rest } = props;
 
-//   function getFirstName(){
-//     axios.get("http://localhost:5000/users/login/"+username)
-//     .then(res=>first_name=res.data.data.first_name)
-//     .then(console.log(first_name))
+  function getFirstName(){
+    axios.get("http://localhost:5000/users/login/"+username)
+    .then(res=>console.log(res.data))
     
-//   }
+    
+  }
 
 //   useEffect(()=>{
 //       const socket=socketIOClient(endpoint);
@@ -65,9 +65,7 @@ const [response, setResponse]=useState("")
 //   },[])
 //   getFirstName();
   
-  return (
-
-      
+  return ( 
       
     <div >
       <Header

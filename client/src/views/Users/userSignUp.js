@@ -24,10 +24,7 @@ import styles from "assets/jss/material-kit-react/views/loginPage.js";
 import image from "assets/img/unifood.png";
 
 import {useHistory} from 'react-router-dom';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import Box from '@material-ui/core/Box';
+
 import axios from 'axios';
 
 const useStyles = makeStyles(styles);
@@ -49,9 +46,8 @@ export default function UserLogin(props) {
 
 
     function validateSignup(){
-      console.log()
       axios.get('users/login/'+username)
-        .then(res => res.data.success? history.push({pathname:"/userdashboard", state:{detail:username}}): alert("Incorrect username/ password.\nPlease Try again"))
+        .then(res => res.data.success? history.push({pathname:"/userdashboard", state:{detail:username}}): alert("Username/Email is already registed."))
     }
 
     const handleEmail = (event) => {
