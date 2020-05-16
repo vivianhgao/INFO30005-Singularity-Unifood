@@ -188,6 +188,12 @@ export default function UserDashboard(props) {
                     Hi {first_name}!
                   </div>
                   <div class='button'>
+                    <Button simple color="danger" size="md" onClick={()=>getLocation()}>
+                      <div class='writing'>
+                          Share my location!
+                        </div>
+                    </Button>
+
                     <Button simple color="danger" size="md" onClick={()=>goUserDetails()}>
                       <div class='writing'>
                           Account details
@@ -200,13 +206,11 @@ export default function UserDashboard(props) {
                         </div>
                     </Button>
                     </div>
-                <button onClick={getLocation}> Share my location!</button>
-
                 </div>
             
                 <div class="notifs">
                     <div class='label'>
-                        Notification
+                        Notifications
                     </div>
                     <br/>
                     {notifyData.map(res=>(
@@ -221,7 +225,7 @@ export default function UserDashboard(props) {
                 </div>
                 <div class="allForms">
                     <div class='label'>
-                        Open Forms
+                        Available Food
                     </div> 
                     <br/>
                     {forms.map(res=>(
