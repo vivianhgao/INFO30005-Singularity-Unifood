@@ -5,49 +5,34 @@ const cors = require('cors');
 const app = express();
 const axios = require("axios");
 
+const axios = require("axios");
 const http = require("http");
 const socketIo = require("socket.io");
 const server = http.createServer(app);
 const io= socketIo(server);
-//MONGODB
-require('dotenv').config()
-const mongoose = require("mongoose");
-
-// Connect to MongoDB --- Replace this with your Connection String
-CONNECTION_STRING = "mongodb+srv://pbudiman:<password>@cluster0-hdaoj.mongodb.net/unifood?retryWrites=true&w=majority";
-MONGO_URL = CONNECTION_STRING.replace("<password>",process.env.MONGO_PASSWORD);
-
-mongoose.connect(MONGO_URL || "mongodb://localhost/info30005",
-    { useNewUrlParser: true,
-        useCreateIndex: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false,
-        dbName: "unifood"
-    });
-const db = mongoose.connection;
-db.on("error", err => {
-    console.error(err);
-    process.exit(1);
-});
-db.once("open", async () => {
-    console.log("Mongo connection started on " + db.host + ":" +
-        db.port); });
-
-require("./model/user");
-require("./model/organiser");
-require("./model/form");
-require("./model/location");
-//---------
 
 
+//to get notification
+const getApiAndEmit =  async socket =>{
+    try{
+        const res =  await axios.get("http://localhost:5000/forms/formList");
+        socket.emit("Notifications", res.data);
 
+    }catch(error){
+        console.error("Error")
+    }
+};
 
+//to get all forms
+const getForms= async socket=>{
+    try{
+        const response=await axios.get("http://localhost:5000/forms/formList");
+        socket.emit("Forms", response.data);
+    }catch (error){
+        console.log("Error");
+    }
+}
 
-//CORS
-app.use(cors());
-
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -88,36 +73,27 @@ app.use('/organisers', organiserRouter);
 // the form routes are added to the end of '/organiser-management'
 app.use('/locations', locationRouter);
 
-if(process.env.NODE_ENV=== 'production'){
-    app.use(express.static('client/build'));
-    app.get('*',(req,res)=>{
-        res.sendFile(path.resolve(__dirname,'client','build','index.html'));
-
-    });
-}
-
-// io.on("connection", socket =>{
-//     console.log("user is connected");
-//     socket.on("incoming data",(data)=>{
-//         socket.broadcast.emit("outgoing data", {num:data});
-//     });
-//     socket.on("disconnect",()=> console.log("user disconnected"));
-// })
-
-io.on("connection", socket => {
-    console.log("user connected", getApiAndEmit(socket));
-    socket.on("disconnect",()=> console.log("Client disconnected"));
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "public", "index.html"));
 });
 
-const getApiAndEmit =  async socket =>{
-    try{
-        const res =  await axios.get("http://localhost:5000/forms/formList");
-        socket.emit("FromAPI", res.data);
 
-    }catch(error){
-        console.error("Error: ${error.code}")
+let interval;
+io.on("connection", socket => {
+    // console.log("user connected", getApiAndEmit(socket));
+    if(interval){
+        clearInterval(interval)
     }
-};
+    interval=setInterval(()=>{
+        getApiAndEmit(socket),
+        getForms(socket)
+    },10000);
+
+    socket.on("disconnect",()=> {
+        // console.log("Client disconnected");
+        clearInterval(interval)
+    });
+});
 
 
 

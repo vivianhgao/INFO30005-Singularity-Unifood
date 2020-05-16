@@ -84,7 +84,8 @@ const getDetails = (req,res,next) => {
             return res.json({ success: true, error: err });
             // res.send("No user with that username.")
         } else {
-            return res.json({ success: true, data: user });
+            return res.json({ success: true, user: user });
+             
             // res.render('userDetails',{first_name:user.first_name, last_name:user.last_name,username:user.username});
         }
     });
