@@ -89,10 +89,10 @@ io.on("connection", socket => {
     interval=setInterval(()=>{
         getApiAndEmit(socket),
         getForms(socket)
-    },10000);
+    },1000);
 
     socket.on("disconnect",()=> {
-        // console.log("Client disconnected");
+        console.log("Client disconnected");
         clearInterval(interval)
     });
 });
