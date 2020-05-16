@@ -23,37 +23,40 @@ const logIn = (req, res, next) => {
         //validate whether the password and username matches each other
         else if (!user || password!=user.password) {
             console.log("Wrong username or password! Please go back and try again!");
+            // res.render('loginError');
             return res.json({ success: false, error: err });
             // return res.status(500).send({message:'invalid'})
-            // res.render('loginError');
+            
         }
         //when both username and password is correct, user is logged in
         else {
             console.log("User "+username+" is logged in!")
             // return res.status(500).send({user})
+            // res.render('welcomeUser',{ first_name:user.first_name, username:username });
             return res.json({ success: true, data: user });
             // res.send(true)
-            // res.render('welcomeUser',{ first_name:user.first_name, username:username });
+            
         }
     });
 };
 
 // function to add user account when a new user signs up
 const addUser = async (req, res,next) => {
-    const new_user = {
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-    }
+    const new_user = 
+    {
+        username,
+        email,
+        password,
+        first_name,
+        last_name,
+    }=req.body;
 
     // check if the username/email has been registered
     User.exists({username:req.body.username} || {email:req.body.email},function (err,userExists) {
         if(err){
             res.send('An error occured');
         } else if (userExists) {
-            // res.render("signUpError");
+            res.render("signUpError");
             return res.json({ success: false, error: err });
 
         } else {
@@ -62,12 +65,14 @@ const addUser = async (req, res,next) => {
                     var data = new User(new_user);
                     data.save();
                     console.log("User "+new_user.username+" is added!")
-                    return res.json({ success: true, user: new_user });
                     // res.render('welcomeUser', {first_name: req.body.first_name});
+                    return res.json({ success: true, user: new_user });
+                    
             }
             else{
-                return res.json({ success: false, error: err });
                 // res.render('userError');
+                return res.json({ success: false, error: err });
+                
             }
         }
     });
@@ -84,9 +89,10 @@ const getDetails = (req,res,next) => {
             return res.json({ success: true, error: err });
             // res.send("No user with that username.")
         } else {
+            // res.render('userDetails',{first_name:user.first_name, last_name:user.last_name,username:user.username});
             return res.json({ success: true, user: user });
              
-            // res.render('userDetails',{first_name:user.first_name, last_name:user.last_name,username:user.username});
+            
         }
     });
 };
@@ -94,13 +100,9 @@ const getDetails = (req,res,next) => {
 // function to update an information about a user
 const updateUser =  async (req, res) => {
     var condition = {username: req.params.username};
-    var update = {
-        username: req.body.username,
-        email: req.body.email,
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        password: req.body.password
-    }
+    const update= {username,email,first_name,last_name,password}=req.body;
+  
+   
 
     //only take the filled information
     for( field in update ){
@@ -108,22 +110,27 @@ const updateUser =  async (req, res) => {
             delete update[field]
         }
     }
+     console.log(update)
 
     //find the user's details and update it
     User.findOneAndUpdate(condition, update, function(err,user){
         if (err){
-            return console.error('An error occured!');
+            return res.json({success:false})
+    
         } else if (!user) {
-            return res.send('User is not found!');
+            
         } else {
-            //to update the name in the welcome page
+            
             if(update.first_name){
                 var first_name = update.first_name;
             } else {
                 first_name=user.first_name;
             }
             console.log("User is updated!");
-            res.render('welcomeUser',{first_name:first_name});
+            
+            // res.render('welcomeUser',{first_name:first_name}); 
+            return res.json({success:true})
+    
         }
     });
 };

@@ -21,7 +21,7 @@ const useStyles = makeStyles(styles);
 const endpoint="http://localhost:5000";
 
 
-export default function ProfilePage(props) {
+export default function UserDashboard(props) {
 let history = useHistory()
 const location = useLocation();
 const username=location.state.detail;
@@ -47,6 +47,14 @@ const [distance, setDistance] = useState(Number);
     socket.on("Notifications", data=>setNotifications(data))
     socket.on("Forms",data=>setForms(data))
   });
+
+  function goUserDetails(){
+    history.push({pathname:'/userdetails',state:{detail:username}});
+  }
+
+  function logOut(){
+    history.push({pathname:'/'})
+  }
 
   function getLocation(){
     if (navigator.geolocation) {
@@ -104,9 +112,21 @@ const [distance, setDistance] = useState(Number);
         <div  class='grid-container' >
             <div class="option">
                 <div class='greeting'>
-                        Hi {first_name}!
+                    Hi {first_name}!
+                  </div>
+                  <div class='button'>
+                    <Button simple color="danger" size="md" onClick={()=>goUserDetails()}>
+                      <div class='writing'>
+                          Account details
+                        </div>
+                    </Button>
+
+                    <Button simple color="danger" size="md" onClick={()=>logOut()}>
+                      <div class='writing'>
+                          Log out
+                        </div>
+                    </Button>
                     </div>
-                
                 </div>
             
                 <div class="notifs">

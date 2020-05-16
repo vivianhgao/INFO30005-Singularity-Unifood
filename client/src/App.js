@@ -10,7 +10,8 @@ import HomePage from "./views/HomePage/HomePage";
 import OrganiserLogin from "./views/Organisers/organiserLogIn";
 import UserLogin from "./views/Users/userLogIn";
 import UserSignUp from './views/Users/userSignUp';
-import UserDashboard from './views/Users/userHomePage'
+import UserDashboard from './views/Users/userHomePage';
+import UserDetails from './views/Users/userDetails';
 import AboutUs from "./views/AboutUs/aboutUs";
 import OrganiserSignup from "./views/Organisers/organiserSignUp";
 
@@ -22,6 +23,7 @@ function App(){
     <Router history={hist}>
         <div className="App">
         <Switch>
+            <Route path="/userdetails" component={UserDetails}/>
             <Route path="/userdashboard" component={UserDashboard}/>
             <Route path="/usersignup" component={UserSignUp} />
             <Route path="/userlogin" component={UserLogin} />
