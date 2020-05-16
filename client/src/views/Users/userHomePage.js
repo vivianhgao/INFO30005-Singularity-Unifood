@@ -178,7 +178,7 @@ export default function UserDashboard(props) {
                 <div class='greeting'>
                     Hi {first_name}!
                   </div>
-                  <div class='button'>
+                  {/* <div class='button'>
                     <Button simple color="danger" size="md" onClick={getLocation}>
                       <div class='writing'>
                           Find food near me!
@@ -196,6 +196,29 @@ export default function UserDashboard(props) {
                           Log out
                         </div>
                     </Button>
+                    </div> */}
+                     <div class='button'>
+                    <button class="button" onClick={()=>getLocation()}>
+                    {/* <Button simple color="danger" size="sm" > */}
+                      <div class='writing'>
+                          Share my location!
+                        </div>
+                      </button>
+                    {/* </Button> */}
+
+                    {/* <Button simple color="danger" size="sm" onClick={()=>goUserDetails()}> */}
+                    <button class="button" onClick={()=>goUserDetails()}>
+                      <div class='writing'>
+                          Account details
+                        </div></button>
+                    {/* </Button> */}
+
+                    <button class="button" onClick={()=>logOut()}>
+                    {/* <Button simple color="danger" size="sm" onClick={()=>logOut()}> */}
+                      <div class='writing'>
+                          Log out
+                        </div></button>
+                    {/* </Button> */}
                     </div>
                 </div>
             

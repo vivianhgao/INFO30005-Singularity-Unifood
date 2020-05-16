@@ -9,11 +9,17 @@
     font-weight: bold;  
 }
 
-.button{
-    float: right ;
-    background-color: antiquewhite;
-    border-radius: 10px;
-}
+.button {
+    border-radius: 8px;
+    background-color: antiquewhite; 
+    border: none;
+    color: rgb(211, 115, 115);
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: medium;
+  }
 .option{
     grid-area:option;
 }
