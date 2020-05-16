@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
+
 const axios = require("axios");
 const http = require("http");
 const socketIo = require("socket.io");
@@ -47,9 +48,6 @@ const organiserRouter = require('./routes/organiserRouter');
 // set up location routes
 const locationRouter = require('./routes/locationRouter');
 
-//CORS
-app.use(cors());
-app.use(express.static(path.join(__dirname, "client", "build")))
 
 // use the body-parser middleware, which parses request bodies into req.body
 // support parsing of json

@@ -21,7 +21,9 @@ const useStyles = makeStyles(styles);
 const endpoint="http://localhost:5000";
 
 
-export default function ProfilePage(props) {
+
+export default function UserDashboard(props) {
+
   let history = useHistory();
   const location = useLocation();
   const username=location.state.detail;
@@ -37,6 +39,7 @@ export default function ProfilePage(props) {
   const [incomingData, setIncomingData]=useState([]);
   const [forms, setForms] = useState([]);
 // var notifyData = [];
+
   const classes = useStyles();
   const { ...rest } = props;
 
@@ -112,19 +115,6 @@ export default function ProfilePage(props) {
     }
   }
 
-  function getLocation(){
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        setUserLat(position.coords.latitude);
-        setUserLong(position.coords.longitude);
-      });
-      console.log(userLat);
-      console.log(userLong);
-    } else {
-      alert("Geolocation is not supported in this browser");
-    }
-  }
-
   function getDistance(lat1, long1, lat2, long2) {
     if ((lat1 == lat2) && (long1 == long2)) {
       return 0;
@@ -146,6 +136,31 @@ export default function ProfilePage(props) {
       return dist;
     }
   }
+
+  function goUserDetails(){
+    history.push({pathname:'/userdetails',state:{detail:username}});
+  }
+
+  function logOut(){
+    history.push({pathname:'/'})
+  }
+
+
+
+  function getLocation(){
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        setUserLat(position.coords.latitude);
+        setUserLong(position.coords.longitude);
+      });
+      console.log(userLat);
+      console.log(userLong);
+    } else {
+      alert("Geolocation is not supported in this browser");
+    }
+  }
+
+  
   getFirstName();
 
   return ( 
@@ -170,7 +185,20 @@ export default function ProfilePage(props) {
         <div  class='grid-container' >
             <div class="option">
                 <div class='greeting'>
-                        Hi {first_name}!
+                    Hi {first_name}!
+                  </div>
+                  <div class='button'>
+                    <Button simple color="danger" size="md" onClick={()=>goUserDetails()}>
+                      <div class='writing'>
+                          Account details
+                        </div>
+                    </Button>
+
+                    <Button simple color="danger" size="md" onClick={()=>logOut()}>
+                      <div class='writing'>
+                          Log out
+                        </div>
+                    </Button>
                     </div>
                 <button onClick={getLocation}> Share my location!</button>
 
@@ -213,4 +241,5 @@ export default function ProfilePage(props) {
     
 );
 }
+
 
