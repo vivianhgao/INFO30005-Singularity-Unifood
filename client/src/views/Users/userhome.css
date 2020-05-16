@@ -9,17 +9,30 @@
     font-weight: bold;  
 }
 
-.button{
-    float: right ;
-    background-color: antiquewhite;
-    border-radius: 10px;
-}
+
+
+.button {
+    border-radius: 8px;
+    background-color: antiquewhite; /* Green */
+    border: none;
+    color: rgb(211, 115, 115);
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
 .option{
     grid-area:option;
 }
 .notifs{
     grid-area:notifs;
     max-width: 1fr;
+    padding: 3%;
+    
   
 
 }
@@ -65,13 +78,14 @@ div.option {
     text-align: center;
     overflow: scroll;
     max-width: 1fr;
-    padding: 20px ;
+    padding: 3%;
 
   }
 div.notifs {
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.8);
     text-align: center;
+
     overflow: scroll;
     max-width: 1fr;
    
@@ -87,7 +101,7 @@ div.notifs {
   }
 .label{
     color:'grey';
-    font-size: large;
+    font-size: medium;
     text-align: center;
     font-family: 'Nunito', sans-serif;
     font-weight: bold;
