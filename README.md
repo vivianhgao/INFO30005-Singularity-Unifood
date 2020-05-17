@@ -1,5 +1,20 @@
+# Unifood 
+A web application designed to connect event organisers to students
+across campus and reduce edible waste within The University of Melbourne.
+
+https://unifood-app.herokuapp.com/
+
+**Built with:** Node.JS, Express, MongoDB, React, Material-Ui, Bootstrap
+
+**Demo Accounts**  
+
+| User Type | Login             | Password |
+|-----------|-------------------|---------|
+| User      | pbudiman          | userpb  |
+| Organiser | external@demo.com | demo    |
+
 ## Set Up Environment for Unifood app
-1. Open 2 terminal:
+Please open 2 terminals
 - Terminal 1 for backend:
 ```
 npm install
@@ -17,6 +32,7 @@ npm install
 ```
 npm start
 ```
+
 ## Unifood Core Functionalities
 
 - Account System
@@ -76,64 +92,58 @@ This page contains:
 
 To get notifications, user should click the "Share my location " button, allow the location access, and the notification will be sent real time.
 
-#
-### Back End
+
+## Back End
 
 URL: http://localhost:5000
 
 
-##### Form Routes
-Form Index: https://unifood-app.herokuapp.com/forms
-<br>
-View All Forms: https://unifood-app.herokuapp.com/forms/formList
-<br>
-Post New Form: https://unifood-app.herokuapp.com/forms/createForm
-<br>
-Update Form: https://unifood-app.herokuapp.com/forms/updateForm
-<br>
-Delete Form: https://unifood-app.herokuapp.com/forms/deleteForm
+#### Form Routes
+
+| Function       | Method | Url
+| -------------- | ------ |-----------------
+| Form index     | get    | /forms
+| View all forms | get    | /forms/formList
+| Post new form  | post   | /forms/createForm
+| Update form    | post   | /forms/updateForm
+| Delete form    | post   | /forms/deleteForm
 
 
-##### User Routes
-From the home page: https://unifood-app.herokuapp.com/
-<br>
-To log in: https://unifood-app.herokuapp.com/users/login
-<br>
-To sign up: https://unifood-app.herokuapp.com/users/signUp
-<br>
-To change user details after logging in: https://unifood-app.herokuapp.com/users/login/:username
-<br>
-User deleting their account after logging in: https://unifood-app.herokuapp.com/users/delete/:username 
-<br>
-  [where ':username' takes the user's username]
-<br>
+#### User Routes
+
 Demo account:
 * Username: pbudiman
 * Password: userpb
 
-##### Organiser Routes
-Login URL: https://unifood-app.herokuapp.com/organisers
-<br>
-Sign up URL: https://unifood-app.herokuapp.com/organisers/signup
-<br>
-Edit (update) account URL: https://unifood-app.herokuapp.com/organisers/update/:_id
-<br>
-Delete account URL: https://unifood-app.herokuapp.com/organisers/delete/:_id
-<br>
-Show all organisers URL: https://unifood-app.herokuapp.com/organisers/all
-<br>
-Update and delete account could be accessed after login as well.
-<br>
-<br>
-To update and delete account could be access through passing their id (replace ":_id" with the actual id). 
-<br>
-The ids could be accessed through "Show All Organiser URL".
+| Function       | Method | Url
+| -------------- | ------ |-----------------
+| Users          | get    | /users
+| Login          | post   | /users/login
+| Sign up        | post   | /users/signUp
+| Logged in      | get    | /users/login/:username
+| Update details | post   | /users/login/update/:username
+| Delete user    | get    | /users/delete/:username
 
+
+#### Organiser Routes
 Demo account:
 <br>
 email: external@demo.com
 <br>
 password: demo
+
+| Function       | Method | Url
+| -------------- | ------ |-----------------
+| Organisers     | get    | /organisers
+| Login          | post   | /organisers/logon
+| Sign up        | post   | /organisers/signup
+| Update details | post   | /organisers/update/:id
+| Delete account | get    | /organisers/delete/:id
+| Get by ID      | get    | /organisers/:email
+| Get all        | get    | /organisers/all
+
+
+
 ## Reference
 1. INFO30005 lectures and workshops material Week 1-5
 
