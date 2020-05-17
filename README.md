@@ -1,4 +1,4 @@
-## Set Up
+## Set Up Environment for Unifood app
 1. Open 2 terminal:
 - Terminal 1 for backend:
 ```
@@ -77,13 +77,13 @@ This page contains:
 To get notifications, user should click the "Share my location " button, allow the location access, and the notification will be sent real time.
 
 #
-### Back End
+## Back End
 
 URL: http://localhost:5000
 
-#### Routes
+## Routes
 
-##### Form Routes
+### Form Routes
 Form Index: https://unifood-app.herokuapp.com/forms
 <br>
 View All Forms: https://unifood-app.herokuapp.com/forms/formList
@@ -95,7 +95,7 @@ Update Form: https://unifood-app.herokuapp.com/forms/updateForm
 Delete Form: https://unifood-app.herokuapp.com/forms/deleteForm
 
 
-##### User Routes
+### User Routes
 From the home page: https://unifood-app.herokuapp.com/
 <br>
 To log in: https://unifood-app.herokuapp.com/users/login
@@ -112,7 +112,7 @@ Demo account:
 * Username: pbudiman
 * Password: userpb
 
-##### Organiser Routes
+### Organiser Routes
 Login URL: https://unifood-app.herokuapp.com/organisers
 <br>
 Sign up URL: https://unifood-app.herokuapp.com/organisers/signup
