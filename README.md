@@ -118,3 +118,6 @@ Details of the form:
 ### 3. Notification System
 Since this application is designed for users and events within The University of Melbourne area, the scope
 of the location will be on campus only. As mentioned above, the notification regarding the food availability, location and price will be sent to users.
+
+
+
