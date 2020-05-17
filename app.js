@@ -8,8 +8,8 @@ const app = express();
 const axios = require("axios");
 const http = require("http");
 const socketIo = require("socket.io");
-const io= socketIo(server);
 const server = http.createServer(app);
+const io= socketIo(server);
 
 
 
