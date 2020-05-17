@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
-
 const axios = require("axios");
 const http = require("http");
 const socketIo = require("socket.io");
@@ -35,6 +34,11 @@ const getForms= async socket=>{
 }
 
 app.use(cors());
+
+
+app.set('client', __dirname + 'client');
+app.set('view engine', 'jsx');
+app.engine('jsx', require('express-react-views').createEngine());
 
 
 // view engine setup
