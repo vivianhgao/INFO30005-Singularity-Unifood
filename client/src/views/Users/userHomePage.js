@@ -1,24 +1,24 @@
 
 import React, {useState, useEffect } from "react";
 // core components
-import Header from "../../components/Header/Header.js";
-import Footer from "../../components/Footer/Footer.js";
-import Button from "../../components/CustomButtons/Button.js";
+import Header from "components/Header/Header.js";
+import Footer from "components/Footer/Footer.js";
+import Button from "components/CustomButtons/Button.js";
 import { makeStyles } from "@material-ui/core/styles";
 
-import HeaderLinks from "../../components/Header/HeaderLinks.js";
-import Parallax from "../../components/Parallax/Parallax.js";
+import HeaderLinks from "components/Header/HeaderLinks.js";
+import Parallax from "components/Parallax/Parallax.js";
 
 import './userhome.css'
 
-import styles from "../../assets/jss/material-kit-react/views/profilePage.js";
+import styles from "assets/jss/material-kit-react/views/profilePage.js";
 import {useHistory} from 'react-router-dom';
 import { useLocation } from "react-router-dom";
 import axios from 'axios';
 import socketIOClient from "socket.io-client";
 
 const useStyles = makeStyles(styles);
-const endpoint="https://unifood-app.herokuapp.com/";
+const endpoint="http://localhost:5000";
 
 
 
@@ -44,7 +44,7 @@ export default function UserDashboard(props) {
   const { ...rest } = props;
 
   function getFirstName(){
-    axios.get("https://unifood-app.herokuapp.com//users/login/"+username)
+    axios.get("/users/login/"+username)
       .then(res=>setFirstName(res.data.user.first_name))
   }
 
@@ -177,7 +177,7 @@ export default function UserDashboard(props) {
         }}
         {...rest}
         />
-        <Parallax small filter image={require("../../assets/img/userdashboard.png")} >
+        <Parallax small filter image={require("assets/img/userdashboard.png")} >
     
         </Parallax>
         <br/>
@@ -187,55 +187,24 @@ export default function UserDashboard(props) {
                 <div class='greeting'>
                     Hi {first_name}!
                   </div>
-<<<<<<< HEAD
-                  {/* <div class='button'>
-                    <Button simple color="danger" size="md" onClick={getLocation}>
-=======
                   <div class='button'>
                     <Button simple color="danger" size="md" onClick={()=>getLocation()}>
->>>>>>> parent of b788dbe... Update userHomePage.js
                       <div class='writing'>
                           Share my location!
                         </div>
-                      </Button>
-                    {/* </Button> */}
+                    </Button>
 
-                    {/* <Button simple color="danger" size="sm" onClick={()=>goUserDetails()}> */}
-                    <button class="button" onClick={()=>goUserDetails()}>
+                    <Button simple color="danger" size="md" onClick={()=>goUserDetails()}>
                       <div class='writing'>
                           Account details
-                        </div></button>
-                    {/* </Button> */}
+                        </div>
+                    </Button>
 
-                    <Button class="button" onClick={()=>logOut()}>
-                    {/* <Button simple color="danger" size="sm" onClick={()=>logOut()}> */}
+                    <Button simple color="danger" size="md" onClick={()=>logOut()}>
                       <div class='writing'>
                           Log out
                         </div>
                     </Button>
-                    </div> */}
-                     <div class='button'>
-                    <button class="button" onClick={()=>getLocation()}>
-                    {/* <Button simple color="danger" size="sm" > */}
-                      <div class='writing'>
-                          Share my location!
-                        </div>
-                      </button>
-                    {/* </Button> */}
-
-                    {/* <Button simple color="danger" size="sm" onClick={()=>goUserDetails()}> */}
-                    <button class="button" onClick={()=>goUserDetails()}>
-                      <div class='writing'>
-                          Account details
-                        </div></button>
-                    {/* </Button> */}
-
-                    <button class="button" onClick={()=>logOut()}>
-                    {/* <Button simple color="danger" size="sm" onClick={()=>logOut()}> */}
-                      <div class='writing'>
-                          Log out
-                        </div></button>
-                    {/* </Button> */}
                     </div>
                 </div>
             
@@ -256,7 +225,7 @@ export default function UserDashboard(props) {
                 </div>
                 <div class="allForms">
                     <div class='label'>
-                        All Available Food
+                        Available Food
                     </div> 
                     <br/>
                     {forms.map(res=>(

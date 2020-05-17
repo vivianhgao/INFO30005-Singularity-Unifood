@@ -7,26 +7,26 @@ import Icon from "@material-ui/core/Icon";
 import red from '@material-ui/core/colors/red';
 import People from "@material-ui/icons/People";
 // core components
-import Header from "../../components/Header/Header.js";
-import HeaderLinks from "../../components/Header/HeaderLinks.js";
-import Footer from "../../components/Footer/Footer.js";
-import GridContainer from "../../components/Grid/GridContainer.js";
-import GridItem from "../../components/Grid/GridItem.js";
-import Button from "../../components/CustomButtons/Button.js";
-import Card from "../../components/Card/Card.js";
-import CardBody from "../../components/Card/CardBody.js";
-import CardHeader from "../../components/Card/CardHeader.js";
-import CardFooter from "../../components/Card/CardFooter.js";
-import CustomInput from "../../components/CustomInput/CustomInput.js";
+import Header from "components/Header/Header.js";
+import HeaderLinks from "components/Header/HeaderLinks.js";
+import Footer from "components/Footer/Footer.js";
+import GridContainer from "components/Grid/GridContainer.js";
+import GridItem from "components/Grid/GridItem.js";
+import Button from "components/CustomButtons/Button.js";
+import Card from "components/Card/Card.js";
+import CardBody from "components/Card/CardBody.js";
+import CardHeader from "components/Card/CardHeader.js";
+import CardFooter from "components/Card/CardFooter.js";
+import CustomInput from "components/CustomInput/CustomInput.js";
 import Checkbox from '@material-ui/core/Checkbox';
 
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 
 
-import styles from "../../assets/jss/material-kit-react/views/loginPage.js";
+import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
-import image from "../../assets/img/unifood.png";
+import image from "assets/img/unifood.png";
 
 import {useHistory} from 'react-router-dom';
 import FormControl from '@material-ui/core/FormControl';

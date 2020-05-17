@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
+
 const axios = require("axios");
 const http = require("http");
 const socketIo = require("socket.io");
@@ -11,11 +12,10 @@ const server = http.createServer(app);
 const io= socketIo(server);
 
 
-
 //to get notification
 const getApiAndEmit =  async socket =>{
     try{
-        const res =  await axios.get("forms/formList");
+        const res =  await axios.get("http://localhost:5000/forms/formList");
         socket.emit("Notifications", res.data);
 
     }catch(error){
@@ -32,13 +32,6 @@ const getForms= async socket=>{
         console.log("Error");
     }
 }
-
-app.use(cors());
-
-
-app.set('client', __dirname + 'client');
-app.set('view engine', 'jsx');
-app.engine('jsx', require('express-react-views').createEngine());
 
 
 // view engine setup
@@ -80,14 +73,9 @@ app.use('/organisers', organiserRouter);
 // the form routes are added to the end of '/organiser-management'
 app.use('/locations', locationRouter);
 
-// app.get("*", (req, res) => {
-//     res.sendFile(path.join(__dirname, "client", "public", "index.html"));
-// });
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname+'/client/build/index.html'));
-  });
-  
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "public", "index.html"));
+});
 
 
 let interval;

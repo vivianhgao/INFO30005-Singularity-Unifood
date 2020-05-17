@@ -9,25 +9,17 @@
     font-weight: bold;  
 }
 
-.button {
-    border-radius: 8px;
-    background-color: antiquewhite; 
-    border: none;
-    color: rgb(211, 115, 115);
-    padding: 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: medium;
-  }
+.button{
+    float: right ;
+    background-color: antiquewhite;
+    border-radius: 10px;
+}
 .option{
     grid-area:option;
 }
 .notifs{
     grid-area:notifs;
     max-width: 1fr;
-    padding: 3%;
-    
   
 
 }
@@ -73,14 +65,13 @@ div.option {
     text-align: center;
     overflow: scroll;
     max-width: 1fr;
-    padding: 3%;
+    padding: 20px ;
 
   }
 div.notifs {
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.8);
     text-align: center;
-
     overflow: scroll;
     max-width: 1fr;
    
@@ -96,7 +87,7 @@ div.notifs {
   }
 .label{
     color:'grey';
-    font-size: medium;
+    font-size: large;
     text-align: center;
     font-family: 'Nunito', sans-serif;
     font-weight: bold;

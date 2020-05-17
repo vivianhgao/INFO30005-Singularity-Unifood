@@ -17,10 +17,10 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 
 // core components
-import CustomDropdown from "../../components/CustomDropdown/CustomDropdown.js";
-import Button from "../../components/CustomButtons/Button.js";
+import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
+import Button from "components/CustomButtons/Button.js";
 
-import styles from "../../assets/jss/material-kit-react/components/headerLinksStyle.js";
+import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js";
 
 import {useHistory} from "react-router-dom";
 
