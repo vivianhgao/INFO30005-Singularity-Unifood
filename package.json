@@ -2,7 +2,7 @@
   "name": "unifood",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "client-install": "cd client && npm install --prefix client",
     "start": "npm run dev",
@@ -28,7 +28,6 @@
     "mongoose": "^5.9.10",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.3",
-    "react-scripts": "^3.4.1",
     "pug": "^2.0.3",
     "socket.io": "^2.3.0"
   },
