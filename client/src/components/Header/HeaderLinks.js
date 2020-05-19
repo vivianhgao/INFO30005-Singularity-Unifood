@@ -48,6 +48,13 @@ export default function HeaderLinks(props) {
               <Link to="/about-us" className={classes.dropdownLink}>
                   About Us
               </Link>,
+              <a
+                  href="https://creativetimofficial.github.io/material-kit-react/#/documentation?ref=mkr-navbar"
+                  target="_blank"
+                  className={classes.dropdownLink}
+              >
+                  Documentation
+              </a>
           ]}
         />
       </ListItem>
@@ -68,7 +75,7 @@ export default function HeaderLinks(props) {
                 color="transparent"
                 target="_blank"
                 className={classes.navLink}
-                onClick={()=>history.push("/organiserlogin")}
+                onClick={()=>history.push("/organiser-login")}
 
             >
                 <ExitToAppIcon className={classes.icons} /> Organisers

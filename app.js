@@ -12,7 +12,6 @@ const server = http.createServer(app);
 const io= socketIo(server);
 
 
-
 //to get notification
 const getApiAndEmit =  async socket =>{
     try{
@@ -49,6 +48,7 @@ const organiserRouter = require('./routes/organiserRouter');
 // set up location routes
 const locationRouter = require('./routes/locationRouter');
 
+app.use(cors());
 
 // use the body-parser middleware, which parses request bodies into req.body
 // support parsing of json
@@ -56,10 +56,10 @@ app.use(bodyParser.json());
 // support parsing of urlencoded bodies (e.g. for forms)
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// GET home page
-app.get('/', (req, res) => {
-    res.render('index' ,{title:'Unifood HomePage'});
-});
+// // GET home page
+// app.get('/', (req, res) => {
+//     res.render('index' ,{title:'Unifood HomePage'});
+// });
 
 // Handle user-management requests
 // the user routes are added onto the end of '/user-management'
@@ -74,10 +74,15 @@ app.use('/organisers', organiserRouter);
 // the form routes are added to the end of '/organiser-management'
 app.use('/locations', locationRouter);
 
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "public", "index.html"));
-});
+// //Static file declaration
+// app.use(express.static(path.join(__dirname, 'client/build')));
+// ... other app.use middleware 
+app.use(express.static(path.join(__dirname, "client", "build")))
 
+
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "client", "public", "index.html"));
+// });
 
 let interval;
 io.on("connection", socket => {
@@ -95,6 +100,22 @@ io.on("connection", socket => {
         clearInterval(interval)
     });
 });
+
+// Step 3
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static( 'client/build' ));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')); // relative path
+    });
+}
+
+
+// //production mode
+// if(process.env.NODE_ENV === 'production') {  
+//     app.use(express.static(path.join(__dirname, 'client/build')));  
+//     app.get('*', (req, res) => {    res.sendfile(path.join(__dirname = 'client/build/index.html'));  
+// })}
 
 
 
