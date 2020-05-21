@@ -42,7 +42,7 @@ export default function UserLogin(props) {
     const [password,setPassword]=useState("")
 
     function validateLogin(){
-      console.log()
+
       axios.post('users/login',{username,password})
         .then(res => res.data.success? history.push({pathname:"/userdashboard",state:{detail:username}}): alert("Incorrect username/ password.\nPlease Try again"))
     }
@@ -79,9 +79,9 @@ export default function UserLogin(props) {
                             <Card className={classes[cardAnimaton]}>
                                 <form className={classes.form}>
                                     <CardHeader color="danger" className={classes.cardHeader}>
-                                        <h4>User Login</h4>
+                                        <h4>Login</h4>
                                     </CardHeader>
-                                    
+                                  
                                     <CardBody>
                                       
                                         
@@ -112,16 +112,7 @@ export default function UserLogin(props) {
                                         />
                                         
                                       
-                                        {/* <FormControl>
-                                          <InputLabel>Username</InputLabel>
-                                          <Input id="username" type="text" value={username} onChange={handleUsername}disableUnderline={true}/>
-                                        </FormControl>
-                                      
-                                        <br/>
-                                        <FormControl>
-                                          <InputLabel>Password</InputLabel>
-                                          <Input id="username" type="password" value={password} onChange={handlePassword}/>
-                                        </FormControl> */}
+                    
                                        <CustomInput
                                             labelText="Password"
                                             id="password"
@@ -157,7 +148,7 @@ export default function UserLogin(props) {
                                             Log in
                                         </Button>
                                         <br/>
-                                        <Link to='/signup' > Create an account </Link>
+                                        <Link to='/usersignup' > Create an account </Link>
                                         
                                     </CardFooter>
                             

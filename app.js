@@ -4,23 +4,34 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
+
 const axios = require("axios");
 const http = require("http");
 const socketIo = require("socket.io");
 const server = http.createServer(app);
 const io= socketIo(server);
 
+
+//to get notification
 const getApiAndEmit =  async socket =>{
     try{
         const res =  await axios.get("http://localhost:5000/forms/formList");
-
-        
-        socket.emit("FromAPI", res.data);
+        socket.emit("Notifications", res.data);
 
     }catch(error){
-        console.error("Error: ${error.code}")
+        console.error("Error")
     }
 };
+
+//to get all forms
+const getForms= async socket=>{
+    try{
+        const response=await axios.get("http://localhost:5000/forms/formList");
+        socket.emit("Forms", response.data);
+    }catch (error){
+        console.log("Error");
+    }
+}
 
 
 // view engine setup
@@ -37,9 +48,7 @@ const organiserRouter = require('./routes/organiserRouter');
 // set up location routes
 const locationRouter = require('./routes/locationRouter');
 
-//CORS
 app.use(cors());
-app.use(express.static(path.join(__dirname, "client", "build")))
 
 // use the body-parser middleware, which parses request bodies into req.body
 // support parsing of json
@@ -47,10 +56,10 @@ app.use(bodyParser.json());
 // support parsing of urlencoded bodies (e.g. for forms)
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// GET home page
-app.get('/', (req, res) => {
-    res.render('index' ,{title:'Unifood HomePage'});
-});
+// // GET home page
+// app.get('/', (req, res) => {
+//     res.render('index' ,{title:'Unifood HomePage'});
+// });
 
 // Handle user-management requests
 // the user routes are added onto the end of '/user-management'
@@ -65,24 +74,48 @@ app.use('/organisers', organiserRouter);
 // the form routes are added to the end of '/organiser-management'
 app.use('/locations', locationRouter);
 
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "public", "index.html"));
-});
+// //Static file declaration
+// app.use(express.static(path.join(__dirname, 'client/build')));
+// ... other app.use middleware 
+app.use(express.static(path.join(__dirname, "client", "build")))
 
+
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "client", "public", "index.html"));
+// });
 
 let interval;
 io.on("connection", socket => {
-    console.log("user connected", getApiAndEmit(socket));
+    // console.log("user connected", getApiAndEmit(socket));
     if(interval){
         clearInterval(interval)
     }
-    interval=setInterval(()=>getApiAndEmit(socket),10000);
+    interval=setInterval(()=>{
+        getApiAndEmit(socket),
+        getForms(socket)
+    },1000);
 
     socket.on("disconnect",()=> {
         console.log("Client disconnected");
         clearInterval(interval)
     });
 });
+
+// Step 3
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static( 'client/build' ));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')); // relative path
+    });
+}
+
+
+// //production mode
+// if(process.env.NODE_ENV === 'production') {  
+//     app.use(express.static(path.join(__dirname, 'client/build')));  
+//     app.get('*', (req, res) => {    res.sendfile(path.join(__dirname = 'client/build/index.html'));  
+// })}
 
 
 
