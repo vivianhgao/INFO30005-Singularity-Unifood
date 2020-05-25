@@ -51,182 +51,181 @@ export default function UserDetails(props) {
     const location = useLocation();
     let history = useHistory()
     const oldUsername=location.state.detail;
-
     const [email,setNewEmail]=useState("")
     const [first_name,setNewFirstname]=useState("")
     const [last_name,setNewLastName]=useState("")
     const [newUsername,setNewUsername]= useState("")
     const [password,setNewPassword]=useState("")
- 
+
     const classes = useStyles();
     const { ...rest } = props;
-    
-    function handleChanges(){
-      if(newUsername){
-        var username=newUsername
-  
-      }else{
-        username=oldUsername;
-      }
 
-      axios.post("users/login/update/"+oldUsername,{username,email,first_name,last_name,password})
-        .then(res=> res.data.success?history.push({pathname:'/userdashboard', state:{detail:username}}):alert("Chosen email/username is taken."));
+    function handleChanges(){
+        if(newUsername){
+            var username=newUsername
+
+        }else{
+            username=oldUsername;
+        }
+
+        axios.post("users/login/update/"+oldUsername,{username,email,first_name,last_name,password})
+            .then(res=> res.data.success?history.push({pathname:'/userdashboard', state:{detail:username}}):alert("Chosen email/username is taken."));
     }
 
     const handleEmail = (event) => {
-      setNewEmail(event.target.value);
+        setNewEmail(event.target.value);
     };
     const handleFirstname = (event) => {
         setNewFirstname(event.target.value);
     };
     const handleLastName = (event) => {
         setNewLastName(event.target.value);
-        
+
     };
-    
+
     const handleUsername = (event) => {
-      setNewUsername(event.target.value);
-      
+        setNewUsername(event.target.value);
+
     };
 
     const handlePassword = (event) => {
-      setNewPassword(event.target.value);
+        setNewPassword(event.target.value);
     };
 
-  return (
-    <div>
-      <Header
-        color="transparent"
-        brand="UNIFOOD"
-        rightLinks={<HeaderLinks />}
-        fixed
-        changeColorOnScroll={{
-          height: 200,
-          color: "white"
-        }}
-        {...rest}
-      />
-      <Parallax small filter image={require("assets/img/userdashboard.png")} />
-      <div className={classNames(classes.main, classes.mainRaised)}>
+    return (
         <div>
-          <div className={classes.container}>
-            <div class='container'>
-              <div class="heading">
-                Fill details to be changed: 
-                </div>
-              
-           
-            
-            <GridContainer justify="center" >
-              
-              <Grid item xs={5} justify="center">
-              <div class='container'>
-                <CustomInput
-                  labelText="New Email"
-                  id="email"
-                  value={email}                           
-                  formControlProps={{
-                    
-                  fullWidth: true,
-                  onChange: (event)=>handleEmail(event)
+            <Header
+                color="transparent"
+                brand="UNIFOOD"
+                rightLinks={<HeaderLinks />}
+                fixed
+                changeColorOnScroll={{
+                    height: 200,
+                    color: "white"
+                }}
+                {...rest}
+            />
+            <Parallax small filter image={require("assets/img/userdashboard.png")} />
+            <div className={classNames(classes.main, classes.mainRaised)}>
+                <div>
+                    <div className={classes.container}>
+                        <div class='container'>
+                            <div class="heading">
+                                Fill details to be changed:
+                            </div>
 
-                  }}
-                  inputProps={{                          
-                  type: "username",                       
-                  endAdornment: (
-                    <InputAdornment position="end">
-                    <People className={classes.inputIconsColor} />
-                    </InputAdornment>
-                    )
-                  }}                         
-                />
 
-                <CustomInput
-                  labelText="New First Name"
-                  id="newfirstname"
-                  value={first_name}                           
-                  formControlProps={{
-                  fullWidth: true,onChange: (event)=>handleFirstname(event)
-                  }}
-                  inputProps={{                          
-                  type: "text",                       
-                  endAdornment: (
-                    <InputAdornment position="end">
-                    <People className={classes.inputIconsColor} />
-                    </InputAdornment>
-                    )
-                  }}                         
-                />          
 
-                <CustomInput
-                  labelText="New Last Name"
-                  id="newlastname"
-                  value={last_name}                           
-                  formControlProps={{
-                  fullWidth: true,
-                  onChange: (event)=>handleLastName(event)
-                  }}
-                  inputProps={{                          
-                  type: "text",                       
-                  endAdornment: (
-                    <InputAdornment position="end">
-                    <People className={classes.inputIconsColor} />
-                    </InputAdornment>
-                    )
-                  }}   
-                  />
-                  
-                  <CustomInput
-                  labelText="New Username"
-                  id="username"
-                  value={newUsername}                           
-                  formControlProps={{
-                    fullWidth: true,
-                    onChange: (event)=>handleUsername(event)
-                  }}
-                  inputProps={{                          
-                  type: "username",                       
-                  endAdornment: (
-                    <InputAdornment position="end">
-                    <People className={classes.inputIconsColor} />
-                    </InputAdornment>
-                    )
-                  }}                         
-                  />
-                  <CustomInput
-                  labelText="New Password"
-                  id="password"
-                  value={password}                           
-                  formControlProps={{
+                            <GridContainer justify="center" >
 
-                  fullWidth: true,
-                  onChange: (event)=>handlePassword(event)
-                  }}
-                  inputProps={{                          
-                  type: "password",                       
-                  endAdornment: (
-                    <InputAdornment position="end">
-                    <People className={classes.inputIconsColor} />
-                    </InputAdornment>
-                    )
-                  }} 
-                  
-                />
-                    <div class='button'>
-                      <Button simple color="danger" size="sm" justify="center" onClick={()=>handleChanges()}>
-                          Account detail
-                      </Button>
-                      
-                    </div>   
-                  
-                </div>
-                
+                                <Grid item xs={5} justify="center">
+                                    <div class='container'>
+                                        <CustomInput
+                                            labelText="New Email"
+                                            id="email"
+                                            value={email}
+                                            formControlProps={{
 
-              
-              </Grid> 
-               
-                                  
-                {/* <NavPills
+                                                fullWidth: true,
+                                                onChange: (event)=>handleEmail(event)
+
+                                            }}
+                                            inputProps={{
+                                                type: "username",
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <People className={classes.inputIconsColor} />
+                                                    </InputAdornment>
+                                                )
+                                            }}
+                                        />
+
+                                        <CustomInput
+                                            labelText="New First Name"
+                                            id="newfirstname"
+                                            value={first_name}
+                                            formControlProps={{
+                                                fullWidth: true,onChange: (event)=>handleFirstname(event)
+                                            }}
+                                            inputProps={{
+                                                type: "text",
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <People className={classes.inputIconsColor} />
+                                                    </InputAdornment>
+                                                )
+                                            }}
+                                        />
+
+                                        <CustomInput
+                                            labelText="New Last Name"
+                                            id="newlastname"
+                                            value={last_name}
+                                            formControlProps={{
+                                                fullWidth: true,
+                                                onChange: (event)=>handleLastName(event)
+                                            }}
+                                            inputProps={{
+                                                type: "text",
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <People className={classes.inputIconsColor} />
+                                                    </InputAdornment>
+                                                )
+                                            }}
+                                        />
+
+                                        <CustomInput
+                                            labelText="New Username"
+                                            id="username"
+                                            value={newUsername}
+                                            formControlProps={{
+                                                fullWidth: true,
+                                                onChange: (event)=>handleUsername(event)
+                                            }}
+                                            inputProps={{
+                                                type: "username",
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <People className={classes.inputIconsColor} />
+                                                    </InputAdornment>
+                                                )
+                                            }}
+                                        />
+                                        <CustomInput
+                                            labelText="New Password"
+                                            id="password"
+                                            value={password}
+                                            formControlProps={{
+
+                                                fullWidth: true,
+                                                onChange: (event)=>handlePassword(event)
+                                            }}
+                                            inputProps={{
+                                                type: "password",
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <People className={classes.inputIconsColor} />
+                                                    </InputAdornment>
+                                                )
+                                            }}
+
+                                        />
+                                        <div class='button'>
+                                            <Button simple color="danger" size="sm" justify="center" onClick={()=>handleChanges()}>
+                                                Account detail
+                                            </Button>
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                </Grid>
+
+
+                                {/* <NavPills
                   alignCenter
                   color="primary"
                   tabs={[
@@ -333,18 +332,18 @@ export default function UserDetails(props) {
                               className={navImageClasses}
                             />
                           </GridItem> */}
-                        {/* </GridContainer>
+                                {/* </GridContainer>
                       )
                     }
                   ]}
                 /> */}
-             
-            </GridContainer>
+
+                            </GridContainer>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+            <Footer />
         </div>
-      </div>
-      <Footer />
-    </div>
-  );
+    );
 }

@@ -14,6 +14,7 @@ import UserDashboard from './views/Users/userHomePage';
 import UserDetails from './views/Users/userDetails';
 import AboutUs from "./views/AboutUs/aboutUs";
 import OrganiserSignup from "./views/Organisers/organiserSignUp";
+import PostNewForm from "./views/Organisers/organiserPostNewForm";
 
 
 var hist = createBrowserHistory();
@@ -33,6 +34,7 @@ export default function App(){
                 <Route path="/about-us" component={AboutUs} />
                 <Route path="/organiserlogin" component={OrganiserLogin} />
                 <Route path="/organiser-signup" component={OrganiserSignup} />
+                <Route path="/post-new-form" component={PostNewForm} />
                 <Route path="/" component={HomePage} />
             </Switch>
             </div>
