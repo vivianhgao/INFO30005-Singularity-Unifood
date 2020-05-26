@@ -3,6 +3,8 @@ import React from "react";
 import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
+import Carousel from "react-slick";
+
 // @material-ui/icons
 import Camera from "@material-ui/icons/Camera";
 import Palette from "@material-ui/icons/Palette";
@@ -17,20 +19,13 @@ import HeaderLinks from "components/Header/HeaderLinks.js";
 import NavPills from "components/NavPills/NavPills.js";
 import Parallax from "components/Parallax/Parallax.js";
 
-import profile from "assets/img/faces/christian.jpg";
-
-import studio1 from "assets/img/examples/studio-1.jpg";
-import studio2 from "assets/img/examples/studio-2.jpg";
-import studio3 from "assets/img/examples/studio-3.jpg";
-import studio4 from "assets/img/examples/studio-4.jpg";
-import studio5 from "assets/img/examples/studio-5.jpg";
-import work1 from "assets/img/examples/olu-eletu.jpg";
-import work2 from "assets/img/examples/clem-onojeghuo.jpg";
-import work3 from "assets/img/examples/cynthia-del-rio.jpg";
-import work4 from "assets/img/examples/mariya-georgieva.jpg";
-import work5 from "assets/img/examples/clem-onojegaw.jpg";
-
+import profile from "assets/img/faces/unifood_logo.png";
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
+import Card from "../../components/Card/Card";
+import image1 from "../../assets/img/info1.png";
+import image2 from "../../assets/img/info2.png";
+import image3 from "../../assets/img/moodboard.png";
+
 
 const useStyles = makeStyles(styles);
 
@@ -42,6 +37,14 @@ export default function AboutUs(props) {
         classes.imgRoundedCircle,
         classes.imgFluid
     );
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: false
+    };
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
     return (
         <div>
@@ -68,144 +71,54 @@ export default function AboutUs(props) {
                                     </div>
                                     <div className={classes.name}>
                                         <h3 className={classes.title}>About Us</h3>
-                                        <h6>UNIFOOD TEAM</h6>
-                                        <Button justIcon link className={classes.margin5}>
-                                            <i className={"fab fa-twitter"} />
-                                        </Button>
-                                        <Button justIcon link className={classes.margin5}>
-                                            <i className={"fab fa-instagram"} />
-                                        </Button>
-                                        <Button justIcon link className={classes.margin5}>
-                                            <i className={"fab fa-facebook"} />
-                                        </Button>
+                                        <h4>The Mission Behind Unifood</h4>
                                     </div>
                                 </div>
                             </GridItem>
                         </GridContainer>
                         <div className={classes.description}>
                             <p>
-                                An artist of considerable range, Chet Faker — the name taken by
-                                Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs
-                                and records all of his own music, giving it a warm, intimate
-                                feel with a solid groove structure.{" "}
+                                Unifood is a passion project between three students, one university project,
+                                and a unified goal of reducing food waste on campus!
+                                Our aim is to connect students and event organisers to reduce the waste of
+                                edible food from university events{" "}
                             </p>
                         </div>
-                        <GridContainer justify="center">
-                            <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
-                                <NavPills
-                                    alignCenter
-                                    color="primary"
-                                    tabs={[
-                                        {
-                                            tabButton: "Studio",
-                                            tabIcon: Camera,
-                                            tabContent: (
-                                                <GridContainer justify="center">
-                                                    <GridItem xs={12} sm={12} md={4}>
-                                                        <img
-                                                            alt="..."
-                                                            src={studio1}
-                                                            className={navImageClasses}
-                                                        />
-                                                        <img
-                                                            alt="..."
-                                                            src={studio2}
-                                                            className={navImageClasses}
-                                                        />
-                                                    </GridItem>
-                                                    <GridItem xs={12} sm={12} md={4}>
-                                                        <img
-                                                            alt="..."
-                                                            src={studio5}
-                                                            className={navImageClasses}
-                                                        />
-                                                        <img
-                                                            alt="..."
-                                                            src={studio4}
-                                                            className={navImageClasses}
-                                                        />
-                                                    </GridItem>
-                                                </GridContainer>
-                                            )
-                                        },
-                                        {
-                                            tabButton: "Work",
-                                            tabIcon: Palette,
-                                            tabContent: (
-                                                <GridContainer justify="center">
-                                                    <GridItem xs={12} sm={12} md={4}>
-                                                        <img
-                                                            alt="..."
-                                                            src={work1}
-                                                            className={navImageClasses}
-                                                        />
-                                                        <img
-                                                            alt="..."
-                                                            src={work2}
-                                                            className={navImageClasses}
-                                                        />
-                                                        <img
-                                                            alt="..."
-                                                            src={work3}
-                                                            className={navImageClasses}
-                                                        />
-                                                    </GridItem>
-                                                    <GridItem xs={12} sm={12} md={4}>
-                                                        <img
-                                                            alt="..."
-                                                            src={work4}
-                                                            className={navImageClasses}
-                                                        />
-                                                        <img
-                                                            alt="..."
-                                                            src={work5}
-                                                            className={navImageClasses}
-                                                        />
-                                                    </GridItem>
-                                                </GridContainer>
-                                            )
-                                        },
-                                        {
-                                            tabButton: "Favorite",
-                                            tabIcon: Favorite,
-                                            tabContent: (
-                                                <GridContainer justify="center">
-                                                    <GridItem xs={12} sm={12} md={4}>
-                                                        <img
-                                                            alt="..."
-                                                            src={work4}
-                                                            className={navImageClasses}
-                                                        />
-                                                        <img
-                                                            alt="..."
-                                                            src={studio3}
-                                                            className={navImageClasses}
-                                                        />
-                                                    </GridItem>
-                                                    <GridItem xs={12} sm={12} md={4}>
-                                                        <img
-                                                            alt="..."
-                                                            src={work2}
-                                                            className={navImageClasses}
-                                                        />
-                                                        <img
-                                                            alt="..."
-                                                            src={work1}
-                                                            className={navImageClasses}
-                                                        />
-                                                        <img
-                                                            alt="..."
-                                                            src={studio1}
-                                                            className={navImageClasses}
-                                                        />
-                                                    </GridItem>
-                                                </GridContainer>
-                                            )
-                                        }
-                                    ]}
-                                />
-                            </GridItem>
-                        </GridContainer>
+                        <div className={classes.container}>
+                            <GridContainer justify="center">
+                                <GridItem xs={12} sm={12} md={8} className={classes.center}>
+                                    <Card carousel>
+                                        <Carousel {...settings}>
+                                            <div>
+                                                <img src={image1} alt="First slide" className="slick-image" />
+                                                <div className="slick-caption">
+                                                    <h4>
+                                                        Food Waste in Melbourne by The City of Melbourne
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <img
+                                                    src={image2}
+                                                    alt="Second slide"
+                                                    className="slick-image"
+                                                />
+                                                <div className="slick-caption">
+                                                    <h4>
+                                                        Food Waste in Melbourne by The City of Melbourne
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <img src={image3} alt="Third slide" className="slick-image" />
+                                                <div className="slick-caption">
+                                                </div>
+                                            </div>
+                                        </Carousel>
+                                    </Card>
+                                </GridItem>
+                            </GridContainer>
+                        </div>
                     </div>
                 </div>
             </div>
