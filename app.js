@@ -4,20 +4,16 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
-
 const axios = require("axios");
 const http = require("http");
 const socketIo = require("socket.io");
 const server = http.createServer(app);
 const io= socketIo(server);
 
+// get database connection from model/index.js
 const mongo_url=require('./model/index').MONGO_URL
 const db = require("monk")(mongo_url);
 const form_collection = db.get("forms");
-// console.log("collectionssss:"+form_collection.find({}).then( res => {
-//     forms=res;
-//     console.log(forms);
-// }));
 
 //get all forms
 const getAllForms= async socket =>{
@@ -42,7 +38,6 @@ const getApiAndEmit =  async socket =>{
         console.error("Error")
     }
 };
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -71,28 +66,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //     res.render('index' ,{title:'Unifood HomePage'});
 // });
 
-// Handle user-management requests
-// the user routes are added onto the end of '/user-management'
+// Handle user requests
 app.use('/users', userRouter);
-// handle form-management requests
-//the form routes are added to the end of '/form-management'
+// handle form requests
 app.use('/forms', formRouter);
-// handle organiser-management requests
-// the form routes are added to the end of '/organiser-management'
+// handle organiser requests
 app.use('/organisers', organiserRouter);
-// handle organiser-management requests
-// the form routes are added to the end of '/organiser-management'
+// handle location requests
 app.use('/locations', locationRouter);
 
-// //Static file declaration
-// app.use(express.static(path.join(__dirname, 'client/build')));
 // ... other app.use middleware 
 app.use(express.static(path.join(__dirname, "client", "build")))
 
-
-// app.get("*", (req, res) => {
-//     res.sendFile(path.join(__dirname, "client", "public", "index.html"));
-// });
 
 let interval;
 
@@ -129,15 +114,6 @@ if (process.env.NODE_ENV === 'production') {
         res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')); // relative path
     });
 }
-
-
-// //production mode
-// if(process.env.NODE_ENV === 'production') {  
-//     app.use(express.static(path.join(__dirname, 'client/build')));  
-//     app.get('*', (req, res) => {    res.sendfile(path.join(__dirname = 'client/build/index.html'));  
-// })}
-
-
 
 server.listen(process.env.PORT || 5000, () => {
     console.log("The Unifood app is listening on port 5000!");
