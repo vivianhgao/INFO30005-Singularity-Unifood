@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
+
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
@@ -19,6 +20,10 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardFooter from "components/Card/CardFooter.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import Checkbox from '@material-ui/core/Checkbox';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import IconButton from '@material-ui/core/IconButton';
+
 
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -35,6 +40,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Box from '@material-ui/core/Box';
 import axios from 'axios';
 
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import snackbarContentStyle from "../../assets/jss/material-kit-react/components/snackbarContentStyle";
 const useStyles = makeStyles(styles);
 
 export default function OrganiserLogin(props) {
@@ -46,25 +53,41 @@ export default function OrganiserLogin(props) {
     const classes = useStyles();
     const { ...rest } = props;
 
-    const [username,setUsername]= useState("")
+    const [email,setEmail]= useState("")
     const [password,setPassword]=useState("")
+    // const [showPassword,setShowPassword]= useState(false)
+    // const [mouseDownPassword,setMouseDownPassword]=useState(false)
 
     function validateLogin(){
         console.log()
-        axios.post('users/login',{username,password})
-            .then(res => res.data.success? console.log("logged in"): alert("Incorrect username/ password.\nPlease Try again"))
+        axios.post(
+            'organisers/logon',
+            {
+                email: email,
+                password: password
+            })
+          // .then(res => res.data.success? console.log("LOGGED IN") history.push({pathname:"/organiserhome",state:{detail:email}}): alert("Incorrect username/ password.\nPlease Try again"))
+          .then(res => console.log(res));
     }
 
-
-    const handleUsername = (event) => {
-        setUsername(event.target.value);
+    const handleEmail = (event) => {
+        setEmail(event.target.value);
+        console.log(email);
     };
 
     const handlePassword = (event) => {
         setPassword(event.target.value);
     };
 
-    return (
+    // const handleClickShowPassword = () => {
+    //     setShowPassword(!showPassword);
+    // };
+    //
+    // const handleMouseDownPassword = (event)=> {
+    //     event.preventDefault();
+    // };
+
+  return (
         <div>
             <Header
                 absolute
@@ -91,72 +114,51 @@ export default function OrganiserLogin(props) {
                                     </CardHeader>
 
                                     <CardBody>
-
-
-
                                         <CustomInput
-                                            labelText="Username"
-                                            id="username"
-                                            value={username}
-                                            // onChange={ (event)=>handleUsername(event)}
-
+                                            labelText="Organiser Email"
+                                            id="email"
+                                            value={email}
+                                            // onChange={ (event)=>handleEmail(event)}
 
                                             formControlProps={{
                                                 fullWidth: true,
-                                                onChange: (event)=>handleUsername(event)
+                                                onChange: (event)=>handleEmail(event)
 
                                             }}
                                             inputProps={{
 
-                                                type: "username",
-                                                // onChange: (event)=>handleUsername(event),
-                                                endAdornment: (
-                                                    <InputAdornment position="end">
-                                                        <People className={classes.inputIconsColor} />
-                                                    </InputAdornment>
-                                                )
+                                                type: "email",
+                                                // onChange: (event)=>handleEmail(event),
                                             }}
-
                                         />
 
-
-                                        {/* <FormControl>
-                                          <InputLabel>Username</InputLabel>
-                                          <Input id="username" type="text" value={username} onChange={handleUsername}disableUnderline={true}/>
-                                        </FormControl>
-
-                                        <br/>
-                                        <FormControl>
-                                          <InputLabel>Password</InputLabel>
-                                          <Input id="username" type="password" value={password} onChange={handlePassword}/>
-                                        </FormControl> */}
                                         <CustomInput
-                                            labelText="Password"
-                                            id="password"
-                                            type="password"
-                                            // onChange={ (event)=>handlePassword(event)}
+                                          labelText="Password"
+                                          id="password"
+                                          value={password}
+                                          // onChange={ (event)=>handlePassword(event)}
 
-                                            formControlProps={{
-                                                fullWidth: true,
-                                                onChange: (event)=>handlePassword(event)
+                                          formControlProps={{
+                                              fullWidth: true,
+                                              onChange: (event)=>handlePassword(event)
 
-                                            }}
-                                            inputProps={{
-                                                // onChange: (event)=>handlePassword(event),
+                                          }}
+                                          inputProps={{
 
-                                                type: "password",
-
-                                                endAdornment: (
-                                                    <InputAdornment position="end">
-                                                        <Icon className={classes.inputIconsColor}>
-
-                                                        </Icon>
-                                                    </InputAdornment>
-                                                ),
-                                                autoComplete: "off"
-                                            }}
-
-
+                                              type: 'password',
+                                              // onChange: (event)=>handlePassword(event),
+                                            //   endAdornment: (
+                                            //       <InputAdornment position="end">
+                                            //         <IconButton
+                                            //           aria-label="toggle password visibility"
+                                            //           onClick={handleClickShowPassword}
+                                            //           onMouseDown={handleMouseDownPassword}
+                                            //         >
+                                            //           {showPassword ? <Visibility /> : <VisibilityOff />}
+                                            //         </IconButton>
+                                            //       </InputAdornment>
+                                            // )
+                                          }}
                                         />
 
                                         <Button
@@ -165,20 +167,18 @@ export default function OrganiserLogin(props) {
                                             fullWidth
                                             color="danger"
                                             className={classes.submit}
+                                            onClick={()=>validateLogin()}
                                         >
                                             Log In
                                         </Button>
 
-
                                         <Grid item>
-                                                <Link href="/organiser-signup" style={{ color: '#999999' }}>
+                                                <Link href="/organisersignup" style={{ color: '#999999' }}>
                                                     {"Don't have an account? Sign Up"}
                                                 </Link>
                                         </Grid>
 
                                     </CardBody>
-
-
 
                                 </form>
                             </Card>
@@ -190,3 +190,62 @@ export default function OrganiserLogin(props) {
         </div>
     );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/*<FormControl>*/}
+{/*  <InputLabel>Email</InputLabel>*/}
+{/*  <Input id="email" type="email" value={email} onChange={handleEmail}/>*/}
+{/*</FormControl>*/}
+
+{/*<br/>*/}
+{/*<FormControl>*/}
+{/*  <InputLabel>Password</InputLabel>*/}
+{/*  <Input id="email" type="password" value={password} onChange={handlePassword}/>*/}
+{/*</FormControl>*/}
+{/*<CustomInput*/}
+{/*    labelText="Password"*/}
+{/*    id="password"*/}
+{/*    type="password"*/}
+{/*    onChange={ (event)=>handlePassword(event)}*/}
+
+{/*    formControlProps={{*/}
+{/*        fullWidth: true,*/}
+{/*        onChange: (event)=>handlePassword(event)*/}
+
+{/*    }}*/}
+{/*    inputProps={{*/}
+{/*        onChange: (event)=>handlePassword(event),*/}
+
+{/*        type: "password",*/}
+
+{/*        endAdornment: (*/}
+{/*            <InputAdornment position="end">*/}
+{/*                <Icon className={classes.inputIconsColor}>*/}
+
+{/*                </Icon>*/}
+{/*            </InputAdornment>*/}
+{/*        ),*/}
+{/*        autoComplete: "off"*/}
+{/*    }}*/}
+
+
+{/*/>*/}
