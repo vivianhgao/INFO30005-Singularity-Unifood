@@ -42,8 +42,6 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 const useStyles = makeStyles(styles);
 
 
-
-
 export default function PostNewForm1(props) {
     const location = useLocation();
     let history = useHistory()
@@ -61,8 +59,7 @@ export default function PostNewForm1(props) {
     const { ...rest } = props;
 
     function createForm(){
-        axios.post(
-            'forms/createForm',
+        axios.post('forms/createForm',
             {name,description,address,time,quantity,photo,latitude,longitude})
             .then(res => res.data.success? console.log("New form posted!"): alert("Error, please try again!"))
     }

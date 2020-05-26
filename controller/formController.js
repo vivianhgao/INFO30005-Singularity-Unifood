@@ -17,8 +17,11 @@ const createForm = async (req, res,next) => {
     };
     var data = new Form(new_form);
     data.save();
+    console.log("new form")
+    return res.json({ success: true });
+    
     // res.render('formManagement',{name:req.body.name, formID:Form.id});
-    res.send("New form added");
+    // res.send("New form added");
 }
 
 //update form
