@@ -16,7 +16,6 @@ import AboutUs from "./views/AboutUs/aboutUs";
 import OrganiserSignup from "./views/Organisers/organiserSignUp";
 import PostNewForm from "./views/Organisers/organiserPostNewForm";
 
-
 var hist = createBrowserHistory();
 
 export default function App(){

@@ -3,10 +3,14 @@ import React, {useState} from "react";
 import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
+
 // @material-ui/icons
-import Camera from "@material-ui/icons/Camera";
-import Palette from "@material-ui/icons/Palette";
-import Favorite from "@material-ui/icons/Favorite";
+import DescriptionIcon from '@material-ui/icons/Description';
+import TodayIcon from '@material-ui/icons/Today';
+import People from "@material-ui/icons/People";
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import FastfoodIcon from '@material-ui/icons/Fastfood';
+
 // core components
 import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
@@ -18,11 +22,8 @@ import NavPills from "components/NavPills/NavPills.js";
 import Parallax from "components/Parallax/Parallax.js";
 
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
-
 import InputAdornment from "@material-ui/core/InputAdornment";
-import People from "@material-ui/icons/People";
 import CustomInput from "components/CustomInput/CustomInput.js";
-import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 
@@ -33,9 +34,17 @@ import { useHistory }  from 'react-router-dom';
 import CardBody from "../../components/Card/CardBody";
 import CardFooter from "../../components/Card/CardFooter";
 
+
+//upload photo
+import IconButton from '@material-ui/core/IconButton';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+
 const useStyles = makeStyles(styles);
 
-export default function PostNewForm(props) {
+
+
+
+export default function PostNewForm1(props) {
     const location = useLocation();
     let history = useHistory()
 
@@ -48,14 +57,12 @@ export default function PostNewForm(props) {
     const [latitude,setLatitude]=useState("")
     const [longitude,setLongitude]=useState("")
 
-
-
     const classes = useStyles();
     const { ...rest } = props;
 
     function createForm(){
         axios.post(
-            'form/createForm',
+            'forms/createForm',
             {name,description,address,time,quantity,photo,latitude,longitude})
             .then(res => res.data.success? console.log("New form posted!"): alert("Error, please try again!"))
     }
@@ -98,18 +105,20 @@ export default function PostNewForm(props) {
                 }}
                 {...rest}
             />
+
             <Parallax small filter image={require("assets/img/userdashboard.png")} />
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div>
                     <div className={classes.container}>
                         <div class='container'>
                             <div class="heading">
-                                Post New Form
+                                Post New Event Listing
                             </div>
 
                             <GridContainer justify="center" >
                                 <Grid item xs={5} justify="center">
                                     <div class='container'>
+
                                         <CustomInput
                                             labelText="Organisation and Event Name*"
                                             id="name"
@@ -131,21 +140,32 @@ export default function PostNewForm(props) {
                                         />
 
 
+
                                         <CustomInput
-                                            labelText="Description*"
+                                            labelText="Description of Food and Event*"
                                             id="description"
                                             value={description}
+                                            multiline
+                                            rowsMax={4}
                                             formControlProps={{
                                                 fullWidth: true,
                                                 onChange: (event)=>handleDescription(event)
                                             }}
                                             inputProps={{
                                                 type: "text",
+                                                multiline: true,
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <FastfoodIcon className={classes.inputIconsColor} />
+                                                    </InputAdornment>
+                                                )
                                             }}
                                         />
 
+
+
                                         <CustomInput
-                                            labelText="Address*"
+                                            labelText="Location*"
                                             id="address"
                                             value={address}
                                             formControlProps={{
@@ -154,11 +174,17 @@ export default function PostNewForm(props) {
                                             }}
                                             inputProps={{
                                                 type: "text",
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <LocationOnIcon className={classes.inputIconsColor} />
+                                                    </InputAdornment>
+                                                )
                                             }}
                                         />
 
+
                                         <CustomInput
-                                            labelText="Time*"
+                                            labelText=""
                                             id="time"
                                             value={time}
                                             formControlProps={{
@@ -166,12 +192,18 @@ export default function PostNewForm(props) {
                                                 onChange: (event)=>handleTime(event)
                                             }}
                                             inputProps={{
-                                                type: "text",
+                                                type: "datetime-local",
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <TodayIcon className={classes.inputIconsColor} />
+                                                    </InputAdornment>
+                                                )
                                             }}
+
                                         />
 
                                         <CustomInput
-                                            labelText="Quantity"
+                                            labelText="Quantity of Food Available"
                                             id="quantity"
                                             value={quantity}
                                             formControlProps={{
@@ -180,10 +212,16 @@ export default function PostNewForm(props) {
                                             }}
                                             inputProps={{
                                                 type: "text",
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <DescriptionIcon className={classes.inputIconsColor} />
+                                                    </InputAdornment>
+                                                )
                                             }}
                                         />
 
                                         <CustomInput
+                                            accept="image/*"
                                             labelText="Photo"
                                             id="photo"
                                             value={photo}
@@ -192,7 +230,12 @@ export default function PostNewForm(props) {
                                                 onChange: (event)=>handlePhoto(event)
                                             }}
                                             inputProps={{
-                                                type: "text",
+                                                type: "file",
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <PhotoCamera className={classes.inputIconsColor} />
+                                                    </InputAdornment>
+                                                )
                                             }}
                                         />
 
@@ -210,7 +253,7 @@ export default function PostNewForm(props) {
                                         />
 
                                         <CustomInput
-                                            labelText="longitude"
+                                            labelText="Longitude"
                                             id="longitude"
                                             value={longitude}
                                             formControlProps={{
@@ -223,18 +266,14 @@ export default function PostNewForm(props) {
                                         />
 
 
+                                        <CardFooter className={classes.cardFooter} style={{justifyContent: 'center'}}>
+                                            <Button variant="outlined" color="danger" size="lg" onClick={()=>createForm()}>
+                                                Post New Form
+                                            </Button>
+                                        </CardFooter>
 
 
                                     </div>
-
-
-
-                                    <CardFooter className={classes.cardFooter} style={{justifyContent: 'center'}}>
-                                        <Button variant="outlined" color="danger" size="lg" onClick={()=>createForm()}>
-                                            Post New Form
-                                        </Button>
-                                    </CardFooter>
-
                                 </Grid>
                             </GridContainer>
                         </div>
