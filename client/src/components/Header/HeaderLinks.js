@@ -75,7 +75,7 @@ export default function HeaderLinks(props) {
                 color="transparent"
                 target="_blank"
                 className={classes.navLink}
-                onClick={()=>history.push("/organiser-login")}
+                onClick={()=>history.push("/organiser")}
 
             >
                 <ExitToAppIcon className={classes.icons} /> Organisers

@@ -92,6 +92,7 @@ const addOrganiser = async (req, res) => {
         }
         else if(organiserExists){
             res.send("The email has been used.\nPlease enter other email.");
+            res.status(409);
         }
         else if (req.body.organisation_name && req.body.officer_name && req.body.contact_number
             && req.body.email && req.body.password){
@@ -99,6 +100,7 @@ const addOrganiser = async (req, res) => {
             var data =  new Organiser(new_organiser);
             data.save();
             res.send('Organisation account created.');
+            res.status(201);
         }
         else {
             res.send("You haven't filled all the required fields.");

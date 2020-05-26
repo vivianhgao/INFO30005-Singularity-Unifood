@@ -75,7 +75,7 @@ export default function HomePage(props) {
               </Button>
               </Link>
 
-                <Link to={"/organiser-login"} className={classes.link}>
+                <Link to={"/organiser"} className={classes.link}>
                     <Button
                         color="danger"
                         size="lg"
