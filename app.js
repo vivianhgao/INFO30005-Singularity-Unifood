@@ -11,6 +11,26 @@ const socketIo = require("socket.io");
 const server = http.createServer(app);
 const io= socketIo(server);
 
+const mongo_url=require('./model/index').MONGO_URL
+const db = require("monk")(mongo_url);
+const form_collection = db.get("forms");
+// console.log("collectionssss:"+form_collection.find({}).then( res => {
+//     forms=res;
+//     console.log(forms);
+// }));
+
+//get all forms
+const getAllForms= async socket =>{
+    try{
+        form_collection.find({}).then( res => {
+            forms=res;
+        });
+        socket.emit("Forms",forms)
+    }catch(error){
+        console.log("fail to retrieve forms")
+    }
+}
+
 
 //to get notification
 const getApiAndEmit =  async socket =>{
@@ -22,16 +42,6 @@ const getApiAndEmit =  async socket =>{
         console.error("Error")
     }
 };
-
-//to get all forms
-const getForms= async socket=>{
-    try{
-        const response=await axios.get("http://localhost:5000/forms/formList");
-        socket.emit("Forms", response.data);
-    }catch (error){
-        console.log("Error");
-    }
-}
 
 
 // view engine setup
@@ -85,19 +95,29 @@ app.use(express.static(path.join(__dirname, "client", "build")))
 // });
 
 let interval;
-io.on("connection", socket => {
-    // console.log("user connected", getApiAndEmit(socket));
-    if(interval){
-        clearInterval(interval)
-    }
-    interval=setInterval(()=>{
-        getApiAndEmit(socket),
-        getForms(socket)
-    },1000);
 
-    socket.on("disconnect",()=> {
+io.on("connection", (socket)=> {
+    console.log("New client Time connected");
+    if (interval) {
+        clearInterval(interval);
+    }
+    interval = setInterval(()=> getAllForms(socket),2000);
+
+    // Returning the initial data of food menu from FoodItems collection
+    // socket.on("initial_data", () => {
+    //     form_collection.find({}).then(docs => {
+    //         io.sockets.emit("get_data", docs);
+    //         console.log("emit data!");
+    //     }
+    //     );
+        // collection_foodItems.find({}).then(docs => {
+        //     io.sockets.emit("get_data", docs);
+        // });
+    // });
+
+    socket.on("disconnect", () => {
         console.log("Client disconnected");
-        clearInterval(interval)
+        clearInterval(interval);
     });
 });
 
