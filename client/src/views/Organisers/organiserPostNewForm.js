@@ -182,7 +182,6 @@ export default function PostNewForm1(props) {
                                             }}
                                         />
 
-
                                         <CustomInput
                                             labelText=""
                                             id="time"
