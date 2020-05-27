@@ -4,18 +4,42 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
+
 const axios = require("axios");
 const http = require("http");
 const socketIo = require("socket.io");
 const server = http.createServer(app);
 const io= socketIo(server);
 
-// get database connection from model/index.js
-const mongo_url=require('./model/index').MONGO_URL
-const db = require("monk")(mongo_url);
-const form_collection = db.get("forms");
 
-//get all forms
+// //to get notification
+// const getApiAndEmit =  async socket =>{
+//     try{
+//         const res =  await axios.get("http://localhost:5000/forms/formList");
+//         socket.emit("Notifications", res.data);
+
+//     }catch(error){
+//         console.error("Error")
+//     }
+// };
+
+// //to get all forms
+// const getForms= async socket=>{
+//     try{
+//         const response=await axios.get("http://localhost:5000/forms/formList");
+//         socket.emit("Forms", response.data);
+//     }catch (error){
+//         console.log("Error");
+//     }
+// 
+// );
+
+var formz;
+
+var connection_string = "mongodb+srv://pbudiman:budiman01@cluster0-hdaoj.mongodb.net/unifood?retryWrites=true&w=majority";
+
+const db = require("monk")(connection_string);
+const form_collection = db.get("forms");
 const getAllForms= async socket =>{
     try{
         form_collection.find({}).then( res => {
@@ -26,18 +50,33 @@ const getAllForms= async socket =>{
         console.log("fail to retrieve forms")
     }
 }
+let interval;
 
+io.on("connection", (socket)=> {
+    console.log("New client Time connected");
+    // if (interval) {
+    //     clearInterval(interval);
+    // }
+    interval = setInterval(()=> getAllForms(socket),1000);
 
-//to get notification
-const getApiAndEmit =  async socket =>{
-    try{
-        const res =  await axios.get("http://localhost:5000/forms/formList");
-        socket.emit("Notifications", res.data);
+    // Returning the initial data of food menu from FoodItems collection
+    // socket.on("initial_data", () => {
+    //     form_collection.find({}).then(docs => {
+    //         io.sockets.emit("get_data", docs);
+    //         console.log("emit data!");
+    //     }
+    //     );
+        // collection_foodItems.find({}).then(docs => {
+        //     io.sockets.emit("get_data", docs);
+        // });
+    // });
 
-    }catch(error){
-        console.error("Error")
-    }
-};
+    socket.on("disconnect", () => {
+        console.log("Client disconnected");
+        clearInterval(interval);
+    });
+});
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -66,45 +105,51 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //     res.render('index' ,{title:'Unifood HomePage'});
 // });
 
-// Handle user requests
+// Handle user-management requests
+// the user routes are added onto the end of '/user-management'
 app.use('/users', userRouter);
-// handle form requests
+// handle form-management requests
+//the form routes are added to the end of '/form-management'
 app.use('/forms', formRouter);
-// handle organiser requests
+// handle organiser-management requests
+// the form routes are added to the end of '/organiser-management'
 app.use('/organisers', organiserRouter);
-// handle location requests
+// handle organiser-management requests
+// the form routes are added to the end of '/organiser-management'
 app.use('/locations', locationRouter);
 
+// //Static file declaration
+// app.use(express.static(path.join(__dirname, 'client/build')));
 // ... other app.use middleware 
 app.use(express.static(path.join(__dirname, "client", "build")))
 
 
-let interval;
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "client", "public", "index.html"));
+// // });
+// const formController=require('./controller/formController')
 
-io.on("connection", (socket)=> {
-    console.log("New client Time connected");
-    if (interval) {
-        clearInterval(interval);
-    }
-    interval = setInterval(()=> getAllForms(socket),2000);
+// let interval;
+// io.on("connection", socket => {
+//     // console.log("user connected", getApiAndEmit(socket));
+//     // if(interval){
+//     //     clearInterval(interval)
+//     // }
+//     // interval=setInterval(()=>{
+//     //     // getApiAndEmit(socket),
+//     //     // getForms(socket)
+//     //     formController.getAllForms(io)
 
-    // Returning the initial data of food menu from FoodItems collection
-    // socket.on("initial_data", () => {
-    //     form_collection.find({}).then(docs => {
-    //         io.sockets.emit("get_data", docs);
-    //         console.log("emit data!");
-    //     }
-    //     );
-        // collection_foodItems.find({}).then(docs => {
-        //     io.sockets.emit("get_data", docs);
-        // });
-    // });
+//     // },1000);
 
-    socket.on("disconnect", () => {
-        console.log("Client disconnected");
-        clearInterval(interval);
-    });
-});
+//     socket.on("Forms", (io)=>{
+//         formController.getAllForms(io);
+//     })
+//     socket.on("disconnect",()=> {
+//         console.log("Client disconnected");
+//         clearInterval(interval)
+//     });
+// });
 
 // Step 3
 if (process.env.NODE_ENV === 'production') {
@@ -114,6 +159,12 @@ if (process.env.NODE_ENV === 'production') {
         res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')); // relative path
     });
 }
+
+// //production mode
+// if(process.env.NODE_ENV === 'production') {  
+//     app.use(express.static(path.join(__dirname, 'client/build')));  
+//     app.get('*', (req, res) => {    res.sendfile(path.join(__dirname = 'client/build/index.html'));  
+// })}
 
 server.listen(process.env.PORT || 5000, () => {
     console.log("The Unifood app is listening on port 5000!");

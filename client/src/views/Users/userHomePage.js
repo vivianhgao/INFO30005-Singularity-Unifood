@@ -15,10 +15,11 @@ import styles from "assets/jss/material-kit-react/views/profilePage.js";
 import {useHistory} from 'react-router-dom';
 import { useLocation } from "react-router-dom";
 import axios from 'axios';
-import io from "socket.io-client";
 import socketIOClient from "socket.io-client";
-
+import io from "socket.io-client";
 const useStyles = makeStyles(styles);
+
+// const endpoint="http://localhost:5000";
 var socket = io();
 
 
@@ -50,11 +51,13 @@ export default function UserDashboard(props) {
   }
 
   useEffect(()=>{
-   
+    // const socket=socketIOClient(endpoint);
+
     // socket.on("Notifications", data=>setIncomingData(data));
     socket.on("Forms", data=>setForms(data));
+    console.log(forms)
 
-    // // Get new only the new incoming data
+    // Get new only the new incoming data
     // if(incomingData.length > allData.length) {
     //   for (let i= allData.length; i<incomingData.length; i++) {
     //     newData.push(incomingData[i]);
@@ -142,6 +145,7 @@ export default function UserDashboard(props) {
   }
 
   function logOut(){
+    console.log("User "+username+" is logged out!")
     history.push({pathname:'/'})
   }
 
