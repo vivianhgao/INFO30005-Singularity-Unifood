@@ -48,6 +48,7 @@ import { useHistory }  from 'react-router-dom';
 const useStyles = makeStyles(styles);
 
 export default function UserDetails(props) {
+    
     const location = useLocation();
     let history = useHistory()
     const oldUsername=location.state.detail;
@@ -59,17 +60,19 @@ export default function UserDetails(props) {
 
     const classes = useStyles();
     const { ...rest } = props;
-
+    var username=oldUsername;
     function handleChanges(){
         if(newUsername){
-            var username=newUsername
+            username=newUsername
 
-        }else{
-            username=oldUsername;
         }
-
         axios.post("users/login/update/"+oldUsername,{username,email,first_name,last_name,password})
             .then(res=> res.data.success?history.push({pathname:'/userdashboard', state:{detail:username}}):alert("Chosen email/username is taken."));
+    }
+
+    function handleCancelation(){
+      
+      history.push({pathname:'/userdashboard', state:{detail:username}});
     }
 
     const handleEmail = (event) => {
@@ -111,7 +114,7 @@ export default function UserDetails(props) {
                     <div className={classes.container}>
                         <div class='container'>
                             <div class="heading">
-                                Fill details to be changed:
+                                Fill details to be changed
                             </div>
 
 
@@ -124,20 +127,14 @@ export default function UserDetails(props) {
                                             labelText="New Email"
                                             id="email"
                                             value={email}
+                                            size="sm"
                                             formControlProps={{
 
                                                 fullWidth: true,
                                                 onChange: (event)=>handleEmail(event)
 
                                             }}
-                                            inputProps={{
-                                                type: "username",
-                                                endAdornment: (
-                                                    <InputAdornment position="end">
-                                                        <People className={classes.inputIconsColor} />
-                                                    </InputAdornment>
-                                                )
-                                            }}
+                                           
                                         />
 
                                         <CustomInput
@@ -147,14 +144,7 @@ export default function UserDetails(props) {
                                             formControlProps={{
                                                 fullWidth: true,onChange: (event)=>handleFirstname(event)
                                             }}
-                                            inputProps={{
-                                                type: "text",
-                                                endAdornment: (
-                                                    <InputAdornment position="end">
-                                                        <People className={classes.inputIconsColor} />
-                                                    </InputAdornment>
-                                                )
-                                            }}
+                                            
                                         />
 
                                         <CustomInput
@@ -165,14 +155,7 @@ export default function UserDetails(props) {
                                                 fullWidth: true,
                                                 onChange: (event)=>handleLastName(event)
                                             }}
-                                            inputProps={{
-                                                type: "text",
-                                                endAdornment: (
-                                                    <InputAdornment position="end">
-                                                        <People className={classes.inputIconsColor} />
-                                                    </InputAdornment>
-                                                )
-                                            }}
+                                            
                                         />
 
                                         <CustomInput
@@ -183,14 +166,7 @@ export default function UserDetails(props) {
                                                 fullWidth: true,
                                                 onChange: (event)=>handleUsername(event)
                                             }}
-                                            inputProps={{
-                                                type: "username",
-                                                endAdornment: (
-                                                    <InputAdornment position="end">
-                                                        <People className={classes.inputIconsColor} />
-                                                    </InputAdornment>
-                                                )
-                                            }}
+                                            
                                         />
                                         <CustomInput
                                             labelText="New Password"
@@ -201,142 +177,35 @@ export default function UserDetails(props) {
                                                 fullWidth: true,
                                                 onChange: (event)=>handlePassword(event)
                                             }}
-                                            inputProps={{
-                                                type: "password",
-                                                endAdornment: (
-                                                    <InputAdornment position="end">
-                                                        <People className={classes.inputIconsColor} />
-                                                    </InputAdornment>
-                                                )
-                                            }}
+                                            
 
                                         />
+                                        
                                         <div class='button'>
                                             <Button simple color="danger" size="sm" justify="center" onClick={()=>handleChanges()}>
-                                                Account detail
+                                              <div class="buttonFiller">
+                                                Confirm changes
+                                                </div>
                                             </Button>
-
+                                            </div>
+                                            
+                                            
+                                       <div class='cancelbutton'>
+                                          <Button simple color="danger" size="sm" justify="center" onClick={()=>handleCancelation()}>
+                                            <div class="cancel">
+                                              Cancel
+                                            </div>
+                                          </Button>
                                         </div>
+                                   
+                                      </div>
 
-                                    </div>
-
-
+                                   
 
                                 </Grid>
 
 
-                                {/* <NavPills
-                  alignCenter
-                  color="primary"
-                  tabs={[
-                    {
-                      tabButton: "Studio",
-                      tabIcon: Camera,
-                      tabContent: (
-                        <GridContainer justify="center">
-                          <GridItem xs={12} sm={12} md={4}>
-                            <img
-                              alt="..."
-                              src={studio1}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={studio2}
-                              className={navImageClasses}
-                            />
-                          </GridItem>
-                          <GridItem xs={12} sm={12} md={4}>
-                            <img
-                              alt="..."
-                              src={studio5}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={studio4}
-                              className={navImageClasses}
-                            />
-                          </GridItem>
-                        </GridContainer>
-                      )
-                    },
-                    {
-                      tabButton: "Work",
-                      tabIcon: Palette,
-                      tabContent: (
-                        <GridContainer justify="center">
-                          <GridItem xs={12} sm={12} md={4}>
-                            <img
-                              alt="..."
-                              src={work1}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={work2}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={work3}
-                              className={navImageClasses}
-                            />
-                          </GridItem>
-                          <GridItem xs={12} sm={12} md={4}>
-                            <img
-                              alt="..."
-                              src={work4}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={work5}
-                              className={navImageClasses}
-                            />
-                          </GridItem>
-                        </GridContainer>
-                      )
-                    },
-                    {
-                      tabButton: "Favorite",
-                      tabIcon: Favorite,
-                      tabContent: (
-                        <GridContainer justify="center">
-                          <GridItem xs={12} sm={12} md={4}>
-                            <img
-                              alt="..."
-                              src={work4}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={studio3}
-                              className={navImageClasses}
-                            />
-                          </GridItem>
-                          <GridItem xs={12} sm={12} md={4}>
-                            <img
-                              alt="..."
-                              src={work2}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={work1}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={studio1}
-                              className={navImageClasses}
-                            />
-                          </GridItem> */}
-                                {/* </GridContainer>
-                      )
-                    }
-                  ]}
-                /> */}
+                              
 
                             </GridContainer>
                         </div>

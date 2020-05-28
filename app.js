@@ -22,34 +22,17 @@ const getAllForms= async socket =>{
         });
         socket.emit("Forms",forms)
     }catch(error){
-        // console.log("fail to retrieve forms")
+        console.log("fail to retrieve forms")
     }
 }
-// //NOTIFSS
-// to get notification
-// const getNotifications =  async socket =>{
-//     try{
-//         form_collection.find({}).then( res => {
-//             console
-//         });
-//         console.log(forms)
-//         socket.emit("Notifications", forms);
-
-//     }catch(error){
-//         console.error("Error")
-//     }
-// };
 let interval;
 
 io.on("connection", (socket)=> {
-    console.log("New client connected");
-    if (interval) {
-        clearInterval(interval);
-    }
-    interval = setInterval(()=> 
-        getAllForms(socket)
-        // getNotifications(socket)
-        ,1000);
+    console.log("New client Time connected");
+    // if (interval) {
+    //     clearInterval(interval);
+    // }
+    interval = setInterval(()=> getAllForms(socket),1000);
 
     // Returning the initial data of food menu from FoodItems collection
     // socket.on("initial_data", () => {

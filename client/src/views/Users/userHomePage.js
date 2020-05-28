@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import HeaderLinks from "components/Header/HeaderLinks.js";
 import Parallax from "components/Parallax/Parallax.js";
-
+import NotificationsIcon from '@material-ui/icons/Notifications';
 import './userhome.css'
 
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
@@ -54,6 +54,7 @@ export default function UserDashboard(props) {
     // const socket=socketIOClient(endpoint);
 
     socket.on("Forms", data=>setForms(data));
+    // console.log(forms)
     setIncomingData(forms);
   
 
@@ -201,6 +202,7 @@ export default function UserDashboard(props) {
                           Share my location!
                         </div>
                     </Button>
+                    
 
                     <Button simple color="danger" size="md" onClick={()=>goUserDetails()}>
                       <div class='writing'>
@@ -219,15 +221,16 @@ export default function UserDashboard(props) {
 
             
                 <div class="notifs">
-                    <div class='label'>
+                    {/* <div class='label'>
                         Notifications
-                    </div>
+                    </div> */}
+                    <NotificationsIcon fontSize="large"></NotificationsIcon>
                     <br/>
                     {notifyData.map(res=>(
                         <div key={res.id}>
                             <div class='notifBox'>
-                                New Entry from {res.name}!<br/>
-                                At {res.address} <br/>
+                                Food available from {res.name}!<br/>
+                                Location: {res.address} <br/>
                                 Time: {res.time}<br/>
                             </div>
                         </div>

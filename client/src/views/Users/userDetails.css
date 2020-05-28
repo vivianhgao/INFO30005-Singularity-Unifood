@@ -5,18 +5,32 @@
 }
 .container{
     padding:5%;
-   
 
 }
+.buttonFiller{
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    font-size: x-small;
+}
+
 
 .button{
+    float: right ;
     background-color: antiquewhite;
-    display: flex; 
-    justify-content: center; 
-    float: right;
-    font-family: 'Nunito', sans-serif;
+    border-radius: 10px;
 }
+.cancelbutton{
+    float: left ;
 
+    background-color: rgb(175, 173, 170);
+    border-radius: 10px;
+}
+.cancel{
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    font-size: x-small;
+    color:white
+}
 .writing{
     font-family: 'Nunito', sans-serif;
     text-align: center;
