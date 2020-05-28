@@ -30,6 +30,7 @@ import image from "assets/img/unifood.png";
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 import {Link} from 'react-router-dom'
+import swal from 'sweetalert';
 
 const useStyles = makeStyles(styles);
 
@@ -47,10 +48,8 @@ export default function UserLogin(props) {
 
     function validateLogin(event){
         event.preventDefault();
-
-
-      axios.post('users/login',{username,password})
-        .then(res => res.data.success? history.push({pathname:"/userdashboard",state:{detail:username}}): alert("Incorrect username/ password.\nPlease Try again"))
+        axios.post('users/login',{username,password})
+            .then(res => res.data.success? history.push({pathname:"/userdashboard",state:{detail:username}}): swal("Incorrect username/ password.\nPlease Try again"))
     }
 
     
