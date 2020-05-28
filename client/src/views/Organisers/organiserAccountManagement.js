@@ -41,6 +41,19 @@ export default function OrganiserAccMgmt(props) {
     history.push({pathname:'/'})
   }
 
+  const updateAccount = () =>{ 
+    let path = '/organiser-account'; 
+    history.push(path);
+  }
+  const viewForms = () =>{ 
+    let path = '/all-listings'; 
+    history.push(path);
+  }
+  const deleteAccount = () =>{ 
+    let path = '/organiser-account'; 
+    history.push(path);
+  }
+
   return ( 
       
     <div >
@@ -72,7 +85,7 @@ export default function OrganiserAccMgmt(props) {
             Update Account
           </button>
 
-          <button className='buttonOrg2 shadow'>
+          <button className='buttonOrg2 shadow' onClick={viewForms}>
             View My Forms
           </button>
 

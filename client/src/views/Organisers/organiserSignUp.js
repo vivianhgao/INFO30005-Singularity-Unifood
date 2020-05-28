@@ -53,12 +53,6 @@ export default function OrganiserSignup(props) {
     const [email,setEmail]=useState("")
     const [password,setPassword]= useState("")
 
-    // organisation_name: req.body.organisation_name,
-    //     officer_name: req.body.officer_name,
-    //     contact_number: req.body.contact_number,
-    //     email: req.body.email,
-    //     password
-
     function validateSignUp(ev){
         ev.preventDefault(); // Let's stop this event.
         axios.post(

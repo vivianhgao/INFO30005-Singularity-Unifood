@@ -25,13 +25,8 @@ const endpoint="http://localhost:5000";
 export default function OrganiserHomePage(props) {
 
   let history = useHistory();
-  const [userLat, setUserLat] = useState(Number);
-  const [userLong, setUserLong] = useState(Number);
-  const [allData, setAllData]=useState([]);
-  const [newData, setNewData]=useState([]);
-  const [notifyData, setNotifyData]=useState([]);
-  const [incomingData, setIncomingData]=useState([]);
-  const [forms, setForms] = useState([]);
+  const [email, setEmail] = useState("");
+  const [id, setId] = useState("");
 // var notifyData = [];
 
   const classes = useStyles();
@@ -56,6 +51,9 @@ export default function OrganiserHomePage(props) {
     history.push(path);
   }
 
+  function getId(event) {
+    event.target.value;
+  }
   return (
 
     <div >

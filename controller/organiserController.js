@@ -28,8 +28,8 @@ const loginOrganiser = (req, res)=>{
        else if(!email || password!=organiser.password){
            res.send("The email or password you entered incorrect");
        } else {
-           res.render('organiserLogon',
-               {organisation_name:organiser.organisation_name, id:organiser._id});
+            // res.send({ message: 'Organisation created' });
+            res.json({success:true, organisation_name:organiser.organisation_name, id:organiser._id});
        }
     });
 };
@@ -101,6 +101,7 @@ const addOrganiser = async (req, res) => {
             var data =  new Organiser(new_organiser);
             data.save();
             // res.send('Organisation account created.');
+            return res.json({ success: true });
             res.send({ message: 'Organisation created' });
             // res.status(201);
         }
