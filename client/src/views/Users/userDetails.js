@@ -3,10 +3,7 @@ import React, {useState} from "react";
 import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-// @material-ui/icons
-import Camera from "@material-ui/icons/Camera";
-import Palette from "@material-ui/icons/Palette";
-import Favorite from "@material-ui/icons/Favorite";
+
 // core components
 import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
@@ -16,34 +13,18 @@ import GridItem from "components/Grid/GridItem.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
 import NavPills from "components/NavPills/NavPills.js";
 import Parallax from "components/Parallax/Parallax.js";
-
-
-import profile from "assets/img/faces/christian.jpg";
-
-import studio1 from "assets/img/examples/studio-1.jpg";
-import studio2 from "assets/img/examples/studio-2.jpg";
-import studio3 from "assets/img/examples/studio-3.jpg";
-import studio4 from "assets/img/examples/studio-4.jpg";
-import studio5 from "assets/img/examples/studio-5.jpg";
-import work1 from "assets/img/examples/olu-eletu.jpg";
-import work2 from "assets/img/examples/clem-onojeghuo.jpg";
-import work3 from "assets/img/examples/cynthia-del-rio.jpg";
-import work4 from "assets/img/examples/mariya-georgieva.jpg";
-import work5 from "assets/img/examples/clem-onojegaw.jpg";
-
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
 
-
-import InputAdornment from "@material-ui/core/InputAdornment";
-import People from "@material-ui/icons/People";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 
+import swal from 'sweetalert';
+
 import './userDetails.css'
 
-import { useLocation } from "react-router-dom";
-import { useHistory }  from 'react-router-dom';
+import { useLocation, useHistory } from "react-router-dom";
+
 
 const useStyles = makeStyles(styles);
 
@@ -57,6 +38,8 @@ export default function UserDetails(props) {
     const [last_name,setNewLastName]=useState("")
     const [newUsername,setNewUsername]= useState("")
     const [password,setNewPassword]=useState("")
+    const [show, setShow] = useState(false);
+
 
     const classes = useStyles();
     const { ...rest } = props;
@@ -71,9 +54,37 @@ export default function UserDetails(props) {
     }
 
     function handleCancelation(){
-      
+
       history.push({pathname:'/userdashboard', state:{detail:username}});
     }
+
+    function handleDeletion(){
+        swal({
+            text: "Are you sure you would like to delete your account?\n This action can't be reversed.",
+            icon: "warning",
+            buttons: {
+                cancel :"No, take me back!",
+                delete:  {
+                    text:"Yes, I'm sure!",
+                    value:"delete"
+                },
+            },
+        })
+        .then((value)=>{
+            switch(value){
+                case "delete":
+                    axios.get("users/delete/"+oldUsername)
+                    .then(res=>res.data.success?
+                        swal("Your account was successfully deleted.",{icon:"success"}).then(history.push('/')):
+                        swal("An Error occured!\nPlease try again."));
+                    break;
+                default:
+                    swal("Welcome back!")
+            }
+        })
+    }
+        
+    
 
     const handleEmail = (event) => {
         setNewEmail(event.target.value);
@@ -111,6 +122,7 @@ export default function UserDetails(props) {
             <Parallax small filter image={require("assets/img/userdashboard.png")} />
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div>
+                    
                     <div className={classes.container}>
                         <div class='container'>
                             <div class="heading">
@@ -181,31 +193,40 @@ export default function UserDetails(props) {
 
                                         />
                                         
-                                        <div class='button'>
-                                            <Button simple color="danger" size="sm" justify="center" onClick={()=>handleChanges()}>
-                                              <div class="buttonFiller">
-                                                Confirm changes
-                                                </div>
-                                            </Button>
-                                            </div>
-                                            
-                                            
-                                       <div class='cancelbutton'>
-                                          <Button simple color="danger" size="sm" justify="center" onClick={()=>handleCancelation()}>
-                                            <div class="cancel">
-                                              Cancel
-                                            </div>
-                                          </Button>
                                         </div>
-                                   
-                                      </div>
 
-                                   
+                                     
+                                       
+                                       
+                                      <div id='button'style={{backgroundColor:"rgb(175, 173, 170)", float:"left"}} >
+                                            <Button simple size="sm"  onClick={handleCancelation}>
+                                              <div class="cancel">
+                                                Cancel
+                                              </div>
+                                            </Button>
+                                        </div>
+                                        
+                                        
+                                        <div id='button' style={{backgroundColor:"antiquewhite", float:"right"}}>
+                                              <Button simple color="danger" size="sm" onClick={handleChanges}>
+                                                <div class="buttonFiller">
+                                                    Confirm Changes
+                                                </div>
+                                              </Button>
+                                        </div>
 
+                                        
+
+
+                                        <div class='deletebutton' >
+                                          <Button simple size="sm" onClick={handleDeletion}>
+                                                <div class="delete">
+                                                    Delete Account
+                                                </div>
+                                            </Button> 
+                                        </div>
+                                        
                                 </Grid>
-
-
-                              
 
                             </GridContainer>
                         </div>

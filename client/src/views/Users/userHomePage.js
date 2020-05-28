@@ -15,11 +15,12 @@ import styles from "assets/jss/material-kit-react/views/profilePage.js";
 import {useHistory} from 'react-router-dom';
 import { useLocation } from "react-router-dom";
 import axios from 'axios';
-import socketIOClient from "socket.io-client";
+
+import swal from 'sweetalert';
+
 import io from "socket.io-client";
 const useStyles = makeStyles(styles);
 
-// const endpoint="http://localhost:5000";
 var socket = io();
 
 
@@ -61,6 +62,7 @@ export default function UserDashboard(props) {
     // socket.on("Notifications", data=>setIncomingData(data));
     
     //NOTIFSS
+    
 
     // Get new only the new incoming data
     if(incomingData.length > allData.length) {
@@ -157,16 +159,39 @@ export default function UserDashboard(props) {
 
 
   function getLocation(){
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        setUserLat(position.coords.latitude);
-        setUserLong(position.coords.longitude);
-      });
-      console.log(userLat);
-      console.log(userLong);
-    } else {
-      alert("Geolocation is not supported in this browser");
-    }
+    swal({
+      text:"Allow Unifood to access your location?",
+      icon:"info",
+      buttons:{
+        cancel:"Decline",
+        accept:{
+          text:"Accept",
+          value:"accept"
+        },
+      },
+    }).then((value)=>{
+      switch(value){
+        case "accept":
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+              setUserLat(position.coords.latitude);
+              setUserLong(position.coords.longitude);
+            });
+            console.log(userLat);
+            console.log(userLong);
+            swal("Location is successfully shared with Unifood!");
+            break;
+
+          
+          } else {
+            swal("Geolocation is not supported in this browser!");
+          }
+        default:
+          swal("Location is not shared!")
+      }
+
+    })
+   
   }
 
   
