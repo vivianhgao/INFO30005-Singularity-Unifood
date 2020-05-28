@@ -6,6 +6,7 @@ const Form = mongoose.model("forms");
 // function to create a new form
 const createForm = async (req, res,next) => {
     const new_form = {
+        email:req.body.email,
         name:req.body.name,
         description:req.body.description,
         address:req.body.address,
@@ -15,10 +16,15 @@ const createForm = async (req, res,next) => {
         latitude:req.body.latitude,
         longitude: req.body.longitude
     };
-    var data = new Form(new_form);
-    data.save();
-    console.log("new form")
-    return res.json({ success: true });
+    try {
+        var data = new Form(new_form);
+        data.save();
+        console.log("new form")
+        return res.json({ success: true });
+    } catch (err) {
+        res.status(400);
+        return res.send("Error making post!");
+    }
     
     // res.render('formManagement',{name:req.body.name, formID:Form.id});
     // res.send("New form added");
@@ -34,6 +40,7 @@ const updateForm = async (req, res, next) => {
         } else if (!Form) {
             return res.send('Form is not found!');
         }
+        doc.email = req.body.email;
         doc.name = req.body.name;
         doc.description = req.body.description;
         doc.address = req.body.address;
@@ -47,6 +54,32 @@ const updateForm = async (req, res, next) => {
     console.log("Form is updated!");
     res.redirect('/forms');
 };
+
+//update form by email
+const updateFormbyEmail = async (req, res, next) => {
+    var email = req.body.email;
+
+    Form.findById(email, function(err, doc) {
+        if (err) {
+            res.send("An error has occurred!");
+        } else if (!Form) {
+            return res.send('Form is not found!');
+        }
+        doc.email = req.body.email;
+        doc.name = req.body.name;
+        doc.description = req.body.description;
+        doc.address = req.body.address;
+        doc.time = req.body.time;
+        doc.quantity = req.body.quantity;
+        doc.photo = req.body.photo;
+        doc.latitude = req.body.latitude;
+        doc.longitude = req.body.longitude;
+        doc.save();
+    });
+    console.log("Form is updated!");
+    res.redirect('/forms');
+};
+
 
 
 // delete a form by form ID
@@ -75,4 +108,5 @@ module.exports = {
     getAllForms,
     updateForm,
     deleteForm,
+    updateFormbyEmail,
 };

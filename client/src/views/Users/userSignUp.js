@@ -48,7 +48,8 @@ export default function UserLogin(props) {
     function validateSignup(){
       axios.post('users/signUp',
           {username,email,password,first_name,last_name})
-        .then(res => res.data.success? history.push({pathname:"/userdashboard", state:{detail:username}}): alert("Username/Email is already registed."))
+        .then(res => res.data.success? history.push({pathname:"/userdashboard", state:{detail:username}}):
+            alert("Username/Email is already registed."))
     }
 
     const handleEmail = (event) => {

@@ -10,6 +10,7 @@ import TodayIcon from '@material-ui/icons/Today';
 import People from "@material-ui/icons/People";
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
+import EmailIcon from '@material-ui/icons/Email';
 
 // core components
 import Header from "components/Header/Header.js";
@@ -46,6 +47,7 @@ export default function PostNewForm(props) {
     const location = useLocation();
     let history = useHistory()
 
+    const [email,setEmail]=useState("")
     const [name,setName]=useState("")
     const [description,setDescription]=useState("")
     const [address,setAddress]=useState("")
@@ -60,11 +62,13 @@ export default function PostNewForm(props) {
 
     function createForm(){
         axios.post('forms/createForm',
-            {name,description,address,time,quantity,photo,latitude,longitude})
-            .then(res => res.data.success?
-                history.push({pathname:"/"}): alert("Error, please try again!"))
+            {email, name,description,address,time,quantity,photo,latitude,longitude})
+            .then(res => res.data.success? history.push({pathname:"/"}): alert("Error, please try again!"))
     }
 
+    const handleEmail = (event) => {
+        setEmail(event.target.value);
+    };
     const handleName = (event) => {
         setName(event.target.value);
     };
@@ -116,6 +120,26 @@ export default function PostNewForm(props) {
                             <GridContainer justify="center" >
                                 <Grid item xs={5} justify="center">
                                     <div class='container'>
+
+                                        <CustomInput
+                                            labelText="Account Email*"
+                                            id="email"
+                                            value={email}
+                                            variant="outlined"
+                                            formControlProps={{
+                                                fullWidth: true,
+                                                onChange: (event)=>handleEmail(event)
+
+                                            }}
+                                            inputProps={{
+                                                type: "text",
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <EmailIcon className={classes.inputIconsColor} />
+                                                    </InputAdornment>
+                                                )
+                                            }}
+                                        />
 
                                         <CustomInput
                                             labelText="Organisation and Event Name*"
