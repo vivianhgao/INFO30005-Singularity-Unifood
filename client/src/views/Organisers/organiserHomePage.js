@@ -47,7 +47,7 @@ export default function OrganiserHomePage(props) {
   // }
 
   const postForm = () =>{ 
-    let path = '/organiser'; 
+    let path = '/post-new-form'; 
     history.push(path);
   }
 
@@ -83,7 +83,7 @@ export default function OrganiserHomePage(props) {
         </div>
           {/* <Link to={"/organiser"} className='buttonOrg1 shadow'> */}
 
-            <button  className='buttonOrg1 shadow' onClick={() => {history.push('/post-new-form')}}>
+            <button  className='buttonOrg1 shadow' onClick={postForm}>
               Post a form
             </button>
           
