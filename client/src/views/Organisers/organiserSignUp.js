@@ -53,12 +53,6 @@ export default function OrganiserSignup(props) {
     const [email,setEmail]=useState("")
     const [password,setPassword]= useState("")
 
-    // organisation_name: req.body.organisation_name,
-    //     officer_name: req.body.officer_name,
-    //     contact_number: req.body.contact_number,
-    //     email: req.body.email,
-    //     password
-
     function validateSignUp(ev){
         ev.preventDefault(); // Let's stop this event.
         axios.post(
@@ -69,8 +63,14 @@ export default function OrganiserSignup(props) {
                 contact_number: contactNumber,
                 email: email,
                 password: password})
-            .then(res => res.data.success? history.push({pathname:'/organiserhome'}) : alert("Please Try again"))
-            .catch();
+            .then(res => {
+                if (res.data.success){
+                    alert("Account created!\n Please log in")
+                    history.push('/organisers/login');
+                } else {
+                    alert ("Failed sign up");
+                }
+            }).catch();
     }
 
     const handleOrganisationName = (event) => {
@@ -181,6 +181,7 @@ export default function OrganiserSignup(props) {
                                         <TextField
                                             id="standard-full-width"
                                             label="Password"
+                                            type="password"
                                             style={{ margin: 8 }}
                                             placeholder="Password"
                                             // helperText=""
@@ -192,88 +193,6 @@ export default function OrganiserSignup(props) {
                                             }}
                                             onChange={handlePassword}
                                         />
-                                        {/*<CustomInput*/}
-                                        {/*    labelText="email"*/}
-                                        {/*    id="email"*/}
-                                        {/*    value={email}*/}
-
-                                        {/*    formControlProps={{*/}
-                                        {/*        fullWidth: true,*/}
-                                        {/*        onChange: (event)=>handleEmail(event)*/}
-                                        {/*    }}*/}
-
-                                        {/*    inputProps={{*/}
-                                        {/*        type: "email",*/}
-                                        {/*        endAdornment: (*/}
-                                        {/*            <InputAdornment position="end">*/}
-                                        {/*                <People className={classes.inputIconsColor} />*/}
-                                        {/*            </InputAdornment>*/}
-                                        {/*        )*/}
-                                        {/*    }}*/}
-                                        {/*/>*/}
-
-                                        {/*<CustomInput*/}
-                                        {/*    labelText="email"*/}
-                                        {/*    id="email"*/}
-                                        {/*    value={email}*/}
-
-                                        {/*    formControlProps={{*/}
-                                        {/*        fullWidth: true,*/}
-                                        {/*        onChange: (event)=>handleEmail(event)*/}
-                                        {/*    }}*/}
-
-                                        {/*    inputProps={{*/}
-                                        {/*        type: "email",*/}
-                                        {/*        endAdornment: (*/}
-                                        {/*            <InputAdornment position="end">*/}
-                                        {/*                <People className={classes.inputIconsColor} />*/}
-                                        {/*            </InputAdornment>*/}
-                                        {/*        )*/}
-                                        {/*    }}*/}
-                                        {/*/>*/}
-
-
-                                        {/* <FormControl>
-                                          <InputLabel>Username</InputLabel>
-                                          <Input id="username" type="text" value={username} onChange={handleUsername}disableUnderline={true}/>
-                                        </FormControl>
-
-                                        <br/>
-                                        <FormControl>
-                                          <InputLabel>Password</InputLabel>
-                                          <Input id="username" type="password" value={password} onChange={handlePassword}/>
-                                        </FormControl> */}
-
-
-
-                                        {/*<CustomInput*/}
-                                        {/*    labelText="Password"*/}
-                                        {/*    id="password"*/}
-                                        {/*    type="password"*/}
-                                        {/*    // onChange={ (event)=>handlePassword(event)}*/}
-
-                                        {/*    formControlProps={{*/}
-                                        {/*        fullWidth: true,*/}
-                                        {/*        onChange: (event)=>handlePassword(event)*/}
-
-                                        {/*    }}*/}
-                                        {/*    inputProps={{*/}
-                                        {/*        // onChange: (event)=>handlePassword(event),*/}
-
-                                        {/*        type: "password",*/}
-
-                                        {/*        endAdornment: (*/}
-                                        {/*            <InputAdornment position="end">*/}
-                                        {/*                <Icon className={classes.inputIconsColor}>*/}
-
-                                        {/*                </Icon>*/}
-                                        {/*            </InputAdornment>*/}
-                                        {/*        ),*/}
-                                        {/*        autoComplete: "off"*/}
-                                        {/*    }}*/}
-
-
-                                        {/*/>*/}
 
                                         <Button
                                             type="submit"

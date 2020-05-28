@@ -25,14 +25,10 @@ const endpoint="http://localhost:5000";
 export default function OrganiserHomePage(props) {
 
   let history = useHistory();
-  const [userLat, setUserLat] = useState(Number);
-  const [userLong, setUserLong] = useState(Number);
-  const [allData, setAllData]=useState([]);
-  const [newData, setNewData]=useState([]);
-  const [notifyData, setNotifyData]=useState([]);
-  const [incomingData, setIncomingData]=useState([]);
-  const [forms, setForms] = useState([]);
-// var notifyData = [];
+  const location = useLocation();
+  const id=location.state.id;
+  const organisation_name = location.state.orgName;
+
 
   const classes = useStyles();
   const { ...rest } = props;
@@ -46,15 +42,17 @@ export default function OrganiserHomePage(props) {
   //   history.push({pathname:'/'})
   // }
 
+
   const postForm = () =>{ 
     let path = '/post-new-form'; 
     history.push(path);
   }
 
   const manageAccount = () =>{ 
-    let path = '/organiser-account'; 
-    history.push(path);
+    let path = '/organisers/account'; 
+    history.push(path, {id:id, orgName: organisation_name});
   }
+
 
   return (
 
@@ -78,7 +76,7 @@ export default function OrganiserHomePage(props) {
 
         <div className='option'>
           <div className='label'>
-          Welcome
+          Welcome {organisation_name}
           </div>
         </div>
           {/* <Link to={"/organiser"} className='buttonOrg1 shadow'> */}
@@ -93,8 +91,9 @@ export default function OrganiserHomePage(props) {
           </button>
         
       </div>
-
-      
+      <br>
+      </br>
+      <Footer />
     </div>
   );
 }

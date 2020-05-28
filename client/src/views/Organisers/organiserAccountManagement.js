@@ -26,23 +26,27 @@ var socket = io();
 export default function OrganiserAccMgmt(props) {
 
   let history = useHistory();
-  const [first_name,setFirstName]=useState();
-// var notifyData = [];
+  const location = useLocation();
+  const id = location.state.id;
+  const organisation_name = location.state.orgName;
 
   const classes = useStyles();
   const { ...rest } = props;
-
-
-//   function goUserDetails(){
-//     history.push({pathname:'/userdetails',state:{detail:username}});
-//   }
 
   function logOut(){
     history.push({pathname:'/'})
   }
 
+  const updateAccount = () =>{ 
+    let path = '/organiser-account'; 
+    history.push(path);
+  }
   const viewForms = () =>{ 
     let path = '/all-listings'; 
+    history.push(path);
+  }
+  const deleteAccount = () =>{ 
+    let path = '/organiser-account'; 
     history.push(path);
   }
 
@@ -69,7 +73,9 @@ export default function OrganiserAccMgmt(props) {
             
         <div className='option'>
           <div className='label'>
-          Welcome
+          {organisation_name}
+          <br></br>
+          Account Management
           </div>
         </div>
 
