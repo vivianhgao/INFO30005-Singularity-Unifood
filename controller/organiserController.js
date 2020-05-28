@@ -16,20 +16,54 @@ const getOrganisers = async (req, res) => {
     }
 };
 
+
+// function for user to log in
+const logIn = (req, res, next) => {
+    const {username,password}=req.body;
+    console.log("server: "+req.body)
+
+    // find the user in the database with the log in username
+    User.findOne({username:username},function (err,user){
+        if (err) {
+            res.error("An error occured.");
+        }
+        //validate whether the password and username matches each other
+        else if (!user || password!=user.password) {
+            console.log("Wrong username or password! Please go back and try again!");
+            // res.render('loginError');
+            return res.json({ success: false, error: err });
+            // return res.status(500).send({message:'invalid'})
+            
+        }
+        //when both username and password is correct, user is logged in
+        else {
+            console.log("User "+username+" is logged in!")
+            // return res.status(500).send({user})
+            // res.render('welcomeUser',{ first_name:user.first_name, username:username });
+            return res.json({ success: true, user: user });
+            // res.send(true)
+           
+        }
+    });
+};
+
 // function for login
 const loginOrganiser = (req, res)=>{
-    const email = req.body.email;
-    const password = req.body.password;
-
-    Organiser.findOne({email:email}, (err, organiser)=>{
+    const {email,password} = req.body;
+    Organiser.findOne({email:email}, function(err, organiser){
        if (err){
-           console.error("An error occured.");
+           res.error("An error occured.");
        }
        else if(!email || password!=organiser.password){
-           res.send("The email or password you entered incorrect");
+        //    res.send("The email or password you entered incorrect");
+            return res.json({success:false, error:err})
        } else {
-           res.render('organiserLogon',
-               {organisation_name:organiser.organisation_name, id:organiser._id});
+           console.log(organiser)
+        //    res.render('organiserLogon',
+        //        {organisation_name:organiser.organisation_name, id:organiser._id});
+           
+            return (res.json({ success: true, organiser:organiser }));
+
        }
     });
 };

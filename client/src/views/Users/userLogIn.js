@@ -19,6 +19,10 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardFooter from "components/Card/CardFooter.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 
+import Grid from '@material-ui/core/Grid';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+
+
 import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
 import image from "assets/img/unifood.png";
@@ -119,23 +123,16 @@ export default function UserLogin(props) {
                                             labelText="Password"
                                             id="password"
                                             type="password"
-                                            // onChange={ (event)=>handlePassword(event)}
-                                            
                                             formControlProps={{
                                                 fullWidth: true,
                                                 onChange: (event)=>handlePassword(event)
                                         
                                             }}
                                             inputProps={{
-                                              // onChange: (event)=>handlePassword(event),
-                  
                                                 type: "password", 
-                                                
                                                 endAdornment: (
                                                     <InputAdornment position="end">
-                                                        <Icon className={classes.inputIconsColor}>
-
-                                                        </Icon>
+                                                        <VpnKeyIcon fontSize="small"></VpnKeyIcon>
                                                     </InputAdornment>
                                                 ),
                                                 autoComplete: "off"
@@ -143,17 +140,24 @@ export default function UserLogin(props) {
                                     
                                             
                                         />
-                                        
-                                    </CardBody>
-                                    <CardFooter className={classes.cardFooter}>
-                                        <Button simple color="danger" size="lg" onClick={(event)=>validateLogin(event)}>
-                                            Log in
+                                        <Button
+                                            type="submit"
+                                            variant="contained"
+                                            fullWidth
+                                            color="danger"
+                                            className={classes.submit}
+                                            onClick={(event)=>validateLogin(event)}
+                                            >
+                                            Log In
                                         </Button>
-                                        <br/>
-                                        <Link to='/usersignup' > Create an account </Link>
                                         
-                                    </CardFooter>
-                            
+                                        <Grid item>
+                                            <Link to="/usersignup" style={{ color: '#999999' }}>
+                                                Don't have an account? Sign Up
+                                             </Link>
+                                        </Grid>
+                                    </CardBody>
+                    
                                 </form>
                                 <div style={{alignItems:'centre'}}>
                                 </div>

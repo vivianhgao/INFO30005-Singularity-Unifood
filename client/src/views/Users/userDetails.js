@@ -9,10 +9,9 @@ import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
 import Button from "components/CustomButtons/Button.js";
 import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
-import NavPills from "components/NavPills/NavPills.js";
 import Parallax from "components/Parallax/Parallax.js";
+import InputAdornment from "@material-ui/core/InputAdornment";
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
 
 import CustomInput from "components/CustomInput/CustomInput.js";
@@ -20,6 +19,11 @@ import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 
 import swal from 'sweetalert';
+
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import EmailIcon from '@material-ui/icons/Email';
+import PersonIcon from '@material-ui/icons/Person';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 import './userDetails.css'
 
@@ -38,7 +42,7 @@ export default function UserDetails(props) {
     const [last_name,setNewLastName]=useState("")
     const [newUsername,setNewUsername]= useState("")
     const [password,setNewPassword]=useState("")
-    const [show, setShow] = useState(false);
+
 
 
     const classes = useStyles();
@@ -139,12 +143,20 @@ export default function UserDetails(props) {
                                             labelText="New Email"
                                             id="email"
                                             value={email}
-                                            size="sm"
+                                           
                                             formControlProps={{
 
                                                 fullWidth: true,
                                                 onChange: (event)=>handleEmail(event)
 
+                                            }}
+                                            inputProps={{
+                                                type: "username",
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <EmailIcon fontSize='small'></EmailIcon>
+                                                    </InputAdornment>
+                                                )
                                             }}
                                            
                                         />
@@ -155,6 +167,14 @@ export default function UserDetails(props) {
                                             value={first_name}
                                             formControlProps={{
                                                 fullWidth: true,onChange: (event)=>handleFirstname(event)
+                                            }}
+                                            inputProps={{
+                                                type: "username",
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <PersonIcon fontSize='small'/>
+                                                    </InputAdornment>
+                                                )
                                             }}
                                             
                                         />
@@ -167,6 +187,14 @@ export default function UserDetails(props) {
                                                 fullWidth: true,
                                                 onChange: (event)=>handleLastName(event)
                                             }}
+                                            inputProps={{
+                                                type: "username",
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <PersonIcon fontSize='small'/>
+                                                    </InputAdornment>
+                                                )
+                                            }}
                                             
                                         />
 
@@ -178,6 +206,14 @@ export default function UserDetails(props) {
                                                 fullWidth: true,
                                                 onChange: (event)=>handleUsername(event)
                                             }}
+                                            inputProps={{
+                                                type: "username",
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <AccountCircleIcon fontSize='small'/>
+                                                    </InputAdornment>
+                                                )
+                                            }}
                                             
                                         />
                                         <CustomInput
@@ -188,6 +224,14 @@ export default function UserDetails(props) {
 
                                                 fullWidth: true,
                                                 onChange: (event)=>handlePassword(event)
+                                            }}
+                                            inputProps={{
+                                                type: "username",
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <VpnKeyIcon fontSize='small'/>
+                                                    </InputAdornment>
+                                                )
                                             }}
                                             
 

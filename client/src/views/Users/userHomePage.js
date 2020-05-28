@@ -242,13 +242,10 @@ export default function UserDashboard(props) {
                     </Button>
                     </div>
                 </div>
-            {/* //NOTIFSS */}
-
+          
             
                 <div class="notifs">
-                    {/* <div class='label'>
-                        Notifications
-                    </div> */}
+                   
                     <NotificationsIcon fontSize="large"></NotificationsIcon>
                     <br/>
                     {notifyData.map(res=>(
