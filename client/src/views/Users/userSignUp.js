@@ -45,7 +45,8 @@ export default function UserLogin(props) {
     const [password,setPassword]=useState("")
 
 
-    function validateSignup(){
+    function validateSignup(event){
+        event.preventDefault();
       axios.post('users/signUp',
           {username,email,password,first_name,last_name})
         .then(res => res.data.success? history.push({pathname:"/userdashboard", state:{detail:username}}):
@@ -224,7 +225,7 @@ export default function UserLogin(props) {
                                         
                                     </CardBody>
                                     <CardFooter className={classes.cardFooter}>
-                                        <Button simple color="primary" size="lg" onClick={()=>validateSignup()}>
+                                        <Button simple color="primary" size="lg" onClick={(event)=>validateSignup(event)}>
                                             Sign up
                                         </Button>
                                     </CardFooter>

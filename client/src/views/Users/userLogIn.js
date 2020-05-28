@@ -41,7 +41,9 @@ export default function UserLogin(props) {
     const [username,setUsername]= useState("")
     const [password,setPassword]=useState("")
 
-    function validateLogin(){
+    function validateLogin(event){
+        event.preventDefault();
+
 
       axios.post('users/login',{username,password})
         .then(res => res.data.success? history.push({pathname:"/userdashboard",state:{detail:username}}): alert("Incorrect username/ password.\nPlease Try again"))
@@ -144,7 +146,7 @@ export default function UserLogin(props) {
                                         
                                     </CardBody>
                                     <CardFooter className={classes.cardFooter}>
-                                        <Button simple color="danger" size="lg" onClick={()=>validateLogin()}>
+                                        <Button simple color="danger" size="lg" onClick={(event)=>validateLogin(event)}>
                                             Log in
                                         </Button>
                                         <br/>
