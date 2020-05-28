@@ -14,6 +14,8 @@ import UserDetails from './views/Users/userDetails';
 import OrganiserLogin from "./views/Organisers/organiserLogIn";
 import OrganiserSignup from "./views/Organisers/organiserSignUp";
 import OrganiserHomePage from "./views/Organisers/organiserHomePage";
+import OrganiserAccMgmt from "./views/Organisers/organiserAccountManagement";
+
 //forms pages
 import PostNewForm from "./views/Forms/formCreateNew";
 import ViewAllForms from "./views/Forms/formViewAll";
@@ -36,11 +38,16 @@ export default function App(){
                 <Route path="/userdashboard" component={UserDashboard}/>
                 <Route path="/usersignup" component={UserSignUp} />
                 <Route path="/userlogin" component={UserLogin} />
+          
                 <Route path="/about-us" component={AboutUs} />
+          
                 <Route path="/organiser" component={OrganiserLogin} />
                 <Route path="/organisersignup" component={OrganiserSignup} />
                 <Route path="/organiserhome" component={OrganiserHomePage} />
+                <Route path="/organiser-account" component={OrganiserAccMgmt} />
+
                 <Route path="/all-listings" component={ViewAllForms} />
+
                 <Route path="/post-new-form" component={PostNewForm} />
 
                 <Route path="/" component={HomePage} />

@@ -87,20 +87,22 @@ const addOrganiser = async (req, res) => {
         password: req.body.password
     };
     Organiser.exists( {email:req.body.email},(err,organiserExists) => {
+        console.log("Organiser doesnt exist");
         if(err){
             res.send('An error occured.');
         }
         else if(organiserExists){
             res.send("The email has been used.\nPlease enter other email.");
-            res.status(409);
+            // res.status(409);
         }
         else if (req.body.organisation_name && req.body.officer_name && req.body.contact_number
             && req.body.email && req.body.password){
-
+            console.log("trying to create nwe org");
             var data =  new Organiser(new_organiser);
             data.save();
-            res.send('Organisation account created.');
-            res.status(201);
+            // res.send('Organisation account created.');
+            res.send({ message: 'Organisation created' });
+            // res.status(201);
         }
         else {
             res.send("You haven't filled all the required fields.");
