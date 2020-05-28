@@ -59,10 +59,10 @@ export default function OrganiserSignup(props) {
     //     email: req.body.email,
     //     password
 
-    function validateSignUp(){
-        console.log()
+    function validateSignUp(ev){
+        ev.preventDefault(); // Let's stop this event.
         axios.post(
-            'organisers/signup',
+            '/organisers/signup',
             {
                 organisation_name: organiserName,
                 officer_name: officerName,

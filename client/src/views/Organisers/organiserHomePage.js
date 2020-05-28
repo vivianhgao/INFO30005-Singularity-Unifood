@@ -5,6 +5,7 @@ import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
 import Button from "components/CustomButtons/Button.js";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 
 import HeaderLinks from "components/Header/HeaderLinks.js";
 import Parallax from "components/Parallax/Parallax.js";
@@ -14,6 +15,8 @@ import {useHistory} from 'react-router-dom';
 import { useLocation } from "react-router-dom";
 import axios from 'axios';
 import socketIOClient from "socket.io-client";
+import { sizing } from '@material-ui/system';
+
 
 import './organiser.css'
 const useStyles = makeStyles(styles);
@@ -43,6 +46,16 @@ export default function OrganiserHomePage(props) {
   //   history.push({pathname:'/'})
   // }
 
+  const postForm = () =>{ 
+    let path = '/organiser'; 
+    history.push(path);
+  }
+
+  const manageAccount = () =>{ 
+    let path = '/organiser-account'; 
+    history.push(path);
+  }
+
   return (
 
     <div >
@@ -60,64 +73,29 @@ export default function OrganiserHomePage(props) {
       <Parallax small filter image={require("assets/img/userdashboard.png")} >
 
       </Parallax>
-      <br/>
-        <div className='grid-menu'>
-            <div className="option">
-                <div className='greeting'>
-                    Hi
-                </div>
-                <div className='button'>
 
-                    <Button simple color="danger" size="md" >
-                        <div className='writing'>
-                            Account details
-                        </div>
-                    </Button>
+      <div className='grid-organiser'>
 
-                    <Button simple color="danger" size="md" >
-                        <div className='writing'>
-                            Log out
-                        </div>
-                    </Button>
-                </div>
-            </div>
-            <div class="item">
-                    <div class='label'>
-                        Post New Form
-                    </div>
-                    <br/>
-                    
-            </div>
-            <div class="item">
-                <div class='label'>
-                    Manage Accounts and Forms
-                </div>
-                <br/>
-            </div>
-
-            <div class="item">
-                    <div class='label'>
-                        Update Account
-                    </div>
-                    <br/>
-                    
-            </div>
-            <div class="item">
-                <div class='label'>
-                    Delete ccount
-                </div>
-                <br/>
-            </div>
-     
-          {/* <div>1</div>
-          <div>2</div>
-          <div>3</div>
-          <div>4</div> */}
-
+        <div className='option'>
+          <div className='label'>
+          Welcome
+          </div>
         </div>
-      <Footer />
-    </div>
+          {/* <Link to={"/organiser"} className='buttonOrg1 shadow'> */}
 
+            <button  className='buttonOrg1 shadow' onClick={() => {history.push('/post-new-form')}}>
+              Post a form
+            </button>
+          
+
+          <button className='buttonOrg2 shadow' onClick={manageAccount}>
+            Manage form or account
+          </button>
+        
+      </div>
+
+      
+    </div>
   );
 }
 
