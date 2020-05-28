@@ -131,12 +131,12 @@ const addOrganiser = async (req, res) => {
         }
         else if (req.body.organisation_name && req.body.officer_name && req.body.contact_number
             && req.body.email && req.body.password){
-            console.log("trying to create nwe org");
             var data =  new Organiser(new_organiser);
             data.save();
             // res.send('Organisation account created.');
-            return res.json({ success: true });
-            res.send({ message: 'Organisation created' });
+            // return res.json({ success: true });
+            // res.send({ message: 'Organisation created' });
+            res.json({success:true});
             // res.status(201);
         }
         else {

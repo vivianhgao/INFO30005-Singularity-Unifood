@@ -15,7 +15,7 @@ import OrganiserLogin from "./views/Organisers/organiserLogIn";
 import OrganiserSignup from "./views/Organisers/organiserSignUp";
 import OrganiserHomePage from "./views/Organisers/organiserHomePage";
 import OrganiserAccMgmt from "./views/Organisers/organiserAccountManagement";
-
+import OrganiserUpdate from "./views/Organisers/organiserUpdateAccount";
 //forms pages
 import PostNewForm from "./views/Forms/formCreateNew";
 import ViewAllForms from "./views/Forms/formViewAll";
@@ -39,10 +39,12 @@ export default function App(){
                 <Route path="/usersignup" component={UserSignUp} />
                 <Route path="/userlogin" component={UserLogin} />
           
-                <Route path="/organiserhome" component={OrganiserHomePage} />
-                <Route path="/organiser-account" component={OrganiserAccMgmt} />
-                <Route path="/organiser" component={OrganiserLogin} />
-                <Route path="/organisersignup" component={OrganiserSignup} />
+                <Route path="/organisers/home" component={OrganiserHomePage} />
+                <Route path="/organisers/account" component={OrganiserAccMgmt} />
+                <Route path="/organisers/login" component={OrganiserLogin} />
+                <Route path="/organisers/signup" component={OrganiserSignup} />
+                <Route path="/organisers/update" component={OrganiserUpdate} />
+
 
                 <Route path="/about-us" component={AboutUs} />
 

@@ -55,14 +55,27 @@ export default function OrganiserLogin(props) {
 
     const [email,setEmail]= useState("")
     const [password,setPassword]=useState("")
+    const [contactNumber, setContactNumber] = useState("")
+    const [organisationName, setOrganisationName] = useState("")
+    const [officerName, setOfficerName] = useState("")
+
     // const [showPassword,setShowPassword]= useState(false)
     // const [mouseDownPassword,setMouseDownPassword]=useState(false)
 
     function validateLogin(event){
         event.preventDefault();
       
-        axios.post('organisers/logon',{email,password})
-        .then(res => res.data.success? history.push({pathname:'/organiserhome',state:{detail:email}}):alert("incorecct email/password"));
+        axios.post('/organisers/logon',{email,password})
+        .then(res => res.data.success? 
+            history.push({
+                pathname:'/organisers/home',
+                state:
+                {
+                    orgName:res.data.organiser.organisation_name,
+                     id:res.data.organiser._id
+                }
+            }):
+            alert("incorecct email/password"));
      
     }
 
@@ -169,7 +182,7 @@ export default function OrganiserLogin(props) {
                                         </Button>
 
                                         <Grid item>
-                                                <Link href="/organisersignup" style={{ color: '#999999' }}>
+                                                <Link href="/organisers/signup" style={{ color: '#999999' }}>
                                                     {"Don't have an account? Sign Up"}
                                                 </Link>
                                         </Grid>
