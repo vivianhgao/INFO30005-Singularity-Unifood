@@ -17,6 +17,7 @@ import AboutUs from "./views/AboutUs/aboutUs";
 import OrganiserSignup from "./views/Organisers/organiserSignUp";
 import OrganiserHomePage from "./views/Organisers/organiserHomePage";
 import PostNewForm from "./views/Organisers/organiserPostNewForm";
+import OrganiserAccMgmt from "./views/Organisers/organiserAccountManagement";
 
 
 var hist = createBrowserHistory();
@@ -38,6 +39,8 @@ export default function App(){
                 <Route path="/organiser" component={OrganiserLogin} />
                 <Route path="/organisersignup" component={OrganiserSignup} />
                 <Route path="/organiserhome" component={OrganiserHomePage} />
+                <Route path="/organiser-account" component={OrganiserAccMgmt} />
+
 
                 <Route path="/post-new-form" component={PostNewForm} />
 
