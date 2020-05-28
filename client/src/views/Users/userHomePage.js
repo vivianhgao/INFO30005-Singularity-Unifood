@@ -53,24 +53,28 @@ export default function UserDashboard(props) {
   useEffect(()=>{
     // const socket=socketIOClient(endpoint);
 
-    // socket.on("Notifications", data=>setIncomingData(data));
     socket.on("Forms", data=>setForms(data));
-    console.log(forms)
+    setIncomingData(forms);
+  
+
+    // socket.on("Notifications", data=>setIncomingData(data));
+    
+    //NOTIFSS
 
     // Get new only the new incoming data
-    // if(incomingData.length > allData.length) {
-    //   for (let i= allData.length; i<incomingData.length; i++) {
-    //     newData.push(incomingData[i]);
-    //     // console.log("New PUSHED Data: ", incomingData[i]);
-    //   }
-    //   // All data = incoming data
-    //   setAllData(incomingData);
-    //   // keep the data in new data
-    //   setNewData(newData);
-    //   // console.log("NEW DATA LENGTH: ", newData.length);
+    if(incomingData.length > allData.length) {
+      for (let i= allData.length; i<incomingData.length; i++) {
+        newData.push(incomingData[i]);
+        // console.log("New PUSHED Data: ", incomingData[i]);
+      }
+      // All data = incoming data
+      setAllData(incomingData);
+      // keep the data in new data
+      setNewData(newData);
+      // console.log("NEW DATA LENGTH: ", newData.length);
 
-    // }
-    // getNotificationData();
+    }
+    getNotificationData();
 
   });
 
@@ -211,8 +215,10 @@ export default function UserDashboard(props) {
                     </Button>
                     </div>
                 </div>
+            {/* //NOTIFSS */}
+
             
-                {/* <div class="notifs">
+                <div class="notifs">
                     <div class='label'>
                         Notifications
                     </div>
@@ -226,7 +232,7 @@ export default function UserDashboard(props) {
                             </div>
                         </div>
                     ))}
-                </div> */}
+                </div>
                 <div class="allForms">
                     <div class='label'>
                         Available Food
