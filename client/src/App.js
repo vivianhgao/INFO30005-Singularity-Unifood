@@ -6,17 +6,20 @@ import { Router, Route, Switch } from "react-router-dom";
 import "assets/scss/material-kit-react.scss?v=1.8.0";
 
 // pages for this product
-import HomePage from "./views/HomePage/HomePage";
-import OrganiserLogin from "./views/Organisers/organiserLogIn";
 import UserLogin from "./views/Users/userLogIn";
 import UserSignUp from './views/Users/userSignUp';
 import UserDashboard from './views/Users/userHomePage';
 import UserDetails from './views/Users/userDetails';
-import AboutUs from "./views/AboutUs/aboutUs";
-
+//organiser pages
+import OrganiserLogin from "./views/Organisers/organiserLogIn";
 import OrganiserSignup from "./views/Organisers/organiserSignUp";
 import OrganiserHomePage from "./views/Organisers/organiserHomePage";
-import PostNewForm from "./views/Organisers/organiserPostNewForm";
+//forms pages
+import PostNewForm from "./views/Forms/formCreateNew";
+import ViewAllForms from "./views/Forms/formViewAll";
+//home pages
+import AboutUs from "./views/HomePage/aboutUs";
+import HomePage from "./views/HomePage/HomePage";
 
 
 var hist = createBrowserHistory();
@@ -34,11 +37,10 @@ export default function App(){
                 <Route path="/usersignup" component={UserSignUp} />
                 <Route path="/userlogin" component={UserLogin} />
                 <Route path="/about-us" component={AboutUs} />
-
                 <Route path="/organiser" component={OrganiserLogin} />
                 <Route path="/organisersignup" component={OrganiserSignup} />
                 <Route path="/organiserhome" component={OrganiserHomePage} />
-
+                <Route path="/all-listings" component={ViewAllForms} />
                 <Route path="/post-new-form" component={PostNewForm} />
 
                 <Route path="/" component={HomePage} />
@@ -48,4 +50,6 @@ export default function App(){
         );
     
 }
+
+
 
