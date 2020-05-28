@@ -43,8 +43,6 @@ export default function UserDetails(props) {
     const [newUsername,setNewUsername]= useState("")
     const [password,setNewPassword]=useState("")
 
-
-
     const classes = useStyles();
     const { ...rest } = props;
     var username=oldUsername;
@@ -75,17 +73,16 @@ export default function UserDetails(props) {
             },
         })
         .then((value)=>{
-            switch(value){
-                case "delete":
-                    axios.get("users/delete/"+oldUsername)
+            if(value=== "delete"){
+                axios.get("users/delete/"+oldUsername)
                     .then(res=>res.data.success?
                         swal("Your account was successfully deleted.",{icon:"success"}).then(history.push('/')):
                         swal("An Error occured!\nPlease try again."));
-                    break;
-                default:
-                    swal("Welcome back!")
+                   
+                }
+                
             }
-        })
+        )
     }
         
     
@@ -262,7 +259,7 @@ export default function UserDetails(props) {
                                         
 
 
-                                        <div class='deletebutton' >
+                                        <div id='deletebutton' style={{backgroundColor:"white"}} >
                                           <Button simple size="sm" onClick={handleDeletion}>
                                                 <div class="delete">
                                                     Delete Account

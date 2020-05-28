@@ -187,7 +187,7 @@ export default function UserDashboard(props) {
             swal("Geolocation is not supported in this browser!");
           }
         default:
-          swal("Location is not shared!")
+          swal("Location is not shared with Unifood!")
       }
 
     })
@@ -222,25 +222,32 @@ export default function UserDashboard(props) {
                     Hi {first_name}!
                   </div>
                   <div class='button'>
-                    <Button simple color="danger" size="md" onClick={()=>getLocation()}>
+                  <Button simple color="danger" size="md" onClick={()=>logOut()}>
                       <div class='writing'>
-                          Share my location!
+                          Log out
                         </div>
                     </Button>
-                    
+                    </div>
+  
+                  <div class='button'>
 
                     <Button simple color="danger" size="md" onClick={()=>goUserDetails()}>
                       <div class='writing'>
                           Account details
                         </div>
                     </Button>
+                    </div>
+                  
 
-                    <Button simple color="danger" size="md" onClick={()=>logOut()}>
+                    
+                    <div class='button'>
+                    <Button simple color="danger" size="md" onClick={()=>getLocation()}>
                       <div class='writing'>
-                          Log out
+                          Share my location!
                         </div>
                     </Button>
                     </div>
+                    
                 </div>
           
             
