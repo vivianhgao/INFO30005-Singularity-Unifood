@@ -58,16 +58,12 @@ export default function OrganiserLogin(props) {
     // const [showPassword,setShowPassword]= useState(false)
     // const [mouseDownPassword,setMouseDownPassword]=useState(false)
 
-    function validateLogin(){
-        console.log()
-        axios.post(
-            'organisers/logon',
-            {
-                email: email,
-                password: password
-            })
-          // .then(res => res.data.success? console.log("LOGGED IN") history.push({pathname:"/organiserhome",state:{detail:email}}): alert("Incorrect username/ password.\nPlease Try again"))
-          .then(res => console.log(res));
+    function validateLogin(event){
+        event.preventDefault();
+      
+        axios.post('organisers/logon',{email,password})
+        .then(res => res.data.success? history.push({pathname:'/organiserhome',state:{detail:email}}):alert("incorecct email/password"));
+     
     }
 
     const handleEmail = (event) => {
@@ -167,7 +163,7 @@ export default function OrganiserLogin(props) {
                                             fullWidth
                                             color="danger"
                                             className={classes.submit}
-                                            onClick={()=>validateLogin()}
+                                            onClick={(event)=>validateLogin(event)}
                                         >
                                             Log In
                                         </Button>

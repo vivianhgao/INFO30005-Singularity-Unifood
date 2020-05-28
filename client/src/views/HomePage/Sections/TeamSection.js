@@ -45,10 +45,8 @@ export default function TeamSection() {
               </h4>
               <CardBody>
                 <p className={classes.description}>
-                  You can write here details about one of your team members. You
-                  can give more details about what they do. Feel free to add
-                  some <a href="#pablo">links</a> for people to be able to
-                  follow them outside the site.
+                  Second year Bachelor of Science student majoring in Computer and Software System who aims to reduce food waste with the help of technology, 
+                  starting from my very own campus community.
                 </p>
               </CardBody>
               <CardFooter className={classes.justifyCenter}>

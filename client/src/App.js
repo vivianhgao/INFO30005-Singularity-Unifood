@@ -39,12 +39,12 @@ export default function App(){
                 <Route path="/usersignup" component={UserSignUp} />
                 <Route path="/userlogin" component={UserLogin} />
           
-                <Route path="/about-us" component={AboutUs} />
-          
-                <Route path="/organiser" component={OrganiserLogin} />
-                <Route path="/organisersignup" component={OrganiserSignup} />
                 <Route path="/organiserhome" component={OrganiserHomePage} />
                 <Route path="/organiser-account" component={OrganiserAccMgmt} />
+                <Route path="/organiser" component={OrganiserLogin} />
+                <Route path="/organisersignup" component={OrganiserSignup} />
+
+                <Route path="/about-us" component={AboutUs} />
 
                 <Route path="/all-listings" component={ViewAllForms} />
 

@@ -3,51 +3,37 @@ import React, {useState} from "react";
 import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-// @material-ui/icons
-import Camera from "@material-ui/icons/Camera";
-import Palette from "@material-ui/icons/Palette";
-import Favorite from "@material-ui/icons/Favorite";
+
 // core components
 import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
 import Button from "components/CustomButtons/Button.js";
 import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
-import NavPills from "components/NavPills/NavPills.js";
 import Parallax from "components/Parallax/Parallax.js";
-
-
-import profile from "assets/img/faces/christian.jpg";
-
-import studio1 from "assets/img/examples/studio-1.jpg";
-import studio2 from "assets/img/examples/studio-2.jpg";
-import studio3 from "assets/img/examples/studio-3.jpg";
-import studio4 from "assets/img/examples/studio-4.jpg";
-import studio5 from "assets/img/examples/studio-5.jpg";
-import work1 from "assets/img/examples/olu-eletu.jpg";
-import work2 from "assets/img/examples/clem-onojeghuo.jpg";
-import work3 from "assets/img/examples/cynthia-del-rio.jpg";
-import work4 from "assets/img/examples/mariya-georgieva.jpg";
-import work5 from "assets/img/examples/clem-onojegaw.jpg";
-
+import InputAdornment from "@material-ui/core/InputAdornment";
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
 
-
-import InputAdornment from "@material-ui/core/InputAdornment";
-import People from "@material-ui/icons/People";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 
+import swal from 'sweetalert';
+
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import EmailIcon from '@material-ui/icons/Email';
+import PersonIcon from '@material-ui/icons/Person';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
 import './userDetails.css'
 
-import { useLocation } from "react-router-dom";
-import { useHistory }  from 'react-router-dom';
+import { useLocation, useHistory } from "react-router-dom";
+
 
 const useStyles = makeStyles(styles);
 
 export default function UserDetails(props) {
+    
     const location = useLocation();
     let history = useHistory()
     const oldUsername=location.state.detail;
@@ -57,20 +43,52 @@ export default function UserDetails(props) {
     const [newUsername,setNewUsername]= useState("")
     const [password,setNewPassword]=useState("")
 
+
+
     const classes = useStyles();
     const { ...rest } = props;
-
+    var username=oldUsername;
     function handleChanges(){
         if(newUsername){
-            var username=newUsername
+            username=newUsername
 
-        }else{
-            username=oldUsername;
         }
-
         axios.post("users/login/update/"+oldUsername,{username,email,first_name,last_name,password})
             .then(res=> res.data.success?history.push({pathname:'/userdashboard', state:{detail:username}}):alert("Chosen email/username is taken."));
     }
+
+    function handleCancelation(){
+
+      history.push({pathname:'/userdashboard', state:{detail:username}});
+    }
+
+    function handleDeletion(){
+        swal({
+            text: "Are you sure you would like to delete your account?\n This action can't be reversed.",
+            icon: "warning",
+            buttons: {
+                cancel :"No, take me back!",
+                delete:  {
+                    text:"Yes, I'm sure!",
+                    value:"delete"
+                },
+            },
+        })
+        .then((value)=>{
+            switch(value){
+                case "delete":
+                    axios.get("users/delete/"+oldUsername)
+                    .then(res=>res.data.success?
+                        swal("Your account was successfully deleted.",{icon:"success"}).then(history.push('/')):
+                        swal("An Error occured!\nPlease try again."));
+                    break;
+                default:
+                    swal("Welcome back!")
+            }
+        })
+    }
+        
+    
 
     const handleEmail = (event) => {
         setNewEmail(event.target.value);
@@ -108,10 +126,11 @@ export default function UserDetails(props) {
             <Parallax small filter image={require("assets/img/userdashboard.png")} />
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div>
+                    
                     <div className={classes.container}>
                         <div class='container'>
                             <div class="heading">
-                                Fill details to be changed:
+                                Fill details to be changed
                             </div>
 
 
@@ -124,6 +143,7 @@ export default function UserDetails(props) {
                                             labelText="New Email"
                                             id="email"
                                             value={email}
+                                           
                                             formControlProps={{
 
                                                 fullWidth: true,
@@ -134,10 +154,11 @@ export default function UserDetails(props) {
                                                 type: "username",
                                                 endAdornment: (
                                                     <InputAdornment position="end">
-                                                        <People className={classes.inputIconsColor} />
+                                                        <EmailIcon fontSize='small'></EmailIcon>
                                                     </InputAdornment>
                                                 )
                                             }}
+                                           
                                         />
 
                                         <CustomInput
@@ -148,13 +169,14 @@ export default function UserDetails(props) {
                                                 fullWidth: true,onChange: (event)=>handleFirstname(event)
                                             }}
                                             inputProps={{
-                                                type: "text",
+                                                type: "username",
                                                 endAdornment: (
                                                     <InputAdornment position="end">
-                                                        <People className={classes.inputIconsColor} />
+                                                        <PersonIcon fontSize='small'/>
                                                     </InputAdornment>
                                                 )
                                             }}
+                                            
                                         />
 
                                         <CustomInput
@@ -166,13 +188,14 @@ export default function UserDetails(props) {
                                                 onChange: (event)=>handleLastName(event)
                                             }}
                                             inputProps={{
-                                                type: "text",
+                                                type: "username",
                                                 endAdornment: (
                                                     <InputAdornment position="end">
-                                                        <People className={classes.inputIconsColor} />
+                                                        <PersonIcon fontSize='small'/>
                                                     </InputAdornment>
                                                 )
                                             }}
+                                            
                                         />
 
                                         <CustomInput
@@ -187,10 +210,11 @@ export default function UserDetails(props) {
                                                 type: "username",
                                                 endAdornment: (
                                                     <InputAdornment position="end">
-                                                        <People className={classes.inputIconsColor} />
+                                                        <AccountCircleIcon fontSize='small'/>
                                                     </InputAdornment>
                                                 )
                                             }}
+                                            
                                         />
                                         <CustomInput
                                             labelText="New Password"
@@ -202,141 +226,51 @@ export default function UserDetails(props) {
                                                 onChange: (event)=>handlePassword(event)
                                             }}
                                             inputProps={{
-                                                type: "password",
+                                                type: "username",
                                                 endAdornment: (
                                                     <InputAdornment position="end">
-                                                        <People className={classes.inputIconsColor} />
+                                                        <VpnKeyIcon fontSize='small'/>
                                                     </InputAdornment>
                                                 )
                                             }}
+                                            
 
                                         />
-                                        <div class='button'>
-                                            <Button simple color="danger" size="sm" justify="center" onClick={()=>handleChanges()}>
-                                                Account detail
-                                            </Button>
-
+                                        
                                         </div>
 
-                                    </div>
+                                     
+                                       
+                                       
+                                      <div id='button'style={{backgroundColor:"rgb(175, 173, 170)", float:"left"}} >
+                                            <Button simple size="sm"  onClick={handleCancelation}>
+                                              <div class="cancel">
+                                                Cancel
+                                              </div>
+                                            </Button>
+                                        </div>
+                                        
+                                        
+                                        <div id='button' style={{backgroundColor:"antiquewhite", float:"right"}}>
+                                              <Button simple color="danger" size="sm" onClick={handleChanges}>
+                                                <div class="buttonFiller">
+                                                    Confirm Changes
+                                                </div>
+                                              </Button>
+                                        </div>
+
+                                        
 
 
-
+                                        <div class='deletebutton' >
+                                          <Button simple size="sm" onClick={handleDeletion}>
+                                                <div class="delete">
+                                                    Delete Account
+                                                </div>
+                                            </Button> 
+                                        </div>
+                                        
                                 </Grid>
-
-
-                                {/* <NavPills
-                  alignCenter
-                  color="primary"
-                  tabs={[
-                    {
-                      tabButton: "Studio",
-                      tabIcon: Camera,
-                      tabContent: (
-                        <GridContainer justify="center">
-                          <GridItem xs={12} sm={12} md={4}>
-                            <img
-                              alt="..."
-                              src={studio1}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={studio2}
-                              className={navImageClasses}
-                            />
-                          </GridItem>
-                          <GridItem xs={12} sm={12} md={4}>
-                            <img
-                              alt="..."
-                              src={studio5}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={studio4}
-                              className={navImageClasses}
-                            />
-                          </GridItem>
-                        </GridContainer>
-                      )
-                    },
-                    {
-                      tabButton: "Work",
-                      tabIcon: Palette,
-                      tabContent: (
-                        <GridContainer justify="center">
-                          <GridItem xs={12} sm={12} md={4}>
-                            <img
-                              alt="..."
-                              src={work1}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={work2}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={work3}
-                              className={navImageClasses}
-                            />
-                          </GridItem>
-                          <GridItem xs={12} sm={12} md={4}>
-                            <img
-                              alt="..."
-                              src={work4}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={work5}
-                              className={navImageClasses}
-                            />
-                          </GridItem>
-                        </GridContainer>
-                      )
-                    },
-                    {
-                      tabButton: "Favorite",
-                      tabIcon: Favorite,
-                      tabContent: (
-                        <GridContainer justify="center">
-                          <GridItem xs={12} sm={12} md={4}>
-                            <img
-                              alt="..."
-                              src={work4}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={studio3}
-                              className={navImageClasses}
-                            />
-                          </GridItem>
-                          <GridItem xs={12} sm={12} md={4}>
-                            <img
-                              alt="..."
-                              src={work2}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={work1}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={studio1}
-                              className={navImageClasses}
-                            />
-                          </GridItem> */}
-                                {/* </GridContainer>
-                      )
-                    }
-                  ]}
-                /> */}
 
                             </GridContainer>
                         </div>
