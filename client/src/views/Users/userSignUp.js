@@ -60,7 +60,7 @@ export default function UserLogin(props) {
       axios.post('/users/signUp',
           {username,email,password,first_name,last_name})
         .then(res => res.data.success?
-            (LoginAuth.isAuthenticated=true ,
+            (LoginAuth.authenticate() ,
             history.push({pathname:"/user/dashboard", state:{detail:username}})):
             swal("Username/Email is already registed."))
     }

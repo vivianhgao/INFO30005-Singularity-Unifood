@@ -36,6 +36,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Box from '@material-ui/core/Box';
 import axios from 'axios';
 import swal from 'sweetalert';
+import LoginAuth from "../../LoginAuth";
 
 const useStyles = makeStyles(styles);
 
@@ -72,7 +73,7 @@ export default function OrganiserSignup(props) {
                 password: password})
             .then(res => {
                 if (res.data.success){
-                    swal("Account created!\n Please log in")
+                    swal("Account created!\n Please log in");
                     history.push('/organisers/login');
                 } else {
                     swal("Failed sign up");

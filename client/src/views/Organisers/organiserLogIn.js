@@ -65,7 +65,7 @@ export default function OrganiserLogin(props) {
       
         axios.post('/organisers/logon',{email,password})
         .then(res => res.data.success? 
-                (LoginAuth.authenticate=true,        
+                (LoginAuth.authenticate(),        
                 history.push({
                     pathname:'/organisers/home',
                     state:
@@ -74,7 +74,7 @@ export default function OrganiserLogin(props) {
                         id:res.data.organiser._id
                     }
                 })):
-                swal("incorrect email/password")
+                swal("Incorrect email/password!\nPlease try again.")
             );
      
     }
@@ -182,7 +182,7 @@ export default function OrganiserLogin(props) {
                                         </Button>
 
                                         <Grid item>
-                                                <Link href="/organisersignup" style={{ color: '#999999' }}>
+                                                <Link href="/organisers/signup" style={{ color: '#999999' }}>
                                                     {"Don't have an account? Sign Up"}
                                                 </Link>
                                         </Grid>

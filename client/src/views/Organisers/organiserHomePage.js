@@ -44,7 +44,7 @@ export default function OrganiserHomePage(props) {
   }
 
   const manageAccount = () =>{ 
-    let path = '/organiser-account'; 
+    let path = '/organisers/account'; 
     history.push(path);
   }
 

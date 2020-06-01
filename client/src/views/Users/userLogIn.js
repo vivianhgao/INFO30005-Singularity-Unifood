@@ -51,7 +51,7 @@ export default function UserLogin(props) {
         event.preventDefault();
         axios.post('/users/login',{username,password})
             .then(res => res.data.success? (
-                LoginAuth.isAuthenticated=true,
+                LoginAuth.authenticate(),
                 history.push({pathname:"/user/dashboard",state:{detail:username}}))
                 : swal("Incorrect username/ password.\nPlease Try again"));
     }
@@ -82,6 +82,7 @@ export default function UserLogin(props) {
                     backgroundPosition: "top center"
                 }}
             >
+              
                 <div className={classes.container}>
                     <GridContainer justify="center">
                         <GridItem xs={12} sm={12} md={4}>
