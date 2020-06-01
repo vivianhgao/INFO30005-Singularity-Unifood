@@ -52,16 +52,16 @@ const loginOrganiser = (req, res)=>{
     const {email,password} = req.body;
     Organiser.findOne({email:email}, function(err, organiser){
        if (err){
+           return res.json({success:false, error:err})
            res.error("An error occured.");
        }
-       else if(!email || password!=organiser.password){
+       else if(!organiser || password!=organiser.password){
         //    res.send("The email or password you entered incorrect");
             return res.json({success:false, error:err})
        } else {
            console.log(organiser)
         //    res.render('organiserLogon',
         //        {organisation_name:organiser.organisation_name, id:organiser._id});
-           
             return (res.json({ success: true, organiser:organiser }));
 
        }
@@ -151,13 +151,15 @@ const updateOrganiser =  async (req, res) =>{
 
     Organiser.findByIdAndUpdate(id, { $set: req.body }, (err,organiser_id)=>{
         if (err){
-            console.error('An error occured!');
+            console.error('An error occured! '+ err);
+            return res.send({success:false})
         }
         else if(!organiser_id){
-            return res.send('Organiser is not found.');
+            return res.send({success:false, message:"Organiser is not found"});
+            res.send('Organiser is not found.');
         }
         else {
-            return res.send("Organiser is updated.");
+            return (res.json({ success: true, organiser:organiser }));
         }
     });
 };
@@ -169,9 +171,11 @@ const deleteOrganiser = (req,res) => {
     Organiser.findByIdAndRemove( id , (err, organiser) =>{
         if(err) {
             console.error("Deletion Error");
+            res.json({success:false})
         }
         else {
-            res.send("Organiser '" + organiser.organisation_name + "' is successfully deleted!");
+            // res.send("Organiser '" + organiser.organisation_name + "' is successfully deleted!");
+            res.json({success:true});
         }
     });
 

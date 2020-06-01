@@ -17,6 +17,7 @@ import styles from "assets/jss/material-kit-react/views/profilePage.js";
 
 import CustomInput from "components/CustomInput/CustomInput.js";
 import Grid from '@material-ui/core/Grid';
+import GridItem from "../../components/Grid/GridItem";
 import axios from 'axios';
 
 import swal from 'sweetalert';
@@ -35,15 +36,16 @@ const endpoiupdate="http://localhost:5000";
 export default function OrganiserUpdate(props) {
 
     let history = useHistory();
-//   const location = useLocation();
-//   const id=location.state.id;
-//   const organisation_name = location.state.orgName;
+  const location = useLocation();
+  const id=location.state.id;
+  const organisation_name = location.state.orgName;
     const [email,setEmail]= useState("")
     const [password,setPassword]=useState("")
     const [contactNumber,setContactNumber]= useState("")
     const [officerName,setOfficerName]=useState("")
     const [organiserName,setOrganiserName]= useState("")
-
+    
+    console.log("IDDD: "+id);
 
 
     const classes = useStyles();
@@ -70,9 +72,30 @@ export default function OrganiserUpdate(props) {
         setPassword(event.target.value);
     };
 
-    function updateAccount() {
-        axios.post('/organisers/update')
+    function updateAccount(event){
+        event.preventDefault();
+        axios.post('/organisers/backend/update/'+id,
+        {
+            organisation_name: organiserName,
+            officer_name: officerName,
+            contact_number: contactNumber,
+            email: email,
+            password: password
+        })
+        .then(res => res.data.success?
+            history.push({
+                pathname:'/organisers/home',
+                state:
+                {
+                    orgName:res.data.organiser.organisation_name,
+                    id:res.data.organiser._id,
+                    organiser: res.data.organiser
+                }
+            }):
+            alert("Fail to update")
+        ).catch();
     }
+
     return (
         <div>
             <Header
@@ -92,20 +115,43 @@ export default function OrganiserUpdate(props) {
                     <div>
                         <div className={classes.container}>
                             <div class='container'>
-                                <div class="heading">
-                                    Post New Event Listing
-                                </div>
+                                {/* <div class="heading">
+                                    Update Account
+                                </div> */}
 
-                            <GridContainer justify="center" >
-                                <Grid item xs={5} justify="center">
-                                    <div class='container'>
+                            
+                            <GridContainer justify="center">
+                                <GridItem xs={12} sm={12} md={6}>
+
+                                <GridItem container justify="center">
+                            <strong><h3>Update {organisation_name} Account</h3></strong>
+                                </GridItem>
+
+                                <CustomInput
+                                            labelText="Organiser Name"
+                                            id="organisationName"
+                                            value={organiserName}
+                                            variant="outlined"
+                                            formControlProps={{
+                                                fullWidth: true,
+                                                onChange: (event)=>handleOrganisationName(event)
+                                              }}
+                                            inputProps={{
+                                                type: "text"
+                                            //   endAdornment: (
+                                            //       <InputAdornment position="end">
+                                            //           <People className={classes.inputIconsColor} />
+                                            //       </InputAdornment>
+                                            //   )
+                                        }}
+                                        />
                                         <CustomInput
-                                            labelText={"hello"}
-                                            id="email"
-                                            value={email}
+                                            labelText={"Officer Name"}
+                                            id="officerName"
+                                            value={officerName}
                                             variant="outlined"
                                             formControlProps={{fullWidth: true,
-                                            onChange: (event)=>handleEmail(event)
+                                            onChange: (event)=>handleOfficerName(event)
                                             }}
                                             inputProps={{
                                                 type: "text",
@@ -117,61 +163,151 @@ export default function OrganiserUpdate(props) {
                                             }}
                                         />
                                         <CustomInput
-                                            labelText="Organiser Name"
-                                            id="organisationName"
-                                            value={organiserName}
+                                            labelText="Contact Number"
+                                            id="contactNumber"
+                                            value={contactNumber}
                                             variant="outlined"
-                                            formControlProps={{
-                                                fullWidth: true,
-                                                onChange: (event)=>handleOrganisationName(event)
-                                              }}
+                                            formControlProps={{fullWidth: true,
+                                            onChange: (event)=>handleContactNumber(event)
+                                            }}
                                             inputProps={{
                                                 type: "text",
-                                            //   endAdornment: (
-                                            //       <InputAdornment position="end">
-                                            //           <People className={classes.inputIconsColor} />
-                                            //       </InputAdornment>
-                                            //   )
-                                        }}
+                                                // endAdornment: (
+                                                //     <InputAdornment position="end">
+                                                //         <EmailIcon className={classes.inputIconsColor} />
+                                                //     </InputAdornment>
+                                                // )
+                                            }}
                                         />
+                                        <CustomInput
+                                            labelText={"Email"}
+                                            id="email"
+                                            value={email}
+                                            variant="outlined"
+                                            formControlProps={{fullWidth: true,
+                                            onChange: (event)=>handleEmail(event)
+                                            }}
+                                            inputProps={{
+                                                type: "email",
+                                                // endAdornment: (
+                                                //     <InputAdornment position="end">
+                                                //         <EmailIcon className={classes.inputIconsColor} />
+                                                //     </InputAdornment>
+                                                // )
+                                            }}
+                                        />
+                                        <CustomInput
+                                            labelText="Password"
+                                            id="password"
+                                            value={password}
+                                            variant="outlined"
+                                            formControlProps={{fullWidth: true,
+                                            onChange: (event)=>handlePassword(event)
+                                            }}
+                                            inputProps={{
+
+                                                type: "password",
+                                                // endAdornment: (
+                                                //     <InputAdornment position="end">
+                                                //         <EmailIcon className={classes.inputIconsColor} />
+                                                //     </InputAdornment>
+                                                // )
+                                            }}
+                                        />
+
                                         <div>
-                                            <button onClick={()=>updateAccount()}>
-                                                Update
-                                            </button>
-                                            <Button className='updateButton'
+                                            <Button
+                                                // className='updateButton'
                                                 variant="outlined"
-                                                color="danger"
+                                                color="primary"
                                                 size="sm"
-                                                onClick={()=>updateAccount()}
+                                                onClick={()=>history.goBack()}
                                             >
-                                                Update Account
+                                                Cancel
                                             </Button>
+                                 
                                             <Button
                                                 variant="outlined"
                                                 color="danger"
                                                 size="sm"
-                                                onClick={()=>updateAccount()}
+                                                onClick={updateAccount}
                                             >
                                                 Update Account
                                             </Button>
                                         </div>
 
+                                {/* <Button
+                                    variant="contained"
+                                    fullWidth
+                                    size="large"
+                                    color="danger"
+                                    target="_blank"
+                                    startIcon={<AddIcon />}
+                                    onClick={postForm}
+                                    round
+                                >
+                                    <h5><strong>Post New Form</strong></h5>
+                                </Button>
 
-    {/* <CardFooter className={classes.cardFooter} style={{justifyContent: 'center'}}>
-                                      <Button
-                                        variant="outlined"
-                                        color="danger"
-                                        size="lg"
-                                        onClick={()=>updateAccount()}
-                                        >
-                                          Update Account
-                                      </Button>
-                                  </CardFooter> */}
+                                <Button
+                                    variant="contained"
+                                    fullWidth
+                                    size="large"
+                                    color="danger"
+                                    target="_blank"
+                                    startIcon={<ClearAllIcon />}
+                                    onClick={viewForms}
+                                    round
+                                >
+                                    <h5><strong>View My Forms</strong></h5>
+                                </Button>
 
 
-</div>
-    </Grid>
-    </GridContainer>
+                                <GridItem container justify="center">
+                                    <strong><h3>Account Management</h3></strong>
+                                </GridItem>
+
+
+                                <Button
+                                    variant="contained"
+                                    fullWidth
+                                    size="large"
+                                    target="_blank"
+                                    startIcon={<UpdateIcon />}
+                                    onClick={updateAccount}
+                                >
+                                    <strong>Update Account</strong>
+                                </Button>
+
+                                <Button
+                                    variant="contained"
+                                    fullWidth
+                                    size="large"
+                                    target="_blank"
+                                    startIcon={<DeleteIcon />}
+                                    onClick={deleteAccount}
+                                >
+                                    <strong>Delete Account</strong>
+                                </Button>
+
+
+                                <GridItem container justify="center">
+                                <Button
+                                    variant="contained"
+                                    size="small"
+                                    target="_blank"
+                                    startIcon={<KeyboardReturnIcon />}
+                                    onClick={() => {history.goBack()}}
+                                    round
+                                >
+                                    <strong>Back</strong>
+                                </Button>
+                                </GridItem> */}
+
+                            </GridItem>
+                        </GridContainer>
+
+
     </div>
     </div>
     </div>
@@ -180,3 +316,5 @@ export default function OrganiserUpdate(props) {
     </div>
 )
 }
+
+

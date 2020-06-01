@@ -43,30 +43,23 @@ export default function OrganiserHomePage(props) {
     const location = useLocation();
     const id = location.state.id;
     const organisation_name = location.state.orgName;
+    const email_add = location.state.email_add;
 
     const classes = useStyles();
     const { ...rest } = props;
 
-    function logOut(){
-        history.push({pathname:'/'})
-    }
-
-    const updateAccount = () =>{
-        let path = '/organiser-account';
-        history.push(path);
+    const updateAccount = () => {
+        let path = '/organisers/account/update';
+        history.push(path, {id:id, orgName: organisation_name});
+        console.log('id: '+id);
     }
     const viewForms = () =>{
         let path = '/all-listings';
         history.push(path);
     }
-    const deleteAccount = () =>{
-        let path = '/organiser-account';
-        history.push(path);
-    }
-
-    const organiserUpdate = () =>{
-        let path = '/organiser/update';
-        history.push(path);
+    const deleteAccount = () => {
+        let path = '/organisers/account/delete';
+        history.push(path, {id:id, orgName:organisation_name, email_add:email_add});
     }
 
     const postForm = () =>{
@@ -75,8 +68,6 @@ export default function OrganiserHomePage(props) {
     }
 
     return (
-
-
 
         <div>
             <Header
@@ -150,7 +141,7 @@ export default function OrganiserHomePage(props) {
                                     size="large"
                                     target="_blank"
                                     startIcon={<UpdateIcon />}
-                                    onClick={organiserUpdate}
+                                    onClick={updateAccount}
                                 >
                                     <strong>Update Account</strong>
                                 </Button>
@@ -161,6 +152,7 @@ export default function OrganiserHomePage(props) {
                                     size="large"
                                     target="_blank"
                                     startIcon={<DeleteIcon />}
+                                    onClick={deleteAccount}
                                 >
                                     <strong>Delete Account</strong>
                                 </Button>
