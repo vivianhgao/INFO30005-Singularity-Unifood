@@ -39,6 +39,8 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Box from '@material-ui/core/Box';
 import axios from 'axios';
+import LoginAuth from '../../LoginAuth'
+import swal from 'sweetalert';
 
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import snackbarContentStyle from "../../assets/jss/material-kit-react/components/snackbarContentStyle";
@@ -67,15 +69,17 @@ export default function OrganiserLogin(props) {
       
         axios.post('/organisers/logon',{email,password})
         .then(res => res.data.success? 
-            history.push({
-                pathname:'/organisers/home',
-                state:
-                {
-                    orgName:res.data.organiser.organisation_name,
-                     id:res.data.organiser._id
-                }
-            }):
-            alert("incorecct email/password"));
+                (LoginAuth.authenticate(),        
+                history.push({
+                    pathname:'/organisers/home',
+                    state:
+                    {
+                        orgName:res.data.organiser.organisation_name,
+                        id:res.data.organiser._id
+                    }
+                })):
+                swal("Incorrect email/password!\nPlease try again.")
+            );
      
     }
 

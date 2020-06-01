@@ -31,6 +31,7 @@ import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 import {Link} from 'react-router-dom'
 import swal from 'sweetalert';
+import LoginAuth from "../../LoginAuth"
 
 const useStyles = makeStyles(styles);
 
@@ -48,8 +49,11 @@ export default function UserLogin(props) {
 
     function validateLogin(event){
         event.preventDefault();
-        axios.post('users/login',{username,password})
-            .then(res => res.data.success? history.push({pathname:"/user/home",state:{detail:username}}): swal("Incorrect username/ password.\nPlease Try again"))
+        axios.post('/users/login',{username,password})
+            .then(res => res.data.success? (
+                LoginAuth.authenticate(),
+                history.push({pathname:"/user/dashboard",state:{detail:username}}))
+                : swal("Incorrect username/ password.\nPlease Try again"));
     }
 
     
@@ -78,6 +82,7 @@ export default function UserLogin(props) {
                     backgroundPosition: "top center"
                 }}
             >
+              
                 <div className={classes.container}>
                     <GridContainer justify="center">
                         <GridItem xs={12} sm={12} md={4}>
@@ -151,7 +156,7 @@ export default function UserLogin(props) {
                                         </Button>
                                         
                                         <Grid item>
-                                            <Link to="/usersignup" style={{ color: '#999999' }}>
+                                            <Link to="/user/signup" style={{ color: '#999999' }}>
                                                 Don't have an account? Sign Up
                                              </Link>
                                         </Grid>
@@ -169,3 +174,4 @@ export default function UserLogin(props) {
         </div>
     );
 }
+

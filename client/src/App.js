@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect ,useState} from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch } from "react-router-dom";
@@ -22,28 +22,33 @@ import ViewAllForms from "./views/Forms/formViewAll";
 //home pages
 import AboutUs from "./views/HomePage/aboutUs";
 import HomePage from "./views/HomePage/HomePage";
-
+import ProtectedRoute from './protectedRoutes';
+import LoginAuth from "./LoginAuth";
 
 var hist = createBrowserHistory();
 
-export default function App(){
-    
 
+export default function App(){
 
         return(
         <Router history={hist}>
             <div className="App">
             <Switch>
-                <Route path="/userdetails" component={UserDetails}/>
-                <Route path="/user/home" component={UserDashboard}/>
-                <Route path="/usersignup" component={UserSignUp} />
-                <Route path="/userlogin" component={UserLogin} />
+                <ProtectedRoute path="/user/details"  component={UserDetails} />
+                {/* <Route path="/user/details" component={UserDetails}/> */}
+                <ProtectedRoute path="/user/dashboard"  component={UserDashboard} />
+                {/* <Route path="/user/dashboard" component={UserDashboard}/> */}
+                <Route path="/user/signup" component={UserSignUp} />
+                <Route path="/user/login" component={UserLogin} />
+                
           
-                <Route path="/organisers/home" component={OrganiserHomePage} />
-                <Route path="/organisers/account" component={OrganiserAccMgmt} />
+                {/* <Route path="/organisers/home" component={OrganiserHomePage} /> */}
+                <ProtectedRoute path="/organisers/home" component={OrganiserHomePage} />
+                {/* <Route path="/organisers/account" component={OrganiserAccMgmt} /> */}
+                <ProtectedRoute path="/organisers/account" component={OrganiserAccMgmt} />
                 <Route path="/organisers/login" component={OrganiserLogin} />
                 <Route path="/organisers/signup" component={OrganiserSignup} />
-                <Route path="/organisers/update" component={OrganiserUpdate} />
+               
 
 
                 <Route path="/about-us" component={AboutUs} />
@@ -59,6 +64,7 @@ export default function App(){
         );
     
 }
+
 
 
 

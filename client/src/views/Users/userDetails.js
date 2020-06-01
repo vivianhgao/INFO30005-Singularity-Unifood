@@ -52,12 +52,12 @@ export default function UserDetails(props) {
 
         }
         axios.post("users/login/update/"+oldUsername,{username,email,first_name,last_name,password})
-            .then(res=> res.data.success?history.push({pathname:'/userdashboard', state:{detail:username}}):alert("Chosen email/username is taken."));
+            .then(res=> res.data.success?history.push({pathname:'/user/dashboard', state:{detail:username}}):alert("Chosen email/username is taken."));
     }
 
     function handleCancelation(){
 
-      history.push({pathname:'/userdashboard', state:{detail:username}});
+      history.push({pathname:'/user/dashboard', state:{detail:username}});
     }
 
     function handleDeletion(){

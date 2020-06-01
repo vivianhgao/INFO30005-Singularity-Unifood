@@ -51,6 +51,17 @@ export default function HeaderLinks(props) {
           ]}
         />
       </ListItem>
+      <ListItem className={classes.listItem}>
+        <Button
+          
+          color="transparent"
+          target="_blank"
+          className={classes.navLink}
+          onClick={()=>history.push("/user/login")}
+        >
+          <ExitToAppIcon className={classes.icons} /> Users
+        </Button>
+      </ListItem>
 
         <ListItem className={classes.listItem}>
             <Button

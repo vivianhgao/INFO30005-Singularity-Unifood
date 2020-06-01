@@ -17,6 +17,7 @@ import { useLocation } from "react-router-dom";
 import axios from 'axios';
 
 import swal from 'sweetalert';
+import LoginAuth from '../../LoginAuth'
 
 import io from "socket.io-client";
 const useStyles = makeStyles(styles);
@@ -148,11 +149,12 @@ export default function UserDashboard(props) {
   }
 
   function goUserDetails(){
-    history.push({pathname:'/userdetails',state:{detail:username}});
+    history.push({pathname:'/user/details',state:{detail:username}});
   }
 
   function logOut(){
     console.log("User "+username+" is logged out!")
+    LoginAuth.isAuthenticated=false;
     history.push({pathname:'/'})
   }
 
