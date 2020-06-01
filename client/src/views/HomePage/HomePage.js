@@ -60,12 +60,12 @@ export default function HomePage(props) {
               </h4>
               <br />
 
-              <Link to={"/userlogin"} className={classes.link}>
+              <Link to={"/user/login"} className={classes.link}>
 
                 <Button
               color="danger"
                 size="lg"
-                href="/userlogin"
+                href="/user/login"
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -35,6 +35,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Box from '@material-ui/core/Box';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 const useStyles = makeStyles(styles);
 
@@ -69,8 +70,14 @@ export default function OrganiserSignup(props) {
                 contact_number: contactNumber,
                 email: email,
                 password: password})
-            .then(res => res.data.success? history.push({pathname:'/organiserhome'}) : alert("Please Try again"))
-            .catch();
+            .then(res => {
+                if (res.data.success){
+                    swal("Account created!\n Please log in")
+                    history.push('/organisers/login');
+                } else {
+                    swal("Failed sign up");
+                }
+            }).catch();
     }
 
     const handleOrganisationName = (event) => {

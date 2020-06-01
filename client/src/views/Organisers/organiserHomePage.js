@@ -37,14 +37,6 @@ export default function OrganiserHomePage(props) {
   const classes = useStyles();
   const { ...rest } = props;
 
-  //
-  // function goUserDetails(){
-  //   history.push({pathname:'/userdetails',state:{detail:username}});
-  // }
-  //
-  // function logOut(){
-  //   history.push({pathname:'/'})
-  // }
 
   const postForm = () =>{ 
     let path = '/post-new-form'; 

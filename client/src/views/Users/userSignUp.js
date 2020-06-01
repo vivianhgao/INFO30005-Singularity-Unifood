@@ -32,7 +32,9 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 import axios from 'axios';
 
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import LoginAuth from '../../LoginAuth';
+import swal from 'sweetalert';
 
 
 const useStyles = makeStyles(styles);
@@ -55,10 +57,12 @@ export default function UserLogin(props) {
 
     function validateSignup(event){
         event.preventDefault();
-      axios.post('users/signUp',
+      axios.post('/users/signUp',
           {username,email,password,first_name,last_name})
-        .then(res => res.data.success? history.push({pathname:"/userdashboard", state:{detail:username}}):
-            alert("Username/Email is already registed."))
+        .then(res => res.data.success?
+            (LoginAuth.isAuthenticated=true ,
+            history.push({pathname:"/user/dashboard", state:{detail:username}})):
+            swal("Username/Email is already registed."))
     }
 
     const handleEmail = (event) => {
@@ -234,7 +238,7 @@ export default function UserLogin(props) {
                                         </Button>
                                         
                                         <Grid item>
-                                            <Link to="/userlogin" style={{ color: '#999999' }}>
+                                            <Link to="/user/login" style={{ color: '#999999' }}>
                                                 Already a member? Log in
                                              </Link>
                                         </Grid>
