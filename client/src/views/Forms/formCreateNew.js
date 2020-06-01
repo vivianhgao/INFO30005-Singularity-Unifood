@@ -40,6 +40,8 @@ import CardFooter from "../../components/Card/CardFooter";
 import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
+import swal from 'sweetalert';
+
 const useStyles = makeStyles(styles);
 
 
@@ -54,8 +56,8 @@ export default function PostNewForm(props) {
     const [time,setTime]= useState("")
     const [quantity,setQuantity]=useState("")
     const [photo,setPhoto]=useState("")
-    const [latitude,setLatitude]=useState("")
-    const [longitude,setLongitude]=useState("")
+    const [latitude,setLatitude]=useState(Number)
+    const [longitude,setLongitude]=useState(Number)
 
     const classes = useStyles();
     const { ...rest } = props;
@@ -65,6 +67,42 @@ export default function PostNewForm(props) {
             {email, name,description,address,time,quantity,photo,latitude,longitude})
             .then(res => res.data.success? history.push({pathname:"/"}): alert("Error, please try again!"))
     }
+
+    function getLocation(){
+        swal({
+          text:"Allow Unifood to access your location?",
+          icon:"info",
+          buttons:{
+            cancel:"Decline",
+            accept:{
+              text:"Accept",
+              value:"accept"
+            },
+          },
+        }).then((value)=>{
+          switch(value){
+            case "accept":
+              if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                  setLatitude(position.coords.latitude);
+                  setLongitude(position.coords.longitude);
+                });
+                console.log(latitude);
+                console.log(longitude);
+                swal("Location is successfully shared with Unifood!");
+                break;
+    
+              
+              } else {
+                swal("Geolocation is not supported in this browser!");
+              }
+            default:
+              swal("Location is not shared with Unifood!")
+          }
+    
+        })
+       
+      }
 
     const handleEmail = (event) => {
         setEmail(event.target.value);
@@ -190,10 +228,6 @@ export default function PostNewForm(props) {
                                             labelText="Location*"
                                             id="address"
                                             value={address}
-                                            formControlProps={{
-                                                fullWidth: true,
-                                                onChange: (event)=>handleAddress(event)
-                                            }}
                                             inputProps={{
                                                 type: "text",
                                                 endAdornment: (
@@ -203,6 +237,9 @@ export default function PostNewForm(props) {
                                                 )
                                             }}
                                         />
+                                        <Button primary onClick={getLocation}>
+                                            share my coordinates
+                                        </Button>
 
                                         <CustomInput
                                             labelText=""
@@ -261,6 +298,25 @@ export default function PostNewForm(props) {
                                         />
 
                                         <CustomInput
+                                            labelText=""
+                                            id="time"
+                                            value={time}
+                                            formControlProps={{
+                                                fullWidth: true,
+                                                onChange: (event)=>handleTime(event)
+                                            }}
+                                            inputProps={{
+                                                type: "datetime-local",
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <TodayIcon className={classes.inputIconsColor} />
+                                                    </InputAdornment>
+                                                )
+                                            }}
+                                        />
+                                        
+
+                                        {/* <CustomInput
                                             labelText="Latitude"
                                             id="latitude"
                                             value={latitude}
@@ -283,8 +339,7 @@ export default function PostNewForm(props) {
                                             }}
                                             inputProps={{
                                                 type: "text",
-                                            }}
-                                        />
+                                            }} */}
 
 
                                         <CardFooter className={classes.cardFooter} style={{justifyContent: 'center'}}>
