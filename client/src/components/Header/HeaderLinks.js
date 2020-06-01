@@ -14,7 +14,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 // @material-ui/icons
 import { Apps, CloudDownload } from "@material-ui/icons";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-
+import HomeIcon from '@material-ui/icons/Home';
 
 // core components
 import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
@@ -42,9 +42,6 @@ export default function HeaderLinks(props) {
           }}
           buttonIcon={Apps}
           dropdownList={[
-              <Link to="/" className={classes.dropdownLink}>
-                  Home Page
-              </Link>,
               <Link to="/about-us" className={classes.dropdownLink}>
                   About Us
               </Link>,
@@ -54,27 +51,16 @@ export default function HeaderLinks(props) {
           ]}
         />
       </ListItem>
-      <ListItem className={classes.listItem}>
-        <Button
-          
-          color="transparent"
-          target="_blank"
-          className={classes.navLink}
-          onClick={()=>history.push("/userlogin")}
-        >
-          <ExitToAppIcon className={classes.icons} /> Users
-        </Button>
-      </ListItem>
 
         <ListItem className={classes.listItem}>
             <Button
                 color="transparent"
                 target="_blank"
                 className={classes.navLink}
-                onClick={()=>history.push("/organiser")}
+                onClick={()=>history.push("/")}
 
             >
-                <ExitToAppIcon className={classes.icons} /> Organisers
+                <HomeIcon className={classes.icons} /> Home Page
             </Button>
         </ListItem>
     </List>

@@ -23,7 +23,7 @@ var socket = io();
 
 
 
-export default function OrganiserAccMgmt(props) {
+export default function OrganiserAccMgmt1(props) {
 
   let history = useHistory();
   const location = useLocation();
@@ -51,7 +51,7 @@ export default function OrganiserAccMgmt(props) {
   }
 
   return ( 
-      
+
     <div >
         <Header
         color="transparent"
@@ -86,6 +86,10 @@ export default function OrganiserAccMgmt(props) {
           <button className='buttonOrg2 shadow' onClick={viewForms}>
             View My Forms
           </button>
+
+            <button className='buttonOrg2 shadow' onClick={viewForms}>
+                View My Forms
+            </button>
 
           <button className='buttonOrg3 shadow'>
             Delete Account

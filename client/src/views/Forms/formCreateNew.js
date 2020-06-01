@@ -41,6 +41,7 @@ import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
 import swal from 'sweetalert';
+import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
 
 const useStyles = makeStyles(styles);
 
@@ -226,8 +227,12 @@ export default function PostNewForm(props) {
 
                                         <CustomInput
                                             labelText="Location*"
+                                            fullwidth
                                             id="address"
                                             value={address}
+                                            formControlProps={{
+                                                fullWidth: true,
+                                            }}
                                             inputProps={{
                                                 type: "text",
                                                 endAdornment: (
@@ -237,9 +242,16 @@ export default function PostNewForm(props) {
                                                 )
                                             }}
                                         />
-                                        <Button primary onClick={getLocation}>
+                                        <GridItem container justify="center">
+                                        <Button
+                                            primary
+                                            size="small"
+                                            onClick={getLocation}
+                                        >
                                             share my coordinates
                                         </Button>
+                                        </GridItem>
+
 
                                         <CustomInput
                                             labelText=""
@@ -347,6 +359,20 @@ export default function PostNewForm(props) {
                                                 Post New Form
                                             </Button>
                                         </CardFooter>
+
+
+                                        <GridItem container justify="center">
+                                            <Button
+                                                variant="contained"
+                                                size="small"
+                                                target="_blank"
+                                                startIcon={<KeyboardReturnIcon />}
+                                                onClick={() => {history.goBack()}}
+                                                round
+                                            >
+                                                <strong>Back</strong>
+                                            </Button>
+                                        </GridItem>
 
 
                                     </div>

@@ -106,7 +106,6 @@ export default function ViewAllForms(props) {
                                             <CardActions>
                                                 <Button size="small">Learn More</Button>
                                             </CardActions>
-
                                         </Card>
                                     </GridItem>
                                 </GridContainer>

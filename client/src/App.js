@@ -35,7 +35,7 @@ export default function App(){
             <div className="App">
             <Switch>
                 <Route path="/userdetails" component={UserDetails}/>
-                <Route path="/userdashboard" component={UserDashboard}/>
+                <Route path="/user/home" component={UserDashboard}/>
                 <Route path="/usersignup" component={UserSignUp} />
                 <Route path="/userlogin" component={UserLogin} />
           

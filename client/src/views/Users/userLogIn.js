@@ -49,7 +49,7 @@ export default function UserLogin(props) {
     function validateLogin(event){
         event.preventDefault();
         axios.post('users/login',{username,password})
-            .then(res => res.data.success? history.push({pathname:"/userdashboard",state:{detail:username}}): swal("Incorrect username/ password.\nPlease Try again"))
+            .then(res => res.data.success? history.push({pathname:"/user/home",state:{detail:username}}): swal("Incorrect username/ password.\nPlease Try again"))
     }
 
     
