@@ -209,7 +209,6 @@ export default function PostNewForm(props) {
                                             }}
                                             inputProps={{
                                                 type: "text",
-                                                defaultValue: email_add,
                                                 endAdornment: (
                                                     <InputAdornment position="end">
                                                         <EmailIcon className={classes.inputIconsColor} />
