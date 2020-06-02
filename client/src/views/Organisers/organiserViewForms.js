@@ -70,7 +70,7 @@ export default function OrganiserViewForms(props) {
     }
 
     const updateForm = () => {
-        let path = '/organisers/forms';
+        let path = '/update-form';
         history.push(path, {id:id, orgName:organisation_name, email_add:email_add});
     }
 

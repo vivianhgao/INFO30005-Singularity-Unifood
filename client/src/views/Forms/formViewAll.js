@@ -98,14 +98,14 @@ export default function ViewAllForms(props) {
                                     <GridItem xs={12} sm={12} md={6} className={classes.center}>
                                         <Card className={classes.root} width={1/2}>
                                             <CardContent>
-                                                <h4>{res.name}</h4>
-                                                <h5>{res.time} at {res.address} </h5>
-                                                <h6>{res.description}</h6>
+                                                <div className='label'>
+                                                    <h4>{res.name}</h4>
+                                                </div>
+                                                <h6>Time: {res.time}</h6>
+                                                <h6>Location: {res.address}</h6>
                                                 <h6>Quantity: {res.quantity}</h6>
+                                                <h5>Description: {res.description}</h5>
                                             </CardContent>
-                                            <CardActions>
-                                                <Button size="small">Learn More</Button>
-                                            </CardActions>
                                         </Card>
                                     </GridItem>
                                 </GridContainer>

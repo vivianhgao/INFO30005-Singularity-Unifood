@@ -13,17 +13,12 @@ import HeaderLinks from "components/Header/HeaderLinks.js";
 import Parallax from "components/Parallax/Parallax.js";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
-
 import CustomInput from "components/CustomInput/CustomInput.js";
-import Grid from '@material-ui/core/Grid';
 import GridItem from "../../components/Grid/GridItem";
 import axios from 'axios';
-
 import swal from 'sweetalert';
-
 import { useLocation, useHistory } from "react-router-dom";
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import LocationOnIcon from "@material-ui/icons/LocationOn";
 
 // import './organiser.css'
 const useStyles = makeStyles(styles);
@@ -130,7 +125,7 @@ export default function DeleteForm(props) {
                                             type: "text",
                                             endAdornment: (
                                                 <InputAdornment position="end">
-                                                    <LocationOnIcon className={classes.inputIconsColor} />
+                                                    <DeleteForeverIcon className={classes.inputIconsColor} />
                                                 </InputAdornment>
                                             )
                                         }}

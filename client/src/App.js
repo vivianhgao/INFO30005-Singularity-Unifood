@@ -5,7 +5,7 @@ import { Router, Route, Switch } from "react-router-dom";
 
 import "assets/scss/material-kit-react.scss?v=1.8.0";
 
-// pages for this product
+// user pages
 import UserLogin from "./views/Users/userLogIn";
 import UserSignUp from './views/Users/userSignUp';
 import UserDashboard from './views/Users/userHomePage';
@@ -14,7 +14,6 @@ import UserDetails from './views/Users/userDetails';
 import OrganiserLogin from "./views/Organisers/organiserLogIn";
 import OrganiserSignup from "./views/Organisers/organiserSignUp";
 import OrganiserHomePage from "./views/Organisers/organiserHomePage";
-import OrganiserAccMgmt from "./views/Organisers/organiserAccountManagement";
 import OrganiserDelete from "./views/Organisers/organiserDelete";
 import OrganiserUpdate from "./views/Organisers/organiserUpdateAccount";
 import OrganiserViewForms from "./views/Organisers/organiserViewForms";
@@ -22,12 +21,14 @@ import OrganiserViewForms from "./views/Organisers/organiserViewForms";
 import PostNewForm from "./views/Forms/formCreateNew";
 import ViewAllForms from "./views/Forms/formViewAll";
 import DeleteForm from "./views/Forms/formDelete";
+import UpdateForm from "./views/Forms/formUpdate";
 
-//home pages
+//Home pages
 import AboutUs from "./views/HomePage/aboutUs";
 import HomePage from "./views/HomePage/HomePage";
 import ProtectedRoute from './protectedRoutes';
 import LoginAuth from "./LoginAuth";
+import SignInPage from "./views/HomePage/SignInPage";
 
 var hist = createBrowserHistory();
 
@@ -57,8 +58,9 @@ export default function App(){
                 <Route path="/all-listings" component={ViewAllForms} />
                 <Route path="/post-new-form" component={PostNewForm} />
                 <Route path="/delete-form" component={DeleteForm} />
+                <Route path="/update-form" component={UpdateForm} />
 
-
+                <Route path="/log-in" component={SignInPage} />
                 <Route path="/about-us" component={AboutUs} />
                 <Route path="/" component={HomePage} />
             </Switch>

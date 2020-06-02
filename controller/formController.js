@@ -43,8 +43,10 @@ const updateForm = async (req, res, next) => {
     Form.findById(id, function(err, doc) {
         if (err) {
             res.send("An error has occurred!");
+            return res.json({success:false})
         } else if (!Form) {
             return res.send('Form is not found!');
+            return res.json({success:false})
         }
         doc.email = req.body.email;
         doc.name = req.body.name;
@@ -58,7 +60,7 @@ const updateForm = async (req, res, next) => {
         doc.save();
     });
     console.log("Form is updated!");
-    res.redirect('/forms');
+    res.json({success:true});
 };
 
 

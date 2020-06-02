@@ -69,6 +69,7 @@ export default function OrganiserHomePage(props) {
         history.push(path, {id:id, orgName:organisation_name, email_add:email_add});
     }
 
+
     return (
 
         <div>
