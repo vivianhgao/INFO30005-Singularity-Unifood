@@ -4,8 +4,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
-import red from '@material-ui/core/colors/red';
 import People from "@material-ui/icons/People";
+import PersonIcon from '@material-ui/icons/Person';
+import EmailIcon from '@material-ui/icons/Email';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
+
 // core components
 import Header from "components/Header/Header.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
@@ -137,6 +141,13 @@ export default function OrganiserSignup(props) {
                                                 shrink: true,
                                             }}
                                             onChange={handleOrganisationName}
+                                            InputProps={{
+                                                endAdornment: (
+                                                  <InputAdornment>
+                                                    < People/>
+                                                  </InputAdornment>
+                                                )
+                                            }}
                                         />
                                         <TextField
                                             id="standard-full-width"
@@ -151,6 +162,13 @@ export default function OrganiserSignup(props) {
                                                 shrink: true,
                                             }}
                                             onChange={handleOfficerName}
+                                            InputProps={{
+                                                endAdornment: (
+                                                  <InputAdornment>
+                                                    < PersonIcon/>
+                                                  </InputAdornment>
+                                                )
+                                            }}
                                         />
                                         <TextField
                                             id="standard-full-width"
@@ -165,10 +183,18 @@ export default function OrganiserSignup(props) {
                                                 shrink: true,
                                             }}
                                             onChange={handleContactNumber}
+                                            InputProps={{
+                                                endAdornment: (
+                                                  <InputAdornment>
+                                                    < ContactPhoneIcon/>
+                                                  </InputAdornment>
+                                                )
+                                            }}
                                         />
                                         <TextField
                                             id="standard-full-width"
                                             label="Email"
+                                            type="email"
                                             style={{ margin: 8 }}
                                             placeholder="admin@organisation.com"
                                             // helperText="Required"
@@ -179,6 +205,13 @@ export default function OrganiserSignup(props) {
                                                 shrink: true,
                                             }}
                                             onChange={handleEmail}
+                                            InputProps={{
+                                                endAdornment: (
+                                                  <InputAdornment>
+                                                    < EmailIcon/>
+                                                  </InputAdornment>
+                                                )
+                                            }}
                                         />
                                         <TextField
                                             id="standard-full-width"
@@ -194,6 +227,13 @@ export default function OrganiserSignup(props) {
                                                 shrink: true,
                                             }}
                                             onChange={handlePassword}
+                                            InputProps={{
+                                                endAdornment: (
+                                                  <InputAdornment>
+                                                    < VpnKeyIcon/>
+                                                  </InputAdornment>
+                                                )
+                                            }}
                                         />
 
                                         <Button

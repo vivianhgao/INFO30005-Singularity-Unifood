@@ -30,6 +30,7 @@ import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
 import ClearAllIcon from '@material-ui/icons/ClearAll';
+
 import OrganiserUpdate from "./organiserUpdateAccount";
 import LoginAuth from '../../LoginAuth';
 
@@ -147,7 +148,10 @@ export default function OrganiserHomePage(props) {
                                 <Button
                                     variant="contained"
                                     fullWidth
+
+                                    color="warning"
                                     size="lg"
+
                                     target="_blank"
                                     startIcon={<UpdateIcon />}
                                     onClick={updateAccount}
@@ -158,7 +162,10 @@ export default function OrganiserHomePage(props) {
                                 <Button
                                     variant="contained"
                                     fullWidth
+
+                                    color="warning"
                                     size="lg"
+
                                     target="_blank"
                                     startIcon={<DeleteIcon />}
                                     onClick={deleteAccount}
@@ -176,7 +183,9 @@ export default function OrganiserHomePage(props) {
                                     onClick={()=>handleLogout()}
                                     round
                                 >
+
                                     <strong>Log out</strong>
+
                                 </Button>
                                 </GridItem>
 
