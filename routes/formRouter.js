@@ -41,5 +41,9 @@ formRouter.post("/deleteForm", formController.deleteForm);
 // getting list of all users
 formRouter.get("/formList", formController.getAllForms);
 
+// getting list of form by email address
+formRouter.get("/formList/:email", formController.getAllFormsByEmail);
+
+
 // export the router
 module.exports = formRouter;

@@ -75,7 +75,8 @@ export default function OrganiserLogin(props) {
                     state:
                     {
                         orgName:res.data.organiser.organisation_name,
-                        id:res.data.organiser._id
+                        id:res.data.organiser._id,
+                        email_add:res.data.organiser.email
                     }
                 })):
                 swal("Incorrect email/password!\nPlease try again.")

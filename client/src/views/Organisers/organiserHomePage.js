@@ -53,10 +53,7 @@ export default function OrganiserHomePage(props) {
         history.push(path, {id:id, orgName: organisation_name});
         console.log('id: '+id);
     }
-    const viewForms = () =>{
-        let path = '/all-listings';
-        history.push(path);
-    }
+
     const deleteAccount = () => {
         let path = '/organisers/account/delete';
         history.push(path, {id:id, orgName:organisation_name, email_add:email_add});
@@ -65,6 +62,11 @@ export default function OrganiserHomePage(props) {
     const postForm = () =>{
         let path = '/post-new-form';
         history.push(path);
+    }
+
+    const viewForms = () => {
+        let path = '/organisers/forms';
+        history.push(path, {id:id, orgName:organisation_name, email_add:email_add});
     }
 
     return (
@@ -113,7 +115,7 @@ export default function OrganiserHomePage(props) {
                                     onClick={postForm}
                                     round
                                 >
-                                    <h5><strong>Post New Form</strong></h5>
+                                    <h5><strong>Post New Listing</strong></h5>
                                 </Button>
 
                                 <Button
@@ -126,7 +128,7 @@ export default function OrganiserHomePage(props) {
                                     onClick={viewForms}
                                     round
                                 >
-                                    <h5><strong>View My Forms</strong></h5>
+                                    <h5><strong>View My Listings</strong></h5>
                                 </Button>
 
 

@@ -232,6 +232,8 @@ export default function PostNewForm(props) {
                                             value={address}
                                             formControlProps={{
                                                 fullWidth: true,
+                                                onChange: (event)=>handleAddress(event)
+
                                             }}
                                             inputProps={{
                                                 type: "text",

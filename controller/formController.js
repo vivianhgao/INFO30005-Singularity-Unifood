@@ -102,6 +102,20 @@ const getAllForms = async (req, res) => {
     }
 };
 
+// function to get all forms by email
+const getAllFormsByEmail = async (req, res) => {
+    //var email = req.params.email;
+    var email=  req.params.email;
+
+    try {
+        const all_form = await Form.find().where("email").in(email).exec();
+        return res.send(all_form);
+    } catch (err) {
+        res.status(400);
+        return res.send("Database query failed!");
+    }
+};
+
 // Remember to export the callbacks
 module.exports = {
     createForm,
@@ -109,4 +123,5 @@ module.exports = {
     updateForm,
     deleteForm,
     updateFormbyEmail,
+    getAllFormsByEmail,
 };

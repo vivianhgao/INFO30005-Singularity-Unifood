@@ -17,6 +17,7 @@ import OrganiserHomePage from "./views/Organisers/organiserHomePage";
 import OrganiserAccMgmt from "./views/Organisers/organiserAccountManagement";
 import OrganiserDelete from "./views/Organisers/organiserDelete";
 import OrganiserUpdate from "./views/Organisers/organiserUpdateAccount";
+import OrganiserViewForms from "./views/Organisers/organiserViewForms";
 //forms pages
 import PostNewForm from "./views/Forms/formCreateNew";
 import ViewAllForms from "./views/Forms/formViewAll";
@@ -50,6 +51,9 @@ export default function App(){
                 <Route path="/organisers/account/delete" component={OrganiserDelete} />
                 <Route path="/organisers/login" component={OrganiserLogin} />
                 <Route path="/organisers/signup" component={OrganiserSignup} />
+                <Route path="/organisers/forms" component={OrganiserViewForms} />
+
+
                
 
 
