@@ -54,7 +54,7 @@ export default function PostNewForm(props) {
     const email_add = location.state.email_add;
     const orgName = location.state.orgName;
     const email=email_add
-    const [name_input,setNameInput]=useState("")
+    const [name,setName]=useState("")
     const [description,setDescription]=useState("")
     const [address,setAddress]=useState("")
     const [time,setTime]= useState("")
@@ -66,7 +66,6 @@ export default function PostNewForm(props) {
     const classes = useStyles();
     const { ...rest } = props;
 
-    var name=orgName+": ";
 
 
     function createForm(event) {
@@ -121,9 +120,9 @@ export default function PostNewForm(props) {
     // const handleEmail = (event) => {
     //     setEmail(event.target.value);
     // };
+
     const handleName = (event) => {
-        setNameInput(event.target.value);
-        name=name+name_input;
+        setName(event.target.value);
     };
     const handleDescription = (event) => {
         setDescription(event.target.value);
@@ -183,11 +182,11 @@ export default function PostNewForm(props) {
                                             variant="outlined"
                                             formControlProps={{
                                                 fullWidth: true,
-                                                // onChange: (event)=>handleEmail(event)
 
                                             }}
                                             inputProps={{
                                                 type: "text",
+                                                defaultValue: email_add,
                                                 endAdornment: (
                                                     <InputAdornment position="end">
                                                         <EmailIcon className={classes.inputIconsColor} />
@@ -199,7 +198,7 @@ export default function PostNewForm(props) {
                                         <CustomInput
                                             labelText="Organisation: Event Name*"
                                             id="name"
-                                            value={name_input}
+                                            value={name}
                                             variant="outlined"
                                             formControlProps={{
                                                 fullWidth: true,

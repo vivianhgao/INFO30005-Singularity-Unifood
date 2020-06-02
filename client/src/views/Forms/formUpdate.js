@@ -53,8 +53,8 @@ export default function UpdateForm(props) {
 
     const email_add = location.state.email_add;
     const orgName = location.state.orgName;
+    const email = email_add;
     const [id,setID]=useState("")
-    const [email,setEmail]=useState("")
     const [name,setName]=useState("")
     const [description,setDescription]=useState("")
     const [address,setAddress]=useState("")
@@ -138,9 +138,6 @@ export default function UpdateForm(props) {
         setID(event.target.value);
     };
 
-    const handleEmail = (event) => {
-        setEmail(event.target.value);
-    };
     const handleName = (event) => {
         setName(event.target.value);
     };
@@ -216,6 +213,8 @@ export default function UpdateForm(props) {
                                             }}
                                         />
 
+
+
                                         <CustomInput
                                             labelText="Account Email*"
                                             id="email"
@@ -223,11 +222,11 @@ export default function UpdateForm(props) {
                                             variant="outlined"
                                             formControlProps={{
                                                 fullWidth: true,
-                                                onChange: (event)=>handleEmail(event)
 
                                             }}
                                             inputProps={{
                                                 type: "text",
+                                                defaultValue: email_add,
                                                 endAdornment: (
                                                     <InputAdornment position="end">
                                                         <EmailIcon className={classes.inputIconsColor} />
