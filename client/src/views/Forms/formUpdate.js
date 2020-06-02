@@ -19,7 +19,6 @@ import Button from "components/CustomButtons/Button.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
-import NavPills from "components/NavPills/NavPills.js";
 import Parallax from "components/Parallax/Parallax.js";
 
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
@@ -32,17 +31,10 @@ import axios from 'axios';
 
 import { useLocation } from "react-router-dom";
 import { useHistory }  from 'react-router-dom';
-import CardBody from "../../components/Card/CardBody";
 import CardFooter from "../../components/Card/CardFooter";
-
-
-//upload photo
-import IconButton from '@material-ui/core/IconButton';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
 import swal from 'sweetalert';
 import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
-import LoginAuth from "../../LoginAuth";
 
 const useStyles = makeStyles(styles);
 
@@ -343,7 +335,7 @@ export default function UpdateForm(props) {
                                                 )
                                             }}
                                         />
-
+                                        {/*
                                         <CustomInput
                                             accept="image/*"
                                             labelText="Photo"
@@ -362,6 +354,7 @@ export default function UpdateForm(props) {
                                                 )
                                             }}
                                         />
+                                        */}
 
 
 

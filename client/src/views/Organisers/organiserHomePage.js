@@ -149,7 +149,7 @@ export default function OrganiserHomePage(props) {
                                     variant="contained"
                                     fullWidth
 
-                                    color="warning"
+                                    color="default"
                                     size="lg"
 
                                     target="_blank"
@@ -163,7 +163,7 @@ export default function OrganiserHomePage(props) {
                                     variant="contained"
                                     fullWidth
 
-                                    color="warning"
+                                    color="default"
                                     size="lg"
 
                                     target="_blank"
