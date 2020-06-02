@@ -198,7 +198,7 @@ export default function PostNewForm(props) {
                                         <CustomInput
                                             labelText="Account Email*"
                                             id="email"
-                                            value={email_add}
+                                            value={email}
                                             variant="outlined"
                                             formControlProps={{
                                                 fullWidth: true,
