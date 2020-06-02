@@ -92,9 +92,21 @@ const updateFormbyEmail = async (req, res, next) => {
 // delete a form by form ID
 var deleteForm = function(req, res, next) {
     var id = req.body.id;
-    Form.findByIdAndRemove(id).exec();
-    res.redirect('/forms');
+    Form.findByIdAndRemove( id , (err, organiser) =>{
+        if(err) {
+            console.error("Deletion Error");
+            res.json({success:false})
+        }
+        else {
+            console.log("Form ID #"+id+" is deleted!");
+            res.json({success:true});
+        }2
+    });
+
 };
+
+
+
 
 
 

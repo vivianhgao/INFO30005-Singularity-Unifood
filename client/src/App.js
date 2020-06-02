@@ -21,6 +21,8 @@ import OrganiserViewForms from "./views/Organisers/organiserViewForms";
 //forms pages
 import PostNewForm from "./views/Forms/formCreateNew";
 import ViewAllForms from "./views/Forms/formViewAll";
+import DeleteForm from "./views/Forms/formDelete";
+
 //home pages
 import AboutUs from "./views/HomePage/aboutUs";
 import HomePage from "./views/HomePage/HomePage";
@@ -43,7 +45,6 @@ export default function App(){
                 <Route path="/user/signup" component={UserSignUp} />
                 <Route path="/user/login" component={UserLogin} />
                 
-          
                 {/* <Route path="/organisers/home" component={OrganiserHomePage} /> */}
                 <ProtectedRoute path="/organisers/home" component={OrganiserHomePage} />
                 {/* <Route path="/organisers/account" component={OrganiserAccMgmt} /> */}
@@ -51,18 +52,14 @@ export default function App(){
                 <Route path="/organisers/account/delete" component={OrganiserDelete} />
                 <Route path="/organisers/login" component={OrganiserLogin} />
                 <Route path="/organisers/signup" component={OrganiserSignup} />
+
                 <Route path="/organisers/forms" component={OrganiserViewForms} />
-
-
-               
+                <Route path="/all-listings" component={ViewAllForms} />
+                <Route path="/post-new-form" component={PostNewForm} />
+                <Route path="/delete-form" component={DeleteForm} />
 
 
                 <Route path="/about-us" component={AboutUs} />
-
-                <Route path="/all-listings" component={ViewAllForms} />
-
-                <Route path="/post-new-form" component={PostNewForm} />
-
                 <Route path="/" component={HomePage} />
             </Switch>
             </div>

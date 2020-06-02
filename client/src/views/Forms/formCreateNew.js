@@ -196,7 +196,7 @@ export default function PostNewForm(props) {
                                     <div class='container'>
 
                                         <CustomInput
-                                            labelText="Account Email*"
+                                            labelText="Account Email* (please re-enter)"
                                             id="email"
                                             value={email}
                                             variant="outlined"
@@ -206,7 +206,7 @@ export default function PostNewForm(props) {
 
                                             }}
                                             inputProps={{
-                                                type: "email",
+                                                type: "text",
                                                 defaultValue: email_add,
                                                 endAdornment: (
                                                     <InputAdornment position="end">
@@ -281,6 +281,8 @@ export default function PostNewForm(props) {
                                                 )
                                             }}
                                         />
+
+
                                         <GridItem container justify="center">
                                         <Button
                                             primary
