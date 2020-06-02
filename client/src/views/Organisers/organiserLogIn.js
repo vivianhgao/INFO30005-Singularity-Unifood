@@ -64,24 +64,20 @@ export default function OrganiserLogin(props) {
     // const [showPassword,setShowPassword]= useState(false)
     // const [mouseDownPassword,setMouseDownPassword]=useState(false)
 
+
+
     function validateLogin(event){
         event.preventDefault();
-      
         axios.post('/organisers/logon',{email,password})
-        .then(res => res.data.success? 
-                (LoginAuth.authenticate(),        
-                history.push({
-                    pathname:'/organisers/home',
-                    state:
-                    {
-                        orgName:res.data.organiser.organisation_name,
-                        id:res.data.organiser._id,
-                        email_add:res.data.organiser.email
-                    }
-                })):
-                swal("Incorrect email/password!\nPlease try again.")
-            );
-     
+            .then(res => res.data.success? (
+                    LoginAuth.authenticate(),
+                        history.push({pathname:"/organisers/home",
+                            state:{
+                                orgName:res.data.organiser.organisation_name,
+                                id:res.data.organiser._id,
+                                email_add:res.data.organiser.email
+                        }}))
+                : swal("Incorrect username/ password.\nPlease Try again"));
     }
 
     const handleEmail = (event) => {

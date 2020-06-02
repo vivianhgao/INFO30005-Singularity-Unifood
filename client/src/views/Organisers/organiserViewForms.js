@@ -32,7 +32,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
 import ClearAllIcon from '@material-ui/icons/ClearAll';
 import OrganiserUpdate from "./organiserUpdateAccount";
-
+import swal from 'sweetalert';
 
 
 const useStyles = makeStyles(styles);
@@ -50,10 +50,9 @@ export default function OrganiserViewForms(props) {
     const classes = useStyles();
     const { ...rest } = props;
     const [forms, setForms] = useState([]);
-
-
     const [load, setLoad] = useState(false);
     const [error, setError] = useState('');
+
 
     useEffect(() => {
         axios.get("/forms/formList/"+email_add)
@@ -62,11 +61,20 @@ export default function OrganiserViewForms(props) {
                 setLoad(true);
             })
             .catch(err => {
-                setError(err.message);
-                setLoad(true)
+                swal("Incorrect username/ password.\nPlease Try again");
             })
     }, []);
 
+
+    const deleteForm = () => {
+        let path = '/organisers/forms';
+        history.push(path, {id:id, orgName:organisation_name, email_add:email_add});
+    }
+
+    const updateForm = () => {
+        let path = '/organisers/forms';
+        history.push(path, {id:id, orgName:organisation_name, email_add:email_add});
+    }
 
 
     return (
@@ -105,7 +113,7 @@ export default function OrganiserViewForms(props) {
                                     <strong><h4>Your email is {email_add}</h4></strong>
                                 </GridItem>
 
-                                {forms.map(res=>(
+                                {forms.reverse().map(res=>(
                                     <div>
                                         <div key={res.id}>
                                             <GridContainer justify="center">
@@ -116,6 +124,7 @@ export default function OrganiserViewForms(props) {
                                                                 <h4>{res.name}</h4>
                                                             </div>
                                                             <h5>{res.description}</h5>
+                                                            <h6>ID: {res._id}</h6>
                                                             <h6>Time: {res.time}</h6>
                                                             <h6>Location: {res.address}</h6>
                                                             <h6>Quantity: {res.quantity}</h6>
@@ -128,15 +137,20 @@ export default function OrganiserViewForms(props) {
                                                         <CardActions>
                                                             <Button
                                                                 size="small"
+                                                                formID= {res._id}
+                                                                onClick={updateForm}
                                                                 class="inline">
-                                                                Delete
+                                                                Update
                                                             </Button>
 
                                                             <Button
                                                                 size="small"
+                                                                onClick={deleteForm}
                                                                 class="inline">
-                                                                Update
+                                                                Delete
                                                             </Button>
+
+
                                                         </CardActions>
                                                         </GridItem>
 

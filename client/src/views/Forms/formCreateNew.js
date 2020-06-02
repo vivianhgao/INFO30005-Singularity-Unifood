@@ -42,6 +42,7 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
 import swal from 'sweetalert';
 import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
+import LoginAuth from "../../LoginAuth";
 
 const useStyles = makeStyles(styles);
 
@@ -50,6 +51,8 @@ export default function PostNewForm(props) {
     const location = useLocation();
     let history = useHistory()
 
+    const email_add = location.state.email_add;
+    const orgName = location.state.orgName;
     const [email,setEmail]=useState("")
     const [name,setName]=useState("")
     const [description,setDescription]=useState("")
@@ -63,11 +66,43 @@ export default function PostNewForm(props) {
     const classes = useStyles();
     const { ...rest } = props;
 
-    function createForm(){
-        axios.post('forms/createForm',
-            {email, name,description,address,time,quantity,photo,latitude,longitude})
-            .then(res => res.data.success? history.push({pathname:"/"}): alert("Error, please try again!"))
+
+    async function createForm(event) {
+        try {
+            axios.post(
+                '/forms/createForm',
+                {email,name,description,address,time,quantity,photo,latitude,longitude})
+                .then(res => {
+                    if (res.data.success){
+                        swal("New form successfully posted!");
+                        history.goBack();
+                    }})
+        } catch (error) {
+            console.log(error.response);
+            swal("Error, please try again!");
+        }
     }
+
+
+
+//    function createForm(event){
+//        axios.post(
+//            '/forms/createForm',
+//            {email,name,description,address,time,quantity,photo,latitude,longitude})
+//            .then(res => {
+//                if (res.data.success){
+//                    swal("New form successfully posted!");
+//                    history.goBack();
+//                } else {
+//                    swal("Error, please try again!");
+//                }
+//            }).catch();
+//    }
+
+
+
+
+
 
     function getLocation(){
         swal({
@@ -163,7 +198,7 @@ export default function PostNewForm(props) {
                                         <CustomInput
                                             labelText="Account Email*"
                                             id="email"
-                                            value={email}
+                                            value={email_add}
                                             variant="outlined"
                                             formControlProps={{
                                                 fullWidth: true,
@@ -171,7 +206,8 @@ export default function PostNewForm(props) {
 
                                             }}
                                             inputProps={{
-                                                type: "text",
+                                                type: "email",
+                                                defaultValue: email_add,
                                                 endAdornment: (
                                                     <InputAdornment position="end">
                                                         <EmailIcon className={classes.inputIconsColor} />
@@ -192,6 +228,7 @@ export default function PostNewForm(props) {
                                             }}
                                             inputProps={{
                                                 type: "text",
+                                                defaultValue: orgName+": ",
                                                 endAdornment: (
                                                     <InputAdornment position="end">
                                                         <People className={classes.inputIconsColor} />
@@ -271,7 +308,6 @@ export default function PostNewForm(props) {
                                                     </InputAdornment>
                                                 )
                                             }}
-
                                         />
 
                                         <CustomInput
@@ -311,23 +347,6 @@ export default function PostNewForm(props) {
                                             }}
                                         />
 
-                                        <CustomInput
-                                            labelText=""
-                                            id="time"
-                                            value={time}
-                                            formControlProps={{
-                                                fullWidth: true,
-                                                onChange: (event)=>handleTime(event)
-                                            }}
-                                            inputProps={{
-                                                type: "datetime-local",
-                                                endAdornment: (
-                                                    <InputAdornment position="end">
-                                                        <TodayIcon className={classes.inputIconsColor} />
-                                                    </InputAdornment>
-                                                )
-                                            }}
-                                        />
                                         
 
                                         {/* <CustomInput

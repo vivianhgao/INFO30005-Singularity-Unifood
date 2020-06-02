@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 
 // import form model
 const Form = mongoose.model("forms");
+const Organiser = mongoose.model("organisers");
+
 
 // function to create a new form
 const createForm = async (req, res,next) => {
@@ -19,16 +21,20 @@ const createForm = async (req, res,next) => {
     try {
         var data = new Form(new_form);
         data.save();
-        console.log("new form")
+        console.log("New Form Posted")
+        console.log(new_form)
         return res.json({ success: true });
     } catch (err) {
         res.status(400);
         return res.send("Error making post!");
+        return res.json({ success: false });
     }
-    
-    // res.render('formManagement',{name:req.body.name, formID:Form.id});
-    // res.send("New form added");
-}
+};
+
+
+
+
+
 
 //update form
 const updateForm = async (req, res, next) => {
@@ -54,6 +60,7 @@ const updateForm = async (req, res, next) => {
     console.log("Form is updated!");
     res.redirect('/forms');
 };
+
 
 //update form by email
 const updateFormbyEmail = async (req, res, next) => {

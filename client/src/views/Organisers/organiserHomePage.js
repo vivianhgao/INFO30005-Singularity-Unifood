@@ -61,7 +61,7 @@ export default function OrganiserHomePage(props) {
 
     const postForm = () =>{
         let path = '/post-new-form';
-        history.push(path);
+        history.push(path, {id:id, orgName:organisation_name, email_add:email_add});
     }
 
     const viewForms = () => {

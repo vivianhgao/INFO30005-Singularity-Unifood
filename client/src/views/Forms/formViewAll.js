@@ -91,7 +91,7 @@ export default function ViewAllForms(props) {
                         </GridContainer>
 
 
-                        {forms.map(res=>(
+                        {forms.reverse().map(res=>(
                             <div>
                             <div key={res.id}>
                                 <GridContainer justify="center">
@@ -99,7 +99,7 @@ export default function ViewAllForms(props) {
                                         <Card className={classes.root} width={1/2}>
                                             <CardContent>
                                                 <h4>{res.name}</h4>
-                                                <h5>Time: {res.time}  <br/> at {res.address} </h5>
+                                                <h5>{res.time} at {res.address} </h5>
                                                 <h6>{res.description}</h6>
                                                 <h6>Quantity: {res.quantity}</h6>
                                             </CardContent>

@@ -29,7 +29,6 @@ import './userDetails.css'
 
 import { useLocation, useHistory } from "react-router-dom";
 
-
 const useStyles = makeStyles(styles);
 
 export default function UserDetails(props) {
