@@ -4,9 +4,12 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
+
 // @material-ui/icons
-import red from '@material-ui/core/colors/red';
-import People from "@material-ui/icons/People";
+
+import EmailIcon from '@material-ui/icons/Email';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+
 // core components
 import Header from "components/Header/Header.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
@@ -17,13 +20,7 @@ import Button from "components/CustomButtons/Button.js";
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
-import CardFooter from "components/Card/CardFooter.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
-import Checkbox from '@material-ui/core/Checkbox';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import IconButton from '@material-ui/core/IconButton';
-
 
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -34,16 +31,10 @@ import styles from "assets/jss/material-kit-react/views/loginPage.js";
 import image from "assets/img/unifood.png";
 
 import {useHistory} from 'react-router-dom';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import Box from '@material-ui/core/Box';
 import axios from 'axios';
 import LoginAuth from '../../LoginAuth'
 import swal from 'sweetalert';
 
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import snackbarContentStyle from "../../assets/jss/material-kit-react/components/snackbarContentStyle";
 const useStyles = makeStyles(styles);
 
 export default function OrganiserLogin(props) {
@@ -77,7 +68,7 @@ export default function OrganiserLogin(props) {
                                 id:res.data.organiser._id,
                                 email_add:res.data.organiser.email
                         }}))
-                : swal("Incorrect username/ password.\nPlease Try again"));
+                : swal("Incorrect email or password.\nPlease try again."));
     }
 
     const handleEmail = (event) => {
@@ -88,14 +79,6 @@ export default function OrganiserLogin(props) {
     const handlePassword = (event) => {
         setPassword(event.target.value);
     };
-
-    // const handleClickShowPassword = () => {
-    //     setShowPassword(!showPassword);
-    // };
-    //
-    // const handleMouseDownPassword = (event)=> {
-    //     event.preventDefault();
-    // };
 
   return (
         <div>
@@ -128,7 +111,6 @@ export default function OrganiserLogin(props) {
                                             labelText="Organiser Email"
                                             id="email"
                                             value={email}
-                                            // onChange={ (event)=>handleEmail(event)}
 
                                             formControlProps={{
                                                 fullWidth: true,
@@ -136,9 +118,12 @@ export default function OrganiserLogin(props) {
 
                                             }}
                                             inputProps={{
-
                                                 type: "email",
-                                                // onChange: (event)=>handleEmail(event),
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <EmailIcon/>
+                                                    </InputAdornment>
+                                              )
                                             }}
                                         />
 
@@ -146,7 +131,6 @@ export default function OrganiserLogin(props) {
                                           labelText="Password"
                                           id="password"
                                           value={password}
-                                          // onChange={ (event)=>handlePassword(event)}
 
                                           formControlProps={{
                                               fullWidth: true,
@@ -156,18 +140,12 @@ export default function OrganiserLogin(props) {
                                           inputProps={{
 
                                               type: 'password',
-                                              // onChange: (event)=>handlePassword(event),
-                                            //   endAdornment: (
-                                            //       <InputAdornment position="end">
-                                            //         <IconButton
-                                            //           aria-label="toggle password visibility"
-                                            //           onClick={handleClickShowPassword}
-                                            //           onMouseDown={handleMouseDownPassword}
-                                            //         >
-                                            //           {showPassword ? <Visibility /> : <VisibilityOff />}
-                                            //         </IconButton>
-                                            //       </InputAdornment>
-                                            // )
+                                              onChange: (event)=>handlePassword(event),
+                                              endAdornment: (
+                                                  <InputAdornment position="end">
+                                                      <VpnKeyIcon/>
+                                                  </InputAdornment>
+                                            )
                                           }}
                                         />
 

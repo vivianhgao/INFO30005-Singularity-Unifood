@@ -22,6 +22,7 @@ const logIn = (req, res, next) => {
     const {username,password}=req.body;
     console.log("server: "+req.body)
 
+
     // find the user in the database with the log in username
     User.findOne({username:username},function (err,user){
         if (err) {
@@ -148,18 +149,35 @@ const addOrganiser = async (req, res) => {
 //function to update an organiser
 const updateOrganiser =  async (req, res) =>{
     var id = req.params.id;
+    const update= {
+        organisation_name,
+        officer_name,
+        contact_number,
+        email,
+        password}=req.body;
 
-    Organiser.findByIdAndUpdate(id, { $set: req.body }, (err,organiser_id)=>{
+    //only take the filled information
+    for( field in update ){
+        if(update[field] ==''){
+            delete update[field]
+        }
+    }
+     console.log(update)
+    Organiser.findByIdAndUpdate(id, update, (err,organiser_id)=>{
+        console.log("this is the id: "+id);
         if (err){
+            // console.log("ENTEREEDDD ERRORRRRRRR");
             console.error('An error occured! '+ err);
-            return res.send({success:false})
+            res.json({success:false});
         }
         else if(!organiser_id){
-            return res.send({success:false, message:"Organiser is not found"});
+            // console.log("ENTEREEDDD");
+            res.json({success:false, message:"Organiser is not found"});
             res.send('Organiser is not found.');
         }
         else {
-            return (res.json({ success: true, organiser:organiser }));
+            // console.log("SHOULD BE GOOODODDD");
+            res.json({ success: true, organiser:organiser_id});
         }
     });
 };

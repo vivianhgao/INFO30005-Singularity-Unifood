@@ -25,7 +25,8 @@ import swal from 'sweetalert';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import EmailIcon from '@material-ui/icons/Email';
 import PersonIcon from '@material-ui/icons/Person';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import People from "@material-ui/icons/People";
+import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
 
 import { useLocation, useHistory } from "react-router-dom";
 
@@ -51,6 +52,34 @@ export default function OrganiserUpdate(props) {
     const classes = useStyles();
     const { ...rest } = props;
 
+    function updateAccount(ev){
+        ev.preventDefault();
+
+        axios.post('/organisers/update/'+id,
+        {
+            organisation_name: organiserName,
+            officer_name: officerName,
+            contact_number: contactNumber,
+            email: email,
+            password: password
+        })
+        .then(res => {
+            if (res.data.success){
+                alert("Account updated.");
+                history.push(
+                    '/organisers/home',
+                    {
+                        orgName:organiserName,
+                        id:res.data.organiser._id,
+                        // organiser: res.data.organiser
+                    }
+                );
+            } else {
+                alert("Update account failed.")
+            }
+        });
+    }
+
     const handleOrganisationName = (event) => {
         setOrganiserName(event.target.value);
     };
@@ -72,29 +101,7 @@ export default function OrganiserUpdate(props) {
         setPassword(event.target.value);
     };
 
-    function updateAccount(event){
-        event.preventDefault();
-        axios.post('/organisers/backend/update/'+id,
-        {
-            organisation_name: organiserName,
-            officer_name: officerName,
-            contact_number: contactNumber,
-            email: email,
-            password: password
-        })
-        .then(res => res.data.success?
-            history.push({
-                pathname:'/organisers/home',
-                state:
-                {
-                    orgName:res.data.organiser.organisation_name,
-                    id:res.data.organiser._id,
-                    organiser: res.data.organiser
-                }
-            }):
-            alert("Fail to update")
-        ).catch();
-    }
+    
 
     return (
         <div>
@@ -115,9 +122,6 @@ export default function OrganiserUpdate(props) {
                     <div>
                         <div className={classes.container}>
                             <div class='container'>
-                                {/* <div class="heading">
-                                    Update Account
-                                </div> */}
 
                             
                             <GridContainer justify="center">
@@ -131,18 +135,19 @@ export default function OrganiserUpdate(props) {
                                             labelText="Organiser Name"
                                             id="organisationName"
                                             value={organiserName}
+                                            require={true}
                                             variant="outlined"
                                             formControlProps={{
                                                 fullWidth: true,
                                                 onChange: (event)=>handleOrganisationName(event)
                                               }}
                                             inputProps={{
-                                                type: "text"
-                                            //   endAdornment: (
-                                            //       <InputAdornment position="end">
-                                            //           <People className={classes.inputIconsColor} />
-                                            //       </InputAdornment>
-                                            //   )
+                                                type: "text",
+                                              endAdornment: (
+                                                  <InputAdornment position="end">
+                                                      <People />
+                                                  </InputAdornment>
+                                              )
                                         }}
                                         />
                                         <CustomInput
@@ -155,11 +160,11 @@ export default function OrganiserUpdate(props) {
                                             }}
                                             inputProps={{
                                                 type: "text",
-                                                // endAdornment: (
-                                                //     <InputAdornment position="end">
-                                                //         <EmailIcon className={classes.inputIconsColor} />
-                                                //     </InputAdornment>
-                                                // )
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <PersonIcon className={classes.inputIconsColor} />
+                                                    </InputAdornment>
+                                                )
                                             }}
                                         />
                                         <CustomInput
@@ -172,11 +177,11 @@ export default function OrganiserUpdate(props) {
                                             }}
                                             inputProps={{
                                                 type: "text",
-                                                // endAdornment: (
-                                                //     <InputAdornment position="end">
-                                                //         <EmailIcon className={classes.inputIconsColor} />
-                                                //     </InputAdornment>
-                                                // )
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <ContactPhoneIcon className={classes.inputIconsColor} />
+                                                    </InputAdornment>
+                                                )
                                             }}
                                         />
                                         <CustomInput
@@ -189,11 +194,11 @@ export default function OrganiserUpdate(props) {
                                             }}
                                             inputProps={{
                                                 type: "email",
-                                                // endAdornment: (
-                                                //     <InputAdornment position="end">
-                                                //         <EmailIcon className={classes.inputIconsColor} />
-                                                //     </InputAdornment>
-                                                // )
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <EmailIcon className={classes.inputIconsColor} />
+                                                    </InputAdornment>
+                                                )
                                             }}
                                         />
                                         <CustomInput
@@ -207,20 +212,19 @@ export default function OrganiserUpdate(props) {
                                             inputProps={{
 
                                                 type: "password",
-                                                // endAdornment: (
-                                                //     <InputAdornment position="end">
-                                                //         <EmailIcon className={classes.inputIconsColor} />
-                                                //     </InputAdornment>
-                                                // )
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <VpnKeyIcon className={classes.inputIconsColor} />
+                                                    </InputAdornment>
+                                                )
                                             }}
                                         />
 
-                                        <div>
+                                        <div style={{float:"right"}}>
                                             <Button
                                                 // className='updateButton'
                                                 variant="outlined"
-                                                color="primary"
-                                                size="sm"
+                                                size="md"
                                                 onClick={()=>history.goBack()}
                                             >
                                                 Cancel
@@ -229,80 +233,12 @@ export default function OrganiserUpdate(props) {
                                             <Button
                                                 variant="outlined"
                                                 color="danger"
-                                                size="sm"
+                                                size="md"
                                                 onClick={updateAccount}
                                             >
                                                 Update Account
                                             </Button>
                                         </div>
-
-                                {/* <Button
-                                    variant="contained"
-                                    fullWidth
-                                    size="large"
-                                    color="danger"
-                                    target="_blank"
-                                    startIcon={<AddIcon />}
-                                    onClick={postForm}
-                                    round
-                                >
-                                    <h5><strong>Post New Form</strong></h5>
-                                </Button>
-
-                                <Button
-                                    variant="contained"
-                                    fullWidth
-                                    size="large"
-                                    color="danger"
-                                    target="_blank"
-                                    startIcon={<ClearAllIcon />}
-                                    onClick={viewForms}
-                                    round
-                                >
-                                    <h5><strong>View My Forms</strong></h5>
-                                </Button>
-
-
-                                <GridItem container justify="center">
-                                    <strong><h3>Account Management</h3></strong>
-                                </GridItem>
-
-
-                                <Button
-                                    variant="contained"
-                                    fullWidth
-                                    size="large"
-                                    target="_blank"
-                                    startIcon={<UpdateIcon />}
-                                    onClick={updateAccount}
-                                >
-                                    <strong>Update Account</strong>
-                                </Button>
-
-                                <Button
-                                    variant="contained"
-                                    fullWidth
-                                    size="large"
-                                    target="_blank"
-                                    startIcon={<DeleteIcon />}
-                                    onClick={deleteAccount}
-                                >
-                                    <strong>Delete Account</strong>
-                                </Button>
-
-
-                                <GridItem container justify="center">
-                                <Button
-                                    variant="contained"
-                                    size="small"
-                                    target="_blank"
-                                    startIcon={<KeyboardReturnIcon />}
-                                    onClick={() => {history.goBack()}}
-                                    round
-                                >
-                                    <strong>Back</strong>
-                                </Button>
-                                </GridItem> */}
 
                             </GridItem>
                         </GridContainer>
