@@ -167,6 +167,8 @@ export default function PostNewForm(props) {
                     <div className={classes.container}>
                         <div class='container'>
                             <div class="heading">
+                                <h3>{orgName}</h3>
+                                <br/>
                                 Post New Event Listing
                             </div>
 
@@ -186,7 +188,6 @@ export default function PostNewForm(props) {
                                             }}
                                             inputProps={{
                                                 type: "text",
-                                                defaultValue: email_add,
                                                 endAdornment: (
                                                     <InputAdornment position="end">
                                                         <EmailIcon className={classes.inputIconsColor} />
@@ -282,12 +283,7 @@ export default function PostNewForm(props) {
                                                 onChange: (event)=>handleTime(event)
                                             }}
                                             inputProps={{
-                                                type: "datetime-local",
-                                                endAdornment: (
-                                                    <InputAdornment position="end">
-                                                        <TodayIcon className={classes.inputIconsColor} />
-                                                    </InputAdornment>
-                                                )
+                                                type: "datetime-local"
                                             }}
                                         />
 
