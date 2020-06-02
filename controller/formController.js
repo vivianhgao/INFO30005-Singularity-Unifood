@@ -18,17 +18,24 @@ const createForm = async (req, res,next) => {
         latitude:req.body.latitude,
         longitude: req.body.longitude
     };
-    try {
-        var data = new Form(new_form);
-        data.save();
-        console.log("New Form Posted")
-        console.log(new_form)
-        return res.json({ success: true });
-    } catch (err) {
-        res.status(400);
-        return res.send("Error making post!");
+    console.log(new_form)
+    if (new_form.email&&new_form.name&&new_form.description&&new_form.address&&new_form.time){
+        try {
+            var data = new Form(new_form);
+            data.save();
+            console.log("New Form Posted")
+            // console.log(new_form)
+            return res.json({ success: true });
+        } catch (err) {
+            // res.status(400);
+            console.log("fails to post form")
+            // return res.send("Error making post!");
+            return res.json({ success: false });
+        }
+    }else{
         return res.json({ success: false });
     }
+   
 };
 
 

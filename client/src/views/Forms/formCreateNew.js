@@ -53,8 +53,8 @@ export default function PostNewForm(props) {
 
     const email_add = location.state.email_add;
     const orgName = location.state.orgName;
-    const [email,setEmail]=useState("")
-    const [name,setName]=useState("")
+    const email=email_add
+    const [name_input,setNameInput]=useState("")
     const [description,setDescription]=useState("")
     const [address,setAddress]=useState("")
     const [time,setTime]= useState("")
@@ -66,43 +66,21 @@ export default function PostNewForm(props) {
     const classes = useStyles();
     const { ...rest } = props;
 
+    var name=orgName+": ";
 
-    async function createForm(event) {
-        try {
-            axios.post(
-                '/forms/createForm',
-                {email,name,description,address,time,quantity,photo,latitude,longitude})
-                .then(res => {
-                    if (res.data.success){
+
+    function createForm(event) {
+        axios.post('/forms/createForm',{email,name,description,address,time,quantity,photo,latitude,longitude})
+            .then(function(res) {
+                    if(res.data.success) {
                         swal("New form successfully posted!");
                         history.goBack();
-                    }})
-        } catch (error) {
-            console.log(error.response);
-            swal("Error, please try again!");
-        }
+                    }
+                    else{
+                        swal("Incomplete form!\nPlease fill the required information.");
+                    }
+                })
     }
-
-
-
-//    function createForm(event){
-//        axios.post(
-//            '/forms/createForm',
-//            {email,name,description,address,time,quantity,photo,latitude,longitude})
-//            .then(res => {
-//                if (res.data.success){
-//                    swal("New form successfully posted!");
-//                    history.goBack();
-//                } else {
-//                    swal("Error, please try again!");
-//                }
-//            }).catch();
-//    }
-
-
-
-
-
 
     function getLocation(){
         swal({
@@ -140,11 +118,12 @@ export default function PostNewForm(props) {
        
       }
 
-    const handleEmail = (event) => {
-        setEmail(event.target.value);
-    };
+    // const handleEmail = (event) => {
+    //     setEmail(event.target.value);
+    // };
     const handleName = (event) => {
-        setName(event.target.value);
+        setNameInput(event.target.value);
+        name=name+name_input;
     };
     const handleDescription = (event) => {
         setDescription(event.target.value);
@@ -196,13 +175,13 @@ export default function PostNewForm(props) {
                                     <div class='container'>
 
                                         <CustomInput
-                                            labelText="Account Email* (please re-enter)"
+                                            labelText="Account Email*"
                                             id="email"
                                             value={email}
                                             variant="outlined"
                                             formControlProps={{
                                                 fullWidth: true,
-                                                onChange: (event)=>handleEmail(event)
+                                                // onChange: (event)=>handleEmail(event)
 
                                             }}
                                             inputProps={{
@@ -217,13 +196,13 @@ export default function PostNewForm(props) {
                                         />
 
                                         <CustomInput
-                                            labelText="Organisation and Event Name*"
+                                            labelText="Organisation: Event Name*"
                                             id="name"
-                                            value={name}
+                                            value={name_input}
                                             variant="outlined"
                                             formControlProps={{
                                                 fullWidth: true,
-                                                onChange: (event)=>handleName(event)
+                                                onChange: (event)=>handleName(event),
 
                                             }}
                                             inputProps={{
@@ -263,7 +242,7 @@ export default function PostNewForm(props) {
 
 
                                         <CustomInput
-                                            labelText="Location*"
+                                            labelText="Location Description*"
                                             fullwidth
                                             id="address"
                                             value={address}
@@ -285,8 +264,8 @@ export default function PostNewForm(props) {
 
                                         <GridItem container justify="center">
                                         <Button
-                                            primary
-                                            size="small"
+                    
+                                            size="sm"
                                             onClick={getLocation}
                                         >
                                             share my coordinates

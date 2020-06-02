@@ -3,7 +3,7 @@ const LoginAuth = {
     authenticate(cb) {
       LoginAuth.isAuthenticated = true;
       console.log(this.isAuthenticated)
-      setTimeout(cb, 100); // fake async
+      setTimeout(cb, 100); 
     },
     signout(cb) {
       LoginAuth.isAuthenticated = false;
