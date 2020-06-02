@@ -37,9 +37,9 @@ const endpoiupdate="http://localhost:5000";
 export default function OrganiserUpdate(props) {
 
     let history = useHistory();
-  const location = useLocation();
-  const id=location.state.id;
-  const organisation_name = location.state.orgName;
+    const location = useLocation();
+    const id=location.state.id;
+    const organisation_name = location.state.orgName;
     const [email,setEmail]= useState("")
     const [password,setPassword]=useState("")
     const [contactNumber,setContactNumber]= useState("")

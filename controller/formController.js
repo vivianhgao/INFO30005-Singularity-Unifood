@@ -18,17 +18,24 @@ const createForm = async (req, res,next) => {
         latitude:req.body.latitude,
         longitude: req.body.longitude
     };
-    try {
-        var data = new Form(new_form);
-        data.save();
-        console.log("New Form Posted")
-        console.log(new_form)
-        return res.json({ success: true });
-    } catch (err) {
-        res.status(400);
-        return res.send("Error making post!");
+    console.log(new_form)
+    if (new_form.email&&new_form.name&&new_form.description&&new_form.address&&new_form.time){
+        try {
+            var data = new Form(new_form);
+            data.save();
+            console.log("New Form Posted")
+            // console.log(new_form)
+            return res.json({ success: true });
+        } catch (err) {
+            // res.status(400);
+            console.log("fails to post form")
+            // return res.send("Error making post!");
+            return res.json({ success: false });
+        }
+    }else{
         return res.json({ success: false });
     }
+   
 };
 
 
@@ -43,8 +50,10 @@ const updateForm = async (req, res, next) => {
     Form.findById(id, function(err, doc) {
         if (err) {
             res.send("An error has occurred!");
+            return res.json({success:false})
         } else if (!Form) {
             return res.send('Form is not found!');
+            return res.json({success:false})
         }
         doc.email = req.body.email;
         doc.name = req.body.name;
@@ -58,8 +67,11 @@ const updateForm = async (req, res, next) => {
         doc.save();
     });
     console.log("Form is updated!");
-    res.redirect('/forms');
+    res.json({success:true});
 };
+
+
+
 
 
 //update form by email
@@ -92,9 +104,21 @@ const updateFormbyEmail = async (req, res, next) => {
 // delete a form by form ID
 var deleteForm = function(req, res, next) {
     var id = req.body.id;
-    Form.findByIdAndRemove(id).exec();
-    res.redirect('/forms');
+    Form.findByIdAndRemove( id , (err, organiser) =>{
+        if(err) {
+            console.error("Deletion Error");
+            res.json({success:false})
+        }
+        else {
+            console.log("Form ID #"+id+" is deleted!");
+            res.json({success:true});
+        }2
+    });
+
 };
+
+
+
 
 
 

@@ -32,6 +32,7 @@ import AddIcon from '@material-ui/icons/Add';
 import ClearAllIcon from '@material-ui/icons/ClearAll';
 
 import OrganiserUpdate from "./organiserUpdateAccount";
+import LoginAuth from '../../LoginAuth';
 
 const useStyles = makeStyles(styles);
 var socket = io();
@@ -68,6 +69,12 @@ export default function OrganiserHomePage(props) {
     const viewForms = () => {
         let path = '/organisers/forms';
         history.push(path, {id:id, orgName:organisation_name, email_add:email_add});
+    }
+
+    function handleLogout(){
+        console.log("Organiser: "+organisation_name+" is logged out!")
+        LoginAuth.signout();
+        history.push("/")
     }
 
     return (
@@ -109,7 +116,7 @@ export default function OrganiserHomePage(props) {
                                 <Button
                                     variant="contained"
                                     fullWidth
-                                    size="large"
+                                    size="lg"
                                     color="danger"
                                     target="_blank"
                                     startIcon={<AddIcon />}
@@ -122,7 +129,7 @@ export default function OrganiserHomePage(props) {
                                 <Button
                                     variant="contained"
                                     fullWidth
-                                    size="large"
+                                    size="lg"
                                     color="danger"
                                     target="_blank"
                                     startIcon={<ClearAllIcon />}
@@ -141,8 +148,10 @@ export default function OrganiserHomePage(props) {
                                 <Button
                                     variant="contained"
                                     fullWidth
+
                                     color="warning"
-                                    size="large"
+                                    size="lg"
+
                                     target="_blank"
                                     startIcon={<UpdateIcon />}
                                     onClick={updateAccount}
@@ -153,8 +162,10 @@ export default function OrganiserHomePage(props) {
                                 <Button
                                     variant="contained"
                                     fullWidth
-                                    size="large"
+
                                     color="warning"
+                                    size="lg"
+
                                     target="_blank"
                                     startIcon={<DeleteIcon />}
                                     onClick={deleteAccount}
@@ -166,13 +177,15 @@ export default function OrganiserHomePage(props) {
                                 <GridItem container justify="center">
                                 <Button
                                     variant="contained"
-                                    size="small"
+                                    size="sm"
                                     target="_blank"
                                     startIcon={<KeyboardReturnIcon />}
-                                    onClick={() => {history.goBack()}}
+                                    onClick={()=>handleLogout()}
                                     round
                                 >
-                                    <strong>Logout</strong>
+
+                                    <strong>Log out</strong>
+
                                 </Button>
                                 </GridItem>
 

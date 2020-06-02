@@ -42,6 +42,9 @@ export default function HeaderLinks(props) {
           }}
           buttonIcon={Apps}
           dropdownList={[
+              <Link to="/log-in" className={classes.dropdownLink}>
+                  User or Organiser
+              </Link>,
               <Link to="/about-us" className={classes.dropdownLink}>
                   About Us
               </Link>,
@@ -50,17 +53,6 @@ export default function HeaderLinks(props) {
               </Link>,
           ]}
         />
-      </ListItem>
-      <ListItem className={classes.listItem}>
-        <Button
-          
-          color="transparent"
-          target="_blank"
-          className={classes.navLink}
-          onClick={()=>history.push("/user/login")}
-        >
-          <ExitToAppIcon className={classes.icons} /> Users
-        </Button>
       </ListItem>
 
         <ListItem className={classes.listItem}>

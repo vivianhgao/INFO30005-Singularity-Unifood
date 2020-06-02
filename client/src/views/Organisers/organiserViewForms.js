@@ -53,7 +53,6 @@ export default function OrganiserViewForms(props) {
     const [load, setLoad] = useState(false);
     const [error, setError] = useState('');
 
-
     useEffect(() => {
         axios.get("/forms/formList/"+email_add)
             .then(res => {
@@ -61,20 +60,20 @@ export default function OrganiserViewForms(props) {
                 setLoad(true);
             })
             .catch(err => {
-                swal("Incorrect username/ password.\nPlease Try again");
+                swal("Error! Please try again!");
             })
     }, []);
 
-
-    const deleteForm = () => {
-        let path = '/organisers/forms';
-        history.push(path, {id:id, orgName:organisation_name, email_add:email_add});
+    const deleteForm = () =>{
+        let path = '/delete-form';
+        history.push(path, {orgName:organisation_name, email_add:email_add});
     }
 
     const updateForm = () => {
-        let path = '/organisers/forms';
+        let path = '/update-form';
         history.push(path, {id:id, orgName:organisation_name, email_add:email_add});
     }
+
 
 
     return (
@@ -145,6 +144,7 @@ export default function OrganiserViewForms(props) {
 
                                                             <Button
                                                                 size="small"
+                                                                formID= {res._id}
                                                                 onClick={deleteForm}
                                                                 class="inline">
                                                                 Delete

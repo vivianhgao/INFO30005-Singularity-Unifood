@@ -55,7 +55,7 @@ const addUser = async (req, res,next) => {
         if(err){
             res.send('An error occured');
         } else if (userExists) {
-            res.render("signUpError");
+            // res.render("signUpError");
             return res.json({ success: false, error: err });
 
         } else {

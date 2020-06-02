@@ -154,7 +154,7 @@ export default function UserDashboard(props) {
 
   function logOut(){
     console.log("User "+username+" is logged out!")
-    LoginAuth.isAuthenticated=false;
+    LoginAuth.signout();
     history.push({pathname:'/'})
   }
 
