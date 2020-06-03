@@ -15,12 +15,27 @@ https://unifood-app.herokuapp.com/
 | User      | pbudiman          | userpb  |
 | Organiser | external@demo.com | demo    |
 
+
+
+
+
+
+
+
 # Table of Contents
 
 1. [Set Up Environment](#set-up-environment)
 2. [Core Functionalities](#core-functionalities)
 3. [Front-End Client](#front-end-client)
 4. [Back-End Server](#back-end-server)
+
+
+
+
+
+
+
+
 
 
 ## Set Up Environment
@@ -43,37 +58,54 @@ npm install
 npm start
 ```
 
+
+
+
+
+
+
+
+
+
 ## Core Functionalities
-### Account System
-User accounts are able to access their dashboard where all new event and food listings are available. On their dashboard, the user can share their current location and be notified of new events that are close to their proximity.
+### 1. Account System
+User accounts are able to access their dashboard where all new event and food listings are available. On their dashboard, the user can share their current location and be notified of new events that are close to their proximity. The composes of the back-end for User and Organiser.
     
-    - User Account
+    User Account
         - Login
         - Sign up
         - Update user
         - Delete user
         - View all users
         
-    - Organiser Account
+    Organiser Account
         - Login
         - Sign up
         - Update organiser
         - Delete organiser
         - View all organiser
         
-### Form Management
-Organiser accounts are able to post a new listing with their location to be advertised to all users. In addition, organisers are able to manage their forms by either updating the details or deleting a listing.
+### 2. Form Management
+Organiser accounts are able to post a new listing with their location to be advertised to all users. In addition, organisers are able to manage their forms by either updating the details or deleting a listing. This composes of the back-end for Form.
 
     - Create new form
     - Update form
     - Delete form
     - View all forms
 
-### Location-Based Notification System
-User accounts are able to access their dashboard where all new event and food listings are available. On their dashboard, the user can share their current location and be notified of new events that are close to their proximity.
+### 3. Location-Based Notification System
+User accounts are able to access their dashboard where all new event and food listings are available. On their dashboard, the user can share their current location and be notified of new events that are close to their proximity. This composes of the back-end for Location.
 
     - Locate current user's location
     - Notify user if there is a nearby leftovers.
+
+
+
+
+
+
+
+
 
 ## Front-End Client
 
@@ -128,7 +160,7 @@ This page contains:
 
 To get notifications, user should click the "Share my location " button, allow the location access, and the notification will be sent real time based on location of 500 metres.
 
-### Form Management
+## Form Management
 #### Login as organiser:
 https://unifood-app.herokuapp.com/organisers/login
 
@@ -145,11 +177,28 @@ Now you can:
 
 
 
+
+
+
 ## Back-End Server
 
 URL: http://localhost:5000
 
-### User Routes
+
+### User
+#### User MVC
+
+```
+...
+├── controller
+|   └── userController.js
+├── model
+|   └── user.js
+└── routes
+|   └── userRouter.js
+...
+```
+#### User Routes
 
 | NAME       | PATH                          | METHOD | FUNCTION                                 |
 |------------|-------------------------------|--------|------------------------------------------|
@@ -161,7 +210,20 @@ URL: http://localhost:5000
 | deleteUser | /users/delete/:username       | GET    | Deletes user by username                 |
 
 
-### Organiser Routes
+### Organiser
+#### Organiser MVC
+
+```
+...
+├── controller
+|   └── organiserController.js
+├── model
+|   └── organiser.js
+└── routes
+|   └── organiserRouter.js
+...
+```
+#### Organiser Routes
 
 | NAME             | PATH                   | METHOD | FUNCTION                                   |
 |------------------|------------------------|--------|--------------------------------------------|
@@ -174,7 +236,20 @@ URL: http://localhost:5000
 | updateOrganiser  | /organisers/update/:id | POST   | Updates details of organiser by id         |
 | deleteOrganiser  | /organisers/delete/:id | GET    | Deletes organiser account by id            |
 
-### Form Routes
+### Form 
+#### Form MVC
+
+```
+...
+├── controller
+|   └── formController.js
+├── model
+|   └── form.js
+└── routes
+|   └── formRouter.js
+...
+```
+#### Form Routes
 
 |        NAME        |          PATH          | METHOD |                 FUNCTION                |
 |:------------------:|:----------------------:|:------:|:---------------------------------------:|
@@ -186,7 +261,20 @@ URL: http://localhost:5000
 | getAllFormsByEmail | /forms/formList/:email | GET    | Displays all forms with specified email |
 
 
-### Location Routes
+### Location 
+#### Location MVC
+
+```
+...
+├── controller
+|   └── locationController.js
+├── model
+|   └── location.js
+└── routes
+|   └── locationRouter.js
+...
+```
+#### Location Routes
 | NAME        | PATH       | METHOD | FUNCTION                           |
 |-------------|------------|--------|------------------------------------|
 | index       | /location  | GET    | Retrieves the location coordinates |
