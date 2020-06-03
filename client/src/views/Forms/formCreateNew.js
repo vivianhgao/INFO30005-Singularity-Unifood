@@ -69,6 +69,7 @@ export default function PostNewForm(props) {
     }
 
     function getLocation(){
+        // Ask permission
         swal({
           text:"Allow Unifood to access your location?",
           icon:"info",
@@ -104,10 +105,6 @@ export default function PostNewForm(props) {
        
       }
 
-    // const handleEmail = (event) => {
-    //     setEmail(event.target.value);
-    // };
-
     const handleName = (event) => {
         setName(event.target.value);
     };
@@ -122,15 +119,6 @@ export default function PostNewForm(props) {
     };
     const handleQuantity = (event) => {
         setQuantity(event.target.value);
-    };
-    const handlePhoto = (event) => {
-        setPhoto(event.target.value);
-    };
-    const handleLatitude = (event) => {
-        setLatitude(event.target.value);
-    };
-    const handleLongitude = (event) => {
-        setLongitude(event.target.value);
     };
 
     return (
@@ -203,8 +191,6 @@ export default function PostNewForm(props) {
                                             }}
                                         />
 
-
-
                                         <CustomInput
                                             labelText="Description of Food and Event*"
                                             id="description"
@@ -226,8 +212,6 @@ export default function PostNewForm(props) {
                                             }}
                                         />
 
-
-
                                         <CustomInput
                                             labelText="Location Description*"
                                             fullwidth
@@ -248,17 +232,14 @@ export default function PostNewForm(props) {
                                             }}
                                         />
 
-
                                         <GridItem container justify="center">
-                                        <Button
-                    
-                                            size="sm"
-                                            onClick={getLocation}
-                                        >
-                                            share my coordinates
-                                        </Button>
+                                            <Button
+                                                size="sm"
+                                                onClick={getLocation}
+                                            >
+                                                share my coordinates
+                                            </Button>
                                         </GridItem>
-
 
                                         <CustomInput
                                             labelText=""
@@ -290,60 +271,12 @@ export default function PostNewForm(props) {
                                                 )
                                             }}
                                         />
-                                        {/*
-                                        <CustomInput
-                                            accept="image/*"
-                                            labelText="Photo"
-                                            id="photo"
-                                            value={photo}
-                                            formControlProps={{
-                                                fullWidth: true,
-                                                onChange: (event)=>handlePhoto(event)
-                                            }}
-                                            inputProps={{
-                                                type: "file",
-                                                endAdornment: (
-                                                    <InputAdornment position="end">
-                                                        <PhotoCamera className={classes.inputIconsColor} />
-                                                    </InputAdornment>
-                                                )
-                                            }}
-                                        />
-                                        */}
-                                        
-
-                                        {/* <CustomInput
-                                            labelText="Latitude"
-                                            id="latitude"
-                                            value={latitude}
-                                            formControlProps={{
-                                                fullWidth: true,
-                                                onChange: (event)=>handleLatitude(event)
-                                            }}
-                                            inputProps={{
-                                                type: "text",
-                                            }}
-                                        />
-
-                                        <CustomInput
-                                            labelText="Longitude"
-                                            id="longitude"
-                                            value={longitude}
-                                            formControlProps={{
-                                                fullWidth: true,
-                                                onChange: (event)=>handleLongitude(event)
-                                            }}
-                                            inputProps={{
-                                                type: "text",
-                                            }} */}
-
 
                                         <CardFooter className={classes.cardFooter} style={{justifyContent: 'center'}}>
                                             <Button variant="outlined" color="danger" size="lg" onClick={()=>createForm()}>
                                                 Post New Form
                                             </Button>
                                         </CardFooter>
-
 
                                         <GridItem container justify="center">
                                             <Button
@@ -357,7 +290,6 @@ export default function PostNewForm(props) {
                                                 <strong>Back</strong>
                                             </Button>
                                         </GridItem>
-
 
                                     </div>
                                 </Grid>

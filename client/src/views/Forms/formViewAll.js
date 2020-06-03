@@ -25,9 +25,10 @@ import CardContent from '@material-ui/core/CardContent';
 import io from "socket.io-client";
 var socket = io();
 
+// Using UI template from material-ui
 const useStyles = makeStyles(styles);
 
-
+// display all forms
 export default function ViewAllForms(props) {
     const [forms, setForms] = useState([]);
     const classes = useStyles();
@@ -37,20 +38,11 @@ export default function ViewAllForms(props) {
         classes.imgRoundedCircle,
         classes.imgFluid
     );
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: false
-    };
-    const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
-
+    
     useEffect(()=>{
+        // listen on incoming data
         socket.on("Forms", data=>setForms(data));
         console.log(forms)
-
     });
 
     return (
@@ -83,7 +75,6 @@ export default function ViewAllForms(props) {
                             </GridItem>
                         </GridContainer>
 
-
                         {forms.reverse().map(res=>(
                             <div>
                             <div key={res.id}>
@@ -106,7 +97,6 @@ export default function ViewAllForms(props) {
                                 <br/>
                             </div>
                         ))}
-
 
                     </div>
                 </div>
