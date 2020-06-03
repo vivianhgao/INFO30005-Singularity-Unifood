@@ -96,7 +96,7 @@ export default function UserDashboard(props) {
         const distance = getDistance(userLat,userLong,eventLat,eventLong);
 
         // considerably near
-        if (distance < 1) {
+        if (distance < 0.5) {
           // console.log(distance);
           // console.log("NOTIFY DATA: ", notifyData.length);
 
