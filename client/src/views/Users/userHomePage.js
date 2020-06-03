@@ -272,7 +272,7 @@ export default function UserDashboard(props) {
                         Available Food
                     </div> 
                     <br/>
-                    {forms.reverse().map(res=>(
+                    {forms.map(res=>(
                         <div key={res.id}>
                             <div class='formBox'>
                                 New Entry from {res.name}!<br/>

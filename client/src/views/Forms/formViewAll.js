@@ -11,7 +11,6 @@ import Footer from "components/Footer/Footer.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
-import NavPills from "components/NavPills/NavPills.js";
 import Parallax from "components/Parallax/Parallax.js";
 
 import profile from "assets/img/faces/unifood_logo.png";
@@ -19,17 +18,11 @@ import styles from "assets/jss/material-kit-react/views/profilePage.js";
 
 //card imports
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import InfoArea from "components/InfoArea/InfoArea.js";
 
 
 //form imports
 import io from "socket.io-client";
-import CardHeader from "../../components/Card/CardHeader";
-import PublicIcon from "@material-ui/icons/Public";
 var socket = io();
 
 const useStyles = makeStyles(styles);
