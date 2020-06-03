@@ -77,41 +77,79 @@ User accounts are able to access their dashboard where all new event and food li
 
 ## Front-End Client
 
-##### Demo account:
- username: pbudiman
- <br> password: userpb
+**Home Page:** https://unifood-app.herokuapp.com 
 
-##### Home Page:
-URL: https://unifood-app.herokuapp.com 
- <br> or access locally  http://localhost:3000
- 
-##### Login:
-Click "Hungry User" button at the homepage or access:
- <br> https://unifood-app.herokuapp.com/userlogin 
- <br>
- or http://localhost:3000/userlogin locally.
- 
-##### User Dashboard:
-The user homepage should be and automatically accessed after the user successfully login.
+**About Page:** https://unifood-app.herokuapp.com/about-us
+
+**All Listings:** https://unifood-app.herokuapp.com/all-listings
+
+### Account Management
+**Account Index:** https://unifood-app.herokuapp.com/log-in
+
+#### User Account Management:
+
+Username: pbudiman 
+<br>
+Password: userpb
+
+**User Login:** https://unifood-app.herokuapp.com/user/login
+<br>
+**User Signup:** https://unifood-app.herokuapp.com/user/signup
+<br>
+**Update/Delete User:** https://unifood-app.herokuapp.com/user/details
+
+#### Organiser Account Management:
+
+Email: external@demo.com 
+<br>
+Password: demo
+
+**Organiser Login:** https://unifood-app.herokuapp.com/organisers/login
+<br>
+**Organiser Signup:** https://unifood-app.herokuapp.com/organisers/signup
+<br>
+**Update Organiser:** https://unifood-app.herokuapp.com/organisers/account/update
+<br>
+**Delete Organiser:** https://unifood-app.herokuapp.com/organisers/account/delete
+
+### Location-Based Notifications
+
+#### Login as user:
+https://unifood-app.herokuapp.com/user/login
+
+#### User dashboaard:
+The user dashboard should be and automatically accessed after the user successfully login.
 
 URL: http://unifood-app.herokuapp.com/userdashboard
-<br>or http://localhost:3000/userdashboard locally
 
 This page contains:
  - all of the forms
  - The near leftovers notifications
 
-To get notifications, user should click the "Share my location " button, allow the location access, and the notification will be sent real time.
+To get notifications, user should click the "Share my location " button, allow the location access, and the notification will be sent real time based on location of 500 metres.
+
+### Form Management
+#### Login as organiser:
+https://unifood-app.herokuapp.com/organisers/login
+
+#### Organiser dashboard:
+The organiser dashboard is automatically accessed after successsful login.
+
+URL: https://unifood-app.herokuapp.com/organisers/home
+
+Now you can: 
+- Post new form 
+- View your forms
+-- Update your form
+-- Delete your from
+
 
 
 ## Back-End Server
 
 URL: http://localhost:5000
 
-#### User Routes
-Demo account:
-* Username: pbudiman
-* Password: userpb
+### User Routes
 
 | NAME       | PATH                          | METHOD | FUNCTION                                 |
 |------------|-------------------------------|--------|------------------------------------------|
@@ -123,13 +161,7 @@ Demo account:
 | deleteUser | /users/delete/:username       | GET    | Deletes user by username                 |
 
 
-#### Organiser Routes
-Demo account:
-<br>
-email: external@demo.com
-<br>
-password: demo
-
+### Organiser Routes
 
 | NAME             | PATH                   | METHOD | FUNCTION                                   |
 |------------------|------------------------|--------|--------------------------------------------|
@@ -142,7 +174,7 @@ password: demo
 | updateOrganiser  | /organisers/update/:id | POST   | Updates details of organiser by id         |
 | deleteOrganiser  | /organisers/delete/:id | GET    | Deletes organiser account by id            |
 
-#### Form Routes
+### Form Routes
 
 |        NAME        |          PATH          | METHOD |                 FUNCTION                |
 |:------------------:|:----------------------:|:------:|:---------------------------------------:|
@@ -154,7 +186,7 @@ password: demo
 | getAllFormsByEmail | /forms/formList/:email | GET    | Displays all forms with specified email |
 
 
-#### Location Routes
+### Location Routes
 | NAME        | PATH       | METHOD | FUNCTION                           |
 |-------------|------------|--------|------------------------------------|
 | index       | /location  | GET    | Retrieves the location coordinates |
