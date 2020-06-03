@@ -26,9 +26,10 @@ import image1 from "../../assets/img/info1.png";
 import image2 from "../../assets/img/info2.png";
 import image3 from "../../assets/img/moodboard.png";
 
-
+// Using UI template from Material-UI
 const useStyles = makeStyles(styles);
 
+// About Us page
 export default function AboutUs(props) {
     const classes = useStyles();
     const { ...rest } = props;
@@ -45,7 +46,7 @@ export default function AboutUs(props) {
         slidesToScroll: 1,
         autoplay: false
     };
-    const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
+
     return (
         <div>
             <Header

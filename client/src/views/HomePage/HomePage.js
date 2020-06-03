@@ -5,8 +5,6 @@ import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 
-
-
 // @material-ui/icons
 
 // core components
@@ -18,6 +16,7 @@ import Button from "components/CustomButtons/Button.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
 import Parallax from "components/Parallax/Parallax.js";
 
+// import design template
 import styles from "assets/jss/material-kit-react/views/landingPage.js";
 
 // Sections for this page
@@ -27,6 +26,7 @@ import {useHistory} from "react-router-dom";
 
 const dashboardRoutes = [];
 
+// Using UI template from Material-UI
 const useStyles = makeStyles(styles);
 
 export default function HomePage(props) {
