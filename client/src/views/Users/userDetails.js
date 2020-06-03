@@ -240,7 +240,7 @@ export default function UserDetails(props) {
                                        
                                        
                                       <div id='button'style={{backgroundColor:"rgb(175, 173, 170)", float:"left"}} >
-                                            <Button simple size="sm"  onClick={handleCancelation}>
+                                            <Button simple size="sm"  onClick={()=>handleCancelation()}>
                                               <div class="cancel">
                                                 Cancel
                                               </div>
@@ -249,7 +249,7 @@ export default function UserDetails(props) {
                                         
                                         
                                         <div id='button' style={{backgroundColor:"antiquewhite", float:"right"}}>
-                                              <Button simple color="danger" size="sm" onClick={handleChanges}>
+                                              <Button simple color="danger" size="sm" onClick={()=>handleChanges()}>
                                                 <div class="buttonFiller">
                                                     Confirm Changes
                                                 </div>
@@ -260,7 +260,7 @@ export default function UserDetails(props) {
 
 
                                         <div id='deletebutton' style={{backgroundColor:"white"}} >
-                                          <Button simple size="sm" onClick={handleDeletion}>
+                                          <Button simple size="sm" onClick={()=>handleDeletion()}>
                                                 <div class="delete">
                                                     Delete Account
                                                 </div>
