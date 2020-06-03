@@ -41,7 +41,7 @@ const logIn = (req, res, next) => {
 };
 
 // function to add user account when a new user signs up
-const addUser = async (req, res,next) => {
+const addUser = (req, res,next) => {
     const new_user ={
         username,
         email,
@@ -97,7 +97,7 @@ const getDetails = (req,res,next) => {
 };
 
 // function to update an information about a user
-const updateUser =  async (req, res) => {
+const updateUser = (req, res) => {
     var condition = {username: req.params.username};
     const update= {username,email,first_name,last_name,password}=req.body;
   

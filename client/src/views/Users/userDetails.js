@@ -50,8 +50,9 @@ export default function UserDetails(props) {
             username=newUsername
 
         }
-        axios.post("users/login/update/"+oldUsername,{username,email,first_name,last_name,password})
-            .then(res=> res.data.success?history.push({pathname:'/user/dashboard', state:{detail:username}}):alert("Chosen email/username is taken."));
+        axios.post("/users/login/update/"+oldUsername,{username,email,first_name,last_name,password})
+            .then(res=> res.data.success?
+                (swal("Your account is successfully updated!"),history.push({pathname:'/user/dashboard', state:{detail:username}})):alert("Chosen email/username is taken."));
     }
 
     function handleCancelation(){
@@ -73,7 +74,7 @@ export default function UserDetails(props) {
         })
         .then((value)=>{
             if(value=== "delete"){
-                axios.get("users/delete/"+oldUsername)
+                axios.get("/users/delete/"+oldUsername)
                     .then(res=>res.data.success?
                         swal("Your account was successfully deleted.",{icon:"success"}).then(history.push('/')):
                         swal("An Error occured!\nPlease try again."));
