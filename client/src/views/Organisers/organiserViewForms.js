@@ -9,8 +9,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import HeaderLinks from "components/Header/HeaderLinks.js";
 import Parallax from "components/Parallax/Parallax.js";
 
-import './orgaccmgmt.css'
-
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
 import {Link, useHistory} from 'react-router-dom';
 import { useLocation } from "react-router-dom";

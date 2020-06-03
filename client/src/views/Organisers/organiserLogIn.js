@@ -62,7 +62,7 @@ export default function OrganiserLogin(props) {
         axios.post('/organisers/logon',{email,password})
             .then(res => res.data.success? (
                     LoginAuth.authenticate(),
-                        history.push({pathname:"/organisers/home",
+                        history.push({pathname:"/organiser/home",
                             state:{
                                 orgName:res.data.organiser.organisation_name,
                                 id:res.data.organiser._id,
@@ -161,7 +161,7 @@ export default function OrganiserLogin(props) {
                                         </Button>
 
                                         <Grid item>
-                                                <Link href="/organisers/signup" style={{ color: '#999999' }}>
+                                                <Link href="/organiser/signup" style={{ color: '#999999' }}>
                                                     {"Don't have an account? Sign Up"}
                                                 </Link>
                                         </Grid>
@@ -178,62 +178,3 @@ export default function OrganiserLogin(props) {
         </div>
     );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{/*<FormControl>*/}
-{/*  <InputLabel>Email</InputLabel>*/}
-{/*  <Input id="email" type="email" value={email} onChange={handleEmail}/>*/}
-{/*</FormControl>*/}
-
-{/*<br/>*/}
-{/*<FormControl>*/}
-{/*  <InputLabel>Password</InputLabel>*/}
-{/*  <Input id="email" type="password" value={password} onChange={handlePassword}/>*/}
-{/*</FormControl>*/}
-{/*<CustomInput*/}
-{/*    labelText="Password"*/}
-{/*    id="password"*/}
-{/*    type="password"*/}
-{/*    onChange={ (event)=>handlePassword(event)}*/}
-
-{/*    formControlProps={{*/}
-{/*        fullWidth: true,*/}
-{/*        onChange: (event)=>handlePassword(event)*/}
-
-{/*    }}*/}
-{/*    inputProps={{*/}
-{/*        onChange: (event)=>handlePassword(event),*/}
-
-{/*        type: "password",*/}
-
-{/*        endAdornment: (*/}
-{/*            <InputAdornment position="end">*/}
-{/*                <Icon className={classes.inputIconsColor}>*/}
-
-{/*                </Icon>*/}
-{/*            </InputAdornment>*/}
-{/*        ),*/}
-{/*        autoComplete: "off"*/}
-{/*    }}*/}
-
-
-{/*/>*/}

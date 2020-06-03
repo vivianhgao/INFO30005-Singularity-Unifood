@@ -72,7 +72,7 @@ export default function OrganiserSignup(props) {
             .then(res => {
                 if (res.data.success){
                     swal("Account created!\n Please log in");
-                    history.push('/organisers/login');
+                    history.push('/organiser/login');
                 } else {
                     swal("Failed sign up");
                 }
@@ -246,11 +246,12 @@ export default function OrganiserSignup(props) {
                                         >
                                             Sign Up
                                         </Button>
-
+                                        <Grid item>
+                                                <Link href="/organiser/login" style={{ color: '#999999' }}>
+                                                    {"Already have an account? Log in"}
+                                                </Link>
+                                        </Grid>
                                     </CardBody>
-
-
-
                                 </form>
                             </Card>
                         </GridItem>

@@ -1,5 +1,5 @@
 
-import React, {useState, useEffect } from "react";
+import React from "react";
 // core components
 import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
@@ -9,20 +9,14 @@ import { makeStyles } from "@material-ui/core/styles";
 import HeaderLinks from "components/Header/HeaderLinks.js";
 import Parallax from "components/Parallax/Parallax.js";
 
-import './orgaccmgmt.css'
-
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import { useLocation } from "react-router-dom";
-import axios from 'axios';
-import io from "socket.io-client";
-import socketIOClient from "socket.io-client";
 import GridContainer from "../../components/Grid/GridContainer";
 import GridItem from "../../components/Grid/GridItem";
-import profile from "../../assets/img/faces/unifood_logo.png";
+
 import classNames from "classnames";
-import Card from "@material-ui/core/Card";
-import CardBody from "../../components/Card/CardBody";
+
 
 //icons
 import UpdateIcon from '@material-ui/icons/Update';
@@ -31,13 +25,9 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
 import ClearAllIcon from '@material-ui/icons/ClearAll';
 
-import OrganiserUpdate from "./organiserUpdateAccount";
 import LoginAuth from '../../LoginAuth';
 
 const useStyles = makeStyles(styles);
-var socket = io();
-
-
 
 export default function OrganiserHomePage(props) {
 
@@ -47,17 +37,19 @@ export default function OrganiserHomePage(props) {
     const organisation_name = location.state.orgName;
     const email_add = location.state.email_add;
 
+    console.log("HOME EMAIL: "+email_add);
+
     const classes = useStyles();
     const { ...rest } = props;
 
     const updateAccount = () => {
-        let path = '/organisers/account/update';
-        history.push(path, {id:id, orgName: organisation_name});
+        let path = '/organiser/account/update';
+        history.push(path, {id:id, orgName: organisation_name, email_add:email_add});
         console.log('id: '+id);
     }
 
     const deleteAccount = () => {
-        let path = '/organisers/account/delete';
+        let path = '/organiser/account/delete';
         history.push(path, {id:id, orgName:organisation_name, email_add:email_add});
     }
 
@@ -67,7 +59,7 @@ export default function OrganiserHomePage(props) {
     }
 
     const viewForms = () => {
-        let path = '/organisers/forms';
+        let path = '/organiser/forms';
         history.push(path, {id:id, orgName:organisation_name, email_add:email_add});
     }
 
@@ -94,11 +86,7 @@ export default function OrganiserHomePage(props) {
             <Parallax small filter image={require("assets/img/aboutus-bg.png")} />
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div className={classes.container}>
-
-
                     <div className={classes.container}>
-
-
                         <div className='option'>
                             <div className='label'>
                                 Welcome {organisation_name}
@@ -139,11 +127,9 @@ export default function OrganiserHomePage(props) {
                                     <h5><strong>View My Listings</strong></h5>
                                 </Button>
 
-
                                 <GridItem container justify="center">
                                     <strong><h3>Account Management</h3></strong>
                                 </GridItem>
-
 
                                 <Button
                                     variant="contained"
@@ -162,17 +148,14 @@ export default function OrganiserHomePage(props) {
                                 <Button
                                     variant="contained"
                                     fullWidth
-
                                     color="default"
                                     size="lg"
-
                                     target="_blank"
                                     startIcon={<DeleteIcon />}
                                     onClick={deleteAccount}
                                 >
                                     <strong>Delete Account</strong>
                                 </Button>
-
 
                                 <GridItem container justify="center">
                                 <Button
@@ -183,14 +166,9 @@ export default function OrganiserHomePage(props) {
                                     onClick={()=>handleLogout()}
                                     round
                                 >
-
                                     <strong>Log out</strong>
-
                                 </Button>
                                 </GridItem>
-
-
-
 
                             </GridItem>
                         </GridContainer>

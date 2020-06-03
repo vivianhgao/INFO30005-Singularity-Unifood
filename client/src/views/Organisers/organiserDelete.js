@@ -4,7 +4,6 @@ import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 
-import './orgupdate.css';
 // core components
 import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
@@ -22,53 +21,30 @@ import axios from 'axios';
 
 import swal from 'sweetalert';
 
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import EmailIcon from '@material-ui/icons/Email';
-import PersonIcon from '@material-ui/icons/Person';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 import { useLocation, useHistory } from "react-router-dom";
 
 // import './organiser.css'
 const useStyles = makeStyles(styles);
-const endpoiupdate="http://localhost:5000";
 
-export default function OrganiserUpdate(props) {
+export default function OrganiserDelete(props) {
 
     let history = useHistory();
-  const location = useLocation();
-  const id=location.state.id;
-  const organisation_name = location.state.orgName;
-  const email_add = location.state.email_add;
+    const location = useLocation();
+    const id=location.state.id;
+    const organisation_name = location.state.orgName;
+    const email_add = location.state.email_add;
 
     const [email,setEmail]= useState("")
-    
-    // console.log("IDDD: "+id);
 
-
+    // console.log("DELETEpage EMAIL: "+email_add);
     const classes = useStyles();
     const { ...rest } = props;
 
     const handleEmail = (event) => {
         setEmail(event.target.value);
     };
-
-    // const handleOfficerName = (event) => {
-    //     setOfficerName(event.target.value);
-    // };
-
-    // const handleContactNumber = (event) => {
-    //     setContactNumber(event.target.value);
-    // };
-
-    // const handleEmail = (event) => {
-    //     console.log(email);
-    //     setEmail(event.target.value);
-    // };
-
-    // const handlePassword = (event) => {
-    //     setPassword(event.target.value);
-    // };
 
     function deleteAccount(event){
         event.preventDefault();
@@ -124,12 +100,12 @@ export default function OrganiserUpdate(props) {
                                                 onChange: (event)=>handleEmail(event)
                                               }}
                                             inputProps={{
-                                                type: "email"
-                                            //   endAdornment: (
-                                            //       <InputAdornment position="end">
-                                            //           <People className={classes.inputIconsColor} />
-                                            //       </InputAdornment>
-                                            //   )
+                                                type: "email",
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <EmailIcon />
+                                                    </InputAdornment>
+                                                )
                                         }}
                                         />
                                         <div style={{float:'right'}}>

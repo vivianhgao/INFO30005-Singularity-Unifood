@@ -4,7 +4,6 @@ import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 
-import './orgupdate.css';
 // core components
 import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
@@ -16,11 +15,9 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
 
 import CustomInput from "components/CustomInput/CustomInput.js";
-import Grid from '@material-ui/core/Grid';
 import GridItem from "../../components/Grid/GridItem";
 import axios from 'axios';
 
-import swal from 'sweetalert';
 
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import EmailIcon from '@material-ui/icons/Email';
@@ -30,15 +27,14 @@ import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
 
 import { useLocation, useHistory } from "react-router-dom";
 
-import './organiser.css'
 const useStyles = makeStyles(styles);
-const endpoiupdate="http://localhost:5000";
 
 export default function OrganiserUpdate(props) {
 
     let history = useHistory();
     const location = useLocation();
     const id=location.state.id;
+    var email_add = location.state.email_add;
     const organisation_name = location.state.orgName;
     const [email,setEmail]= useState("")
     const [password,setPassword]=useState("")
@@ -47,6 +43,7 @@ export default function OrganiserUpdate(props) {
     const [organiserName,setOrganiserName]= useState("")
     
     console.log("IDDD: "+id);
+    console.log("UPDATE EMAIL: "+email_add);
 
 
     const classes = useStyles();
@@ -64,14 +61,19 @@ export default function OrganiserUpdate(props) {
             password: password
         })
         .then(res => {
+            // console.log("BEFORE IF: "+"INPUT:   "+ email + "      "+"tmplate: "+email_add);
+            // Update the email that going to be sent to homepage
+            if (email!=email_add){
+                email_add= email;
+            }
             if (res.data.success){
                 alert("Account updated.");
                 history.push(
-                    '/organisers/home',
+                    '/organiser/home',
                     {
                         orgName:organiserName,
                         id:res.data.organiser._id,
-                        // organiser: res.data.organiser
+                        email_add: email_add
                     }
                 );
             } else {
