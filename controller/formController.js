@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const Form = mongoose.model("forms");
 const Organiser = mongoose.model("organisers");
 
-
 // function to create a new form
 const createForm = async (req, res,next) => {
     const new_form = {
@@ -18,18 +17,16 @@ const createForm = async (req, res,next) => {
         latitude:req.body.latitude,
         longitude: req.body.longitude
     };
+
     console.log(new_form)
     if (new_form.email&&new_form.name&&new_form.description&&new_form.address&&new_form.time){
         try {
             var data = new Form(new_form);
             data.save();
             console.log("New Form Posted")
-            // console.log(new_form)
             return res.json({ success: true });
         } catch (err) {
-            // res.status(400);
             console.log("fails to post form")
-            // return res.send("Error making post!");
             return res.json({ success: false });
         }
     }else{
@@ -37,11 +34,6 @@ const createForm = async (req, res,next) => {
     }
    
 };
-
-
-
-
-
 
 //update form
 const updateForm = async (req, res, next) => {
@@ -70,10 +62,6 @@ const updateForm = async (req, res, next) => {
     res.json({success:true});
 };
 
-
-
-
-
 //update form by email
 const updateFormbyEmail = async (req, res, next) => {
     var email = req.body.email;
@@ -99,8 +87,6 @@ const updateFormbyEmail = async (req, res, next) => {
     res.redirect('/forms');
 };
 
-
-
 // delete a form by form ID
 var deleteForm = function(req, res, next) {
     var id = req.body.id;
@@ -116,11 +102,6 @@ var deleteForm = function(req, res, next) {
     });
 
 };
-
-
-
-
-
 
 // function to get all forms
 const getAllForms = async (req, res) => {
@@ -147,7 +128,6 @@ const getAllFormsByEmail = async (req, res) => {
     }
 };
 
-// Remember to export the callbacks
 module.exports = {
     createForm,
     getAllForms,
