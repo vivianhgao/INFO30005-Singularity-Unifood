@@ -27,8 +27,6 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 
-// import './userDetails.css'
-
 import { useLocation } from "react-router-dom";
 import { useHistory }  from 'react-router-dom';
 import CardFooter from "../../components/Card/CardFooter";
@@ -36,8 +34,8 @@ import CardFooter from "../../components/Card/CardFooter";
 import swal from 'sweetalert';
 import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
 
+// Using UI template from Material-UI
 const useStyles = makeStyles(styles);
-
 
 export default function UpdateForm(props) {
     const location = useLocation();

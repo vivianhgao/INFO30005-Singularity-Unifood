@@ -20,7 +20,7 @@ import swal from 'sweetalert';
 import { useLocation, useHistory } from "react-router-dom";
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
-// import './organiser.css'
+// Using UI template from Material-UI
 const useStyles = makeStyles(styles);
 
 export default function DeleteForm(props) {

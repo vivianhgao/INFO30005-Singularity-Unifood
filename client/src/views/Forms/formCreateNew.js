@@ -32,8 +32,8 @@ import FastfoodIcon from '@material-ui/icons/Fastfood';
 import EmailIcon from '@material-ui/icons/Email';
 import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn"
 
+// Using UI template from Material-UI
 const useStyles = makeStyles(styles);
-
 
 export default function PostNewForm(props) {
     const location = useLocation();

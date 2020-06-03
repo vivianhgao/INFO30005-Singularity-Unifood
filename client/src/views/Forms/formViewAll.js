@@ -4,7 +4,6 @@ import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 
-
 // core components
 import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
@@ -20,12 +19,11 @@ import styles from "assets/jss/material-kit-react/views/profilePage.js";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
-
 //form imports
 import io from "socket.io-client";
 var socket = io();
 
-// Using UI template from material-ui
+// Using UI template from material-UI
 const useStyles = makeStyles(styles);
 
 // display all forms
@@ -38,7 +36,7 @@ export default function ViewAllForms(props) {
         classes.imgRoundedCircle,
         classes.imgFluid
     );
-    
+
     useEffect(()=>{
         // listen on incoming data
         socket.on("Forms", data=>setForms(data));
