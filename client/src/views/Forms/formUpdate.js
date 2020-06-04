@@ -58,6 +58,7 @@ export default function UpdateForm(props) {
 
 
     function updateForm(){
+        // Warn user to update the form
         swal({
             text: "Are you sure you would like to update listing ID"
                 +id+
@@ -72,22 +73,23 @@ export default function UpdateForm(props) {
             },
         })
             .then((value)=>{
-                    if(value=== "confirm"){
-                        axios.post(
-                            '/forms/updateForm',
-                            {id,email,name,description,address,time,quantity,latitude,longitude})
-                            .then(res=>res.data.success?
-                                swal("Form #"+id+" successfully updated",{icon:"success"}).then(history.goBack()):
-                                swal("An Error occured!\nPlease check the form ID and try again."));
-
-                    }
+                // update form
+                if(value=== "confirm"){
+                    axios.post(
+                        '/forms/updateForm',
+                        {id,email,name,description,address,time,quantity,latitude,longitude})
+                        .then(res=>res.data.success?
+                            swal("Form #"+id+" successfully updated",{icon:"success"}).then(history.goBack()):
+                            swal("An Error occured!\nPlease check the form ID and try again."));
 
                 }
-            )
+
+            }
+        )
     }
 
-
     function getLocation(){
+        // Ask permission
         swal({
             text:"Allow Unifood to access your location?",
             icon:"info",
@@ -100,18 +102,15 @@ export default function UpdateForm(props) {
             },
         }).then((value)=>{
             switch(value){
+                // Get location
                 case "accept":
                     if (navigator.geolocation) {
                         navigator.geolocation.getCurrentPosition(position => {
                             setLatitude(position.coords.latitude);
                             setLongitude(position.coords.longitude);
                         });
-                        console.log(latitude);
-                        console.log(longitude);
                         swal("Location is successfully shared with Unifood!");
                         break;
-
-
                     } else {
                         swal("Geolocation is not supported in this browser!");
                     }
@@ -119,15 +118,13 @@ export default function UpdateForm(props) {
                 default:
                     swal("Location is not shared with Unifood!")
             }
-
         })
-
     }
 
+    // Handle changes from input
     const handleID = (event) => {
         setID(event.target.value);
     };
-
     const handleName = (event) => {
         setName(event.target.value);
     };
@@ -194,8 +191,6 @@ export default function UpdateForm(props) {
                                             }}
                                         />
 
-
-
                                         <CustomInput
                                             labelText="Account Email*"
                                             id="email"
@@ -203,7 +198,6 @@ export default function UpdateForm(props) {
                                             variant="outlined"
                                             formControlProps={{
                                                 fullWidth: true,
-
                                             }}
                                             inputProps={{
                                                 type: "text",
@@ -237,8 +231,6 @@ export default function UpdateForm(props) {
                                             }}
                                         />
 
-
-
                                         <CustomInput
                                             labelText="Updated Description of Food and Event*"
                                             id="description"
@@ -260,8 +252,6 @@ export default function UpdateForm(props) {
                                             }}
                                         />
 
-
-
                                         <CustomInput
                                             labelText="Updated Location*"
                                             fullwidth
@@ -282,7 +272,6 @@ export default function UpdateForm(props) {
                                             }}
                                         />
 
-
                                         <GridItem container justify="center">
                                             <Button
                                                 primary
@@ -292,7 +281,6 @@ export default function UpdateForm(props) {
                                                 share my coordinates
                                             </Button>
                                         </GridItem>
-
 
                                         <CustomInput
                                             labelText=""
@@ -324,61 +312,12 @@ export default function UpdateForm(props) {
                                                 )
                                             }}
                                         />
-                                        {/*
-                                        <CustomInput
-                                            accept="image/*"
-                                            labelText="Photo"
-                                            id="photo"
-                                            value={photo}
-                                            formControlProps={{
-                                                fullWidth: true,
-                                                onChange: (event)=>handlePhoto(event)
-                                            }}
-                                            inputProps={{
-                                                type: "file",
-                                                endAdornment: (
-                                                    <InputAdornment position="end">
-                                                        <PhotoCamera className={classes.inputIconsColor} />
-                                                    </InputAdornment>
-                                                )
-                                            }}
-                                        />
-                                        */}
-
-
-
-                                        {/* <CustomInput
-                                            labelText="Latitude"
-                                            id="latitude"
-                                            value={latitude}
-                                            formControlProps={{
-                                                fullWidth: true,
-                                                onChange: (event)=>handleLatitude(event)
-                                            }}
-                                            inputProps={{
-                                                type: "text",
-                                            }}
-                                        />
-
-                                        <CustomInput
-                                            labelText="Longitude"
-                                            id="longitude"
-                                            value={longitude}
-                                            formControlProps={{
-                                                fullWidth: true,
-                                                onChange: (event)=>handleLongitude(event)
-                                            }}
-                                            inputProps={{
-                                                type: "text",
-                                            }} */}
-
-
+                                        
                                         <CardFooter className={classes.cardFooter} style={{justifyContent: 'center'}}>
                                             <Button variant="outlined" color="danger" size="lg" onClick={()=>updateForm()}>
                                                 Update Listing
                                             </Button>
                                         </CardFooter>
-
 
                                         <GridItem container justify="center">
                                             <Button
@@ -392,7 +331,6 @@ export default function UpdateForm(props) {
                                                 <strong>Back</strong>
                                             </Button>
                                         </GridItem>
-
 
                                     </div>
                                 </Grid>

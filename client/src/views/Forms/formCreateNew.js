@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import axios from 'axios';
-import { useLocation } from "react-router-dom";
-import { useHistory }  from 'react-router-dom';
+import {useLocation, useHistory} from "react-router-dom";
+
 
 // nodejs library that concatenates classes
 import classNames from "classnames";
@@ -55,12 +55,14 @@ export default function PostNewForm(props) {
 
 
     function createForm(event) {
+        // Create form through forms API
         axios.post('/forms/createForm',{email,name,description,address,time,quantity,latitude,longitude})
             .then(function(res) {
                     if(res.data.success) {
                         swal("New form successfully posted!");
                         history.goBack();
                     }
+                    // incomplete form
                     else{
                         swal("Incomplete form!\nPlease fill the required information.");
                     }
@@ -81,17 +83,18 @@ export default function PostNewForm(props) {
             },
         }).then((value)=>{
             switch(value){
+                // Get location
                 case "accept":
                     if (navigator.geolocation) {
                         navigator.geolocation.getCurrentPosition(position => {
                         setLatitude(position.coords.latitude);
                         setLongitude(position.coords.longitude);
                         });
-                        console.log(latitude);
-                        console.log(longitude);
                         swal("Location is successfully shared with Unifood!");
                         break;
-                    } else {
+                    } 
+                    // browser not support
+                    else {
                         swal("Geolocation is not supported in this browser!");
                     }
                     break;
@@ -102,6 +105,7 @@ export default function PostNewForm(props) {
         });
     };
 
+    // Handle changes from input
     const handleName = (event) => {
         setName(event.target.value);
     };
