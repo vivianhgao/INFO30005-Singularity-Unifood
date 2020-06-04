@@ -27,7 +27,7 @@ formRouter.post("/updateForm", formController.updateForm);
 formRouter.get('/updateFormbyEmail', function(req, res, next) {
     res.render('updateFormbyEmail');
 });
-formRouter.post("/updateFormbyEmail", formController.updateFormbyEmail);
+formRouter.post("/updateFormbyId/:id", formController.updateFormbyId);
 
 // delete a form
 formRouter.get('/deleteForm', function(req, res, next) {

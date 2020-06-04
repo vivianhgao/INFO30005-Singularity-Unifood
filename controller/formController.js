@@ -44,7 +44,7 @@ const updateForm = async (req, res, next) => {
             res.send("An error has occurred!");
             return res.json({success:false})
         } else if (!Form) {
-            return res.send('Form is not found!');
+            res.send('Form is not found!');
             return res.json({success:false})
         }
         doc.email = req.body.email;
@@ -62,29 +62,27 @@ const updateForm = async (req, res, next) => {
     res.json({success:true});
 };
 
-//update form by email
-const updateFormbyEmail = async (req, res, next) => {
-    var email = req.body.email;
+// update form content by id
+const updateFormbyId = (req, res) => {
+    var id = req.params.id;
+    const update= {name,description,address,time,quantity,latitude,longitude}=req.body;
 
-    Form.findById(email, function(err, doc) {
-        if (err) {
-            res.send("An error has occurred!");
-        } else if (!Form) {
-            return res.send('Form is not found!');
+    //only take the filled information
+    for( field in update ){
+        if(update[field] ==''){
+            delete update[field]
         }
-        doc.email = req.body.email;
-        doc.name = req.body.name;
-        doc.description = req.body.description;
-        doc.address = req.body.address;
-        doc.time = req.body.time;
-        doc.quantity = req.body.quantity;
-        doc.photo = req.body.photo;
-        doc.latitude = req.body.latitude;
-        doc.longitude = req.body.longitude;
-        doc.save();
+    }
+
+    //find id and update the content
+    Form.findByIdAndUpdate(id, update, function(err,form){
+        if (err){
+            return res.json({success:false})
+        } else if (!form) {
+        } else {
+            return res.json({success:true});
+        }
     });
-    console.log("Form is updated!");
-    res.redirect('/forms');
 };
 
 // delete a form by form ID
@@ -118,7 +116,6 @@ const getAllForms = async (req, res) => {
 const getAllFormsByEmail = async (req, res) => {
     //var email = req.params.email;
     var email=  req.params.email;
-
     try {
         const all_form = await Form.find().where("email").in(email).exec();
         return res.send(all_form);
@@ -133,6 +130,6 @@ module.exports = {
     getAllForms,
     updateForm,
     deleteForm,
-    updateFormbyEmail,
+    updateFormbyId,
     getAllFormsByEmail,
 };

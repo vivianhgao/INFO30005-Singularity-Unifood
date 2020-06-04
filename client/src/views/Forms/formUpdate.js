@@ -9,8 +9,6 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import People from "@material-ui/icons/People";
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
-import EmailIcon from '@material-ui/icons/Email';
-import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
 
 // core components
 import Header from "components/Header/Header.js";
@@ -43,8 +41,7 @@ export default function UpdateForm(props) {
 
     const email_add = location.state.email_add;
     const orgName = location.state.orgName;
-    const email = email_add;
-    const [id,setID]=useState("")
+    const id = location.state.id;
     const [name,setName]=useState("")
     const [description,setDescription]=useState("")
     const [address,setAddress]=useState("")
@@ -58,9 +55,10 @@ export default function UpdateForm(props) {
 
 
     function updateForm(){
+
         // Warn user to update the form
         swal({
-            text: "Are you sure you would like to update listing ID"
+            text: "Are you sure you would like to update listing ID "
                 +id+
                 "\n\n This action can't be reversed.",
             icon: "info",
@@ -75,15 +73,19 @@ export default function UpdateForm(props) {
             .then((value)=>{
                 // update form
                 if(value=== "confirm"){
-                    axios.post(
-                        '/forms/updateForm',
-                        {id,email,name,description,address,time,quantity,latitude,longitude})
-                        .then(res=>res.data.success?
-                            swal("Form #"+id+" successfully updated",{icon:"success"}).then(history.goBack()):
-                            swal("An Error occured!\nPlease check the form ID and try again."));
+                    try {
+                        axios.post(
+                            '/forms/updateFormbyId/'+id,
+                            {name,description,address,time,quantity,latitude,longitude})
+                            .then(res=>res.data.success?
+                                swal("Form #"+id+" successfully updated",{icon:"success"})
+                                .then(history.push('/organiser/forms',{orgName: orgName, email_add:email_add})):
+                                swal("An Error occured!\nPlease check the form ID and try again."));
 
+                    } catch(err){
+                    }
+                    
                 }
-
             }
         )
     }
@@ -122,9 +124,9 @@ export default function UpdateForm(props) {
     }
 
     // Handle changes from input
-    const handleID = (event) => {
-        setID(event.target.value);
-    };
+    // const handleID = (event) => {
+    //     setID(event.target.value);
+    // };
     const handleName = (event) => {
         setName(event.target.value);
     };
@@ -171,7 +173,7 @@ export default function UpdateForm(props) {
                                 <Grid item xs={5} justify="center">
                                     <div class='container'>
 
-                                        <CustomInput
+                                        {/* <CustomInput
                                             labelText="Listing ID*"
                                             id="id"
                                             value={id}
@@ -208,7 +210,7 @@ export default function UpdateForm(props) {
                                                     </InputAdornment>
                                                 )
                                             }}
-                                        />
+                                        /> */}
 
                                         <CustomInput
                                             labelText="Updated Organisation and Event Name*"
@@ -260,7 +262,6 @@ export default function UpdateForm(props) {
                                             formControlProps={{
                                                 fullWidth: true,
                                                 onChange: (event)=>handleAddress(event)
-
                                             }}
                                             inputProps={{
                                                 type: "text",

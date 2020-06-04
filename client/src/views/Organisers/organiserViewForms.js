@@ -53,11 +53,14 @@ export default function OrganiserViewForms(props) {
         let path = '/delete-form';
         history.push(path, {orgName:organisation_name, email_add:email_add});
     }
-    const updateForm = () => {
-        let path = '/update-form';
-        history.push(path, {id:id, orgName:organisation_name, email_add:email_add});
+    const organiserHome = ()=> {
+        history.push('/organiser/home',
+        {
+            id:id,
+            orgName:organisation_name,
+            email_add:email_add
+        })
     }
-
     return (
         <div>
             <Header
@@ -74,11 +77,7 @@ export default function OrganiserViewForms(props) {
             <Parallax small filter image={require("assets/img/aboutus-bg.png")} />
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div className={classes.container}>
-
-
                     <div className={classes.container}>
-
-
                         <div className='option'>
                             <div className='label'>
                                 {organisation_name}'s Listings
@@ -118,7 +117,16 @@ export default function OrganiserViewForms(props) {
                                                             <Button
                                                                 size="small"
                                                                 formID= {res._id}
-                                                                onClick={updateForm}
+                                                                onClick=
+                                                                {
+                                                                    ()=>history.push('/update-form', 
+                                                                        {
+                                                                            // Use the particular form id
+                                                                            id: res._id,
+                                                                            orgName:organisation_name,
+                                                                            email_add:email_add
+                                                                        })
+                                                                }
                                                                 class="inline">
                                                                 Update
                                                             </Button>
@@ -130,13 +138,8 @@ export default function OrganiserViewForms(props) {
                                                                 class="inline">
                                                                 Delete
                                                             </Button>
-
-
                                                         </CardActions>
                                                         </GridItem>
-
-
-
                                                     </Card>
                                                 </GridItem>
                                             </GridContainer>
@@ -152,7 +155,7 @@ export default function OrganiserViewForms(props) {
                                         size="small"
                                         target="_blank"
                                         startIcon={<KeyboardReturnIcon />}
-                                        onClick={() => {history.goBack()}}
+                                        onClick={organiserHome}
                                         round
                                     >
                                         <strong>Back</strong>
