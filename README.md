@@ -261,24 +261,6 @@ URL: http://localhost:5000
 | getAllFormsByEmail | /forms/formList/:email | GET    | Displays all forms with specified email |
 
 
-### Location 
-#### Location MVC
-
-```
-...
-├── controller
-|   └── locationController.js
-├── model
-|   └── location.js
-└── routes
-|   └── locationRouter.js
-...
-```
-#### Location Routes
-| NAME        | PATH       | METHOD | FUNCTION                           |
-|-------------|------------|--------|------------------------------------|
-| index       | /location  | GET    | Retrieves the location coordinates |
-| addLocation | /location  | POST   | Updates location coordinates       |
 
 
 ## Reference
