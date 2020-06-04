@@ -47,7 +47,6 @@ export default function PostNewForm(props) {
     const [address,setAddress]=useState("")
     const [time,setTime]= useState("")
     const [quantity,setQuantity]=useState("")
-    const [photo,setPhoto]=useState("")
     const [latitude,setLatitude]=useState(Number)
     const [longitude,setLongitude]=useState(Number)
     const classes = useStyles();
@@ -56,7 +55,7 @@ export default function PostNewForm(props) {
 
 
     function createForm(event) {
-        axios.post('/forms/createForm',{email,name,description,address,time,quantity,photo,latitude,longitude})
+        axios.post('/forms/createForm',{email,name,description,address,time,quantity,latitude,longitude})
             .then(function(res) {
                     if(res.data.success) {
                         swal("New form successfully posted!");
@@ -71,39 +70,37 @@ export default function PostNewForm(props) {
     function getLocation(){
         // Ask permission
         swal({
-          text:"Allow Unifood to access your location?",
-          icon:"info",
-          buttons:{
-            cancel:"Decline",
-            accept:{
-              text:"Accept",
-              value:"accept"
+            text:"Allow Unifood to access your location?",
+            icon:"info",
+            buttons:{
+                cancel:"Decline",
+                accept:{
+                    text:"Accept",
+                    value:"accept"
+                },
             },
-          },
         }).then((value)=>{
-          switch(value){
-            case "accept":
-              if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(position => {
-                  setLatitude(position.coords.latitude);
-                  setLongitude(position.coords.longitude);
-                });
-                console.log(latitude);
-                console.log(longitude);
-                swal("Location is successfully shared with Unifood!");
-                break;
+            switch(value){
+                case "accept":
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(position => {
+                        setLatitude(position.coords.latitude);
+                        setLongitude(position.coords.longitude);
+                        });
+                        console.log(latitude);
+                        console.log(longitude);
+                        swal("Location is successfully shared with Unifood!");
+                        break;
+                    } else {
+                        swal("Geolocation is not supported in this browser!");
+                    }
+                    break;
+                    default:
+                        swal("Location is not shared with Unifood!")
+            }
     
-              
-              } else {
-                swal("Geolocation is not supported in this browser!");
-              }
-            default:
-              swal("Location is not shared with Unifood!")
-          }
-    
-        })
-       
-      }
+        });
+    };
 
     const handleName = (event) => {
         setName(event.target.value);

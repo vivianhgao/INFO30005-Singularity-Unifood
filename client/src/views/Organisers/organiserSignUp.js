@@ -2,7 +2,6 @@ import React, {useState} from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
 import People from "@material-ui/icons/People";
 import PersonIcon from '@material-ui/icons/Person';
@@ -20,10 +19,7 @@ import Button from "components/CustomButtons/Button.js";
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
-import CardFooter from "components/Card/CardFooter.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
 import TextField from "material-ui-core/TextField";
-import Checkbox from '@material-ui/core/Checkbox';
 
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -34,13 +30,8 @@ import styles from "assets/jss/material-kit-react/views/loginPage.js";
 import image from "assets/img/unifood.png";
 
 import {useHistory} from 'react-router-dom';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import Box from '@material-ui/core/Box';
 import axios from 'axios';
 import swal from 'sweetalert';
-import LoginAuth from "../../LoginAuth";
 
 const useStyles = makeStyles(styles);
 
@@ -111,154 +102,155 @@ export default function OrganiserSignup(props) {
             />
             <div
                 className={classes.pageHeader}
-                style={{
+                style=
+                {{
                     backgroundImage: "url(" + image + ")",
                     backgroundSize: "cover",
                     backgroundPosition: "top center"
                 }}
             >
-                <div className={classes.container}>
-                    <GridContainer justify="center">
-                        <GridItem xs={12} sm={12} md={4}>
-                            <Card className={classes[cardAnimaton]}>
-                                <form className={classes.form}>
-                                    <CardHeader color="danger" className={classes.cardHeader}>
-                                        <h4>Organiser Sign Up</h4>
-                                    </CardHeader>
+            <div className={classes.container}>
+                <GridContainer justify="center">
+                    <GridItem xs={12} sm={12} md={4}>
+                        <Card className={classes[cardAnimaton]}>
+                            <form className={classes.form}>
+                                <CardHeader color="danger" className={classes.cardHeader}>
+                                    <h4>Organiser Sign Up</h4>
+                                </CardHeader>
 
-                                    <CardBody>
+                                <CardBody>
 
-                                        <TextField
-                                            id="standard-full-width"
-                                            label="Organisation Name"
-                                            style={{ margin: 8 }}
-                                            placeholder="Hungers Association"
-                                            // helperText="Required"
-                                            fullWidth
-                                            required={true}
-                                            margin="normal"
-                                            InputLabelProps={{
-                                                shrink: true,
-                                            }}
-                                            onChange={handleOrganisationName}
-                                            InputProps={{
-                                                endAdornment: (
-                                                  <InputAdornment>
-                                                    < People/>
-                                                  </InputAdornment>
-                                                )
-                                            }}
-                                        />
-                                        <TextField
-                                            id="standard-full-width"
-                                            label="Officer Name"
-                                            style={{ margin: 8 }}
-                                            placeholder="Name"
-                                            // helperText="Required"
-                                            required={true}
-                                            fullWidth
-                                            margin="normal"
-                                            InputLabelProps={{
-                                                shrink: true,
-                                            }}
-                                            onChange={handleOfficerName}
-                                            InputProps={{
-                                                endAdornment: (
-                                                  <InputAdornment>
-                                                    < PersonIcon/>
-                                                  </InputAdornment>
-                                                )
-                                            }}
-                                        />
-                                        <TextField
-                                            id="standard-full-width"
-                                            label="Contact Number"
-                                            style={{ margin: 8 }}
-                                            placeholder="411000222"
-                                            // helperText="Required"
-                                            fullWidth
-                                            required={true}
-                                            margin="normal"
-                                            InputLabelProps={{
-                                                shrink: true,
-                                            }}
-                                            onChange={handleContactNumber}
-                                            InputProps={{
-                                                endAdornment: (
-                                                  <InputAdornment>
-                                                    < ContactPhoneIcon/>
-                                                  </InputAdornment>
-                                                )
-                                            }}
-                                        />
-                                        <TextField
-                                            id="standard-full-width"
-                                            label="Email"
-                                            type="email"
-                                            style={{ margin: 8 }}
-                                            placeholder="admin@organisation.com"
-                                            // helperText="Required"
-                                            required={true}
-                                            fullWidth
-                                            margin="normal"
-                                            InputLabelProps={{
-                                                shrink: true,
-                                            }}
-                                            onChange={handleEmail}
-                                            InputProps={{
-                                                endAdornment: (
-                                                  <InputAdornment>
-                                                    < EmailIcon/>
-                                                  </InputAdornment>
-                                                )
-                                            }}
-                                        />
-                                        <TextField
-                                            id="standard-full-width"
-                                            label="Password"
-                                            type="password"
-                                            style={{ margin: 8 }}
-                                            placeholder="Password"
-                                            // helperText=""
-                                            fullWidth
-                                            required={true}
-                                            margin="normal"
-                                            InputLabelProps={{
-                                                shrink: true,
-                                            }}
-                                            onChange={handlePassword}
-                                            InputProps={{
-                                                endAdornment: (
-                                                  <InputAdornment>
-                                                    < VpnKeyIcon/>
-                                                  </InputAdornment>
-                                                )
-                                            }}
-                                        />
+                                    <TextField
+                                        id="standard-full-width"
+                                        label="Organisation Name"
+                                        style={{ margin: 8 }}
+                                        placeholder="Hungers Association"
+                                        // helperText="Required"
+                                        fullWidth
+                                        required={true}
+                                        margin="normal"
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }}
+                                        onChange={handleOrganisationName}
+                                        InputProps={{
+                                            endAdornment: (
+                                                <InputAdornment>
+                                                < People/>
+                                                </InputAdornment>
+                                            )
+                                        }}
+                                    />
+                                    <TextField
+                                        id="standard-full-width"
+                                        label="Officer Name"
+                                        style={{ margin: 8 }}
+                                        placeholder="Name"
+                                        // helperText="Required"
+                                        required={true}
+                                        fullWidth
+                                        margin="normal"
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }}
+                                        onChange={handleOfficerName}
+                                        InputProps={{
+                                            endAdornment: (
+                                                <InputAdornment>
+                                                < PersonIcon/>
+                                                </InputAdornment>
+                                            )
+                                        }}
+                                    />
+                                    <TextField
+                                        id="standard-full-width"
+                                        label="Contact Number"
+                                        style={{ margin: 8 }}
+                                        placeholder="411000222"
+                                        // helperText="Required"
+                                        fullWidth
+                                        required={true}
+                                        margin="normal"
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }}
+                                        onChange={handleContactNumber}
+                                        InputProps={{
+                                            endAdornment: (
+                                                <InputAdornment>
+                                                < ContactPhoneIcon/>
+                                                </InputAdornment>
+                                            )
+                                        }}
+                                    />
+                                    <TextField
+                                        id="standard-full-width"
+                                        label="Email"
+                                        type="email"
+                                        style={{ margin: 8 }}
+                                        placeholder="admin@organisation.com"
+                                        // helperText="Required"
+                                        required={true}
+                                        fullWidth
+                                        margin="normal"
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }}
+                                        onChange={handleEmail}
+                                        InputProps={{
+                                            endAdornment: (
+                                                <InputAdornment>
+                                                < EmailIcon/>
+                                                </InputAdornment>
+                                            )
+                                        }}
+                                    />
+                                    <TextField
+                                        id="standard-full-width"
+                                        label="Password"
+                                        type="password"
+                                        style={{ margin: 8 }}
+                                        placeholder="Password"
+                                        // helperText=""
+                                        fullWidth
+                                        required={true}
+                                        margin="normal"
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }}
+                                        onChange={handlePassword}
+                                        InputProps={{
+                                            endAdornment: (
+                                                <InputAdornment>
+                                                < VpnKeyIcon/>
+                                                </InputAdornment>
+                                            )
+                                        }}
+                                    />
 
-                                        <Button
-                                            type="submit"
-                                            variant="contained"
-                                            fullWidth
-                                            color="danger"
-                                            onClick={validateSignUp}
-                                            className={classes.submit}
-                                        >
-                                            Sign Up
-                                        </Button>
-                                        <Grid item>
-                                                <Link href="/organiser/login" style={{ color: '#999999' }}>
-                                                    {"Already have an account? Log in"}
-                                                </Link>
-                                        </Grid>
-                                    </CardBody>
-                                </form>
-                            </Card>
-                        </GridItem>
-                    </GridContainer>
-                </div>
-                <Footer whiteFont />
+                                    <Button
+                                        type="submit"
+                                        variant="contained"
+                                        fullWidth
+                                        color="danger"
+                                        onClick={validateSignUp}
+                                        className={classes.submit}
+                                    >
+                                        Sign Up
+                                    </Button>
+                                    <Grid item>
+                                            <Link href="/organiser/login" style={{ color: '#999999' }}>
+                                                {"Already have an account? Log in"}
+                                            </Link>
+                                    </Grid>
+                                </CardBody>
+                            </form>
+                        </Card>
+                    </GridItem>
+                </GridContainer>
             </div>
+            <Footer whiteFont />
+        </div>
         </div>
     );
 }

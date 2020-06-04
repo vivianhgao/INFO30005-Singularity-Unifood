@@ -15,17 +15,15 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
 
 import CustomInput from "components/CustomInput/CustomInput.js";
-import Grid from '@material-ui/core/Grid';
 import GridItem from "../../components/Grid/GridItem";
 import axios from 'axios';
 
-import swal from 'sweetalert';
+// import swal from 'sweetalert';
 
 import EmailIcon from '@material-ui/icons/Email';
 
 import { useLocation, useHistory } from "react-router-dom";
 
-// import './organiser.css'
 const useStyles = makeStyles(styles);
 
 export default function OrganiserDelete(props) {
@@ -33,7 +31,6 @@ export default function OrganiserDelete(props) {
     let history = useHistory();
     const location = useLocation();
     const id=location.state.id;
-    const organisation_name = location.state.orgName;
     const email_add = location.state.email_add;
 
     const [email,setEmail]= useState("")
@@ -49,7 +46,7 @@ export default function OrganiserDelete(props) {
     function deleteAccount(event){
         event.preventDefault();
 
-        if (email_add == email){
+        if (email_add === email){
             axios.get('/organisers/delete/'+id)
         .then(res => res.data.success?
             history.push('/'):

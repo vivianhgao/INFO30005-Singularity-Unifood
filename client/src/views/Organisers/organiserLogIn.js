@@ -1,15 +1,11 @@
 import React, {useState} from "react";
+import {useHistory} from 'react-router-dom';
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-
 import InputAdornment from "@material-ui/core/InputAdornment";
-import Icon from "@material-ui/core/Icon";
-
 // @material-ui/icons
-
 import EmailIcon from '@material-ui/icons/Email';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
-
 // core components
 import Header from "components/Header/Header.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
@@ -25,12 +21,8 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 
-
 import styles from "assets/jss/material-kit-react/views/loginPage.js";
-
 import image from "assets/img/unifood.png";
-
-import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 import LoginAuth from '../../LoginAuth'
 import swal from 'sweetalert';
@@ -48,32 +40,28 @@ export default function OrganiserLogin(props) {
 
     const [email,setEmail]= useState("")
     const [password,setPassword]=useState("")
-    const [contactNumber, setContactNumber] = useState("")
-    const [organisationName, setOrganisationName] = useState("")
-    const [officerName, setOfficerName] = useState("")
-
-    // const [showPassword,setShowPassword]= useState(false)
-    // const [mouseDownPassword,setMouseDownPassword]=useState(false)
-
-
 
     function validateLogin(event){
         event.preventDefault();
         axios.post('/organisers/logon',{email,password})
             .then(res => res.data.success? (
                     LoginAuth.authenticate(),
-                        history.push({pathname:"/organiser/home",
-                            state:{
-                                orgName:res.data.organiser.organisation_name,
-                                id:res.data.organiser._id,
-                                email_add:res.data.organiser.email
-                        }}))
-                : swal("Incorrect email or password.\nPlease try again."));
+                        history.push(
+                            {pathname:"/organiser/home",
+                            state:
+                                {
+                                    orgName:res.data.organiser.organisation_name,
+                                    id:res.data.organiser._id,
+                                    email_add:res.data.organiser.email
+                                }
+                            }
+                        )
+            )
+            : swal("Incorrect email or password.\nPlease try again."));
     }
 
     const handleEmail = (event) => {
         setEmail(event.target.value);
-        console.log(email);
     };
 
     const handlePassword = (event) => {
@@ -123,30 +111,30 @@ export default function OrganiserLogin(props) {
                                                     <InputAdornment position="end">
                                                         <EmailIcon/>
                                                     </InputAdornment>
-                                              )
+                                                )
                                             }}
                                         />
 
                                         <CustomInput
-                                          labelText="Password"
-                                          id="password"
-                                          value={password}
+                                            labelText="Password"
+                                            id="password"
+                                            value={password}
 
-                                          formControlProps={{
-                                              fullWidth: true,
-                                              onChange: (event)=>handlePassword(event)
+                                            formControlProps={{
+                                                fullWidth: true,
+                                                onChange: (event)=>handlePassword(event)
 
-                                          }}
-                                          inputProps={{
+                                            }}
+                                            inputProps={{
 
-                                              type: 'password',
-                                              onChange: (event)=>handlePassword(event),
-                                              endAdornment: (
-                                                  <InputAdornment position="end">
-                                                      <VpnKeyIcon/>
-                                                  </InputAdornment>
-                                            )
-                                          }}
+                                                type: 'password',
+                                                onChange: (event)=>handlePassword(event),
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <VpnKeyIcon/>
+                                                    </InputAdornment>
+                                                )
+                                            }}
                                         />
 
                                         <Button

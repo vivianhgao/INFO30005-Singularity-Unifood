@@ -61,10 +61,9 @@ export default function OrganiserUpdate(props) {
             password: password
         })
         .then(res => {
-            // console.log("BEFORE IF: "+"INPUT:   "+ email + "      "+"tmplate: "+email_add);
-            // Update the email that going to be sent to homepage
-            if (email!=email_add){
-                email_add= email;
+            // Update the email that is going to be sent to homepage
+            if (email !== email_add){
+                email_add = email;
             }
             if (res.data.success){
                 alert("Account updated.");
@@ -125,134 +124,130 @@ export default function OrganiserUpdate(props) {
                         <div className={classes.container}>
                             <div class='container'>
 
-                            
-                            <GridContainer justify="center">
-                                <GridItem xs={12} sm={12} md={6}>
+                                <GridContainer justify="center">
+                                    
+                                    <GridItem xs={12} sm={12} md={6}>
+                                    <GridItem container justify="center">
+                                        <strong><h3>Update {organisation_name} Account</h3></strong>
+                                    </GridItem>
 
-                                <GridItem container justify="center">
-                            <strong><h3>Update {organisation_name} Account</h3></strong>
-                                </GridItem>
-
-                                <CustomInput
-                                            labelText="Organiser Name"
-                                            id="organisationName"
-                                            value={organiserName}
-                                            require={true}
-                                            variant="outlined"
-                                            formControlProps={{
-                                                fullWidth: true,
-                                                onChange: (event)=>handleOrganisationName(event)
-                                              }}
-                                            inputProps={{
-                                                type: "text",
-                                              endAdornment: (
-                                                  <InputAdornment position="end">
-                                                      <People />
-                                                  </InputAdornment>
-                                              )
+                                    <CustomInput
+                                        labelText="Organiser Name"
+                                        id="organisationName"
+                                        value={organiserName}
+                                        require={true}
+                                        variant="outlined"
+                                        formControlProps={{
+                                            fullWidth: true,
+                                            onChange: (event)=>handleOrganisationName(event)
+                                            }}
+                                        inputProps={{
+                                            type: "text",
+                                            endAdornment: (
+                                                <InputAdornment position="end">
+                                                    <People />
+                                                </InputAdornment>
+                                            )
+                                    }}
+                                    />
+                                    <CustomInput
+                                        labelText={"Officer Name"}
+                                        id="officerName"
+                                        value={officerName}
+                                        variant="outlined"
+                                        formControlProps={{fullWidth: true,
+                                        onChange: (event)=>handleOfficerName(event)
                                         }}
-                                        />
-                                        <CustomInput
-                                            labelText={"Officer Name"}
-                                            id="officerName"
-                                            value={officerName}
+                                        inputProps={{
+                                            type: "text",
+                                            endAdornment: (
+                                                <InputAdornment position="end">
+                                                    <PersonIcon className={classes.inputIconsColor} />
+                                                </InputAdornment>
+                                            )
+                                        }}
+                                    />
+                                    <CustomInput
+                                        labelText="Contact Number"
+                                        id="contactNumber"
+                                        value={contactNumber}
+                                        variant="outlined"
+                                        formControlProps={{fullWidth: true,
+                                        onChange: (event)=>handleContactNumber(event)
+                                        }}
+                                        inputProps={{
+                                            type: "text",
+                                            endAdornment: (
+                                                <InputAdornment position="end">
+                                                    <ContactPhoneIcon className={classes.inputIconsColor} />
+                                                </InputAdornment>
+                                            )
+                                        }}
+                                    />
+                                    <CustomInput
+                                        labelText={"Email"}
+                                        id="email"
+                                        value={email}
+                                        variant="outlined"
+                                        formControlProps={{fullWidth: true,
+                                        onChange: (event)=>handleEmail(event)
+                                        }}
+                                        inputProps={{
+                                            type: "email",
+                                            endAdornment: (
+                                                <InputAdornment position="end">
+                                                    <EmailIcon className={classes.inputIconsColor} />
+                                                </InputAdornment>
+                                            )
+                                        }}
+                                    />
+                                    <CustomInput
+                                        labelText="Password"
+                                        id="password"
+                                        value={password}
+                                        variant="outlined"
+                                        formControlProps={{fullWidth: true,
+                                        onChange: (event)=>handlePassword(event)
+                                        }}
+                                        inputProps={{
+
+                                            type: "password",
+                                            endAdornment: (
+                                                <InputAdornment position="end">
+                                                    <VpnKeyIcon className={classes.inputIconsColor} />
+                                                </InputAdornment>
+                                            )
+                                        }}
+                                    />
+
+                                    <div style={{float:"right"}}>
+                                        <Button
+                                            // className='updateButton'
                                             variant="outlined"
-                                            formControlProps={{fullWidth: true,
-                                            onChange: (event)=>handleOfficerName(event)
-                                            }}
-                                            inputProps={{
-                                                type: "text",
-                                                endAdornment: (
-                                                    <InputAdornment position="end">
-                                                        <PersonIcon className={classes.inputIconsColor} />
-                                                    </InputAdornment>
-                                                )
-                                            }}
-                                        />
-                                        <CustomInput
-                                            labelText="Contact Number"
-                                            id="contactNumber"
-                                            value={contactNumber}
+                                            size="md"
+                                            onClick={()=>history.goBack()}
+                                        >
+                                            Cancel
+                                        </Button>
+                            
+                                        <Button
                                             variant="outlined"
-                                            formControlProps={{fullWidth: true,
-                                            onChange: (event)=>handleContactNumber(event)
-                                            }}
-                                            inputProps={{
-                                                type: "text",
-                                                endAdornment: (
-                                                    <InputAdornment position="end">
-                                                        <ContactPhoneIcon className={classes.inputIconsColor} />
-                                                    </InputAdornment>
-                                                )
-                                            }}
-                                        />
-                                        <CustomInput
-                                            labelText={"Email"}
-                                            id="email"
-                                            value={email}
-                                            variant="outlined"
-                                            formControlProps={{fullWidth: true,
-                                            onChange: (event)=>handleEmail(event)
-                                            }}
-                                            inputProps={{
-                                                type: "email",
-                                                endAdornment: (
-                                                    <InputAdornment position="end">
-                                                        <EmailIcon className={classes.inputIconsColor} />
-                                                    </InputAdornment>
-                                                )
-                                            }}
-                                        />
-                                        <CustomInput
-                                            labelText="Password"
-                                            id="password"
-                                            value={password}
-                                            variant="outlined"
-                                            formControlProps={{fullWidth: true,
-                                            onChange: (event)=>handlePassword(event)
-                                            }}
-                                            inputProps={{
-
-                                                type: "password",
-                                                endAdornment: (
-                                                    <InputAdornment position="end">
-                                                        <VpnKeyIcon className={classes.inputIconsColor} />
-                                                    </InputAdornment>
-                                                )
-                                            }}
-                                        />
-
-                                        <div style={{float:"right"}}>
-                                            <Button
-                                                // className='updateButton'
-                                                variant="outlined"
-                                                size="md"
-                                                onClick={()=>history.goBack()}
-                                            >
-                                                Cancel
-                                            </Button>
-                                 
-                                            <Button
-                                                variant="outlined"
-                                                color="danger"
-                                                size="md"
-                                                onClick={updateAccount}
-                                            >
-                                                Update Account
-                                            </Button>
-                                        </div>
-
-                            </GridItem>
-                        </GridContainer>
-
-
-    </div>
-    </div>
-    </div>
-    </div>
-    <Footer />
-    </div>
-)
+                                            color="danger"
+                                            size="md"
+                                            onClick={updateAccount}
+                                        >
+                                            Update Account
+                                        </Button>
+                                    </div>
+                                    </GridItem>
+                                </GridContainer>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <Footer />
+        </div>
+    );
 }
 
 

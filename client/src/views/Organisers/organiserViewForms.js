@@ -10,33 +10,22 @@ import HeaderLinks from "components/Header/HeaderLinks.js";
 import Parallax from "components/Parallax/Parallax.js";
 
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import { useLocation } from "react-router-dom";
 import axios from 'axios';
-import io from "socket.io-client";
 import GridContainer from "../../components/Grid/GridContainer";
 import GridItem from "../../components/Grid/GridItem";
 import classNames from "classnames";
 import Card from "@material-ui/core/Card";
-import CardBody from "../../components/Card/CardBody";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-import { typography } from '@material-ui/system';
 
 //icons
-import UpdateIcon from '@material-ui/icons/Update';
 import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
-import DeleteIcon from '@material-ui/icons/Delete';
-import AddIcon from '@material-ui/icons/Add';
-import ClearAllIcon from '@material-ui/icons/ClearAll';
-import OrganiserUpdate from "./organiserUpdateAccount";
 import swal from 'sweetalert';
 
-
+// Using UI template from Material-UI
 const useStyles = makeStyles(styles);
-var socket = io();
-
-
 
 export default function OrganiserViewForms(props) {
 
@@ -48,19 +37,18 @@ export default function OrganiserViewForms(props) {
     const classes = useStyles();
     const { ...rest } = props;
     const [forms, setForms] = useState([]);
-    const [load, setLoad] = useState(false);
-    const [error, setError] = useState('');
+    // const [load, setLoad] = useState(false);
 
     useEffect(() => {
         axios.get("/forms/formList/"+email_add)
             .then(res => {
                 setForms(res.data);
-                setLoad(true);
+                // setLoad(true);
             })
             .catch(err => {
                 swal("Error! Please try again!");
             })
-    }, []);
+    });
 
     const deleteForm = () =>{
         let path = '/delete-form';

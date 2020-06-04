@@ -50,7 +50,6 @@ export default function UpdateForm(props) {
     const [address,setAddress]=useState("")
     const [time,setTime]= useState("")
     const [quantity,setQuantity]=useState("")
-    const [photo,setPhoto]=useState("")
     const [latitude,setLatitude]=useState(Number)
     const [longitude,setLongitude]=useState(Number)
 
@@ -76,7 +75,7 @@ export default function UpdateForm(props) {
                     if(value=== "confirm"){
                         axios.post(
                             '/forms/updateForm',
-                            {id,email,name,description,address,time,quantity,photo,latitude,longitude})
+                            {id,email,name,description,address,time,quantity,latitude,longitude})
                             .then(res=>res.data.success?
                                 swal("Form #"+id+" successfully updated",{icon:"success"}).then(history.goBack()):
                                 swal("An Error occured!\nPlease check the form ID and try again."));
@@ -116,6 +115,7 @@ export default function UpdateForm(props) {
                     } else {
                         swal("Geolocation is not supported in this browser!");
                     }
+                    break;
                 default:
                     swal("Location is not shared with Unifood!")
             }
@@ -142,15 +142,6 @@ export default function UpdateForm(props) {
     };
     const handleQuantity = (event) => {
         setQuantity(event.target.value);
-    };
-    const handlePhoto = (event) => {
-        setPhoto(event.target.value);
-    };
-    const handleLatitude = (event) => {
-        setLatitude(event.target.value);
-    };
-    const handleLongitude = (event) => {
-        setLongitude(event.target.value);
     };
 
     return (
