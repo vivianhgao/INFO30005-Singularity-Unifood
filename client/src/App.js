@@ -48,11 +48,11 @@ export default function App(){
                 <Route path="/organiser/login" component={OrganiserLogin} />
                 <Route path="/organiser/signup" component={OrganiserSignup} />
 
-                <Route path="/organiser/forms" component={OrganiserViewForms} />
-                <Route path="/all-listings" component={ViewAllForms} />
-                <Route path="/post-new-form" component={PostNewForm} />
-                <Route path="/delete-form" component={DeleteForm} />
-                <Route path="/update-form" component={UpdateForm} />
+                <ProtectedRoute path="/organiser/forms" component={OrganiserViewForms} />
+                <ProtectedRoute path="/all-listings" component={ViewAllForms} />
+                <ProtectedRoute path="/post-new-form" component={PostNewForm} />
+                <ProtectedRoute path="/delete-form" component={DeleteForm} />
+                <ProtectedRoute path="/update-form" component={UpdateForm} />
 
                 <Route path="/log-in" component={SignInPage} />
                 <Route path="/about-us" component={AboutUs} />
