@@ -100,8 +100,6 @@ const getDetails = (req,res,next) => {
 const updateUser = (req, res) => {
     var condition = {username: req.params.username};
     const update= {username,email,first_name,last_name,password}=req.body;
-  
-   
 
     //only take the filled information
     for( field in update ){
