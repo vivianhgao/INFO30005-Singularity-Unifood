@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {useHistory} from 'react-router-dom';
 import {Link} from 'react-router-dom'
 
@@ -53,7 +53,7 @@ export default function SignInPage(props) {
                     backgroundPosition: "top center"
                 }}
             >
-
+                
                 <div className={classes.container}>
                     <GridContainer justify="center">
                         <GridItem xs={12} sm={12} md={4}>
@@ -81,7 +81,7 @@ export default function SignInPage(props) {
                                             </Button>
                                         </Link>
 
-                                        <Link to={"/organisers/login"} className={classes.link}>
+                                        <Link to={"/organiser/login"} className={classes.link}>
                                             <Button
                                                 color="danger"
                                                 size="lg"
@@ -103,13 +103,8 @@ export default function SignInPage(props) {
                                             >
                                                 <strong>Back</strong>
                                             </Button>
-
-
                                         </GridItem>
-
-
                                     </CardBody>
-
                                 </form>
                                 <div style={{alignItems:'centre'}}>
                                 </div>

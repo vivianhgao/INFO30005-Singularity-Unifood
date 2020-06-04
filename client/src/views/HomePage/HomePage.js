@@ -5,8 +5,6 @@ import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 
-// @material-ui/icons
-
 // core components
 import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
@@ -74,7 +72,7 @@ export default function HomePage(props) {
               </Button>
               </Link>
 
-                <Link to={"/organisers/login"} className={classes.link}>
+                <Link to={"/organiser/login"} className={classes.link}>
                     <Button
                         color="danger"
                         size="lg"
