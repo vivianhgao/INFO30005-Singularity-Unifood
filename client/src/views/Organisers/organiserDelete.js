@@ -17,7 +17,7 @@ import styles from "assets/jss/material-kit-react/views/profilePage.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import GridItem from "../../components/Grid/GridItem";
 import axios from 'axios';
-// import swal from 'sweetalert';
+import swal from 'sweetalert';
 import EmailIcon from '@material-ui/icons/Email';
 
 // Using template UI from Material UI
@@ -29,7 +29,7 @@ export default function OrganiserDelete(props) {
     const location = useLocation();
     const id=location.state.id;
     const email_add = location.state.email_add;
-
+    const orgName = location.state.orgName;
     const [email,setEmail]= useState("")
     // Use existed design
     const classes = useStyles();
@@ -40,12 +40,14 @@ export default function OrganiserDelete(props) {
         // Confirm deletion
         if (email_add === email){
             axios.get('/organisers/delete/'+id)
-        .then(res => res.data.success?
-            history.push('/'):
-            alert("Fail to delete")
-        ).catch();
+            // delete success
+            .then(res => res.data.success?
+            swal(orgName+" account is deleted successfully.",{icon:"success"})
+            .then(history.push('/')):
+            // Failed to delete
+            swal("Failed to delete the account. \nPlease try again."));
         } else {
-            alert("Input is incorrect.");
+            swal("The email you entered was incorrect.");
         }
     }
 
@@ -73,10 +75,6 @@ export default function OrganiserDelete(props) {
                     <div>
                         <div className={classes.container}>
                             <div class='container'>
-                                <div class="heading">
-                                    {/* Enter your email to verify deletion */}
-                                </div>
-                            
                                 <GridContainer justify="center">
                                 <GridItem xs={10} sm={10} md={6}>
 

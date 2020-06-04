@@ -17,7 +17,7 @@ import styles from "assets/jss/material-kit-react/views/profilePage.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import GridItem from "../../components/Grid/GridItem";
 import axios from 'axios';
-
+import swal from 'sweetalert';
 
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import EmailIcon from '@material-ui/icons/Email';
@@ -35,7 +35,7 @@ export default function OrganiserUpdate(props) {
     const location = useLocation();
     const id=location.state.id;
     var email_add = location.state.email_add;
-    const organisation_name = location.state.orgName;
+    var organisation_name = location.state.orgName;
     const [email,setEmail]= useState("")
     const [password,setPassword]=useState("")
     const [contactNumber,setContactNumber]= useState("")
@@ -48,32 +48,53 @@ export default function OrganiserUpdate(props) {
 
     function updateAccount(ev){
         ev.preventDefault();
-        // update account through API
-        axios.post('/organisers/update/'+id,
-        {
-            organisation_name: organiserName,
-            officer_name: officerName,
-            contact_number: contactNumber,
-            email: email,
-            password: password
-        })
-        .then(res => {
-            // Update the email that is going to be sent to homepage
-            if (email !== email_add){
-                email_add = email;
-            }
-            if (res.data.success){
-                alert("Account updated.");
-                history.push(
-                    '/organiser/home',
-                    {
-                        orgName:organiserName,
-                        id:res.data.organiser._id,
-                        email_add: email_add
+
+        // warn and make sure the filled information is correct
+        swal({
+            text: "Are you sure the information for update is correct?",
+            icon: "warning",
+            buttons: {
+                cancel :"No, take me back!",
+                delete:  {
+                    text:"Yes, I'm sure!",
+                    value:"update"
+                },
+            },
+        }).then((value)=>{
+            // information correct, update account through API
+            if (value==="update"){
+                axios.post('/organisers/update/'+id,
+                {
+                    organisation_name: organiserName,
+                    officer_name: officerName,
+                    contact_number: contactNumber,
+                    email: email,
+                    password: password
+                })
+                .then(res => {
+                    // Update the email that is going to be sent to homepage
+                    if (email !== email_add && email!==""){
+                        email_add = email;
                     }
-                );
-            } else {
-                alert("Update account failed.")
+                    // Update organiser name (if any) that is going to be sent to homepage
+                    if (organiserName !== organisation_name && organiserName!==""){
+                        organisation_name = organiserName;
+                    }
+                    if (res.data.success){
+                        swal("Account is updated successfully.",{icon:"success"})
+                        history.push(
+                            '/organiser/home',
+                            {
+                                orgName:organisation_name,
+                                id:res.data.organiser._id,
+                                email_add: email_add
+                            }
+                        );
+                    } else {
+                        swal("Failed to update the account.");
+                    }
+
+                });
             }
         });
     }
@@ -94,6 +115,26 @@ export default function OrganiserUpdate(props) {
     const handlePassword = (event) => {
         setPassword(event.target.value);
     };
+    const cancelUpdate = ()=> {
+        // discard account update warning
+        swal({
+            text: "Are you sure you want to discard the update?",
+            icon: "warning",
+            buttons: {
+                cancel :"No, take me back!",
+                delete:  {
+                    text:"Yes, I'm sure!",
+                    value:"cancel"
+                },
+            },
+        })
+        // Discard the update
+        .then((value)=>{
+            if (value==="cancel"){
+                history.goBack();
+            }
+        });
+    }
 
     return (
         <div>
@@ -213,10 +254,9 @@ export default function OrganiserUpdate(props) {
 
                                     <div style={{float:"right"}}>
                                         <Button
-                                            // className='updateButton'
                                             variant="outlined"
                                             size="md"
-                                            onClick={()=>history.goBack()}
+                                            onClick={cancelUpdate}
                                         >
                                             Cancel
                                         </Button>
