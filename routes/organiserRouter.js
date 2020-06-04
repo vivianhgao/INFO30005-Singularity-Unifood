@@ -2,12 +2,10 @@ const express = require('express');
 const organiserRouter = express.Router();
 const organiserController = require('../controller/organiserController.js');
 
-
 // For front end
 organiserRouter.post("/signup", organiserController.addOrganiser);
 organiserRouter.post("/update/:id", organiserController.updateOrganiser);
 organiserRouter.get("/delete/:id", organiserController.deleteOrganiser);
-
 
 // Appears in backend (localhost:5000)
 organiserRouter.get("/", (req,res,next)=>{
@@ -18,7 +16,6 @@ organiserRouter.get('/signup', (req,res,next)=>{
 });
 
 organiserRouter.post('/logon', organiserController.loginOrganiser);
-organiserRouter.get("/:email", organiserController.getOrganiserById);
 organiserRouter.get('/update/:id', organiserController.organiserPreview);
 organiserRouter.get("/all", organiserController.getOrganisers);
 
