@@ -17,7 +17,6 @@ import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
-
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 
@@ -27,6 +26,7 @@ import axios from 'axios';
 import LoginAuth from '../../LoginAuth'
 import swal from 'sweetalert';
 
+// Using UI template from Material-UI
 const useStyles = makeStyles(styles);
 
 export default function OrganiserLogin(props) {
@@ -99,11 +99,9 @@ export default function OrganiserLogin(props) {
                                             labelText="Organiser Email"
                                             id="email"
                                             value={email}
-
                                             formControlProps={{
                                                 fullWidth: true,
                                                 onChange: (event)=>handleEmail(event)
-
                                             }}
                                             inputProps={{
                                                 type: "email",
@@ -119,11 +117,9 @@ export default function OrganiserLogin(props) {
                                             labelText="Password"
                                             id="password"
                                             value={password}
-
                                             formControlProps={{
                                                 fullWidth: true,
                                                 onChange: (event)=>handlePassword(event)
-
                                             }}
                                             inputProps={{
 
@@ -149,13 +145,11 @@ export default function OrganiserLogin(props) {
                                         </Button>
 
                                         <Grid item>
-                                                <Link href="/organiser/signup" style={{ color: '#999999' }}>
-                                                    {"Don't have an account? Sign Up"}
-                                                </Link>
+                                            <Link href="/organiser/signup" style={{ color: '#999999' }}>
+                                                {"Don't have an account? Sign Up"}
+                                            </Link>
                                         </Grid>
-
                                     </CardBody>
-
                                 </form>
                             </Card>
                         </GridItem>

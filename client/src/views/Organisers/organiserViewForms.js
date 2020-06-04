@@ -37,33 +37,28 @@ export default function OrganiserViewForms(props) {
     const classes = useStyles();
     const { ...rest } = props;
     const [forms, setForms] = useState([]);
-    // const [load, setLoad] = useState(false);
 
     useEffect(() => {
         axios.get("/forms/formList/"+email_add)
             .then(res => {
                 setForms(res.data);
-                // setLoad(true);
             })
             .catch(err => {
                 swal("Error! Please try again!");
             })
     });
 
+    // Redirect to other pages
     const deleteForm = () =>{
         let path = '/delete-form';
         history.push(path, {orgName:organisation_name, email_add:email_add});
     }
-
     const updateForm = () => {
         let path = '/update-form';
         history.push(path, {id:id, orgName:organisation_name, email_add:email_add});
     }
 
-
-
     return (
-
         <div>
             <Header
                 color="transparent"

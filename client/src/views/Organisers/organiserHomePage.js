@@ -1,5 +1,6 @@
 
 import React from "react";
+import {useHistory, useLocation} from 'react-router-dom';
 // core components
 import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
@@ -10,13 +11,9 @@ import HeaderLinks from "components/Header/HeaderLinks.js";
 import Parallax from "components/Parallax/Parallax.js";
 
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
-import {useHistory} from 'react-router-dom';
-import { useLocation } from "react-router-dom";
 import GridContainer from "../../components/Grid/GridContainer";
 import GridItem from "../../components/Grid/GridItem";
-
 import classNames from "classnames";
-
 
 //icons
 import UpdateIcon from '@material-ui/icons/Update';
@@ -27,6 +24,7 @@ import ClearAllIcon from '@material-ui/icons/ClearAll';
 
 import LoginAuth from '../../LoginAuth';
 
+// Using UI template from Material UI
 const useStyles = makeStyles(styles);
 
 export default function OrganiserHomePage(props) {
@@ -37,27 +35,23 @@ export default function OrganiserHomePage(props) {
     const organisation_name = location.state.orgName;
     const email_add = location.state.email_add;
 
-    console.log("HOME EMAIL: "+email_add);
-
     const classes = useStyles();
     const { ...rest } = props;
 
+    // Handle changes from input
     const updateAccount = () => {
         let path = '/organiser/account/update';
         history.push(path, {id:id, orgName: organisation_name, email_add:email_add});
         console.log('id: '+id);
     }
-
     const deleteAccount = () => {
         let path = '/organiser/account/delete';
         history.push(path, {id:id, orgName:organisation_name, email_add:email_add});
     }
-
     const postForm = () =>{
         let path = '/post-new-form';
         history.push(path, {id:id, orgName:organisation_name, email_add:email_add});
     }
-
     const viewForms = () => {
         let path = '/organiser/forms';
         history.push(path, {id:id, orgName:organisation_name, email_add:email_add});
@@ -70,7 +64,6 @@ export default function OrganiserHomePage(props) {
     }
 
     return (
-
         <div>
             <Header
                 color="transparent"

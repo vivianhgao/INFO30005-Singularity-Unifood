@@ -41,17 +41,14 @@ export default function OrganiserUpdate(props) {
     const [contactNumber,setContactNumber]= useState("")
     const [officerName,setOfficerName]=useState("")
     const [organiserName,setOrganiserName]= useState("")
-    
-    console.log("IDDD: "+id);
-    console.log("UPDATE EMAIL: "+email_add);
 
-
+    // Use existed design
     const classes = useStyles();
     const { ...rest } = props;
 
     function updateAccount(ev){
         ev.preventDefault();
-
+        // update account through API
         axios.post('/organisers/update/'+id,
         {
             organisation_name: organiserName,
@@ -81,28 +78,22 @@ export default function OrganiserUpdate(props) {
         });
     }
 
+    // handle changes from the input
     const handleOrganisationName = (event) => {
         setOrganiserName(event.target.value);
     };
-
     const handleOfficerName = (event) => {
         setOfficerName(event.target.value);
     };
-
     const handleContactNumber = (event) => {
         setContactNumber(event.target.value);
     };
-
     const handleEmail = (event) => {
-        console.log(email);
         setEmail(event.target.value);
     };
-
     const handlePassword = (event) => {
         setPassword(event.target.value);
     };
-
-    
 
     return (
         <div>

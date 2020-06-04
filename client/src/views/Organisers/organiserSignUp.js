@@ -36,6 +36,7 @@ import swal from 'sweetalert';
 const useStyles = makeStyles(styles);
 
 export default function OrganiserSignup(props) {
+
     let history = useHistory()
     const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
     setTimeout(function() {
@@ -51,7 +52,9 @@ export default function OrganiserSignup(props) {
     const [password,setPassword]= useState("")
 
     function validateSignUp(ev){
-        ev.preventDefault(); // Let's stop this event.
+        // prevent from automatically submit
+        ev.preventDefault();
+        // Do post method to sign up through API
         axios.post(
             '/organisers/signup',
             {
@@ -61,32 +64,29 @@ export default function OrganiserSignup(props) {
                 email: email,
                 password: password})
             .then(res => {
+                // posting success
                 if (res.data.success){
                     swal("Account created!\n Please log in");
                     history.push('/organiser/login');
                 } else {
-                    swal("Failed sign up");
+                    swal("Signing up failed. \n Your email might be used or you have not fill entire form.");
                 }
             }).catch();
     }
 
+    // Handle changes from the input
     const handleOrganisationName = (event) => {
         setOrganiserName(event.target.value);
     };
-
     const handleOfficerName = (event) => {
         setOfficerName(event.target.value);
     };
-
     const handleContactNumber = (event) => {
         setContactNumber(event.target.value);
     };
-
     const handleEmail = (event) => {
-        console.log(email);
         setEmail(event.target.value);
     };
-
     const handlePassword = (event) => {
         setPassword(event.target.value);
     };

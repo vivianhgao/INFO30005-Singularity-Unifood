@@ -1,9 +1,10 @@
 import React, {useState} from "react";
+import { useLocation, useHistory } from "react-router-dom";
+
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-
 // core components
 import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
@@ -13,17 +14,13 @@ import HeaderLinks from "components/Header/HeaderLinks.js";
 import Parallax from "components/Parallax/Parallax.js";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
-
 import CustomInput from "components/CustomInput/CustomInput.js";
 import GridItem from "../../components/Grid/GridItem";
 import axios from 'axios';
-
 // import swal from 'sweetalert';
-
 import EmailIcon from '@material-ui/icons/Email';
 
-import { useLocation, useHistory } from "react-router-dom";
-
+// Using template UI from Material UI
 const useStyles = makeStyles(styles);
 
 export default function OrganiserDelete(props) {
@@ -34,18 +31,13 @@ export default function OrganiserDelete(props) {
     const email_add = location.state.email_add;
 
     const [email,setEmail]= useState("")
-
-    // console.log("DELETEpage EMAIL: "+email_add);
+    // Use existed design
     const classes = useStyles();
     const { ...rest } = props;
 
-    const handleEmail = (event) => {
-        setEmail(event.target.value);
-    };
-
     function deleteAccount(event){
         event.preventDefault();
-
+        // Confirm deletion
         if (email_add === email){
             axios.get('/organisers/delete/'+id)
         .then(res => res.data.success?
@@ -53,9 +45,14 @@ export default function OrganiserDelete(props) {
             alert("Fail to delete")
         ).catch();
         } else {
-            alert("Wrong org name");
+            alert("Input is incorrect.");
         }
     }
+
+    // Handle email changes from input
+    const handleEmail = (event) => {
+        setEmail(event.target.value);
+    };
 
     return (
         <div>
