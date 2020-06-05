@@ -32,6 +32,4 @@ require("./user");
 require("./organiser");
 require("./form");
 
-module.exports = 
-   db
-;
+module.exports = db;
