@@ -28,10 +28,8 @@ export default function UserDashboard(props) {
     const [first_name,setFirstName]=useState();
     const [userLat, setUserLat] = useState(Number);
     const [userLong, setUserLong] = useState(Number);
-    const [allData, setAllData]=useState([]);
     const [newData, setNewData]=useState([]);
     const [notifyData, setNotifyData]=useState([]);
-    const [incomingData, setIncomingData]=useState([]);
     const [forms, setForms] = useState([]);
 
     const { ...rest } = props;
@@ -41,35 +39,25 @@ export default function UserDashboard(props) {
         .then(res=>setFirstName(res.data.user.first_name))
     }
 
+    // eslint-disable-next-line
     useEffect(()=>{
 
+        // Receive the incoming form data from mongodb through socket.io
         socket.on("Forms", data=>setForms(data));
-        setIncomingData(forms);
-        
-        // Get new only the new incoming data
-        if(incomingData.length > allData.length) {
-            for (let i= allData.length; i<incomingData.length; i++) {
-                newData.push(incomingData[i]);
-            }
-            // All data = incoming data
-            setAllData(incomingData);
-            // keep the data in new data
-            setNewData(newData);
-        }
-
+        // Add incoming data to newData
+        setNewData(forms);
+        // Always call notification as it can decide to take an action by its own
         getNotificationData();
-
     });
 
     function getNotificationData(){
-        // check location has been retrieved
+        // Start notify user if user's location is retrieved
         if (userLat) {
             // find the nearest leftover from user
             for (let i = 0; i < newData.length; i++) {
                 const eventLat = newData[i].latitude;
                 const eventLong = newData[i].longitude;
                 const distance = getDistance(userLat,userLong,eventLat,eventLong);
-
                 // considerably near (< 0.5km)
                 if (distance < 0.5) {
                     // initial data for notification
@@ -79,13 +67,21 @@ export default function UserDashboard(props) {
                     else {
                         // check whether the data already in notification data
                         var dataIsInNotif = false;
+                        var tempNotifyIndex = [];
                         for (let j=0; j<notifyData.length; j++) {
                             // data (event) is already notified
                             if (newData[i]._id === notifyData[j]._id) {
                                 dataIsInNotif = true;
+                                notifyData[j] = newData[i];
+                                // Event no longer available, delete from notification
+                                if (!formContainsObject(newData,notifyData[j])){
+                                    tempNotifyIndex.push(j);
+                                    delete notifyData[j];
+                                }
                                 break;
                             }
                         }
+
                         // add new data (event) to notification board
                         if (!dataIsInNotif){
                             notifyData.push(newData[i]);
@@ -97,6 +93,14 @@ export default function UserDashboard(props) {
         }
     }
 
+    function formContainsObject (form, object) {
+        for (let i=0;i< form.length; i++) {
+            if (form[i]._id === object._id) {
+                return true;
+            }
+        }
+        return false;
+    }
     // get distance using longitude and latitude
     // retrieved from https://www.geodatasource.com/developers/javascript
     function getDistance(lat1, long1, lat2, long2) {
@@ -132,19 +136,19 @@ export default function UserDashboard(props) {
     }
 
     function getLocation(){
-      // ask for permission
-          swal({
-            text:"Allow Unifood to access your location?",
-            icon:"info",
-            buttons:
+        // ask for permission
+        swal({
+        text:"Allow Unifood to access your location?",
+        icon:"info",
+        buttons:
+        {
+            cancel:"Decline",
+            accept:
             {
-                cancel:"Decline",
-                accept:
-                {
-                    text:"Accept",
-                    value:"accept"
-                },
+                text:"Accept",
+                value:"accept"
             },
+        },
         }).then((value)=>{
             switch(value){
                 // allow to access location
@@ -249,6 +253,8 @@ export default function UserDashboard(props) {
                     ))} 
                 </div>
             </div>
+            <br/>
+            <br/>
             <Footer />
         </div>
     );
