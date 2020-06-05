@@ -31,9 +31,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var connection_string = "mongodb+srv://pbudiman:<password>@cluster0-hdaoj.mongodb.net/unifood?retryWrites=true&w=majority";
 var mongo_url = connection_string.replace("<password>", process.env.MONGO_PASSWORD);
 
-console.log("URL: "+connection_string);
-console.log("Password: "+ process.env.MONGO_PASSWORD);
-
 // Get forms from mongodb and emit to client using socket.io
 const db = require("monk")(mongo_url);
 const form_collection = db.get("forms");
@@ -80,3 +77,5 @@ if (process.env.NODE_ENV === 'production') {
 server.listen(process.env.PORT || 5000, () => {
     console.log("The Unifood app is listening!");
 });
+
+module.exports={app}
