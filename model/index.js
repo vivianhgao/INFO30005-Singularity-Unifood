@@ -32,6 +32,6 @@ require("./user");
 require("./organiser");
 require("./form");
 
-module.exports = {
-    MONGO_URL
-}
+module.exports = 
+   db
+;
