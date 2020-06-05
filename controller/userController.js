@@ -13,8 +13,7 @@ const getUsers=(req,res)=>{
 // function for user to log in
 const logIn = (req, res, next) => {
     const {username,password}=req.body;
-    console.log("server: "+req.body)
-
+    
     // find the user in the database with the log in username
     User.findOne({username:username},function (err,user){
         if (err) {
@@ -107,8 +106,7 @@ const updateUser = (req, res) => {
             delete update[field]
         }
     }
-     console.log(update)
-
+   
     //find the user's details and update it
     User.findOneAndUpdate(condition, update, function(err,user){
         if (err){

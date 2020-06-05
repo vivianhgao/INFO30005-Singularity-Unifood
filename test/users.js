@@ -8,8 +8,9 @@ const chaiHttp = require('chai-http');
 
 chai.use(chaiHttp);
 
-const app= require('../app');
-const User= require("../model/user")
+const {app}= require('../app');
+const User= require("../model/user");
+
 
 const new_user=
     {
@@ -56,14 +57,14 @@ describe("Testing user functionality",function(){
 
     })
 
-    it("Deleting a user (GET /users/delete/:username)", (done)=>{
-        chai.request(app)
-            .get("/users/delete/"+new_user.username)
-            .then((res)=>{
-                expect(res.body.success).to.deep.equal(true);
-            })
-        done();
-    })
+    // it("Deleting a user (GET /users/delete/:username)", (done)=>{
+    //     chai.request(app)
+    //         .get("/users/delete/"+new_user.username)
+    //         .then((res)=>{
+    //             expect(res.body.success).to.deep.equal(true);
+    //         })
+    //     done();
+    // })
 
 
 
