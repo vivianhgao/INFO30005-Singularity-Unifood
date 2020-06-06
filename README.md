@@ -24,7 +24,7 @@ https://unifood-app.herokuapp.com/
 
 # Table of Contents
 
-1. [Set Up Environment](#set-up-environment)
+1. [Set Up Environment & Testing](#set-up-environment)
 2. [Core Functionalities](#core-functionalities)
 3. [Front-End Client](#front-end-client)
 4. [Back-End Server](#back-end-server)
@@ -56,6 +56,14 @@ npm install
 ```
 ```
 npm start
+```
+
+## Testing
+```
+npm install
+```
+```
+npm run test
 ```
 
 
