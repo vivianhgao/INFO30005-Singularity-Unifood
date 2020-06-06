@@ -144,13 +144,13 @@ Email: external@demo.com
 <br>
 Password: demo
 
-**Organiser Login:** https://unifood-app.herokuapp.com/organisers/login
+**Organiser Login:** https://unifood-app.herokuapp.com/organiser/login
 <br>
-**Organiser Signup:** https://unifood-app.herokuapp.com/organisers/signup
+**Organiser Signup:** https://unifood-app.herokuapp.com/organiser/signup
 <br>
-**Update Organiser:** https://unifood-app.herokuapp.com/organisers/account/update
+**Update Organiser:** https://unifood-app.herokuapp.com/organiser/account/update
 <br>
-**Delete Organiser:** https://unifood-app.herokuapp.com/organisers/account/delete
+**Delete Organiser:** https://unifood-app.herokuapp.com/organiser/account/delete
 
 ### Location-Based Notifications
 
@@ -160,7 +160,7 @@ https://unifood-app.herokuapp.com/user/login
 #### User dashboaard:
 The user dashboard should be and automatically accessed after the user successfully login.
 
-URL: http://unifood-app.herokuapp.com/userdashboard
+URL: http://unifood-app.herokuapp.com/user/dashboard
 
 This page contains:
  - all of the forms
@@ -170,12 +170,12 @@ To get notifications, user should click the "Share my location " button, allow t
 
 ## Form Management
 #### Login as organiser:
-https://unifood-app.herokuapp.com/organisers/login
+https://unifood-app.herokuapp.com/organiser/login
 
 #### Organiser dashboard:
 The organiser dashboard is automatically accessed after successsful login.
 
-URL: https://unifood-app.herokuapp.com/organisers/home
+URL: https://unifood-app.herokuapp.com/organiser/home
 
 Now you can: 
 - Post new form 
@@ -239,7 +239,6 @@ URL: http://localhost:5000
 | loginOrganiser   | /organisers/logon      | POST   | Validates organiser logon details          |
 | organiserPreview | /organisers/update/:id | GET    | Gets details of an organiser by id         |
 | getOrganisers    | /organisers/all        | GET    | Gets all of the organisers                 |
-| getOrganiserById | /organisers/:email     | GET    | Gets organiser details by email            |
 | addOrganiser     | /organisers/signup     | POST   | Registers a new organiser account          |
 | updateOrganiser  | /organisers/update/:id | POST   | Updates details of organiser by id         |
 | deleteOrganiser  | /organisers/delete/:id | GET    | Deletes organiser account by id            |
