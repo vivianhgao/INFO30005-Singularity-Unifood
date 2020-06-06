@@ -28,7 +28,6 @@ export default function UserDashboard(props) {
     const [first_name,setFirstName]=useState();
     const [userLat, setUserLat] = useState(Number);
     const [userLong, setUserLong] = useState(Number);
-    const [newData, setNewData]=useState([]);
     const [notifyData, setNotifyData]=useState([]);
     const [forms, setForms] = useState([]);
 
@@ -44,8 +43,6 @@ export default function UserDashboard(props) {
 
         // Receive the incoming form data from mongodb through socket.io
         socket.on("Forms", data=>setForms(data));
-        // Add incoming data to newData
-        setNewData(forms);
         // Always call notification as it can decide to take an action by its own
         getNotificationData();
     });
@@ -53,39 +50,44 @@ export default function UserDashboard(props) {
     function getNotificationData(){
         // Start notify user if user's location is retrieved
         if (userLat) {
+
             // find the nearest leftover from user
-            for (let i = 0; i < newData.length; i++) {
-                const eventLat = newData[i].latitude;
-                const eventLong = newData[i].longitude;
+            for (let i = 0; i < forms.length; i++) {
+                const eventLat = forms[i].latitude;
+                const eventLong = forms[i].longitude;
                 const distance = getDistance(userLat,userLong,eventLat,eventLong);
                 // considerably near (< 0.5km)
                 if (distance < 0.5) {
                     // initial data for notification
                     if (notifyData.length === 0) {
-                        notifyData.push(newData[i]);
+                        notifyData.push(forms[i]);
                     }
                     else {
                         // check whether the data already in notification data
                         var dataIsInNotif = false;
-                        var tempNotifyIndex = [];
                         for (let j=0; j<notifyData.length; j++) {
                             // data (event) is already notified
-                            if (newData[i]._id === notifyData[j]._id) {
+                            if (forms[i]._id === notifyData[j]._id) {
                                 dataIsInNotif = true;
-                                notifyData[j] = newData[i];
-                                // Event no longer available, delete from notification
-                                if (!formContainsObject(newData,notifyData[j])){
-                                    tempNotifyIndex.push(j);
-                                    delete notifyData[j];
-                                }
+                                // Update data
+                                notifyData[j] = forms[i];
                                 break;
                             }
                         }
 
                         // add new data (event) to notification board
                         if (!dataIsInNotif){
-                            notifyData.push(newData[i]);
+                            notifyData.push(forms[i]);
                             setNotifyData(notifyData);
+                        }
+                        
+                        // Delete the removed event from notification list
+                        for (let j=0; j<notifyData.length; j++) {
+                            if (notifyData[j]===undefined){
+                            }
+                            else if (!formContainsObject(forms, notifyData[j])){
+                                delete notifyData[j];
+                            }
                         }
                     }
                 }
