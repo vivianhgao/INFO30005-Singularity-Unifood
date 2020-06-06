@@ -107,8 +107,7 @@ export default function OrganiserViewForms(props) {
                                                             <h6>Time: {res.time}</h6>
                                                             <h6>Location: {res.address}</h6>
                                                             <h6>Quantity: {res.quantity}</h6>
-                                                            <h6>Photo: {res.photo}</h6>
-                                                            <h6>latitude: {res.latitude} longitude: {res.longitude}</h6>
+                                                            <h6>latitude: {res.latitude.toFixed(4)} longitude: {res.longitude.toFixed(4)}</h6>
 
                                                         </CardContent>
 
