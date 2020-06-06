@@ -55,23 +55,28 @@ export default function OrganiserSignup(props) {
         // prevent from automatically submit
         ev.preventDefault();
         // Do post method to sign up through API
-        axios.post(
-            '/organisers/signup',
-            {
-                organisation_name: organiserName,
-                officer_name: officerName,
-                contact_number: contactNumber,
-                email: email,
-                password: password})
-            .then(res => {
-                // posting success
-                if (res.data.success){
-                    swal("Account created!\n Please log in");
-                    history.push('/organiser/login');
-                } else {
-                    swal("Signing up failed. \n Your email might be used or you have not fill entire form.");
-                }
-            }).catch();
+        if (!(organiserName && officerName && contactNumber && email && password)) {
+            swal("You have not filled the entire form.");
+        }
+        else {
+            axios.post(
+                '/organisers/signup',
+                {
+                    organisation_name: organiserName,
+                    officer_name: officerName,
+                    contact_number: contactNumber,
+                    email: email,
+                    password: password})
+                .then(res => {
+                    // posting success
+                    if (res.data.success){
+                        swal("Account created!\n Please log in");
+                        history.push('/organiser/login');
+                    } else {
+                        swal("Signing up failed. \n The email has been used");
+                    }
+                }).catch();
+        }
     }
 
     // Handle changes from the input
@@ -124,10 +129,10 @@ export default function OrganiserSignup(props) {
                                         id="standard-full-width"
                                         label="Organisation Name"
                                         style={{ margin: 8 }}
+                                        type="text"
                                         placeholder="Hungers Association"
-                                        // helperText="Required"
                                         fullWidth
-                                        required={true}
+                                        required
                                         margin="normal"
                                         InputLabelProps={{
                                             shrink: true,
@@ -146,8 +151,8 @@ export default function OrganiserSignup(props) {
                                         label="Officer Name"
                                         style={{ margin: 8 }}
                                         placeholder="Name"
-                                        // helperText="Required"
-                                        required={true}
+                                        type="text"
+                                        required
                                         fullWidth
                                         margin="normal"
                                         InputLabelProps={{
@@ -167,9 +172,8 @@ export default function OrganiserSignup(props) {
                                         label="Contact Number"
                                         style={{ margin: 8 }}
                                         placeholder="411000222"
-                                        // helperText="Required"
                                         fullWidth
-                                        required={true}
+                                        required
                                         margin="normal"
                                         InputLabelProps={{
                                             shrink: true,
@@ -186,11 +190,10 @@ export default function OrganiserSignup(props) {
                                     <TextField
                                         id="standard-full-width"
                                         label="Email"
-                                        type="email"
+                                        type={"email"}
                                         style={{ margin: 8 }}
                                         placeholder="admin@organisation.com"
-                                        // helperText="Required"
-                                        required={true}
+                                        required
                                         fullWidth
                                         margin="normal"
                                         InputLabelProps={{
@@ -211,9 +214,8 @@ export default function OrganiserSignup(props) {
                                         type="password"
                                         style={{ margin: 8 }}
                                         placeholder="Password"
-                                        // helperText=""
                                         fullWidth
-                                        required={true}
+                                        required
                                         margin="normal"
                                         InputLabelProps={{
                                             shrink: true,

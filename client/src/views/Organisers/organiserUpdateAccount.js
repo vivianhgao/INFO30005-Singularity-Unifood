@@ -265,6 +265,7 @@ export default function OrganiserUpdate(props) {
                                             variant="outlined"
                                             color="danger"
                                             size="md"
+                                            type="submit"
                                             onClick={updateAccount}
                                         >
                                             Update Account
