@@ -35,7 +35,7 @@ import swal from 'sweetalert';
 // Using UI template from Material UI
 const useStyles = makeStyles(styles);
 
-export default function UserLogin(props) {
+export default function UserSignUp(props) {
     let history = useHistory()
     const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
     setTimeout(function() {
