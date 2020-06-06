@@ -160,7 +160,7 @@ https://unifood-app.herokuapp.com/user/login
 #### User dashboaard:
 The user dashboard should be and automatically accessed after the user successfully login.
 
-URL: http://unifood-app.herokuapp.com/user/dashboard
+URL: https://unifood-app.herokuapp.com/user/dashboard
 
 This page contains:
  - all of the forms
