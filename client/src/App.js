@@ -44,7 +44,7 @@ export default function App(){
                 
                 <ProtectedRoute path="/organiser/home" component={OrganiserHomePage} />
                 <ProtectedRoute path="/organiser/account/update" component={OrganiserUpdate} />
-                <Route path="/organiser/account/delete" component={OrganiserDelete} />
+                <ProtectedRoute path="/organiser/account/delete" component={OrganiserDelete} />
                 <Route path="/organiser/login" component={OrganiserLogin} />
                 <Route path="/organiser/signup" component={OrganiserSignup} />
 
