@@ -228,7 +228,7 @@ export default function UserDashboard(props) {
                 <div class="notifs">                
                     <NotificationsIcon fontSize="large"/>
                     <br/>
-                    {notifyData.map(res=>(
+                    {notifyData.reverse().map(res=>(
                         <div key={res.id}>
                             <div class='notifBox'>
                                 Food available from {res.name}!<br/>
@@ -244,7 +244,7 @@ export default function UserDashboard(props) {
                         Available Food
                     </div> 
                     <br/>
-                    {forms.map(res=>(
+                    {forms.reverse().map(res=>(
                         <div key={res.id}>
                             <div class='formBox'>
                                 New Entry from {res.name}!<br/>
