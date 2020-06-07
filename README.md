@@ -64,6 +64,10 @@ npm start
 
 ## Testing
 Testing completed for the user feature.
+- Sign Up
+- Log in
+- Updating account detail
+- Deleting user account
 ```
 npm install
 ```
