@@ -9,7 +9,7 @@ https://unifood-app.herokuapp.com/
     <tr>
         <td align="center"><a href="https://github.com/vivianhgao"><img src="https://avatars1.githubusercontent.com/vivianhgao" width="100px;" alt="Vivian Gao (917035)"/><br /><sub><b>Vivian Gao (917035)</b></sub></a><br/></td>
         <td align="center"><a href="https://github.com/franklinaldo"><img src="https://avatars1.githubusercontent.com/franklinaldo" width="100px;" alt="Franklin Aldo Darmansa (1025392)"/><br /><sub><b>Franklin Aldo Darmansa (1025392)</b></sub></a><br/></td>
-        <td align="center"><a href="https://github.com/pb"><img src="https://avatars1.githubusercontent.com/franklinaldo" width="100px;" alt="Patricia Angelica Budiman (1012861)"/><br /><sub><b>Patricia Angelica Budiman (1012861)</b></sub></a></td><br/><br/>
+        <td align="center"><a href="https://github.com/pb"><img src="https://avatars1.githubusercontent.com/pbudiman" width="100px;" alt="Patricia Angelica Budiman (1012861)"/><br /><sub><b>Patricia Angelica Budiman (1012861)</b></sub></a></td><br/><br/>
     </tr>
  </table>
 **Built with:** Node.JS, Express, MongoDB, React, Material-UI, React-Bootstrap
