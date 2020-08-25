@@ -4,7 +4,11 @@ across campus and reduce edible waste within The University of Melbourne.
 
 https://unifood-app.herokuapp.com/
 
-**Created by:** Team Singularity: https://github.com/vivianhgao Vivian Gao (917035), https://github.com/franklinaldo Franklin Aldo Darmansa (1025392), https://github.com/pbudiman Patricia Angelica Budiman (1012861)
+**Created by:** Team Singularity:
+
+<td align="center"><a href="https://github.com/vivianhgao"><img src="https://avatars1.githubusercontent.com/vivianhgao" width="100px;" alt="Vivian Gao (917035)"/><br /><sub><b>Vivian Gao (917035)</b></sub></a><br /></td>
+<td align="center"><a href="https://github.com/franklinaldo"><img src="https://avatars1.githubusercontent.com/franklinaldo" width="100px;" alt="Franklin Aldo Darmansa (1025392)"/><br /><sub><b>Franklin Aldo Darmansa (1025392)</b></sub></a><br /></td>
+<td align="center"><a href="https://github.com/pb"><img src="https://avatars1.githubusercontent.com/franklinaldo" width="100px;" alt="Patricia Angelica Budiman (1012861)"/><br /><sub><b>Patricia Angelica Budiman (1012861)</b></sub></a><br /></td><br/>
 
 **Built with:** Node.JS, Express, MongoDB, React, Material-UI, React-Bootstrap
 
